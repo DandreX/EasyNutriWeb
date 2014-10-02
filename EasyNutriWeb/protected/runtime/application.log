@@ -1480,3 +1480,242 @@ Stack trace:
 REQUEST_URI=/easynutri/index.php?r=gii/crud/index
 HTTP_REFERER=http://localhost/easynutri/index.php?r=gii/default/index
 ---
+2014/10/02 15:08:57 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The requested view "users" was not found.' in C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\actions\CViewAction.php:112
+Stack trace:
+#0 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\actions\CViewAction.php(123): CViewAction->resolveView('users')
+#1 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\actions\CAction.php(76): CViewAction->run()
+#2 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CController.php(308): CAction->runWithParams(Array)
+#3 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CController.php(286): CController->runAction(Object(CViewAction))
+#4 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CController.php(265): CController->runActionWithFilters(Object(CViewAction), Array)
+#5 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CWebApplication.php(282): CController->run('page')
+#6 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CWebApplication.php(141): CWebApplication->runController('site/page')
+#7 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#8 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\EasyNutriWeb\index.php(13): CApplication->run()
+#9 {main}
+REQUEST_URI=/easynutri/index.php?r=site/page&view=users
+---
+2014/10/02 15:10:52 [error] [exception.CHttpException.400] exception 'CHttpException' with message 'Your request is invalid.' in C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CController.php:336
+Stack trace:
+#0 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CController.php(309): CController->invalidActionParams(Object(CInlineAction))
+#1 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#2 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#3 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#4 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#5 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#6 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CController.php(291): CFilterChain->run()
+#7 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CWebApplication.php(282): CController->run('view')
+#9 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CWebApplication.php(141): CWebApplication->runController('users/view')
+#10 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#11 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\EasyNutriWeb\index.php(13): CApplication->run()
+#12 {main}
+REQUEST_URI=/easynutri/index.php?r=users/view
+---
+2014/10/02 15:18:58 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "user/create".' in C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CWebApplication.php(141): CWebApplication->runController('user/create')
+#1 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\EasyNutriWeb\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/easynutri/index.php?r=user/create
+---
+2014/10/02 17:27:17 [error] [php] Array to string conversion (C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\EasyNutriWeb\protected\views\dadosAntro\_form.php:32)
+Stack trace:
+#0 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CController.php(869): DadosAntroController->renderFile()
+#1 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\EasyNutriWeb\protected\views\dadosAntro\create.php(18): DadosAntroController->renderPartial()
+#2 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CBaseController.php(126): require()
+#3 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CBaseController.php(95): DadosAntroController->renderInternal()
+#4 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CController.php(869): DadosAntroController->renderFile()
+#5 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CController.php(782): DadosAntroController->renderPartial()
+#6 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\EasyNutriWeb\protected\controllers\DadosAntroController.php(79): DadosAntroController->render()
+#7 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\actions\CInlineAction.php(49): DadosAntroController->actionCreate()
+#8 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CController.php(308): CInlineAction->runWithParams()
+#9 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\filters\CFilterChain.php(133): DadosAntroController->runAction()
+#10 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#11 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#12 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\filters\CInlineFilter.php(58): DadosAntroController->filterAccessControl()
+#13 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#14 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CController.php(291): CFilterChain->run()
+#15 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CController.php(265): DadosAntroController->runActionWithFilters()
+#16 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CWebApplication.php(282): DadosAntroController->run()
+#17 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#18 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#19 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\EasyNutriWeb\index.php(13): CWebApplication->run()
+REQUEST_URI=/easynutri/index.php?r=dadosAntro/create
+in C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\EasyNutriWeb\protected\views\dadosAntro\_form.php (32)
+in C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\EasyNutriWeb\protected\views\dadosAntro\create.php (18)
+in C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\EasyNutriWeb\protected\controllers\DadosAntroController.php (79)
+2014/10/02 17:29:14 [error] [php] Array to string conversion (C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\EasyNutriWeb\protected\views\dadosAntro\_form.php:32)
+Stack trace:
+#0 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CController.php(869): DadosAntroController->renderFile()
+#1 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\EasyNutriWeb\protected\views\dadosAntro\create.php(18): DadosAntroController->renderPartial()
+#2 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CBaseController.php(126): require()
+#3 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CBaseController.php(95): DadosAntroController->renderInternal()
+#4 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CController.php(869): DadosAntroController->renderFile()
+#5 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CController.php(782): DadosAntroController->renderPartial()
+#6 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\EasyNutriWeb\protected\controllers\DadosAntroController.php(79): DadosAntroController->render()
+#7 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\actions\CInlineAction.php(49): DadosAntroController->actionCreate()
+#8 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CController.php(308): CInlineAction->runWithParams()
+#9 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\filters\CFilterChain.php(133): DadosAntroController->runAction()
+#10 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#11 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#12 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\filters\CInlineFilter.php(58): DadosAntroController->filterAccessControl()
+#13 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#14 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CController.php(291): CFilterChain->run()
+#15 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CController.php(265): DadosAntroController->runActionWithFilters()
+#16 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CWebApplication.php(282): DadosAntroController->run()
+#17 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#18 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#19 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\EasyNutriWeb\index.php(13): CWebApplication->run()
+REQUEST_URI=/easynutri/index.php?r=dadosAntro/create
+in C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\EasyNutriWeb\protected\views\dadosAntro\_form.php (32)
+in C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\EasyNutriWeb\protected\views\dadosAntro\create.php (18)
+in C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\EasyNutriWeb\protected\controllers\DadosAntroController.php (79)
+2014/10/02 17:30:01 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "tiposMedicao/create".' in C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CWebApplication.php(141): CWebApplication->runController('tiposMedicao/cr...')
+#1 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\EasyNutriWeb\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/easynutri/index.php?r=tiposMedicao/create
+---
+2014/10/02 17:30:30 [error] [php] Array to string conversion (C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\EasyNutriWeb\protected\views\dadosAntro\_form.php:32)
+Stack trace:
+#0 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CController.php(869): DadosAntroController->renderFile()
+#1 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\EasyNutriWeb\protected\views\dadosAntro\create.php(18): DadosAntroController->renderPartial()
+#2 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CBaseController.php(126): require()
+#3 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CBaseController.php(95): DadosAntroController->renderInternal()
+#4 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CController.php(869): DadosAntroController->renderFile()
+#5 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CController.php(782): DadosAntroController->renderPartial()
+#6 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\EasyNutriWeb\protected\controllers\DadosAntroController.php(79): DadosAntroController->render()
+#7 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\actions\CInlineAction.php(49): DadosAntroController->actionCreate()
+#8 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CController.php(308): CInlineAction->runWithParams()
+#9 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\filters\CFilterChain.php(133): DadosAntroController->runAction()
+#10 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#11 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#12 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\filters\CInlineFilter.php(58): DadosAntroController->filterAccessControl()
+#13 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#14 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CController.php(291): CFilterChain->run()
+#15 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CController.php(265): DadosAntroController->runActionWithFilters()
+#16 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CWebApplication.php(282): DadosAntroController->run()
+#17 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#18 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#19 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\EasyNutriWeb\index.php(13): CWebApplication->run()
+REQUEST_URI=/easynutri/index.php?r=dadosAntro/create
+in C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\EasyNutriWeb\protected\views\dadosAntro\_form.php (32)
+in C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\EasyNutriWeb\protected\views\dadosAntro\create.php (18)
+in C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\EasyNutriWeb\protected\controllers\DadosAntroController.php (79)
+2014/10/02 17:31:09 [error] [php] Array to string conversion (C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\EasyNutriWeb\protected\views\dadosAntro\_form.php:32)
+Stack trace:
+#0 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CController.php(869): DadosAntroController->renderFile()
+#1 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\EasyNutriWeb\protected\views\dadosAntro\create.php(18): DadosAntroController->renderPartial()
+#2 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CBaseController.php(126): require()
+#3 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CBaseController.php(95): DadosAntroController->renderInternal()
+#4 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CController.php(869): DadosAntroController->renderFile()
+#5 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CController.php(782): DadosAntroController->renderPartial()
+#6 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\EasyNutriWeb\protected\controllers\DadosAntroController.php(79): DadosAntroController->render()
+#7 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\actions\CInlineAction.php(49): DadosAntroController->actionCreate()
+#8 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CController.php(308): CInlineAction->runWithParams()
+#9 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\filters\CFilterChain.php(133): DadosAntroController->runAction()
+#10 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#11 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#12 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\filters\CInlineFilter.php(58): DadosAntroController->filterAccessControl()
+#13 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#14 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CController.php(291): CFilterChain->run()
+#15 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CController.php(265): DadosAntroController->runActionWithFilters()
+#16 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CWebApplication.php(282): DadosAntroController->run()
+#17 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#18 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#19 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\EasyNutriWeb\index.php(13): CWebApplication->run()
+REQUEST_URI=/easynutri/index.php?r=dadosAntro/create
+in C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\EasyNutriWeb\protected\views\dadosAntro\_form.php (32)
+in C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\EasyNutriWeb\protected\views\dadosAntro\create.php (18)
+in C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\EasyNutriWeb\protected\controllers\DadosAntroController.php (79)
+2014/10/02 18:04:08 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "dadosAntro".' in C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CController.php:483
+Stack trace:
+#0 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CController.php(270): CController->missingAction('dadosAntro')
+#1 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CWebApplication.php(282): CController->run('dadosAntro')
+#2 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CWebApplication.php(141): CWebApplication->runController('site/dadosAntro')
+#3 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#4 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\EasyNutriWeb\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/easynutri/index.php?r=site/dadosAntro
+HTTP_REFERER=http://localhost/easynutri/index.php?r=dadosAntro/index
+---
+2014/10/02 18:04:10 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "dadosAntro".' in C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CController.php:483
+Stack trace:
+#0 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CController.php(270): CController->missingAction('dadosAntro')
+#1 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CWebApplication.php(282): CController->run('dadosAntro')
+#2 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CWebApplication.php(141): CWebApplication->runController('site/dadosAntro')
+#3 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#4 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\EasyNutriWeb\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/easynutri/index.php?r=site/dadosAntro
+HTTP_REFERER=http://localhost/easynutri/index.php?r=site/dadosAntro
+---
+2014/10/02 18:04:23 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "dadosAntro".' in C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CController.php:483
+Stack trace:
+#0 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CController.php(270): CController->missingAction('dadosAntro')
+#1 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CWebApplication.php(282): CController->run('dadosAntro')
+#2 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CWebApplication.php(141): CWebApplication->runController('site/dadosAntro')
+#3 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#4 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\EasyNutriWeb\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/easynutri/index.php?r=site/dadosAntro
+HTTP_REFERER=http://localhost/easynutri/index.php?r=dadosAntro/index
+---
+2014/10/02 18:04:37 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "dadosAntro".' in C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CController.php:483
+Stack trace:
+#0 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CController.php(270): CController->missingAction('dadosAntro')
+#1 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CWebApplication.php(282): CController->run('dadosAntro')
+#2 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CWebApplication.php(141): CWebApplication->runController('site/dadosAntro')
+#3 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#4 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\EasyNutriWeb\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/easynutri/index.php?r=site/dadosAntro
+HTTP_REFERER=http://localhost/easynutri/index.php?r=site/dadosAntro
+---
+2014/10/02 18:04:55 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "dadosAntro".' in C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CController.php:483
+Stack trace:
+#0 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CController.php(270): CController->missingAction('dadosAntro')
+#1 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CWebApplication.php(282): CController->run('dadosAntro')
+#2 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CWebApplication.php(141): CWebApplication->runController('site/dadosAntro')
+#3 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#4 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\EasyNutriWeb\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/easynutri/index.php?r=site/dadosAntro
+HTTP_REFERER=http://localhost/easynutri/index.php?r=site/dadosAntro
+---
+2014/10/02 18:05:00 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "dadosAntro".' in C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CController.php:483
+Stack trace:
+#0 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CController.php(270): CController->missingAction('dadosAntro')
+#1 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CWebApplication.php(282): CController->run('dadosAntro')
+#2 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CWebApplication.php(141): CWebApplication->runController('site/dadosAntro...')
+#3 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#4 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\EasyNutriWeb\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/easynutri/index.php?r=site/dadosAntro/index
+HTTP_REFERER=http://localhost/easynutri/index.php?r=site/dadosAntro
+---
+2014/10/02 18:05:05 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "dadosAntro".' in C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CController.php:483
+Stack trace:
+#0 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CController.php(270): CController->missingAction('dadosAntro')
+#1 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CWebApplication.php(282): CController->run('dadosAntro')
+#2 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CWebApplication.php(141): CWebApplication->runController('site/dadosAntro...')
+#3 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#4 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\EasyNutriWeb\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/easynutri/index.php?r=site/dadosAntro/index
+HTTP_REFERER=http://localhost/easynutri/index.php?r=site/dadosAntro/index
+---
+2014/10/02 18:05:21 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "dadosAntro".' in C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CController.php:483
+Stack trace:
+#0 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CController.php(270): CController->missingAction('dadosAntro')
+#1 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CWebApplication.php(282): CController->run('dadosAntro')
+#2 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CWebApplication.php(141): CWebApplication->runController('site/dadosAntro...')
+#3 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#4 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\EasyNutriWeb\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/easynutri/index.php?r=site/dadosAntro/index
+HTTP_REFERER=http://localhost/easynutri/index.php?r=site/dadosAntro/index
+---
