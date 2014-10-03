@@ -37,7 +37,7 @@
                 array('label' => 'Home', 'url' => array('/site/index')),
                 array('label' => 'Dados Antropométricos', 'url' => array('/dadosAntro/index')),
                 array('label' => 'Tipo Medicao', 'url' => array('/tipoMedicao/index')),
-                array('label' => 'Utentes', 'url' => array('/users/index')),
+                array('label' => 'Utentes', 'url' => array('/utentes/index')),
                 array('label' => 'About', 'url' => array('/site/page', 'view' => 'about')),
                 array('label' => 'Contact', 'url' => array('/site/contact')),
                 array('label' => 'Login', 'url' => array('/site/login'), 'visible' => Yii::app()->user->isGuest),
