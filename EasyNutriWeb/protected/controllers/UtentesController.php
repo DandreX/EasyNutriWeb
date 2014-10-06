@@ -63,24 +63,19 @@ class UtentesController extends Controller
 	public function actionCreate()
 	{
 		$model=new Utentes;
-        $usersModel = new Users;
+
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
 		if(isset($_POST['Utentes']))
 		{
 			$model->attributes=$_POST['Utentes'];
-            $usersModel->attributes=$_POST['Utentes'];
-			if($usersModel->save())
-                var_dump(Yii::app()->db->getLastInsertId());
-                exit();
-                $model->id= Yii::app()->db->getLastInsertId();
+			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}
 
 		$this->render('create',array(
 			'model'=>$model,
-            'usersModel'=>$usersModel,
 		));
 	}
 
@@ -127,10 +122,11 @@ class UtentesController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$dataProvider=new CActiveDataProvider('Utentes');
-		$this->render('index',array(
-			'dataProvider'=>$dataProvider,
-		));
+        $this->redirect(array('admin'));
+//		$dataProvider=new CActiveDataProvider('Utentes');
+//		$this->render('index',array(
+//			'dataProvider'=>$dataProvider,
+//		));
 	}
 
 	/**

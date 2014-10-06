@@ -55,12 +55,13 @@ return array(
         // uncomment the following to use a MySQL database
 
         'db'=>array(
-//            'connectionString' => 'sqlsrv:Server=(localdb)\v11.0; Database=EasyNutriDB',
- 'connectionString' => 'sqlsrv:Server=192.168.246.64,1433\SQLEXPRESS; Database=EasyNutriDB',
+            'connectionString' => 'sqlsrv:Server=192.168.246.64,1433\SQLEXPRESS;Database=EasyNutriDB',
             'username' => 'EasyNutri',
             'password' => 'dreamteam',
-            //'emulatePrepare' =>false,
 
+//            'connectionString' => 'sqlsrv:Server=(localdb)\v11.0;Database=EasyNutriDB;',
+//            'username' => 'localuser',
+//              'password' => 'localuser',
         ),
 
         'errorHandler' => array(

@@ -1,7 +1,6 @@
 <?php
 /* @var $this UtentesController */
 /* @var $model Utentes */
-/* @var $usersModel Users */
 /* @var $form CActiveForm */
 ?>
 
@@ -15,45 +14,80 @@
 	// See class documentation of CActiveForm for details on this.
 	'enableAjaxValidation'=>false,
 )); ?>
-
+    <?php var_dump($model->attributes)?>
 	<p class="note">Fields with <span class="required">*</span> are required.</p>
 
 	<?php echo $form->errorSummary($model); ?>
 
-
-
     <div class="row">
-        <?php echo $form->labelEx($usersModel, 'nome'); ?>
-        <?php echo $form->textField($usersModel, 'nome', array('size' => 60, 'maxlength' => 150)); ?>
-        <?php echo $form->error($usersModel, 'nome'); ?>
+        <?php echo $form->labelEx($model,'nome'); ?>
+        <?php echo $form->textField($model,'nome',array('size'=>60,'maxlength'=>150)); ?>
+        <?php echo $form->error($model,'nome'); ?>
     </div>
 
     <div class="row">
-        <?php echo $form->labelEx($usersModel, 'username'); ?>
-        <?php echo $form->textField($usersModel, 'username', array('size' => 30, 'maxlength' => 30)); ?>
-        <?php echo $form->error($usersModel, 'username'); ?>
+        <?php echo $form->labelEx($model,'sexo'); ?>
+        <?php echo $form->radioButtonList($model,'sexo',Utentes::model()->sexos); ?>
+        <?php echo $form->error($model,'sexo'); ?>
     </div>
 
     <div class="row">
-        <?php echo $form->labelEx($usersModel, 'password'); ?>
-        <?php echo $form->passwordField($usersModel, 'password', array('size' => 60, 'maxlength' => 128)); ?>
-        <?php echo $form->error($usersModel, 'password'); ?>
+        <?php echo $form->labelEx($model,'data_nascimento'); ?>
+        <?php
+        $this->widget('zii.widgets.jui.CJuiDatePicker', array(
+            'attribute' => 'DataNascimento',
+            'name' => 'Utentes[data_nascimento]',
+            'value' => $model->data_nascimento,
+            'language' => 'pt',
+            'options' => array(
+                'showAnim' => 'fold',
+                'dateFormat' => 'yy-mm-dd',
+                'changeYear' => 'true',
+                'changeMonth' => 'true',
+                'maxDate' => 'today',
+            ),
+
+        ));
+        ?>
+        <?php echo $form->error($model,'data_nascimento'); ?>
     </div>
-
-
-    <!--FIM DO FORM USERS -->
-
-<!--    <div class="row">-->
-<!--		--><?php //echo $form->labelEx($model,'id'); ?>
-<!--		--><?php //echo $form->textField($model,'id'); ?>
-<!--		--><?php //echo $form->error($model,'id'); ?>
-<!--	</div>-->
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'morada'); ?>
-		<?php echo $form->textField($model,'morada',array('size'=>60,'maxlength'=>150)); ?>
+		<?php echo $form->textArea($model,'morada',array('rows'=>4, 'cols'=>60)); ?>
 		<?php echo $form->error($model,'morada'); ?>
 	</div>
+
+	<div class="row">
+		<?php echo $form->labelEx($model,'email'); ?>
+		<?php echo $form->textField($model,'email',array('size'=>60,'maxlength'=>150)); ?>
+		<?php echo $form->error($model,'email'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->labelEx($model,'telefone'); ?>
+		<?php echo $form->textField($model,'telefone',array('size'=>30,'maxlength'=>30)); ?>
+		<?php echo $form->error($model,'telefone'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->labelEx($model,'nif'); ?>
+		<?php echo $form->textField($model,'nif',array('size'=>11,'maxlength'=>11)); ?>
+		<?php echo $form->error($model,'nif'); ?>
+	</div>
+
+
+    <div class="row">
+        <?php echo $form->labelEx($model,'username'); ?>
+        <?php echo $form->textField($model,'username',array('size'=>60,'maxlength'=>128)); ?>
+        <?php echo $form->error($model,'username'); ?>
+    </div>
+
+    <div class="row">
+        <?php echo $form->labelEx($model,'password'); ?>
+        <?php echo $form->passwordField($model,'password',array('size'=>60,'maxlength'=>128)); ?>
+        <?php echo $form->error($model,'password'); ?>
+    </div>
 
 	<div class="row buttons">
 		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>

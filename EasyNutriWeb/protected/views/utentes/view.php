@@ -23,5 +23,13 @@ $this->menu=array(
 	'attributes'=>array(
 		'id',
 		'morada',
+		'nome',
+		'username',
+		'password',
+		'data_nascimento',
+		'sexo',
+		'email',
+		'telefone',
+		'nif',
 	),
 )); ?>

@@ -120,10 +120,11 @@ class TipoMedicaoController extends Controller
      */
     public function actionIndex()
     {
-        $dataProvider = new CActiveDataProvider('TipoMedicao');
-        $this->render('index', array(
-            'dataProvider' => $dataProvider,
-        ));
+        $this->redirect(array('admin'));
+//        $dataProvider = new CActiveDataProvider('TipoMedicao');
+//        $this->render('index', array(
+//            'dataProvider' => $dataProvider,
+//        ));
     }
 
     /**
