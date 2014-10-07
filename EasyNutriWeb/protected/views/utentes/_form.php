@@ -14,7 +14,6 @@
 	// See class documentation of CActiveForm for details on this.
 	'enableAjaxValidation'=>false,
 )); ?>
-    <?php var_dump($model->attributes)?>
 	<p class="note">Fields with <span class="required">*</span> are required.</p>
 
 	<?php echo $form->errorSummary($model); ?>
@@ -52,6 +51,20 @@
         <?php echo $form->error($model,'data_nascimento'); ?>
     </div>
 
+    <div class="row">
+        <?php echo $form->labelEx($model,'profissao'); ?>
+        <?php echo $form->textField($model,'profissao',array('size'=>60,'maxlength'=>150)); ?>
+        <?php echo $form->error($model,'profissao'); ?>
+    </div>
+
+    <div class="row">
+        <?php echo $form->labelEx($model,'estado_civil'); ?>
+        <?php echo $form->textField($model,'estado_civil',array('size'=>60,'maxlength'=>150)); ?>
+        <?php echo $form->error($model,'estado_civil'); ?>
+    </div>
+
+
+    
 	<div class="row">
 		<?php echo $form->labelEx($model,'morada'); ?>
 		<?php echo $form->textArea($model,'morada',array('rows'=>4, 'cols'=>60)); ?>
@@ -76,6 +89,11 @@
 		<?php echo $form->error($model,'nif'); ?>
 	</div>
 
+    <div class="row">
+        <?php echo $form->labelEx($model,'motivo_consulta'); ?>
+        <?php echo $form->textArea($model,'motivo_consulta',array('rows'=>4, 'cols'=>60)); ?>
+        <?php echo $form->error($model,'motivo_consulta'); ?>
+    </div>
 
     <div class="row">
         <?php echo $form->labelEx($model,'username'); ?>
@@ -83,11 +101,7 @@
         <?php echo $form->error($model,'username'); ?>
     </div>
 
-    <div class="row">
-        <?php echo $form->labelEx($model,'password'); ?>
-        <?php echo $form->passwordField($model,'password',array('size'=>60,'maxlength'=>128)); ?>
-        <?php echo $form->error($model,'password'); ?>
-    </div>
+
 
 	<div class="row buttons">
 		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>

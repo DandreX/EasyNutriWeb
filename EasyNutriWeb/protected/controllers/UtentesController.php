@@ -70,6 +70,8 @@ class UtentesController extends Controller
 		if(isset($_POST['Utentes']))
 		{
 			$model->attributes=$_POST['Utentes'];
+            $model->medico_id=1;
+            $model->password='easynutri';
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}
@@ -110,6 +112,7 @@ class UtentesController extends Controller
 	 */
 	public function actionDelete($id)
 	{
+
 		$this->loadModel($id)->delete();
 
 		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
@@ -134,6 +137,7 @@ class UtentesController extends Controller
 	 */
 	public function actionAdmin()
 	{
+
 		$model=new Utentes('search');
 		$model->unsetAttributes();  // clear any default values
 		if(isset($_GET['Utentes']))

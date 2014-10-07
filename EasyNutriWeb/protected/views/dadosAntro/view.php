@@ -16,16 +16,16 @@ $this->menu=array(
 );
 ?>
 
-<h1>View DadosAntro #<?php echo $model->id; ?></h1>
+<h1>Registo Antropométrico: <?php echo $model->tipoMedicao->descricao; ?></h1>
 
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,
 	'attributes'=>array(
 		'id',
-		'tipo_medicao_id',
+        'nomeUtente',
+        'TipoMedicao',
 		'valor',
-		'data_med',
 		'unidade',
-		'utente_id',
+        'data_med',
 	),
 )); ?>

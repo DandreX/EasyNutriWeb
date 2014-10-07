@@ -13,11 +13,16 @@
  * @property string $sexo
  * @property string $email
  * @property string $telefone
- * @property integer $nif
+ * @property string $nif
+ * @property string $profissao
+ * @property string $estado_civil
+ * @property string $motivo_consulta
+ * @property integer $medico_id
  *
  * The followings are the available model relations:
  * @property DadosAntro[] $dadosAntros
  * @property DiarioAlimentar[] $diarioAlimentars
+ * @property Users $medico
  */
 class Utentes extends CActiveRecord
 {
@@ -33,6 +38,10 @@ class Utentes extends CActiveRecord
         return array('M'=>'Masculino','F'=>'Feminino');
     }
 
+    public function getMedicoNome(){
+        return $this->medico->nome;
+    }
+
 
 
 	/**
@@ -43,18 +52,20 @@ class Utentes extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('nome, username, password, sexo', 'required'),
+			array('nome, username, password, sexo, medico_id', 'required'),
 			array('nif', 'numerical', 'integerOnly'=>true),
+            array('username', 'length', 'max'=>100),
             array('nif','length','min'=>11),
 			array('morada, email', 'length', 'max'=>150),
 			array('password', 'length', 'max'=>128),
 			array('sexo', 'length', 'max'=>1),
 			array('telefone', 'length', 'max'=>30),
 			array('data_nascimento', 'safe'),
+            array('nif', 'length', 'max'=>19),
 //            array('sexo','match','pattern','M|F'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, morada, nome, username, password, data_nascimento, sexo, email, telefone, nif', 'safe', 'on'=>'search'),
+			array('id, morada, nome, username, password, data_nascimento, sexo, email, telefone, nif profissao, estado_civil, motivo_consulta', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -68,6 +79,7 @@ class Utentes extends CActiveRecord
 		return array(
 			'dadosAntros' => array(self::HAS_MANY, 'DadosAntro', 'utente_id'),
 			'diarioAlimentars' => array(self::HAS_MANY, 'DiarioAlimentar', 'user_id'),
+            'medico' => array(self::BELONGS_TO, 'Users', 'medico_id'),
 		);
 	}
 
@@ -87,6 +99,11 @@ class Utentes extends CActiveRecord
 			'email' => 'Email',
 			'telefone' => 'Telefone',
 			'nif' => 'Nif',
+            'profissao' => 'Profissao',
+            'estado_civil' => 'Estado Civil',
+            'motivo_consulta' => 'Motivo Consulta',
+            'medico_id' => 'Medico',
+            'medicoNome'=>'Medico',
 		);
 	}
 
@@ -118,6 +135,10 @@ class Utentes extends CActiveRecord
 		$criteria->compare('email',$this->email,true);
 		$criteria->compare('telefone',$this->telefone,true);
 		$criteria->compare('nif',$this->nif);
+        $criteria->compare('profissao',$this->profissao,true);
+        $criteria->compare('estado_civil',$this->estado_civil,true);
+        $criteria->compare('motivo_consulta',$this->motivo_consulta,true);
+        $criteria->compare('medico_id',$this->medico_id);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

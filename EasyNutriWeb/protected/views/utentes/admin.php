@@ -41,15 +41,12 @@ $('.search-form form').submit(function(){
 	'dataProvider'=>$model->search(),
 	'filter'=>$model,
 	'columns'=>array(
-		'id',
-		'morada',
-		'nome',
+        'nome',
+        'data_nascimento',
+        'sexo',
+        'telefone',
+        'email',
 		'username',
-		'data_nascimento',
-		'sexo',
-		'email',
-		'telefone',
-		'nif',
 
 		array(
 			'class'=>'CButtonColumn',
