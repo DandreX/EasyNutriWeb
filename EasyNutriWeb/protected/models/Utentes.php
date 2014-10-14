@@ -56,7 +56,7 @@ class Utentes extends CActiveRecord
             array('nome, username, password, sexo, medico_id,data_nascimento ', 'required'),
             array('nif', 'numerical', 'integerOnly' => true),
             array('username', 'length', 'max' => 100),
-            array('nif', 'length', 'min' => 11),
+            array('nif', 'length', 'min' => 8),
             array('morada, email', 'length', 'max' => 150),
             array('password', 'length', 'max' => 128),
             array('sexo', 'length', 'max' => 1),

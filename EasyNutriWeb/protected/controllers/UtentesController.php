@@ -126,12 +126,12 @@ class UtentesController extends Controller
     public function actionDelete($id)
     {
         try {
-            $result = $this->loadModel($id)->delete();
+            $this->loadModel($id)->delete();
         } catch (CDbException $e) {
             throw new CHttpException(500, "\nImpossivel apagar utente");
         }
 
-        $this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array(index));
+        //$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array(index));
 
     }
 

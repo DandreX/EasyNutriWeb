@@ -40,7 +40,8 @@ $('.search-form form').submit(function(){
 	'id'=>'utentes-grid',
 	'dataProvider'=>$model->search(),
 	'filter'=>$model,
-	'columns'=>array(
+    'enableSorting' => false,
+    'columns'=>array(
         'nome',
         'data_nascimento',
         'sexo',
@@ -48,9 +49,10 @@ $('.search-form form').submit(function(){
         'email',
 		'username',
 
-		array(
+
+        array(
 			'class'=>'CButtonColumn',
-            'afterDelete' => "function(link,success,data){ if (success) alert(data); } ",
+            // 'afterDelete' => "function(link,success,data){ if (success) alert(data); } ",
         ),
     ),
 )); ?>
