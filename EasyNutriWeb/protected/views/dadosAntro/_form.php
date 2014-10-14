@@ -6,18 +6,18 @@
 
 <div class="form">
 
-<?php $form=$this->beginWidget('CActiveForm', array(
-	'id'=>'dados-antro-form',
-	// Please note: When you enable ajax validation, make sure the corresponding
-	// controller action is handling ajax validation correctly.
-	// There is a call to performAjaxValidation() commented in generated controller code.
-	// See class documentation of CActiveForm for details on this.
-	'enableAjaxValidation'=>false,
-)); ?>
+    <?php $form = $this->beginWidget('CActiveForm', array(
+        'id' => 'dados-antro-form',
+        // Please note: When you enable ajax validation, make sure the corresponding
+        // controller action is handling ajax validation correctly.
+        // There is a call to performAjaxValidation() commented in generated controller code.
+        // See class documentation of CActiveForm for details on this.
+        'enableAjaxValidation' => false,
+    )); ?>
 
-	<p class="note">Fields with <span class="required">*</span> are required.</p>
+    <p class="note">Fields with <span class="required">*</span> are required.</p>
 
-	<?php echo $form->errorSummary($model); ?>
+    <?php echo $form->errorSummary($model); ?>
 
     <div class="row">
         <?php echo $form->labelEx($model, 'utente_id'); ?>
@@ -42,30 +42,25 @@
     </div>
 
     <div class="row">
-        <?php echo $form->labelEx($model, 'unidade'); ?>
-        <?php echo $form->textField($model, 'unidade', array('size' => 10, 'maxlength' => 10)); ?>
-        <?php echo $form->error($model, 'unidade'); ?>
-    </div>
-
-
-    <div class="row">
         <?php echo $form->labelEx($model, 'data_med'); ?>
         <?php
         $form->widget('application.extensions.timepicker.timepicker', array(
-            'model'=>$model,
-            'name'=>'data_med',
-            'options'=>array(
-                'showOn'=>'focus',
+            'model' => $model,
+            'name' => 'data_med',
+            'options' => array(
+
+                'showOn' => 'focus',
+                'maxDate' => 'today',
             ),
         ));
         ?>
         <?php echo $form->error($model, 'data_med'); ?>
     </div>
 
-	<div class="row buttons">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Guardar' : 'Alterar'); ?>
-	</div>
+    <div class="row buttons">
+        <?php echo CHtml::submitButton($model->isNewRecord ? 'Guardar' : 'Alterar'); ?>
+    </div>
 
-<?php $this->endWidget(); ?>
+    <?php $this->endWidget(); ?>
 
 </div><!-- form -->

@@ -20,7 +20,7 @@ $('.search-button').click(function(){
 $('.search-form form').submit(function(){
 	$('#utentes-grid').yiiGridView('update', {
 		data: $(this).serialize()
-	});
+	}).error(function(){alert('erro')});
 	return false;
 });
 ");
@@ -50,6 +50,7 @@ $('.search-form form').submit(function(){
 
 		array(
 			'class'=>'CButtonColumn',
-		),
-	),
+            'afterDelete' => "function(link,success,data){ if (success) alert(data); } ",
+        ),
+    ),
 )); ?>
