@@ -9,28 +9,40 @@ return array(
     'basePath' => dirname(__FILE__) . DIRECTORY_SEPARATOR . '..',
     'name' => 'EasyNutri',
 
+    'aliases' => array(
+        'bootstrap' => realpath(__DIR__ . '/../extensions/bootstrap'),
+    ),
     // preloading 'log' component
     'preload' => array('log'),
 
     // autoloading model and component classes
     'import' => array(
+        'bootstrap.helpers.*',
+        'bootstrap.components.*',
+        'bootstrap.widgets.*',
         'application.models.*',
         'application.components.*',
     ),
 
     'modules' => array(
 
-        'gii'=>array(
-            'class'=>'system.gii.GiiModule',
-            'password'=>'admin',
+        'gii' => array(
+            'class' => 'system.gii.GiiModule',
+            'password' => 'admin',
             // If removed, Gii defaults to localhost only. Edit carefully to taste.
-            'ipFilters'=>array('127.0.0.1','::1'),
+            'ipFilters' => array('127.0.0.1', '::1'),
+            'generatorPaths' => array('bootstrap.gii'),
         ),
 
     ),
 
     // application components
     'components' => array(
+
+        'bootstrap' => array(
+            'class' => 'bootstrap.components.TbApi',
+        ),
+
         'user' => array(
             // enable cookie-based authentication
             'allowAutoLogin' => true,
@@ -54,8 +66,8 @@ return array(
 
         // uncomment the following to use a MySQL database
 
-        'db'=>array(
-            'connectionString' => 'sqlsrv:Server=192.168.246.64,1433\SQLEXPRESS;Database=EasyNutriDB',
+        'db' => array(
+            'connectionString' => 'sqlsrv:Server=SofiaOliveira\SQLEXPRESS;Database=EasyNutriDB',
             'username' => 'EasyNutri',
             'password' => 'dreamteam',
 
@@ -84,6 +96,7 @@ return array(
             ),
         ),
     ),
+
 
     // application-level parameters that can be accessed
     // using Yii::app()->params['paramName']
