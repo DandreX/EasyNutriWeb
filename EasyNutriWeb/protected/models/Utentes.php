@@ -133,7 +133,7 @@ class Utentes extends CActiveRecord
         $criteria->compare('morada', $this->morada, true);
         $criteria->compare('nome', $this->nome, true);
         $criteria->compare('username', $this->username, true);
-        $criteria->compare('password', $this->password, true);
+       // $criteria->compare('password', $this->password, true);
         $criteria->compare('data_nascimento', $this->data_nascimento, true);
         $criteria->compare('sexo', $this->sexo, true);
         $criteria->compare('email', $this->email, true);
