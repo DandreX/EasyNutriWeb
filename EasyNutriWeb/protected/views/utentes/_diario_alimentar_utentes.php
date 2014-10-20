@@ -1,10 +1,26 @@
-<?php ?>
+<?php /* @var $modelDiarioAlimentar DiarioAlimentar */ ?>
+
 <h5>Data</h5>
 
-<?php echo TbHtml::textField('date', '', array('placeholder' => 'Data')); ?>
+<?php //echo TbHtml::textField('date', '', array('placeholder' => 'Data'));?>
+<?php
+$this->widget('zii.widgets.jui.CJuiDatePicker', array(
+    'attribute' => '$modelDiarioAlimentar->data_diario',
+    'name' => 'DiarioAlimentar[data_diario]',
+    'value' => date('Y-m-d'),
+    'language' => 'pt',
+    'options' => array(
+        'showAnim' => 'fold',
+        'dateFormat' => 'yy-mm-dd',
+        'changeYear' => 'true',
+        'changeMonth' => 'true',
+        'maxDate' => 'today',
+    ),
+));
+?>
 <?php /* $this->widget('bootstrap.widgets.TbGridView', array(
-    'dataProvider' => $person->search(),
-    'filter' => $person,
+    'dataProvider' => $modelDiarioAlimentar,
+    'filter' => $modelDiarioAlimentar,
     'template' => "{items}",
     'columns' => array(
         array(

@@ -51,8 +51,14 @@ class UtentesController extends Controller
      */
     public function actionView($id)
     {
+        $diarioAlimentar = DiarioAlimentar::model()->findAllByAttributes(
+            array(),
+            $condition = 'user_id=:id',
+            $params = array('id' => $id)
+        );
         $this->render('view', array(
             'model' => $this->loadModel($id),
+            'modelDiarioAlimentar' => $diarioAlimentar,
         ));
     }
 

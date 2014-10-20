@@ -7,9 +7,9 @@
 //	'Manage',
 //);
 
-$this->menu=array(
-	//array('label'=>'List Utentes', 'url'=>array('index')),
-	array('label'=>'Novo Utente', 'url'=>array('create')),
+$this->menu = array(
+    //array('label'=>'List Utentes', 'url'=>array('index')),
+    array('label' => 'Novo Utente', 'url' => array('create')),
 );
 
 Yii::app()->clientScript->registerScript('search', "
@@ -29,29 +29,30 @@ $('.search-form form').submit(function(){
 <h1>Os meus utentes</h1>
 
 
-<?php echo CHtml::link('Advanced Search','#',array('class'=>'search-button')); ?>
+<?php echo CHtml::link('Advanced Search', '#', array('class' => 'search-button')); ?>
 <div class="search-form" style="display:none">
-<?php $this->renderPartial('_search',array(
-	'model'=>$model,
-)); ?>
+    <?php $this->renderPartial('_search', array(
+        'model' => $model,
+    )); ?>
 </div><!-- search-form -->
 
-<?php $this->widget('zii.widgets.grid.CGridView', array(
-	'id'=>'utentes-grid',
-	'dataProvider'=>$model->search(),
-	'filter'=>$model,
+<?php $this->widget('bootstrap.widgets.TbGridView', array(
+    'type' => TbHtml::GRID_TYPE_HOVER,
+    'id' => 'utentes-grid',
+    'dataProvider' => $model->search(),
+    'filter' => $model,
     'enableSorting' => false,
-    'columns'=>array(
+    'columns' => array(
         'nome',
         'data_nascimento',
         'sexo',
         'telefone',
         'email',
-		'username',
+        'username',
 
 
         array(
-			'class'=>'CButtonColumn',
+            'class' => 'CButtonColumn',
             // 'afterDelete' => "function(link,success,data){ if (success) alert(data); } ",
         ),
     ),

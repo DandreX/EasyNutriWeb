@@ -20,6 +20,7 @@ return array(
         'bootstrap.helpers.*',
         'bootstrap.components.*',
         'bootstrap.widgets.*',
+        'bootstrap.behaviors.*',
         'application.models.*',
         'application.components.*',
     ),
@@ -67,7 +68,7 @@ return array(
         // uncomment the following to use a MySQL database
 
         'db' => array(
-            'connectionString' => 'sqlsrv:Server=SofiaOliveira\SQLEXPRESS;Database=EasyNutriDB',
+            'connectionString' => 'sqlsrv:Server=192.168.246.64,1433\SQLEXPRESS;Database=EasyNutriDB',
             'username' => 'EasyNutri',
             'password' => 'dreamteam',
 
