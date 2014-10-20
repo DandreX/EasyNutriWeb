@@ -1,10 +1,29 @@
-<?php /* @var $modelDiarioAlimentar DiarioAlimentar */ ?>
+<?php
+/* @var $model Utente */
+/* @var $modelDiarioAlimentar DiarioAlimentar */
+/*@var $data array*/
+?>
+
 
 <h5>Data</h5>
 
-<?php //echo TbHtml::textField('date', '', array('placeholder' => 'Data'));?>
+
 <?php
-$this->widget('zii.widgets.jui.CJuiDatePicker', array(
+
+//echo TbHtml::textField('date', '', array('placeholder' => 'Data'));
+?>
+<div class="form">
+    <?php $form = $this->beginWidget('CActiveForm', array(
+        'id' => 'diarioAlimentar',
+        'enableAjaxValidation' => false,
+        'htmlOptions' => array(
+            'onsubmit' => "return false;", /* Disable normal form submit */
+            'onkeypress' => " if(event.keyCode == 13){ send(); } " /* Do ajax call when user presses enter key */
+        ),
+    )); ?>
+
+    <?php
+    $this->widget('zii.widgets.jui.CJuiDatePicker', array(
     'attribute' => '$modelDiarioAlimentar->data_diario',
     'name' => 'DiarioAlimentar[data_diario]',
     'value' => date('Y-m-d'),
@@ -18,70 +37,36 @@ $this->widget('zii.widgets.jui.CJuiDatePicker', array(
     ),
 ));
 ?>
-<?php /* $this->widget('bootstrap.widgets.TbGridView', array(
-    'dataProvider' => $modelDiarioAlimentar,
-    'filter' => $modelDiarioAlimentar,
-    'template' => "{items}",
-    'columns' => array(
-        array(
-            'name' => 'id',
-            'header' => '#',
-            'htmlOptions' => array('color' =>'width: 60px'),
-        ),
-        array(
-            'name' => 'firstName',
-            'header' => 'First name',
-        ),
-        array(
-            'name' => 'lastName',
-            'header' => 'Last name',
-        ),
-        array(
-            'name' => 'username',
-            'header' => 'Username',
-        ),
-    ),
-));*/
-?>
+    <div class="row buttons">
+        <?php echo CHtml::Button('Pesquisar', array('onclick' => 'requestRefeicoes();')); ?>
+    </div>
 
-<h2>Detalhes</h2>
-<?php
-echo TbHtml::formActions(array(
-    TbHtml::inlineCheckBoxList('Checkbox', '', array(
-        'option1' => 'Calorias',
-        'option2' => 'Proteinas',
-        'option3' => 'Hidratos de Carbono',
-        'option4' => 'Lipidos',
-        'option5' => 'Açúcares',
-        'option6' => 'Fibras'
-    ))
-));
+    <?php $this->endWidget(); ?>
 
-?>
-<?php /* $this->widget('bootstrap.widgets.TbGridView', array(
-    'dataProvider' => $person->search(),
-    'filter' => $person,
-    'template' => "{items}",
-    'columns' => array(
-        array(
-            'name' => 'id',
-            'header' => '#',
-            'htmlOptions' => array('color' =>'width: 60px'),
-        ),
-        array(
-            'name' => 'firstName',
-            'header' => 'First name',
-        ),
-        array(
-            'name' => 'lastName',
-            'header' => 'Last name',
-        ),
-        array(
-            'name' => 'username',
-            'header' => 'Username',
-        ),
-    ),
-));*/
-?>
+</div>
+
+<div id="refeicoes"></div>
+
+<div id="detalhes_refeicao"></div>
+
+
+<script type="text/javascript">
+    function requestRefeicoes() {
+        var data = $("#diarioAlimentar").serialize();
+        $.ajax({
+            type: 'POST',
+            url: '<?php echo Yii::app()->createAbsoluteUrl("utentes/AjaxRefeicoes&id=".$model->id); ?>',
+            data: data,
+            success: function (data) {
+                $('#refeicoes').html(data);
+            },
+            error: function (data) { // if error occured
+                alert("Não foram encontradas refeições para a data selecionada");
+            },
+            dataType: 'html'
+        });
+    }
+</script>
+
 
 

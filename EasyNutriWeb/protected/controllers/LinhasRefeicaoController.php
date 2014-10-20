@@ -1,6 +1,6 @@
 <?php
 
-class UtentesController extends Controller
+class LinhasRefeicaoController extends Controller
 {
     /**
      * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
@@ -27,9 +27,17 @@ class UtentesController extends Controller
     public function accessRules()
     {
         return array(
-            array('allow', // allow admin user to perform 'admin' and 'delete' actions
-//                'actions' => array('index','view','create','update','admin', 'delete'),
+            array('allow', // allow all users to perform 'index' and 'view' actions
+                'actions' => array('index', 'view'),
+                'users' => array('*'),
+            ),
+            array('allow', // allow authenticated user to perform 'create' and 'update' actions
+                'actions' => array('create', 'update'),
                 'users' => array('@'),
+            ),
+            array('allow', // allow admin user to perform 'admin' and 'delete' actions
+                'actions' => array('admin', 'delete'),
+                'users' => array('admin'),
             ),
             array('deny', // deny all users
                 'users' => array('*'),
@@ -43,14 +51,8 @@ class UtentesController extends Controller
      */
     public function actionView($id)
     {
-        $diarioAlimentar = DiarioAlimentar::model()->findAllByAttributes(
-            array(),
-            $condition = 'user_id=:id',
-            $params = array('id' => $id)
-        );
         $this->render('view', array(
             'model' => $this->loadModel($id),
-            'modelDiarioAlimentar' => $diarioAlimentar,
         ));
     }
 
@@ -60,25 +62,15 @@ class UtentesController extends Controller
      */
     public function actionCreate()
     {
-        $model = new Utentes;
+        $model = new LinhasRefeicao;
 
         // Uncomment the following line if AJAX validation is needed
         // $this->performAjaxValidation($model);
 
-        if (isset($_POST['Utentes'])) {
-            try {
-                $model->attributes = $_POST['Utentes'];
-                $model->medico_id = 1;
-                $model->password = 'easynutri';
-
-
-                if ($model->save())
-                    $this->redirect(array('view', 'id' => $model->id));
-            } catch (CDbException $e) {
-                $model->addError('', $e->errorInfo[2]);
-            }
-
-
+        if (isset($_POST['LinhasRefeicao'])) {
+            $model->attributes = $_POST['LinhasRefeicao'];
+            if ($model->save())
+                $this->redirect(array('view', 'id' => $model->id));
         }
 
         $this->render('create', array(
@@ -98,19 +90,12 @@ class UtentesController extends Controller
         // Uncomment the following line if AJAX validation is needed
         // $this->performAjaxValidation($model);
 
-        if (isset($_POST['Utentes'])) {
-            try {
-
-
-                $model->attributes = $_POST['Utentes'];
-                if ($model->save())
-                    $this->redirect(array('view', 'id' => $model->id));
-
-            } catch (CDbException $e) {
-                $model->addError('', $e->errorInfo[2]);
-
-            }
+        if (isset($_POST['LinhasRefeicao'])) {
+            $model->attributes = $_POST['LinhasRefeicao'];
+            if ($model->save())
+                $this->redirect(array('view', 'id' => $model->id));
         }
+
         $this->render('update', array(
             'model' => $model,
         ));
@@ -123,14 +108,11 @@ class UtentesController extends Controller
      */
     public function actionDelete($id)
     {
-        try {
-            $this->loadModel($id)->delete();
-        } catch (CDbException $e) {
-            throw new CHttpException(500, "\nImpossivel apagar utente");
-        }
+        $this->loadModel($id)->delete();
 
-        //$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array(index));
-
+        // if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
+        if (!isset($_GET['ajax']))
+            $this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
     }
 
     /**
@@ -138,11 +120,10 @@ class UtentesController extends Controller
      */
     public function actionIndex()
     {
-        $this->redirect(array('admin'));
-//		$dataProvider=new CActiveDataProvider('Utentes');
-//		$this->render('index',array(
-//			'dataProvider'=>$dataProvider,
-//		));
+        $dataProvider = new CActiveDataProvider('LinhasRefeicao');
+        $this->render('index', array(
+            'dataProvider' => $dataProvider,
+        ));
     }
 
     /**
@@ -150,12 +131,10 @@ class UtentesController extends Controller
      */
     public function actionAdmin()
     {
-
-        $model = new Utentes('search');
-        //  $model = Utentes::model()->findAllByAttributes(array(),'medico_id=:userid', array(':userid'=>Yii::app()->user->userid));
+        $model = new LinhasRefeicao('search');
         $model->unsetAttributes(); // clear any default values
-        if (isset($_GET['Utentes']))
-            $model->attributes = $_GET['Utentes'];
+        if (isset($_GET['LinhasRefeicao']))
+            $model->attributes = $_GET['LinhasRefeicao'];
 
         $this->render('admin', array(
             'model' => $model,
@@ -166,12 +145,12 @@ class UtentesController extends Controller
      * Returns the data model based on the primary key given in the GET variable.
      * If the data model is not found, an HTTP exception will be raised.
      * @param integer $id the ID of the model to be loaded
-     * @return Utentes the loaded model
+     * @return LinhasRefeicao the loaded model
      * @throws CHttpException
      */
     public function loadModel($id)
     {
-        $model = Utentes::model()->findByPk($id);
+        $model = LinhasRefeicao::model()->findByPk($id);
         if ($model === null)
             throw new CHttpException(404, 'The requested page does not exist.');
         return $model;
@@ -179,50 +158,13 @@ class UtentesController extends Controller
 
     /**
      * Performs the AJAX validation.
-     * @param Utentes $model the model to be validated
+     * @param LinhasRefeicao $model the model to be validated
      */
     protected function performAjaxValidation($model)
     {
-        if (isset($_POST['ajax']) && $_POST['ajax'] === 'utentes-form') {
+        if (isset($_POST['ajax']) && $_POST['ajax'] === 'linhas-refeicao-form') {
             echo CActiveForm::validate($model);
             Yii::app()->end();
         }
-    }
-
-    public function actionAjaxRefeicoes($id)
-    {
-        //   var_dump($_POST['DiarioAlimentar']['data_diario']);
-
-        $data = $_POST['DiarioAlimentar']['data_diario'];
-//    $data='2014-10-08';
-        $diario = DiarioAlimentar::model()->find('(user_id=:id) AND (data_diario BETWEEN :data1 AND DATEADD(DAY, 1, :data2))',
-            array(
-                ':id' => $id,
-                ':data1' => $data,
-                ':data2' => $data,
-            ));
-
-//        if (!isset($diario->id)) {
-//            echo("diario is null");
-//            exit();
-//        }
-        $dataProvider = new CActiveDataProvider('Refeicoes', array(
-            'criteria' => array(
-                'condition' => 'diario_id=' . $diario->id
-            ),
-        ));
-
-        $this->renderPartial('_refeicoes_utente',
-            array(
-
-                'dataProvider' => $dataProvider), false, true);
-
-
-    }
-
-    public function actionAjaxDetalhesRefeicao($id)
-    {
-
-        $this->renderPartial('_detalhes_refeicao', array(), false, true);
     }
 }
