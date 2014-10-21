@@ -39,7 +39,7 @@
                 array('label' => 'Utentes', 'url' => array('/utentes/index')),
                 array('label' => 'Registos Antropométricos', 'url' => array('/dadosAntro/index')),
                 array('label' => 'Tipo Medicao', 'url' => array('/tipoMedicao/index')),
-
+                array('label' => 'Notificações', 'url' => array('/notificacoes/index')),
                 array('label' => 'Login', 'url' => array('/site/login'), 'visible' => Yii::app()->user->isGuest),
                 array('label' => 'Logout (' . Yii::app()->user->name . ')', 'url' => array('/site/logout'), 'visible' => !Yii::app()->user->isGuest)
             ),
