@@ -4,69 +4,71 @@
 /*@var $data array*/
 ?>
 
+<div id="refeicoes">
+    <div id="refeicoes">
+        <?php
+        if ($dataProvider != null) {
 
-<h5>Data</h5>
+            $this->widget('bootstrap.widgets.TbGridView', array(
+                'id' => 'tabela_refeicoes',
+                'dataProvider' => $dataProvider,
+                'template' => "{items}",
+                'selectableRows' => 1,
+                'htmlOptions' => array('id' => 'tabela_refeicoes'),
+                'columns' => array(
+                    array('value' => '$data->id',
+                        'header' => 'ID',
+                    ),
+                    array(
+                        'value' => '$data->tipoRefeicao->descricao',
+                        'header' => 'Refeição',
+                    ),
+                    array(
+                        'name' => 'data_refeicao',
+                        'header' => 'Data / Hora',
+                    ),
+                    array(
+                        'class' => 'CCheckBoxColumn',
+                    ),
+
+                ),
+
+            ));
+        } else {
+            echo("Este utente nao tem registos");
+        }
 
 
-<?php
+        ?>
 
-//echo TbHtml::textField('date', '', array('placeholder' => 'Data'));
-?>
-<div class="form">
-    <?php $form = $this->beginWidget('CActiveForm', array(
-        'id' => 'diarioAlimentar',
-        'enableAjaxValidation' => false,
-        'htmlOptions' => array(
-            'onsubmit' => "return false;", /* Disable normal form submit */
-            'onkeypress' => " if(event.keyCode == 13){ send(); } " /* Do ajax call when user presses enter key */
-        ),
-    )); ?>
-
-    <?php
-    $this->widget('zii.widgets.jui.CJuiDatePicker', array(
-    'attribute' => '$modelDiarioAlimentar->data_diario',
-    'name' => 'DiarioAlimentar[data_diario]',
-    'value' => date('Y-m-d'),
-    'language' => 'pt',
-    'options' => array(
-        'showAnim' => 'fold',
-        'dateFormat' => 'yy-mm-dd',
-        'changeYear' => 'true',
-        'changeMonth' => 'true',
-        'maxDate' => 'today',
-    ),
-));
-?>
-    <div class="row buttons">
-        <?php echo CHtml::Button('Pesquisar', array('onclick' => 'requestRefeicoes();')); ?>
     </div>
 
-    <?php $this->endWidget(); ?>
-
+    <script type="text/javascript">
+        $("#tabela_refeicoes").mouseup(function () {
+            setTimeout(function () {
+                var idRefeicao = $('#tabela_refeicoes .selected > td:first-child').text();
+                if (idRefeicao !== 'undefined') {
+                    $.ajax({
+                        type: 'GET',
+                        url: '<?php echo Yii::app()->createAbsoluteUrl("utentes/AjaxDetalhesRefeicao&id="); ?>' + idRefeicao,
+                        success: function (data) {
+                            $('#detalhes_refeicao').html(data);
+                        },
+                        error: function (data) { // if error occured
+                            alert("Ocorreu um erro ao obter detalhes da refeicao");
+                        },
+                        dataType: 'html'
+                    });
+                }
+            }, 50)
+        });
+    </script>
 </div>
-
-<div id="refeicoes"></div>
 
 <div id="detalhes_refeicao"></div>
 
 
-<script type="text/javascript">
-    function requestRefeicoes() {
-        var data = $("#diarioAlimentar").serialize();
-        $.ajax({
-            type: 'POST',
-            url: '<?php echo Yii::app()->createAbsoluteUrl("utentes/AjaxRefeicoes&id=".$model->id); ?>',
-            data: data,
-            success: function (data) {
-                $('#refeicoes').html(data);
-            },
-            error: function (data) { // if error occured
-                alert("Não foram encontradas refeições para a data selecionada");
-            },
-            dataType: 'html'
-        });
-    }
-</script>
+
 
 
 

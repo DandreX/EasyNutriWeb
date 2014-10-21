@@ -48,6 +48,15 @@ $('.search-form form').submit(function(){
     'columns' => array(
         'id',
         'nome',
+        'kcal',
+        'agua',
+        'proteinas',
+        'lipidos',
+        /*
+        'hidratos_carbono',
+        'acucares',
+        'fibras',
+        */
         array(
             'class' => 'CButtonColumn',
         ),

@@ -1,30 +1,23 @@
 <?php
 
 /**
- * This is the model class for table "alimentos".
+ * This is the model class for table "tipos_refeicao".
  *
- * The followings are the available columns in table 'alimentos':
- * @property string $id
- * @property string $nome
- * @property double $kcal
- * @property double $agua
- * @property double $proteinas
- * @property double $lipidos
- * @property double $hidratos_carbono
- * @property double $acucares
- * @property double $fibras
+ * The followings are the available columns in table 'tipos_refeicao':
+ * @property integer $id
+ * @property string $descricao
  *
  * The followings are the available model relations:
- * @property LinhasRefeicao[] $linhasRefeicaos
+ * @property Refeicoes[] $refeicoes
  */
-class Alimentos extends CActiveRecord
+class TiposRefeicao extends CActiveRecord
 {
     /**
      * @return string the associated database table name
      */
     public function tableName()
     {
-        return 'alimentos';
+        return 'tipos_refeicao';
     }
 
     /**
@@ -35,12 +28,11 @@ class Alimentos extends CActiveRecord
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('id, nome, kcal', 'required'),
-            array('kcal, agua, proteinas, lipidos, hidratos_carbono, acucares, fibras', 'numerical'),
-            array('id, nome', 'length', 'max' => 255),
+            array('descricao', 'required'),
+            array('descricao', 'length', 'max' => 100),
             // The following rule is used by search().
             // @todo Please remove those attributes that should not be searched.
-            array('id, nome, kcal, agua, proteinas, lipidos, hidratos_carbono, acucares, fibras', 'safe', 'on' => 'search'),
+            array('id, descricao', 'safe', 'on' => 'search'),
         );
     }
 
@@ -52,7 +44,7 @@ class Alimentos extends CActiveRecord
         // NOTE: you may need to adjust the relation name and the related
         // class name for the relations automatically generated below.
         return array(
-            'linhasRefeicaos' => array(self::HAS_MANY, 'LinhasRefeicao', 'alimento_id'),
+            'refeicoes' => array(self::HAS_MANY, 'Refeicoes', 'tipo_refeicao_id'),
         );
     }
 
@@ -63,14 +55,7 @@ class Alimentos extends CActiveRecord
     {
         return array(
             'id' => 'ID',
-            'nome' => 'Nome',
-            'kcal' => 'Kcal',
-            'agua' => 'Agua',
-            'proteinas' => 'Proteinas',
-            'lipidos' => 'Lipidos',
-            'hidratos_carbono' => 'Hidratos Carbono',
-            'acucares' => 'Acucares',
-            'fibras' => 'Fibras',
+            'descricao' => 'Descricao',
         );
     }
 
@@ -92,15 +77,8 @@ class Alimentos extends CActiveRecord
 
         $criteria = new CDbCriteria;
 
-        $criteria->compare('id', $this->id, true);
-        $criteria->compare('nome', $this->nome, true);
-        $criteria->compare('kcal', $this->kcal);
-        $criteria->compare('agua', $this->agua);
-        $criteria->compare('proteinas', $this->proteinas);
-        $criteria->compare('lipidos', $this->lipidos);
-        $criteria->compare('hidratos_carbono', $this->hidratos_carbono);
-        $criteria->compare('acucares', $this->acucares);
-        $criteria->compare('fibras', $this->fibras);
+        $criteria->compare('id', $this->id);
+        $criteria->compare('descricao', $this->descricao, true);
 
         return new CActiveDataProvider($this, array(
             'criteria' => $criteria,
@@ -111,7 +89,7 @@ class Alimentos extends CActiveRecord
      * Returns the static model of the specified AR class.
      * Please note that you should have this exact method in all your CActiveRecord descendants!
      * @param string $className active record class name.
-     * @return Alimentos the static model class
+     * @return TiposRefeicao the static model class
      */
     public static function model($className = __CLASS__)
     {

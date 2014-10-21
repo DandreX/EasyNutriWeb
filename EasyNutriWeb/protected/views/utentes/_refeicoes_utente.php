@@ -1,5 +1,5 @@
 <?php
-/*var $dataProvider CActiveDataProvider*/
+/*var $dataProviderRefeicoes CActiveDataProvider*/
 ?>
 <div id="refeicoes">
     <?php  $this->widget('bootstrap.widgets.TbGridView', array(
@@ -9,9 +9,8 @@
         'selectableRows' => 1,
         'htmlOptions' => array('id' => 'tabela_refeicoes'),
         'columns' => array(
-            array('value' => '$data->tipoRefeicao->id',
+            array('value' => '$data->id',
                 'header' => 'ID',
-                'header' => '',
             ),
             array(
                 'value' => '$data->tipoRefeicao->descricao',
@@ -33,32 +32,22 @@
 </div>
 
 <script type="text/javascript">
-    function requestDetalhes($id) {
-
-        var $idRefeicao = $id;
-        $.ajax({
-            type: 'GET',
-            url: '<?php echo Yii::app()->createAbsoluteUrl("utentes/AjaxDetalhesRefeicao&id="); ?>' + $idRefeicao,
-            success: function (data) {
-                $('#detalhes_refeicao').html(data);
-            },
-            error: function (data) { // if error occured
-                alert("Ocorreu um erro ao obter detalhes da refeicao");
-            },
-            dataType: 'html'
-        });
-    }
-
-</script>
-
-<script type="text/javascript">
-    $("#tabela_refeicoes").click(function () {
-        var selected = $('#tabela_refeicoes').yiiGridView('getChecked');
-        console.log(selected);
-        $this = $(this);
-        var colVal = $this.find('td:first-child').text();
-        alert(selected[0]);
-
-        requestDetalhes(colVal);
+    $("#tabela_refeicoes").mouseup(function () {
+        setTimeout(function () {
+            var idRefeicao = $('#tabela_refeicoes .selected > td:first-child').text();
+            if (idRefeicao !== 'undefined') {
+                $.ajax({
+                    type: 'GET',
+                    url: '<?php echo Yii::app()->createAbsoluteUrl("utentes/AjaxDetalhesRefeicao&id="); ?>' + idRefeicao,
+                    success: function (data) {
+                        $('#detalhes_refeicao').html(data);
+                    },
+                    error: function (data) { // if error occured
+                        alert("Ocorreu um erro ao obter detalhes da refeicao");
+                    },
+                    dataType: 'html'
+                });
+            }
+        }, 50)
     });
 </script>

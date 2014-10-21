@@ -48,9 +48,25 @@ class UtentesController extends Controller
             $condition = 'user_id=:id',
             $params = array('id' => $id)
         );
+
+        $diario = DiarioAlimentar::model()->find('(user_id=:id)',
+            array(
+                ':id' => $id,
+            ));
+        if ($diario != null) {
+
+            $dataProviderRefeicoes = new CActiveDataProvider('Refeicoes', array(
+                'criteria' => array(
+                    'condition' => 'diario_id=' . $diario->id,
+                ),
+            ));
+        } else {
+            $dataProviderRefeicoes = null;
+        }
         $this->render('view', array(
             'model' => $this->loadModel($id),
             'modelDiarioAlimentar' => $diarioAlimentar,
+            'dataProvider' => $dataProviderRefeicoes,
         ));
     }
 
@@ -189,40 +205,16 @@ class UtentesController extends Controller
         }
     }
 
-    public function actionAjaxRefeicoes($id)
-    {
-        //   var_dump($_POST['DiarioAlimentar']['data_diario']);
-
-        $data = $_POST['DiarioAlimentar']['data_diario'];
-//    $data='2014-10-08';
-        $diario = DiarioAlimentar::model()->find('(user_id=:id) AND (data_diario BETWEEN :data1 AND DATEADD(DAY, 1, :data2))',
-            array(
-                ':id' => $id,
-                ':data1' => $data,
-                ':data2' => $data,
-            ));
-
-//        if (!isset($diario->id)) {
-//            echo("diario is null");
-//            exit();
-//        }
-        $dataProvider = new CActiveDataProvider('Refeicoes', array(
-            'criteria' => array(
-                'condition' => 'diario_id=' . $diario->id
-            ),
-        ));
-
-        $this->renderPartial('_refeicoes_utente',
-            array(
-
-                'dataProvider' => $dataProvider), false, true);
-
-
-    }
-
     public function actionAjaxDetalhesRefeicao($id)
     {
-
-        $this->renderPartial('_detalhes_refeicao', array(), false, true);
+        $dataProvider = new CActiveDataProvider('VLinhasRefeicao',
+            array(
+                'criteria' => array(
+                    'condition' => 'refeicao_id=' . $id
+                ),
+            ));
+        $this->renderPartial('_detalhes_refeicao',
+            array(
+                'dataProvider' => $dataProvider), false, true);
     }
 }

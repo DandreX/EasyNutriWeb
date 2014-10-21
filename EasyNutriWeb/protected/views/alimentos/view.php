@@ -23,5 +23,12 @@ $this->menu = array(
     'attributes' => array(
         'id',
         'nome',
+        'kcal',
+        'agua',
+        'proteinas',
+        'lipidos',
+        'hidratos_carbono',
+        'acucares',
+        'fibras',
     ),
 )); ?>
