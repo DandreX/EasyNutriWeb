@@ -8,6 +8,7 @@
 //);
 
 $this->menu = array(
+    array('label' => 'Meus Utentes', 'url' => '#', 'active' => true),
     //array('label'=>'List Utentes', 'url'=>array('index')),
     array('label' => 'Novo Utente', 'url' => array('create')),
 );

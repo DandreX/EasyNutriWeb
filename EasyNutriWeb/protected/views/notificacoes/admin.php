@@ -2,10 +2,6 @@
 /* @var $this NotificacoesController */
 /* @var $model Notificacoes */
 
-$this->breadcrumbs = array(
-    'Notificacoes' => array('index'),
-    'Manage',
-);
 
 $this->menu = array(
     array('label' => 'Listar Notificações', 'url' => array('index')),

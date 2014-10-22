@@ -20,26 +20,34 @@
     <?php echo $form->errorSummary($model); ?>
 
     <div class="row">
-        <?php echo $form->labelEx($model, 'medico_id'); ?>
-        <?php echo $form->textField($model, 'medico_id'); ?>
-        <?php echo $form->error($model, 'medico_id'); ?>
-    </div>
-
-    <div class="row">
         <?php echo $form->labelEx($model, 'utente_id'); ?>
-        <?php echo $form->textField($model, 'utente_id'); ?>
+        <?php $listaUtentes = CHtml::listData(Utentes::model()->findAll(),
+            'id', 'nome');
+        asort($listaUtentes);
+        echo $form->dropDownList($model, 'utente_id', $listaUtentes,
+            array('empty' => 'Escolha o Utente',
+                'order' => 'nome',)); ?>
         <?php echo $form->error($model, 'utente_id'); ?>
     </div>
 
     <div class="row">
-        <?php echo $form->labelEx($model, 'descricao'); ?>
-        <?php echo $form->textField($model, 'descricao', array('size' => -1, 'maxlength' => -1)); ?>
-        <?php echo $form->error($model, 'descricao'); ?>
-    </div>
-
-    <div class="row">
         <?php echo $form->labelEx($model, 'data'); ?>
-        <?php echo $form->textField($model, 'data'); ?>
+        <?php
+        $model->data = date('Y-m-d');
+        $this->widget('zii.widgets.jui.CJuiDatePicker', array(
+            'attribute' => 'data',
+            'name' => 'Notificacoes[data]',
+            'value' => $model->data,
+            'language' => 'pt',
+            'options' => array(
+                'showAnim' => 'fold',
+                'dateFormat' => 'yy-mm-dd',
+                'changeYear' => 'true',
+                'changeMonth' => 'true',
+                'maxDate' => 'today',
+            ),
+        ));
+        ?>
         <?php echo $form->error($model, 'data'); ?>
     </div>
 
@@ -47,6 +55,12 @@
         <?php echo $form->labelEx($model, 'assunto'); ?>
         <?php echo $form->textField($model, 'assunto', array('size' => 50, 'maxlength' => 50)); ?>
         <?php echo $form->error($model, 'assunto'); ?>
+    </div>
+
+    <div class="row">
+        <?php echo $form->labelEx($model, 'descricao'); ?>
+        <?php echo $form->textArea($model, 'descricao', array('rows' => 6, 'cols' => 50)); ?>
+        <?php echo $form->error($model, 'descricao'); ?>
     </div>
 
     <div class="row buttons">

@@ -19,6 +19,7 @@
 
     <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/main.css"/>
     <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/form.css"/>
+    <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/easyNutri.css"/>
 
     <title><?php echo CHtml::encode($this->pageTitle); ?></title>
 </head>
@@ -27,23 +28,29 @@
 
 <div class="container" id="page">
 
-    <div id="header">
-        <div id="logo"><?php echo CHtml::encode(Yii::app()->name); ?></div>
-    </div>
+    <!--    <div id="header">-->
+    <!--        <div id="logo">--><?php //echo CHtml::encode(Yii::app()->name); ?><!--</div>-->
+    <!--    </div>-->
     <!-- header -->
 
     <div id="mainmenu">
-        <?php $this->widget('zii.widgets.CMenu', array(
+        <?php $this->widget('bootstrap.widgets.TbNavbar', array(
+            'display' => null,
+            'color' => TbHtml::NAV_TYPE_TABS,
             'items' => array(
-                array('label' => 'Home', 'url' => array('/site/index')),
-                array('label' => 'Utentes', 'url' => array('/utentes/index')),
-                array('label' => 'Registos Antropométricos', 'url' => array('/dadosAntro/index')),
-                array('label' => 'Tipo Medicao', 'url' => array('/tipoMedicao/index')),
-                array('label' => 'Notificações', 'url' => array('/notificacoes/index')),
-                array('label' => 'Login', 'url' => array('/site/login'), 'visible' => Yii::app()->user->isGuest),
-                array('label' => 'Logout (' . Yii::app()->user->name . ')', 'url' => array('/site/logout'), 'visible' => !Yii::app()->user->isGuest)
+                array('class' => 'bootstrap.widgets.TbNav',
+                    'items' => array(
+                        array('label' => 'Home', 'url' => array('/site/index')),
+                        array('label' => 'Utentes', 'url' => array('/utentes/admin')),
+                        array('label' => 'Registos Antropométricos', 'url' => array('/dadosAntro/admin')),
+                        array('label' => 'Notificações', 'url' => array('/notificacoes/index')),
+                        array('label' => 'Login', 'url' => array('/site/login'), 'visible' => Yii::app()->user->isGuest),
+                        array('label' => 'Logout (' . Yii::app()->user->name . ')', 'url' => array('/site/logout'), 'visible' => !Yii::app()->user->isGuest)
+                    ),
+                ),
             ),
         )); ?>
+        <?php echo TbHtml::pills($this->menu); ?>
     </div>
     <!-- mainmenu -->
     <?php if (isset($this->breadcrumbs)): ?>

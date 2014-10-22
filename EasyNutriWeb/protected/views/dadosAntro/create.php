@@ -7,12 +7,15 @@
 //	'Create',
 //);
 
-$this->menu=array(
+$this->menu = array(
 //	array('label'=>'List DadosAntro', 'url'=>array('index')),
-	array('label'=>'Todos os registos', 'url'=>array('admin')),
+
+    array('label' => 'Todos os registos', 'url' => array('admin')),
+    array('label' => 'Novo registo', 'url' => array('create'), 'active' => true),
+    array('label' => 'Novo Parâmetro Antropométrico', 'url' => array('tipoMedicao/create'))
 );
 ?>
 
-<h1>Novo Registo Antropométrico</h1>
+    <h1>Novo Registo Antropométrico</h1>
 
-<?php $this->renderPartial('_form', array('model'=>$model)); ?>
+<?php $this->renderPartial('_form', array('model' => $model)); ?>

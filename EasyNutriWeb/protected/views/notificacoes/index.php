@@ -2,13 +2,10 @@
 /* @var $this NotificacoesController */
 /* @var $dataProvider CActiveDataProvider */
 
-$this->breadcrumbs = array(
-    'Notificacoes',
-);
 
 $this->menu = array(
-    array('label' => 'Criar Notificações', 'url' => array('create')),
-    array('label' => 'Gerir Notificações', 'url' => array('admin')),
+    array('label' => 'Listar Notificações', 'url' => array('index'), 'active' => true),
+    array('label' => 'Nova Notificação', 'url' => array('create')),
 );
 ?>
 

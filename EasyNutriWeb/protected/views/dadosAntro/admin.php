@@ -5,7 +5,10 @@
 
 $this->menu = array(
     //array('label'=>'List DadosAntro', 'url'=>array('index')),
+    array('label' => 'Todos os registos', 'url' => array('admin'), 'active' => true),
     array('label' => 'Novo registo', 'url' => array('create')),
+    array('label' => 'Novo Parâmetro Antropométrico', 'url' => array('tipoMedicao/create'))
+
 );
 
 Yii::app()->clientScript->registerScript('search', "

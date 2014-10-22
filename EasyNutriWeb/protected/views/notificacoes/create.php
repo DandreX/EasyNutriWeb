@@ -8,11 +8,11 @@ $this->breadcrumbs = array(
 );
 
 $this->menu = array(
+    array('label' => 'Nova Notificação', 'url' => array('create'), 'active' => true),
     array('label' => 'Listar Notificações', 'url' => array('index')),
-    array('label' => 'Gerir Notificações', 'url' => array('admin')),
 );
 ?>
 
-    <h1>Criar Notificações</h1>
+    <h1>Nova Notificação</h1>
 
 <?php $this->renderPartial('_form', array('model' => $model)); ?>

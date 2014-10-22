@@ -7,12 +7,13 @@
 //	'Create',
 //);
 
-$this->menu=array(
-	//array('label'=>'List Utentes', 'url'=>array('index')),
-	array('label'=>'Meus Utentes', 'url'=>array('admin')),
+$this->menu = array(
+    //array('label'=>'List Utentes', 'url'=>array('index')),
+    array('label' => 'Meus Utentes', 'url' => array('admin')),
+    array('label' => 'Novo Utente', 'url' => '#', 'active' => true),
 );
 ?>
 
-<h1>Novo Utente</h1>
+    <h1>Novo Utente</h1>
 
-<?php $this->renderPartial('_form', array('model'=>$model)); ?>
+<?php $this->renderPartial('_form', array('model' => $model)); ?>

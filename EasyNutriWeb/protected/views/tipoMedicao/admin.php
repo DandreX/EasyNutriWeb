@@ -9,7 +9,9 @@
 
 $this->menu = array(
 //    array('label' => 'Lista Tipo Medicao', 'url' => array('index')),
+    array('label' => 'Todos os parâmetros', 'url' => array('admin'), 'active' => true,),
     array('label' => 'Novo parâmetro', 'url' => array('create')),
+
 );
 
 Yii::app()->clientScript->registerScript('search', "

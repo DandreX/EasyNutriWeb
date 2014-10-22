@@ -6,7 +6,7 @@ class NotificacoesController extends Controller
      * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
      * using two-column layout. See 'protected/views/layouts/column2.php'.
      */
-    public $layout = '//layouts/column2';
+    public $layout = '//layouts/column1';
 
     /**
      * @return array action filters
@@ -27,7 +27,7 @@ class NotificacoesController extends Controller
     public function accessRules()
     {
         return array(
-            array('allow',  // allow all users to perform 'index' and 'view' actions
+            array('allow', // allow all users to perform 'index' and 'view' actions
                 'actions' => array('index', 'view'),
                 'users' => array('*'),
             ),
@@ -39,7 +39,7 @@ class NotificacoesController extends Controller
                 'actions' => array('admin', 'delete'),
                 'users' => array('admin'),
             ),
-            array('deny',  // deny all users
+            array('deny', // deny all users
                 'users' => array('*'),
             ),
         );
@@ -69,8 +69,9 @@ class NotificacoesController extends Controller
 
         if (isset($_POST['Notificacoes'])) {
             $model->attributes = $_POST['Notificacoes'];
+            $model->medico_id = Yii::app()->user->userid;
             if ($model->save())
-                $this->redirect(array('view', 'id' => $model->id));
+                $this->redirect(array('index'));
         }
 
         $this->render('create', array(
@@ -132,7 +133,7 @@ class NotificacoesController extends Controller
     public function actionAdmin()
     {
         $model = new Notificacoes('search');
-        $model->unsetAttributes();  // clear any default values
+        $model->unsetAttributes(); // clear any default values
         if (isset($_GET['Notificacoes']))
             $model->attributes = $_GET['Notificacoes'];
 

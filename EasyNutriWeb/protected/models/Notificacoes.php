@@ -25,6 +25,12 @@ class Notificacoes extends CActiveRecord
         return 'notificacoes';
     }
 
+    public function getNomeUtente()
+    {
+        return $this->utente->nome;
+    }
+
+
     /**
      * @return array validation rules for model attributes.
      */

@@ -1,6 +1,6 @@
 <?php
 /* @var $model Utente */
-/* @var $modelDiarioAlimentar DiarioAlimentar */
+/* @var $refeicoes Refeicoes */
 /*@var $data array*/
 ?>
 
@@ -47,20 +47,22 @@
         $("#tabela_refeicoes").mouseup(function () {
             setTimeout(function () {
                 var idRefeicao = $('#tabela_refeicoes .selected > td:first-child').text();
-                if (idRefeicao !== 'undefined') {
-                    $.ajax({
-                        type: 'GET',
-                        url: '<?php echo Yii::app()->createAbsoluteUrl("utentes/AjaxDetalhesRefeicao&id="); ?>' + idRefeicao,
-                        success: function (data) {
-                            $('#detalhes_refeicao').html(data);
-                        },
-                        error: function (data) { // if error occured
-                            alert("Ocorreu um erro ao obter detalhes da refeicao");
-                        },
-                        dataType: 'html'
-                    });
+                if (idRefeicao == "") {
+                    idRefeicao = -1;
                 }
-            }, 50)
+                $.ajax({
+                    type: 'GET',
+                    url: '<?php echo Yii::app()->createAbsoluteUrl("utentes/AjaxDetalhesRefeicao&id="); ?>' + idRefeicao,
+                    success: function (data) {
+                        $('#detalhes_refeicao').html(data);
+                    },
+                    error: function (data) { // if error occured
+                        alert("Ocorreu um erro ao obter detalhes da refeicao");
+                    },
+                    dataType: 'html'
+                });
+
+            }, 20)
         });
     </script>
 </div>

@@ -6,7 +6,7 @@ class UtentesController extends Controller
      * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
      * using two-column layout. See 'protected/views/layouts/column2.php'.
      */
-    public $layout = '//layouts/column2';
+    public $layout = '//layouts/column1';
 
     /**
      * @return array action filters
@@ -55,17 +55,26 @@ class UtentesController extends Controller
             ));
         if ($diario != null) {
 
+//            $refeicoes = new Refeicoes('search');
+//            $refeicoes->unsetAttributes();
+
+//            $criteria = new CDbCriteria;
+//            $criteria->compare('id', $refeicoes->id);
+//            $criteria->compare('diario_id', $refeicoes->diario_id);
+//            $criteria->compare('tipo_refeicao_id', $refeicoes->tipo_refeicao_id);
+//            $criteria->compare('data_refeicao', $refeicoes->data_refeicao, true);
+//            $criteria->addCondition('diario_id=' . $diario->id);
+
             $dataProviderRefeicoes = new CActiveDataProvider('Refeicoes', array(
-                'criteria' => array(
-                    'condition' => 'diario_id=' . $diario->id,
-                ),
+                'criteria' =>
+                    array('condition' => 'diario_id=' . $diario->id),
             ));
         } else {
             $dataProviderRefeicoes = null;
         }
         $this->render('view', array(
             'model' => $this->loadModel($id),
-            'modelDiarioAlimentar' => $diarioAlimentar,
+//            'modelRefeicoes' => $refeicoes,
             'dataProvider' => $dataProviderRefeicoes,
         ));
     }
@@ -207,14 +216,20 @@ class UtentesController extends Controller
 
     public function actionAjaxDetalhesRefeicao($id)
     {
-        $dataProvider = new CActiveDataProvider('VLinhasRefeicao',
-            array(
-                'criteria' => array(
-                    'condition' => 'refeicao_id=' . $id
-                ),
-            ));
+        if ($id != -1) {
+            $dataProvider = new CActiveDataProvider('VLinhasRefeicao',
+                array(
+                    'criteria' => array(
+                        'condition' => 'refeicao_id=' . $id
+                    ),
+                ));
+        } else {
+            $dataProvider = null;
+        }
+
         $this->renderPartial('_detalhes_refeicao',
             array(
                 'dataProvider' => $dataProvider), false, true);
     }
+
 }
