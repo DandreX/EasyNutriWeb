@@ -12,6 +12,7 @@
             $this->widget('bootstrap.widgets.TbGridView', array(
                 'id' => 'tabela_refeicoes',
                 'dataProvider' => $dataProvider,
+//                'filter'=> $dataProvider,
                 'template' => "{items}",
                 'selectableRows' => 1,
                 'htmlOptions' => array('id' => 'tabela_refeicoes'),
