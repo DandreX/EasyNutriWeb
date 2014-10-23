@@ -70,6 +70,7 @@ class NotificacoesController extends Controller
         if (isset($_POST['Notificacoes'])) {
             $model->attributes = $_POST['Notificacoes'];
             $model->medico_id = Yii::app()->user->userid;
+            $model->data = date('Y-m-d H:m');
             if ($model->save())
                 $this->redirect(array('index'));
         }

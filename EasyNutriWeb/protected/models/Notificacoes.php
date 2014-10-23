@@ -101,6 +101,7 @@ class Notificacoes extends CActiveRecord
         $criteria->compare('data', $this->data, true);
         $criteria->compare('assunto', $this->assunto, true);
 
+
         return new CActiveDataProvider($this, array(
             'criteria' => $criteria,
         ));

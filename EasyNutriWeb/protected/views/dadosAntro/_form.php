@@ -44,11 +44,13 @@
     <div class="row">
         <?php echo $form->labelEx($model, 'data_med'); ?>
         <?php
+        $model->data_med = date('Y-m-d H:i');
         $form->widget('application.extensions.timepicker.timepicker', array(
             'model' => $model,
             'name' => 'data_med',
             'options' => array(
-
+                'dateFormat' => 'yy-mm-dd',
+                'timeFormat' => 'hh:mm',
                 'showOn' => 'focus',
                 'maxDate' => 'today',
             ),

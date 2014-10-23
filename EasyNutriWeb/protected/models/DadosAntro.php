@@ -54,7 +54,7 @@ class DadosAntro extends CActiveRecord
             array('tipo_medicao_id, valor, data_med, utente_id', 'required'),
             array('tipo_medicao_id, utente_id', 'numerical', 'integerOnly' => true),
             array('valor', 'numerical'),
-            array('unidade', 'length', 'max' => 10),
+//            array('unidade', 'length', 'max' => 10),
             // The following rule is used by search().
             // @todo Please remove those attributes that should not be searched.
             array('data_med', 'type', 'type' => 'date', 'message' => '{attribute}: não é uma data!', 'dateFormat' => 'yyyy-MM-dd hh:mm'),
@@ -120,6 +120,10 @@ class DadosAntro extends CActiveRecord
 
         return new CActiveDataProvider($this, array(
             'criteria' => $criteria,
+            'sort' => array(
+                'defaultOrder' => 'data_med desc',
+            )
+
 //            'sort'=>array(
 //                'attributes'=>array(
 //                    'nomeUtenteSearch'=>array(

@@ -31,27 +31,6 @@
     </div>
 
     <div class="row">
-        <?php echo $form->labelEx($model, 'data'); ?>
-        <?php
-        $model->data = date('Y-m-d');
-        $this->widget('zii.widgets.jui.CJuiDatePicker', array(
-            'attribute' => 'data',
-            'name' => 'Notificacoes[data]',
-            'value' => $model->data,
-            'language' => 'pt',
-            'options' => array(
-                'showAnim' => 'fold',
-                'dateFormat' => 'yy-mm-dd',
-                'changeYear' => 'true',
-                'changeMonth' => 'true',
-                'maxDate' => 'today',
-            ),
-        ));
-        ?>
-        <?php echo $form->error($model, 'data'); ?>
-    </div>
-
-    <div class="row">
         <?php echo $form->labelEx($model, 'assunto'); ?>
         <?php echo $form->textField($model, 'assunto', array('size' => 50, 'maxlength' => 50)); ?>
         <?php echo $form->error($model, 'assunto'); ?>

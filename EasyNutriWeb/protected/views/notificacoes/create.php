@@ -8,8 +8,8 @@ $this->breadcrumbs = array(
 );
 
 $this->menu = array(
-    array('label' => 'Nova Notificação', 'url' => array('create'), 'active' => true),
     array('label' => 'Listar Notificações', 'url' => array('index')),
+    array('label' => 'Nova Notificação', 'url' => array('create'), 'active' => true),
 );
 ?>
 

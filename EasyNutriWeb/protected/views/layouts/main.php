@@ -40,7 +40,6 @@
             'items' => array(
                 array('class' => 'bootstrap.widgets.TbNav',
                     'items' => array(
-                        array('label' => 'Home', 'url' => array('/site/index')),
                         array('label' => 'Utentes', 'url' => array('/utentes/admin')),
                         array('label' => 'Registos Antropométricos', 'url' => array('/dadosAntro/admin')),
                         array('label' => 'Notificações', 'url' => array('/notificacoes/index')),
