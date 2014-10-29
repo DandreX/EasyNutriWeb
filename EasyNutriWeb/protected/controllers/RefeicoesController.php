@@ -1,6 +1,6 @@
 <?php
 
-class RefeicoesController extends Controller
+class RefeicoesController extends ZController
 {
     /**
      * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
@@ -157,8 +157,19 @@ class RefeicoesController extends Controller
     }
 
     public function actionAjaxRefeicoes($data, $idUtente){
+        $dpTotalDiario=null;
         if ($data=="") {
             $data=NULL;
+        }else {
+            $dpTotalDiario = new CActiveDataProvider('VTotaisDiarios',array(
+                'criteria'=>array(
+                    'condition'=>'data=:data AND user_id = :user_id',
+                    'params'=>array(
+                        ':data'=>$data,
+                        ':user_id'=>$idUtente,
+                    )
+                ),
+            ));
         }
         $dataProviderRefeicoes = new CActiveDataProvider('Refeicoes', array(
             'criteria' => array(
@@ -180,9 +191,9 @@ class RefeicoesController extends Controller
 //                    'pageSize'=>7,
 //                ),
         ));
-
-        $this->renderPartial('_refeicoes_utente', array(
+        $this->renderPartialWithHisOwnClientScript('_refeicoes_utente', array(
             'dataProvider' => $dataProviderRefeicoes,
+            'dpTotalDiario'=>$dpTotalDiario,
         ));
     }
 

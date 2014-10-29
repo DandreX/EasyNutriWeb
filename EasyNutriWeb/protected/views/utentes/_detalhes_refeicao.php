@@ -1,6 +1,6 @@
 <?php //$dataProvider CActiveDataProvider ?>
 <?php if ($dataProvider != null): ?>
-    <h2>Detalhes</h2>
+    <h4>Detalhes</h4>
 
 
 <?php
@@ -71,6 +71,45 @@
         ?>
 
     </div>
+    <?php echo TbHtml::button('Enviar notificação', array(
+        'color' => TbHtml::BUTTON_COLOR_PRIMARY,
+        'size' => TbHtml::BUTTON_SIZE_DEFAULT,
+        'data-toggle' => 'modal',
+        'data-target' => '#ModalNotificacao',
+    )); ?>
+    <?php $this->widget('bootstrap.widgets.TbModal', array(
+        'id' => 'ModalNotificacao',
+        'header' => 'Modal Heading',
+        'content' => '',
+        'footer' => array(
+            TbHtml::submitButton('Enviar Notificação',
+            array('id'=>'btnCreate',
+                'data-dismiss' => 'modal',
+                'color' => TbHtml::BUTTON_COLOR_PRIMARY)),
+            TbHtml::button('Close', array('data-dismiss' => 'modal')),
+        ),
+    )); ?>
+    <script type="text/javascript" id="batatas">
+        $('#btnCreate').click(function(){
+
+        });
+    </script>
+
+<script type="text/javascript">
+    $.ajax({
+        type: 'GET',
+        url: '<?php echo Yii::app()->createAbsoluteUrl("notificacoes/AjaxCreate"); ?>',
+        success: function (data) {
+            $('.modal-body').html(data);
+        },
+        error: function (data) { // if error occured
+            alert("Ocorreu um erro");
+        },
+        dataType: 'html'
+    });
+
+</script>
+
 
 <?php endif ?>
 
