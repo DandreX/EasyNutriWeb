@@ -83,14 +83,22 @@ class NotificacoesController extends Controller
         $model = new Notificacoes;
 
         // Uncomment the following line if AJAX validation is needed
-        // $this->performAjaxValidation($model);
-
+         $this->performAjaxValidation($model);
+//        var_dump($_POST);
+//        exit();
         if (isset($_POST['Notificacoes'])) {
+
             $model->attributes = $_POST['Notificacoes'];
+            $model->utente_id = $_POST['idUtente'];
             $model->medico_id = Yii::app()->user->userid;
             $model->data = date('Y-m-d H:m');
-            if ($model->save())
-                $this->redirect(array('index'));
+            if ($model->save()){
+                print_r("guardou");
+                exit();
+            }else{
+                throw new Exception('Erro a guardar notificacao');
+            }
+
         }
 
         $this->renderPartial('_partial_create', array(
