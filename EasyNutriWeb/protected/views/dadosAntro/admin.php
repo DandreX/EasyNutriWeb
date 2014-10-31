@@ -11,6 +11,12 @@ $this->menu = array(
 
 );
 
+$this->breadcrumbs=array(
+    'Dados Antros'=>array('index'),
+    'Todos os registos',
+);
+
+
 Yii::app()->clientScript->registerScript('search', "
 $('.search-button').click(function(){
 	$('.search-form').toggle();
@@ -35,7 +41,7 @@ $('.search-form form').submit(function(){
     )); ?>
 </div><!-- search-form -->
 
-<?php $this->widget('zii.widgets.grid.CGridView', array(
+<?php $this->widget('bootstrap.widgets.TbGridView', array(
     'id' => 'dados-antro-grid',
     'dataProvider' => $model->search(),
     'filter' => $model,

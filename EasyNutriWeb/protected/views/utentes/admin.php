@@ -4,7 +4,7 @@
 
 $this->breadcrumbs=array(
 	'Utentes'=>array('index'),
-	'Manage',
+	'Os meus utentes',
 );
 
 $this->menu = array(
@@ -54,6 +54,7 @@ $('.search-form form').submit(function(){
 
         array(
             'class' => 'CButtonColumn',
+            'htmlOptions' => array('width' => 60),
             // 'afterDelete' => "function(link,success,data){ if (success) alert(data); } ",
         ),
     ),
