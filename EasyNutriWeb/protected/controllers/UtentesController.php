@@ -56,10 +56,19 @@ class UtentesController extends Controller
 //                ),
             ));
 
+        $dpNotificacoes = new CActiveDataProvider('Notificacoes',array(
+            'criteria'=>array(
+                'condition'=>'utente_id=:id',
+                'params'=>array(
+                    ':id'=>$id,
+                ),
+            ),
+        ));
+
         $this->render('view', array(
             'model' => $this->loadModel($id),
-//            'modelRefeicoes' => $refeicoes,
             'dataProvider' => $dataProviderRefeicoes,
+            'dpNotificacoes'=>$dpNotificacoes,
         ));
     }
 

@@ -1,6 +1,6 @@
 <?php
 
-class RefeicoesController extends Controller
+class RefeicoesController extends ZController
 {
     /**
      * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
@@ -27,17 +27,17 @@ class RefeicoesController extends Controller
     public function accessRules()
     {
         return array(
-            array('allow', // allow all users to perform 'index' and 'view' actions
-                'actions' => array('index', 'view'),
-                'users' => array('*'),
-            ),
-            array('allow', // allow authenticated user to perform 'create' and 'update' actions
-                'actions' => array('create', 'update'),
-                'users' => array('@'),
-            ),
+//            array('allow', // allow all users to perform 'index' and 'view' actions
+//                'actions' => array('index', 'view'),
+//                'users' => array('*'),
+//            ),
+//            array('allow', // allow authenticated user to perform 'create' and 'update' actions
+//                'actions' => array('create', 'update'),
+//                'users' => array('@'),
+//            ),
             array('allow', // allow admin user to perform 'admin' and 'delete' actions
-                'actions' => array('admin', 'delete'),
-                'users' => array('admin'),
+//                'actions' => array('admin', 'delete'),
+                'users' => array('@'),
             ),
             array('deny', // deny all users
                 'users' => array('*'),
@@ -154,6 +154,48 @@ class RefeicoesController extends Controller
         if ($model === null)
             throw new CHttpException(404, 'The requested page does not exist.');
         return $model;
+    }
+
+    public function actionAjaxRefeicoes($data, $idUtente){
+        $dpTotalDiario=null;
+        if ($data=="") {
+            $data=NULL;
+        }else {
+            $dpTotalDiario = new CActiveDataProvider('VTotaisDiarios',array(
+                'criteria'=>array(
+                    'condition'=>'data=:data AND user_id = :user_id',
+                    'params'=>array(
+                        ':data'=>$data,
+                        ':user_id'=>$idUtente,
+                    )
+                ),
+            ));
+        }
+        $dataProviderRefeicoes = new CActiveDataProvider('Refeicoes', array(
+            'criteria' => array(
+                'with'=>array('diario'),
+                'condition' => 'diario.user_id=:userid AND ((data_refeicao >= :data1 AND
+                                    data_refeicao < DATEADD(day, 1, :data2) OR :dataNull is NULL))',
+                'params'=>array(
+                    ':userid'=>$idUtente,
+                    ':data1'=>$data,
+                    ':data2'=>$data,
+                    ':dataNull'=>$data
+                )
+            ),
+
+            'sort'=>array(
+                'defaultOrder'=>'data_refeicao Desc'
+            ),
+//                'pagination'=>array(
+//                    'pageSize'=>7,
+//                ),
+        ));
+        $this->renderPartial('_refeicoes_utente', array(
+            'dataProvider' => $dataProviderRefeicoes,
+            'dpTotalDiario'=>$dpTotalDiario,
+            'idUtente'=>$idUtente,
+        ),false,true);
     }
 
     /**

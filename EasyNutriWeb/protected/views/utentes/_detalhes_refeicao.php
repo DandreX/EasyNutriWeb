@@ -1,6 +1,6 @@
 <?php //$dataProvider CActiveDataProvider ?>
 <?php if ($dataProvider != null): ?>
-    <h2>Detalhes</h2>
+    <h4>Detalhes</h4>
 
 
 <?php
@@ -71,6 +71,8 @@
         ?>
 
     </div>
+
+
 
 <?php endif ?>
 

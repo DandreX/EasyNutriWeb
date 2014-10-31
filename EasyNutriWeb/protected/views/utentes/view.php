@@ -20,8 +20,11 @@ $this->menu = array(
             true)),
     array('label' => 'Diário Alimentar', 'content' => $this->renderPartial('_diario_alimentar_utentes',
             array('model' => $model,
-//                'modelRefeicoes' => $modelRefeicoes,
                 'dataProvider' => $dataProvider,
+            ),
+            true)),
+    array('label' => 'Notificações', 'content' => $this->renderPartial('_notificacoes',
+            array('dpNotificacoes' => $dpNotificacoes,
             ),
             true)),
 ))?>

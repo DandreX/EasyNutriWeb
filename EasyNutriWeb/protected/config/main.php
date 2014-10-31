@@ -68,10 +68,9 @@ return array(
         // uncomment the following to use a MySQL database
 
         'db' => array(
-            'connectionString' => 'sqlsrv:Server=d49d8d0f-9984-4a6f-ad44-a3c70132c22c.sqlserver.sequelizer.com;Database=dbd49d8d0f99844a6fad44a3c70132c22c;MultipleActiveResultSets=True;',
-            'username' => 'yylicmyuwpassojh',
-            'password' => 'wRtkmsa7jcF7MoguiBuz3a2R2He7rStKiuHmzTXN6Djc5ajNBNHqn5wwXKrLocNz',
-
+            'connectionString' => 'sqlsrv:Server=192.168.246.64,1433\SQLEXPRESS;Database=EasyNutriDB',
+            'username' => 'EasyNutri',
+            'password' => 'dreamteam',
 //            'connectionString' => 'sqlsrv:Server=(localdb)\v11.0;Database=EasyNutriDB;',
 //            'username' => 'localuser',
 //              'password' => 'localuser',
@@ -97,7 +96,6 @@ return array(
             ),
         ),
     ),
-
 
     // application-level parameters that can be accessed
     // using Yii::app()->params['paramName']

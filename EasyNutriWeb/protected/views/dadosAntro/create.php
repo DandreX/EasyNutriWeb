@@ -2,10 +2,10 @@
 /* @var $this DadosAntroController */
 /* @var $model DadosAntro */
 
-//$this->breadcrumbs=array(
-//	'Dados Antros'=>array('index'),
-//	'Create',
-//);
+$this->breadcrumbs=array(
+	'Dados Antros'=>array('index'),
+	'Create',
+);
 
 $this->menu = array(
 //	array('label'=>'List DadosAntro', 'url'=>array('index')),
