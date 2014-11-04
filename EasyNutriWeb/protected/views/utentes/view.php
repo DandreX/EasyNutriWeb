@@ -23,10 +23,12 @@ $this->menu = array(
                 'dataProvider' => $dataProvider,
             ),
             true)),
+    array('label' => 'Dados Antro.', 'content' => ''),
     array('label' => 'Notificações', 'content' => $this->renderPartial('_notificacoes',
             array('dpNotificacoes' => $dpNotificacoes,
             ),
             true)),
+
 ))?>
 
 

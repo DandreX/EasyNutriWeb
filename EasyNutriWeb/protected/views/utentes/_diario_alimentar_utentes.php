@@ -27,10 +27,10 @@ $this->widget('zii.widgets.jui.CJuiDatePicker', array(
 ));
 ?>
 
-
+<div id="spinner_place"></div>
 <div id="refeicoes"></div>
 
-<div id="detalhes_refeicao"></div>
+
 
 
 
@@ -97,7 +97,8 @@ $this->widget('zii.widgets.jui.CJuiDatePicker', array(
 
     var funciona = true;
     var requestRefeicoes = function () {
-
+        var spinner="\x3Cdiv class=\"spinner\"\x3E\n \x3Cdiv class=\"rect1\"\x3E\x3C\x2Fdiv\x3E\n \x3Cdiv class=\"rect2\"\x3E\x3C\x2Fdiv\x3E\n \x3Cdiv class=\"rect3\"\x3E\x3C\x2Fdiv\x3E\n \x3Cdiv class=\"rect4\"\x3E\x3C\x2Fdiv\x3E\n \x3Cdiv class=\"rect5\"\x3E\x3C\x2Fdiv\x3E\n\x3C\x2Fdiv\x3E";
+        $('#spinner_place').html(spinner);
         var dataPesquisa = $("#data_pesquisa").val();
         console.log("request made");
         $.ajax({
@@ -105,24 +106,23 @@ $this->widget('zii.widgets.jui.CJuiDatePicker', array(
             url: '<?php echo Yii::app()->createAbsoluteUrl("refeicoes/AjaxRefeicoes&idUtente=$model->id&data="); ?>' + dataPesquisa,
             success: function (data) {
                 $('#refeicoes').html(data);
-                $('#detalhes_refeicao').empty();
+               $('#spinner_place').empty();
             },
             error: function (data) { // if error occured
                 alert("Ocorreu um erro a obter refeicao");
+               $('#spinner_place').empty();
             },
             dataType: 'html'
         });
             }
     $(document).ready(requestRefeicoes);
-    funciona=false;
     $("#data_pesquisa").change(function () {
         requestRefeicoes();
-        if(!funciona){
-            requestRefeicoes();
-        }
+
 
     });
 </script>
+
 
 
 

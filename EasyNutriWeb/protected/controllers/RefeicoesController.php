@@ -156,46 +156,48 @@ class RefeicoesController extends ZController
         return $model;
     }
 
-    public function actionAjaxRefeicoes($data, $idUtente){
-        $dpTotalDiario=null;
-        if ($data=="") {
-            $data=NULL;
-        }else {
-            $dpTotalDiario = new CActiveDataProvider('VTotaisDiarios',array(
-                'criteria'=>array(
-                    'condition'=>'data=:data AND user_id = :user_id',
-                    'params'=>array(
-                        ':data'=>$data,
-                        ':user_id'=>$idUtente,
-                    )
-                ),
-            ));
+
+
+    public function actionAjaxRefeicoes($data, $idUtente)
+    {
+        if (!isset($data) || !isset($idUtente)) {
+            throw new BadFunctionCallException("Id Utente ou Data nao definidos");
         }
-        $dataProviderRefeicoes = new CActiveDataProvider('Refeicoes', array(
+        $dpTotalDiario = new CActiveDataProvider('VTotaisDiarios', array(
             'criteria' => array(
-                'with'=>array('diario'),
-                'condition' => 'diario.user_id=:userid AND ((data_refeicao >= :data1 AND
-                                    data_refeicao < DATEADD(day, 1, :data2) OR :dataNull is NULL))',
-                'params'=>array(
-                    ':userid'=>$idUtente,
-                    ':data1'=>$data,
-                    ':data2'=>$data,
-                    ':dataNull'=>$data
+                'condition' => 'data=:data AND user_id = :user_id',
+                'params' => array(
+                    ':data' => $data,
+                    ':user_id' => $idUtente,
                 )
             ),
+        ));
+        $dpsRefeicoes= new CActiveDataProvider('VLinhasRefeicao', array(
+            'criteria' => array(
+                'condition' => 'user_id=:userid  AND ((data >= :data1 AND
+                                    data < DATEADD(day, 1, :data2) OR :dataNull is NULL))',
+                'params' => array(
+                    ':userid' => $idUtente,
+                    ':data1' => $data,
+                    ':data2' => $data,
+                    ':dataNull' => $data
+                ),
+                'order'=> 'tipo_refeicao_id, hora',
+            ),
 
-            'sort'=>array(
-                'defaultOrder'=>'data_refeicao Desc'
+            'sort' => array(
+                'defaultOrder' => 'data Desc'
             ),
 //                'pagination'=>array(
 //                    'pageSize'=>7,
 //                ),
         ));
+
         $this->renderPartial('_refeicoes_utente', array(
-            'dataProvider' => $dataProviderRefeicoes,
-            'dpTotalDiario'=>$dpTotalDiario,
-            'idUtente'=>$idUtente,
-        ),false,true);
+            'dpsRefeicoes' => $dpsRefeicoes,
+            'dpTotalDiario' => $dpTotalDiario,
+            'idUtente' => $idUtente,
+        ), false, true);
     }
 
     /**
