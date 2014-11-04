@@ -43,19 +43,35 @@ class UtentesController extends Controller
      */
     public function actionView($id)
     {
+        $diarioAlimentar = DiarioAlimentar::model()->findAllByAttributes(
+            array(),
+            $condition = 'user_id=:id',
+            $params = array('id' => $id)
+        );
+
+        $diario = DiarioAlimentar::model()->find('(user_id=:id)',
+            array(
+                ':id' => $id,
+            ));
+        if ($diario != null) {
+
+//            $refeicoes = new Refeicoes('search');
+//            $refeicoes->unsetAttributes();
+
+//            $criteria = new CDbCriteria;
+//            $criteria->compare('id', $refeicoes->id);
+//            $criteria->compare('diario_id', $refeicoes->diario_id);
+//            $criteria->compare('tipo_refeicao_id', $refeicoes->tipo_refeicao_id);
+//            $criteria->compare('data_refeicao', $refeicoes->data_refeicao, true);
+//            $criteria->addCondition('diario_id=' . $diario->id);
 
             $dataProviderRefeicoes = new CActiveDataProvider('Refeicoes', array(
-                'criteria' => array(
-                    'with'=>array('diario'),
-                    'condition' => 'diario.user_id=' . $id),
-                'sort'=>array(
-                    'defaultOrder'=>'data_refeicao Desc'
-                ),
-//                'pagination'=>array(
-//                    'pageSize'=>7,
-//                ),
+                'criteria' =>
+                    array('condition' => 'diario_id=' . $diario->id),
             ));
-
+        } else {
+            $dataProviderRefeicoes = null;
+        }
         $this->render('view', array(
             'model' => $this->loadModel($id),
 //            'modelRefeicoes' => $refeicoes,

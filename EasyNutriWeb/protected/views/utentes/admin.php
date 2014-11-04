@@ -2,10 +2,10 @@
 /* @var $this UtentesController */
 /* @var $model Utentes */
 
-$this->breadcrumbs=array(
-	'Utentes'=>array('index'),
-	'Manage',
-);
+//$this->breadcrumbs=array(
+//	'Utentes'=>array('index'),
+//	'Manage',
+//);
 
 $this->menu = array(
     array('label' => 'Meus Utentes', 'url' => '#', 'active' => true),
@@ -29,7 +29,7 @@ $('.search-form form').submit(function(){
 
 <h1>Os meus utentes</h1>
 
-
+<?php Spinner::show(); ?>
 <?php echo CHtml::link('Advanced Search', '#', array('class' => 'search-button')); ?>
 <div class="search-form" style="display:none">
     <?php $this->renderPartial('_search', array(

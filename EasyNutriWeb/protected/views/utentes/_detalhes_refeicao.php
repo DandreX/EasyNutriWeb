@@ -25,7 +25,6 @@
                 'id' => 'detalhes_refeicao',
                 'dataProvider' => $dataProvider,
                 'template' => "{items}",
-                'selectableRows' => 1,
                 'htmlOptions' => array('id' => 'detalhes_Refeicao'),
                 'columns' => array(
                     array(
@@ -83,32 +82,32 @@
         'content' => '',
         'footer' => array(
             TbHtml::submitButton('Enviar Notificação',
-            array('id'=>'btnCreate',
-                'data-dismiss' => 'modal',
-                'color' => TbHtml::BUTTON_COLOR_PRIMARY)),
+                array('id' => 'btnCreate',
+                    'data-dismiss' => 'modal',
+                    'color' => TbHtml::BUTTON_COLOR_PRIMARY)),
             TbHtml::button('Close', array('data-dismiss' => 'modal')),
         ),
     )); ?>
     <script type="text/javascript" id="batatas">
-        $('#btnCreate').click(function(){
+        $('#btnCreate').click(function () {
 
         });
     </script>
 
-<script type="text/javascript">
-    $.ajax({
-        type: 'GET',
-        url: '<?php echo Yii::app()->createAbsoluteUrl("notificacoes/AjaxCreate"); ?>',
-        success: function (data) {
-            $('.modal-body').html(data);
-        },
-        error: function (data) { // if error occured
-            alert("Ocorreu um erro");
-        },
-        dataType: 'html'
-    });
+    <script type="text/javascript">
+        $.ajax({
+            type: 'GET',
+            url: '<?php echo Yii::app()->createAbsoluteUrl("notificacoes/AjaxCreate"); ?>',
+            success: function (data) {
+                $('.modal-body').html(data);
+            },
+            error: function (data) { // if error occured
+                alert("Ocorreu um erro");
+            },
+            dataType: 'html'
+        });
 
-</script>
+    </script>
 
 
 <?php endif ?>

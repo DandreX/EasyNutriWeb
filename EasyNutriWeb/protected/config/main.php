@@ -71,6 +71,7 @@ return array(
             'connectionString' => 'sqlsrv:Server=192.168.246.64,1433\SQLEXPRESS;Database=EasyNutriDB',
             'username' => 'EasyNutri',
             'password' => 'dreamteam',
+
 //            'connectionString' => 'sqlsrv:Server=(localdb)\v11.0;Database=EasyNutriDB;',
 //            'username' => 'localuser',
 //              'password' => 'localuser',
@@ -96,6 +97,7 @@ return array(
             ),
         ),
     ),
+
 
     // application-level parameters that can be accessed
     // using Yii::app()->params['paramName']
