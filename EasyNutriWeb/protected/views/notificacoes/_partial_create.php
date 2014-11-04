@@ -14,13 +14,13 @@
 
     <div class="row">
         <?php echo $form->labelEx($model, 'assunto'); ?>
-        <?php echo $form->textField($model, 'assunto', array('size' => 50, 'maxlength' => 50)); ?>
+        <?php echo $form->textField($model, 'assunto', array('size' => 200, 'maxlength' =>200)); ?>
         <?php echo $form->error($model, 'assunto'); ?>
     </div>
 
     <div class="row">
         <?php echo $form->labelEx($model, 'descricao'); ?>
-        <?php echo $form->textArea($model, 'descricao', array('rows' => 6, 'cols' => 50)); ?>
+        <?php echo $form->textArea($model, 'descricao', array('rows' => 6, 'cols' => 50,'maxlength' => 500)); ?>
         <?php echo $form->error($model, 'descricao'); ?>
     </div>
     <?php $this->endWidget(); ?>

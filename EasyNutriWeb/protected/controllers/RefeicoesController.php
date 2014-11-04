@@ -191,10 +191,11 @@ class RefeicoesController extends ZController
 //                    'pageSize'=>7,
 //                ),
         ));
-        $this->renderPartialWithHisOwnClientScript('_refeicoes_utente', array(
+        $this->renderPartial('_refeicoes_utente', array(
             'dataProvider' => $dataProviderRefeicoes,
             'dpTotalDiario'=>$dpTotalDiario,
-        ));
+            'idUtente'=>$idUtente,
+        ),false,true);
     }
 
     /**

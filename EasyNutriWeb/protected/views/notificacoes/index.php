@@ -7,6 +7,10 @@ $this->menu = array(
     array('label' => 'Listar Notificações', 'url' => array('index'), 'active' => true),
     array('label' => 'Nova Notificação', 'url' => array('create')),
 );
+
+$this->breadcrumbs = array(
+    'Notificacoes' => array('index'),
+);
 ?>
 
 <h1>Notificações</h1>
