@@ -44,31 +44,78 @@ class UtentesController extends Controller
     public function actionView($id)
     {
 
-            $dataProviderRefeicoes = new CActiveDataProvider('Refeicoes', array(
-                'criteria' => array(
-                    'with'=>array('diario'),
-                    'condition' => 'diario.user_id=' . $id),
-                'sort'=>array(
-                    'defaultOrder'=>'data_refeicao Desc'
-                ),
+        $dataProviderRefeicoes = new CActiveDataProvider('Refeicoes', array(
+            'criteria' => array(
+                'with' => array('diario'),
+                'condition' => 'diario.user_id=' . $id),
+            'sort' => array(
+                'defaultOrder' => 'data_refeicao Desc'
+            ),
 //                'pagination'=>array(
 //                    'pageSize'=>7,
 //                ),
-            ));
+        ));
 
-        $dpNotificacoes = new CActiveDataProvider('Notificacoes',array(
-            'criteria'=>array(
-                'condition'=>'utente_id=:id',
-                'params'=>array(
-                    ':id'=>$id,
+        $dpDadosAntro = new CActiveDataProvider('DadosAntro', array(
+            'criteria' => array(
+                'condition' => 'utente_id=:id',
+                'params' => array(
+                    ':id' => $id,
                 ),
             ),
         ));
 
+        $dpNotificacoes = new CActiveDataProvider('Notificacoes', array(
+            'criteria' => array(
+                'condition' => 'utente_id=:id',
+                'params' => array(
+                    ':id' => $id,
+                ),
+            ),
+        ));
+        $pesos = array();
+        $pesos['datas'] = array();
+        $pesos['kgConsulta'] = array();
+        $pesos['kgEmCasa'] = array();
+        $queryPesos = Yii::app()->db->createCommand()
+            ->select('valor as pesos, cast(data_med as date) as datas,em_casa, em_Casa')
+            ->from('dados_antro')
+            ->where('tipo_medicao_id = 1 and utente_id = ' . $id)
+            ->order('data_med')
+            ->queryAll();
+        foreach ($queryPesos as $linha) {
+            array_push($pesos['datas'], date("d-M-y", strtotime($linha['datas'])));
+            if ($linha['em_Casa'] == 0) {
+                array_push($pesos['kgConsulta'], floatval($linha['pesos']));
+            } else {
+                array_push($pesos['kgEmCasa'], floatval($linha['pesos']));
+            }
+
+        }
+
+        $massa = array();
+        $massa['datas'] = array();
+        $massa['massa'] = array();
+        $queryMassa = Yii::app()->db->createCommand()
+            ->select('valor as massa, cast(data_med as date) as datas,em_casa')
+            ->from('dados_antro')
+            ->where('tipo_medicao_id = 6 and utente_id = ' . $id)
+            ->order('data_med')
+            ->queryAll();
+        foreach ($queryMassa as $linha) {
+            array_push($massa['datas'], date("d-M-y", strtotime($linha['datas'])));
+            array_push($massa['massa'], floatval($linha['massa']));
+        }
+
+        $graficos = array();
+        $graficos['peso'] = $pesos;
+        $graficos['massa'] = $massa;
         $this->render('view', array(
             'model' => $this->loadModel($id),
             'dataProvider' => $dataProviderRefeicoes,
-            'dpNotificacoes'=>$dpNotificacoes,
+            'dpNotificacoes' => $dpNotificacoes,
+            'dpDadosAntro' => $dpDadosAntro,
+            'graficos' => $graficos,
         ));
     }
 
@@ -172,9 +219,10 @@ class UtentesController extends Controller
         $model = new Utentes('search');
         //  $model = Utentes::model()->findAllByAttributes(array(),'medico_id=:userid', array(':userid'=>Yii::app()->user->userid));
         $model->unsetAttributes(); // clear any default values
-        if (isset($_GET['Utentes']))
+        if (isset($_GET['Utentes'])) {
+            ChromePhp::log($_GET['Utentes']);
             $model->attributes = $_GET['Utentes'];
-
+        }
         $this->render('admin', array(
             'model' => $model,
         ));

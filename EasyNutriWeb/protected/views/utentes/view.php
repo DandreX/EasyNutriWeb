@@ -2,6 +2,8 @@
 /* @var $this UtentesController */
 /* @var $model Utentes */
 /* @var $modelDiarioAlimentar DiarioAlimentar */
+/* @var $dpDadosAntro CActiveDataProvider */
+/* @var $dpNotificacoes CActiveDataProvider */
 
 $this->menu = array(
     //array('label'=>'List Utentes', 'url'=>array('index')),
@@ -23,7 +25,10 @@ $this->menu = array(
                 'dataProvider' => $dataProvider,
             ),
             true)),
-    array('label' => 'Dados Antro.', 'content' => ''),
+    array('label' => 'Dados Antro.', 'content' => $this->renderPartial('_dados_antro',array(
+            'dpDadosAntro'=>$dpDadosAntro,
+            'graficos'=>$graficos,
+        ),true)),
     array('label' => 'Notificações', 'content' => $this->renderPartial('_notificacoes',
             array('dpNotificacoes' => $dpNotificacoes,
             ),

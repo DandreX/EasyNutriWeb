@@ -10,6 +10,7 @@
  * @property string $data_med
  * @property string $unidade
  * @property integer $utente_id
+ * @property string $em_Casa
  *
  * The followings are the available model relations:
  * @property TipoMedicao $tipoMedicao
@@ -36,11 +37,15 @@ class DadosAntro extends CActiveRecord
         }
     }
 
-    public function getTipoMedicao()
+    public function getTipoMedicaoDesc()
     {
         if ($this->tipo_medicao_id) {
             return $this->tipoMedicao->descricao;
         }
+    }
+
+    public function getLocal(){
+        return ($this->em_Casa==0)?"Consulta":"Em casa";
     }
 
     /**
@@ -54,11 +59,12 @@ class DadosAntro extends CActiveRecord
             array('tipo_medicao_id, valor, data_med, utente_id', 'required'),
             array('tipo_medicao_id, utente_id', 'numerical', 'integerOnly' => true),
             array('valor', 'numerical'),
+            array('em_Casa', 'length', 'max'=>1),
 //            array('unidade', 'length', 'max' => 10),
             // The following rule is used by search().
             // @todo Please remove those attributes that should not be searched.
             array('data_med', 'type', 'type' => 'date', 'message' => '{attribute}: não é uma data!', 'dateFormat' => 'yyyy-MM-dd hh:mm'),
-            array('id, tipo_medicao_id, valor, data_med, utente_id, nomeUtenteSearch, tipoMedicaoSearch', 'safe', 'on' => 'search'),
+            array('id, tipo_medicao_id, valor, data_med, utente_id, nomeUtenteSearch, tipoMedicaoSearch,em_Casa,local, tipoMedicaoDesc', 'safe', 'on' => 'search'),
         );
     }
 
@@ -87,7 +93,10 @@ class DadosAntro extends CActiveRecord
             'data_med' => 'Data / Hora',
             'utente_id' => 'Utente',
             'nomeUtenteSearch' => 'Utente',
-            'tipoMedicaoSearch' => 'Medição'
+            'tipoMedicaoSearch' => 'Medição',
+            'em_Casa'=>'Local Medição',
+            'local'=>'Local',
+            'tipoMedicaoDesc'=>'Medição',
         );
     }
 
@@ -115,6 +124,7 @@ class DadosAntro extends CActiveRecord
         $criteria->compare('valor', $this->valor);
         $criteria->compare('data_med', $this->data_med, true);
         $criteria->compare('utente_id', $this->utente_id);
+        $criteria->compare('em_Casa', $this->em_Casa,true);
         $criteria->compare('utente.nome', $this->nomeUtenteSearch, true);
         $criteria->compare('tipoMedicao.descricao', $this->tipoMedicaoSearch, true);
 
@@ -123,20 +133,6 @@ class DadosAntro extends CActiveRecord
             'sort' => array(
                 'defaultOrder' => 'data_med desc',
             )
-
-//            'sort'=>array(
-//                'attributes'=>array(
-//                    'nomeUtenteSearch'=>array(
-//                        'asc'=>'utente.Nome',
-//                        'desc'=>'utente.Nome DESC',
-//                    ),
-//                    'tipoMedicaoSearch'=>array(
-//                        'asc'=>'tipoMedicao.descricao',
-//                        'desc'=>'tipoMedicao.descricao DESC',
-//                    ),
-//                    '*',
-//                ),
-//            ),
         ));
     }
 

@@ -95,7 +95,7 @@ $this->widget('zii.widgets.jui.CJuiDatePicker', array(
 
 <script type="text/javascript" id="ajaxRefeicoes">
 
-    var funciona = true;
+    var semaforo = true;
     var requestRefeicoes = function () {
         var spinner="\x3Cdiv class=\"spinner\"\x3E\n \x3Cdiv class=\"rect1\"\x3E\x3C\x2Fdiv\x3E\n \x3Cdiv class=\"rect2\"\x3E\x3C\x2Fdiv\x3E\n \x3Cdiv class=\"rect3\"\x3E\x3C\x2Fdiv\x3E\n \x3Cdiv class=\"rect4\"\x3E\x3C\x2Fdiv\x3E\n \x3Cdiv class=\"rect5\"\x3E\x3C\x2Fdiv\x3E\n\x3C\x2Fdiv\x3E";
         $('#spinner_place').html(spinner);
@@ -116,8 +116,12 @@ $this->widget('zii.widgets.jui.CJuiDatePicker', array(
         });
             }
     $(document).ready(requestRefeicoes);
+    semaforo=false;
     $("#data_pesquisa").change(function () {
         requestRefeicoes();
+        if(!semaforo){
+            requestRefeicoes();
+        }
 
 
     });
