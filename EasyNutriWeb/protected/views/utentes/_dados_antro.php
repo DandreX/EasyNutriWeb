@@ -8,15 +8,16 @@ $massa = $graficos['massa'];
     'id' => 'dados-antro-grid',
     'dataProvider' => $dpDadosAntro,
     'template' => '{items}{pager}',
-    'extraRowColumns' => array('tipo_medicao_id'),
+    'extraRowColumns' => array('medicao'),
     'extraRowPos' => 'above',
     'enableSorting' => false,
     'emptyText' => 'Não existem dados para este utente',
     'columns' => array(
-        array(
-            'name' => 'tipoMedicaoSearch',
-            'value' => '$data->tipoMedicao ? $data->tipoMedicao->descricao: "-"'
-        ),
+//        array(
+//            'name' => 'tipoMedicaoSearch',
+//            'value' => '$data->tipoMedicao ? $data->tipoMedicao->descricao: "-"'
+//        ),
+
         'valor',
         'data_med',
         'local'

@@ -56,7 +56,7 @@ class UtentesController extends Controller
 //                ),
         ));
 
-        $dpDadosAntro = new CActiveDataProvider('DadosAntro', array(
+        $dpDadosAntro = new CActiveDataProvider('VResumosAntro', array(
             'criteria' => array(
                 'condition' => 'utente_id=:id',
                 'params' => array(
