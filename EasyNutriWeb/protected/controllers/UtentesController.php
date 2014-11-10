@@ -71,6 +71,10 @@ class UtentesController extends Controller
                 'params' => array(
                     ':id' => $id,
                 ),
+
+            ),
+            'sort' => array(
+                'defaultOrder' => 'data desc',
             ),
         ));
         $pesos = array();

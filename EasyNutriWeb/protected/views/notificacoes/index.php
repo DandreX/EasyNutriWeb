@@ -8,6 +8,7 @@ $this->menu = array(
     array('label' => 'Nova Notificação', 'url' => array('create')),
 );
 
+
 $this->breadcrumbs = array(
     'Notificacoes' => array('index'),
 );
@@ -19,4 +20,7 @@ $this->breadcrumbs = array(
     'dataProvider' => $dataProvider,
     'itemView' => '_view',
     'sortableAttributes' => array('data', 'utente_id'),
-)); ?>
+));
+
+
+?>

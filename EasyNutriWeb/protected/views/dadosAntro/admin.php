@@ -11,8 +11,8 @@ $this->menu = array(
 
 );
 
-$this->breadcrumbs=array(
-    'Dados Antros'=>array('index'),
+$this->breadcrumbs = array(
+    'Dados Antros' => array('index'),
     'Todos os registos',
 );
 
@@ -59,7 +59,7 @@ $('.search-form form').submit(function(){
 
 
         array(
-            'class' => 'CButtonColumn',
+            'class' => 'TbButtonColumn',
         ),
     ),
 )); ?>

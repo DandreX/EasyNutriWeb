@@ -2,9 +2,9 @@
 /* @var $this UtentesController */
 /* @var $model Utentes */
 
-$this->breadcrumbs=array(
-	'Utentes'=>array('index'),
-	'Os meus utentes',
+$this->breadcrumbs = array(
+    'Utentes' => array('index'),
+    'Os meus utentes',
 );
 
 $this->menu = array(
@@ -29,7 +29,6 @@ $('.search-form form').submit(function(){
 
 <h1>Os meus utentes</h1>
 
-
 <?php echo CHtml::link('Advanced Search', '#', array('class' => 'search-button')); ?>
 <div class="search-form" style="display:none">
     <?php $this->renderPartial('_search', array(
@@ -53,7 +52,7 @@ $('.search-form form').submit(function(){
 
 
         array(
-            'class' => 'CButtonColumn',
+            'class' => 'TbButtonColumn',
             'htmlOptions' => array('width' => 60),
             // 'afterDelete' => "function(link,success,data){ if (success) alert(data); } ",
         ),

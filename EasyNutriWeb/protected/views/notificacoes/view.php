@@ -10,22 +10,29 @@ $this->breadcrumbs = array(
 $this->menu = array(
     array('label' => 'Listar Notificações', 'url' => array('index')),
     array('label' => 'Criar Notificações', 'url' => array('create')),
-    array('label' => 'Atualizar Notificações', 'url' => array('update', 'id' => $model->id)),
-    array('label' => 'Apagar Notificações', 'url' => '#', 'linkOptions' => array('submit' => array('delete', 'id' => $model->id), 'confirm' => 'Are you sure you want to delete this item?')),
-    array('label' => 'Gerir Notificações', 'url' => array('admin')),
 );
+
 ?>
 
-<h1>Ver Notificações #<?php echo $model->id; ?></h1>
+<div id="cabecalhoNotificacao">
+    <p id="cabecalhoUtente"><b>Para: </b><?php echo $model->getNomeUtente() ?>  </p>
 
-<?php $this->widget('zii.widgets.CDetailView', array(
+    <p id="cabecalhoData"><?php echo $model->data ?> </p>
+
+    <p id="cabecalhoAssunto"><b>Assunto: </b><?php echo $model->assunto; ?> </p>
+</div>
+<div id="descricaoNotificacao">
+    <p id="descNotificacao"> <?php echo $model->descricao ?></p>
+</div>
+
+<?php /*$this->widget('zii.widgets.CDetailView', array(
     'data' => $model,
     'attributes' => array(
-        'id',
-        'medico_id',
-        'utente_id',
+        array(
+            'label'=>'Utente',
+            'value'=> CHtml::encode($model->getNomeUtente()),
+        ),
         'descricao',
-        'data',
-        'assunto',
     ),
-)); ?>
+)); */
+?>

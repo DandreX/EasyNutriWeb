@@ -6,6 +6,7 @@
     margin-bottom: 0px;
     padding-top: 0px;
 }
+
 /*----------SPINNER-----------*/
 
 .spinner {
@@ -68,6 +69,42 @@
 
 /*----------SPINNER  END-----------*/
 
-#grafico_peso, #grafico_massa{
+#grafico_peso, #grafico_massa {
     margin-bottom: 15px;
+}
+
+#cabecalhoNotificacao {
+    border-bottom: 1px solid #C3D9FF;
+    margin-bottom: 10px;
+}
+
+#cabecalhoUtente, #cabecalhoData {
+    margin-left: 10px;
+    font-size: 10pt;
+    display: inline-block;
+}
+
+#cabecalhoAssunto {
+    font-size: 12pt;
+    margin-left: 10px;
+    font-size: 12pt;
+}
+
+#cabecalhoUtente {
+
+}
+
+#cabecalhoData {
+    float: right;
+    margin-right: 10px;
+
+}
+
+#descricaoNotificacao {
+    margin-top: 30px;
+}
+
+#descNotificacao {
+    margin: 10px;
+    margin-bottom: 0px;
 }
