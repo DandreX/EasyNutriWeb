@@ -54,7 +54,10 @@ $('.search-form form').submit(function(){
             'name' => 'tipoMedicaoSearch',
             'value' => '$data->tipoMedicao ? $data->tipoMedicao->descricao: "-"'
         ),
-        'valor',
+        array(
+            'name'=>'valor',
+            'value'=>'number_format($data->valor, 2)',
+        ),
         'data_med',
 
 

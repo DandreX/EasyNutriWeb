@@ -1,11 +1,12 @@
 <?php
-/* var $dpDadosAntro CActiveDataProvider*/
+/* var $dpDadosAntro CActiveDataProvider VResumosAntro*/
 $pesos = $graficos['peso'];
 $massa = $graficos['massa'];
 ?>
 
 <?php $this->widget('ext.groupgridview.BootGroupGridView', array(
     'id' => 'dados-antro-grid',
+    'type' => TbHtml::GRID_TYPE_BORDERED,
     'dataProvider' => $dpDadosAntro,
     'template' => '{items}{pager}',
     'extraRowColumns' => array('medicao'),
@@ -17,45 +18,55 @@ $massa = $graficos['massa'];
 //            'name' => 'tipoMedicaoSearch',
 //            'value' => '$data->tipoMedicao ? $data->tipoMedicao->descricao: "-"'
 //        ),
-
-        'valor',
-        'data_med',
+        array(
+            'name'=>'valor',
+            'value'=>'number_format($data->valor, 2)',
+        ),
+        'data',
         'local'
     ),
 
 )); ?>
-
+<div style="width:100%;margin: 0 auto">
 <?php $this->Widget('ext.highcharts.HighchartsWidget', array(
     'id'=>'grafico_peso',
     'options' => array(
         'chart' => array(
-            'width'=>850,
+//            'width'=>850,
             'borderWidth'=>2,
             'borderColor'=>'#c3d9ff',
-//            'marginBottom'=>5,
         ),
         'title' => array('text' => 'Histórico de Pesagens'),
         'xAxis' => array(
-            'title' => array('text' => 'Datas'),
-            'categories' => $pesos['datas'],
+            'type'=>'datetime',
+            'title' => array('text' => 'Tempo'),
         ),
         'yAxis' => array(
             'title' => array('text' => 'Pesos (Kg)'),
             'floor' => 0,
         ),
+        'tooltip' => array(
+            'pointFormat'=>'{point.x:%e. %b}: {point.y:.1f} kg',
+        ),
         'series' => array(
-            array('name' => 'Na consulta', 'data' => $pesos['kgConsulta']),
-            array('name' => 'Em casa', 'data'=>$pesos['kgEmCasa']),
-            //   array('name' => 'Em casa', 'data' => array(5, 7, 3))
+            array(
+                'name' => 'Na consulta',
+                'data' => $pesos['valoresConsulta']
+            ),
+           array(
+               'name' => 'Em casa',
+               'data'=>$pesos['valoresCasa']
+           ),
         ),
     )
 ));?>
+</div>
 
+<div >
 <?php $this->Widget('ext.highcharts.HighchartsWidget', array(
     'id'=>'grafico_massa',
     'options' => array(
         'chart' => array(
-            'width'=>850,
             'borderWidth'=>2,
             'borderColor'=>'#c3d9ff',
 //            'marginBottom'=>5,
@@ -63,19 +74,25 @@ $massa = $graficos['massa'];
         ),
         'title' => array('text' => 'Histórico de Massa Gorda'),
         'xAxis' => array(
-            'title' => array('text' => 'Datas'),
-            'categories' => $massa['datas'],
+            'type'=>'datetime',
+            'title' => array('text' => 'Tempo'),
         ),
         'yAxis' => array(
             'title' => array('text' => 'Massa Gorda (%)'),
             'floor' => 0,
         ),
         'series' => array(
-            array('name' => '',
-                'data' => $massa['massa'],
-                'showInLegend'=> false,
+            array(
+                'name' => 'Em casa',
+                'data'=>$massa['valores'],
             ),
 
         ),
     )
 ));?>
+</div>
+<!--<script type="text/javascript">-->
+<!--    $( document ).ready(function() {-->
+<!--        console.log( "ready!" );-->
+<!--    });-->
+<!--</script>-->

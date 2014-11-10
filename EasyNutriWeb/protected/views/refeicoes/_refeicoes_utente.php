@@ -12,6 +12,7 @@
     'enableSorting' => false,
     'showTableOnEmpty' => false,
     'emptyText' => 'Não disponiveis',
+    'summaryText' => '',
     'columns' => array(
         array(
             'name' => 'calorias',
@@ -50,20 +51,21 @@
 
 ));
 ?>
-<h4>Refeicoes</h4>
+<h4>Descrição</h4>
 
 <?php
 
 $this->widget('ext.groupgridview.BootGroupGridView', array(
     'id' => 'tabela_refeicoes',
     'type' => TbHtml::GRID_TYPE_BORDERED,
-    'mergeColumns' => array('hora'),
     'extraRowColumns' => array('tipo_refeicao'),
     'extraRowPos' => 'above',
+    'mergeColumns' => array('hora'),
     'dataProvider' => $dpsRefeicoes,
     'selectableRows' => 1,
     'enableSorting' => false,
     'emptyText' => 'Não existem refeicoes para este dia',
+    'showTableOnEmpty' => false,
     'columns' => array(
 
         array(

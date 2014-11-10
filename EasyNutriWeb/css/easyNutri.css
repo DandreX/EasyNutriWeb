@@ -6,7 +6,6 @@
     margin-bottom: 0px;
     padding-top: 0px;
 }
-
 /*----------SPINNER-----------*/
 
 .spinner {
@@ -69,8 +68,15 @@
 
 /*----------SPINNER  END-----------*/
 
-#grafico_peso, #grafico_massa {
-    margin-bottom: 15px;
+
+
+
+#grafico_peso, #grafico_massa{
+    /*margin: 0 auto;*/
+    margin-top: 30px;
+    /*margin-right: 10px;*/
+    width:88%;
+
 }
 
 #cabecalhoNotificacao {

@@ -5,11 +5,10 @@
 ?>
 <?php
 $dataPesquisa = date('Y-m-d');
-global $funciona;
-$funciona = 1;
+
 ?>
 
-Diario alimentar:
+<h4>Diario alimentar do dia</h4>
 <?php
 $this->widget('zii.widgets.jui.CJuiDatePicker', array(
 //    'attribute' => 'dataPesquisa',
