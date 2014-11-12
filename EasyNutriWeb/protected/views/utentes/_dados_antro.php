@@ -3,7 +3,7 @@
 $pesos = $graficos['peso'];
 $massa = $graficos['massa'];
 ?>
-
+<h4>Ultimos Dados Antropométricos</h4>
 <?php $this->widget('ext.groupgridview.BootGroupGridView', array(
     'id' => 'dados-antro-grid',
     'type' => TbHtml::GRID_TYPE_BORDERED,

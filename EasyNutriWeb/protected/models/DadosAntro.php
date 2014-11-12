@@ -127,7 +127,7 @@ class DadosAntro extends CActiveRecord
         $criteria->compare('em_Casa', $this->em_Casa,true);
         $criteria->compare('utente.nome', $this->nomeUtenteSearch, true);
         $criteria->compare('tipoMedicao.descricao', $this->tipoMedicaoSearch, true);
-
+        $criteria->compare('utente.medico_id', Yii::app()->user->userid, true);
         return new CActiveDataProvider($this, array(
             'criteria' => $criteria,
             'sort' => array(

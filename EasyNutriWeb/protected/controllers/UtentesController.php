@@ -137,7 +137,7 @@ class UtentesController extends Controller
         if (isset($_POST['Utentes'])) {
             try {
                 $model->attributes = $_POST['Utentes'];
-                $model->medico_id = 1;
+                $model->medico_id = Yii::app()->user->userid;
                 $model->password = 'easynutri';
 
 

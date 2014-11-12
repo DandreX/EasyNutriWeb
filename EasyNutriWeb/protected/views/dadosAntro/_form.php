@@ -21,7 +21,13 @@
 
     <div class="row">
         <?php echo $form->labelEx($model, 'utente_id'); ?>
-        <?php $utentes = CHtml::listData(Utentes::model()->findAll(), 'id', 'nome');
+        <?php $utentes = CHtml::listData(Utentes::model()->findAllByAttributes(
+            array(),
+            $condition = 'medico_id=:userid',
+            $params = array(
+                ':userid'=>Yii::app()->user->userid,
+            )
+        ), 'id', 'nome');
         echo $form->dropDownList($model, 'utente_id', $utentes,
             array('empty' => 'Escolha o Utente', 'order' => 'nome'));?>
         <?php echo $form->error($model, 'user_id'); ?>

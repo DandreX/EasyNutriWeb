@@ -78,8 +78,9 @@ $this->widget('ext.groupgridview.BootGroupGridView', array(
         ),
         array(
             'value' => '$data->quant',
-            'header' => 'Quantidade (100g)',
+            'header' => 'Quantidade',
         ),
+        'porcao',
         array(
             'name' => 'calorias',
             'header' => 'Energia (Kcal)',

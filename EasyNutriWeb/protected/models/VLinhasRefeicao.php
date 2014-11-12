@@ -13,7 +13,8 @@
  * @property integer $refeicao_id
  * @property string $nome
  * @property double $quant
- * @property double $calorias
+ * @property string $porcao
+ * @property string $calorias
  * @property string $hidratos_carbono
  * @property string $acucares
  * @property string $proteinas
@@ -39,16 +40,16 @@ class VLinhasRefeicao extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('user_id, data, tipo_refeicao_id, tipo_refeicao, linha_id, refeicao_id, nome, quant, calorias', 'required'),
+			array('user_id, data, tipo_refeicao_id, tipo_refeicao, linha_id, refeicao_id, quant', 'required'),
 			array('user_id, tipo_refeicao_id, linha_id, refeicao_id', 'numerical', 'integerOnly'=>true),
-			array('quant, calorias', 'numerical'),
+			array('quant', 'numerical'),
+			array('hora', 'length', 'max'=>5),
 			array('tipo_refeicao', 'length', 'max'=>100),
-			array('nome', 'length', 'max'=>255),
-			array('hidratos_carbono, acucares, proteinas, lipidos, fibras, agua', 'length', 'max'=>10),
-			array('hora', 'safe'),
+			array('nome, porcao', 'length', 'max'=>255),
+			array('calorias, hidratos_carbono, acucares, proteinas, lipidos, fibras, agua', 'length', 'max'=>10),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('user_id, data, hora, tipo_refeicao_id, tipo_refeicao, linha_id, refeicao_id, nome, quant, calorias, hidratos_carbono, acucares, proteinas, lipidos, fibras, agua', 'safe', 'on'=>'search'),
+			array('user_id, data, hora, tipo_refeicao_id, tipo_refeicao, linha_id, refeicao_id, nome, quant, porcao, calorias, hidratos_carbono, acucares, proteinas, lipidos, fibras, agua', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -78,6 +79,7 @@ class VLinhasRefeicao extends CActiveRecord
 			'refeicao_id' => 'Refeicao',
 			'nome' => 'Nome',
 			'quant' => 'Quant',
+			'porcao' => 'Porcao',
 			'calorias' => 'Calorias',
 			'hidratos_carbono' => 'Hidratos Carbono',
 			'acucares' => 'Acucares',
@@ -115,7 +117,8 @@ class VLinhasRefeicao extends CActiveRecord
 		$criteria->compare('refeicao_id',$this->refeicao_id);
 		$criteria->compare('nome',$this->nome,true);
 		$criteria->compare('quant',$this->quant);
-		$criteria->compare('calorias',$this->calorias);
+		$criteria->compare('porcao',$this->porcao,true);
+		$criteria->compare('calorias',$this->calorias,true);
 		$criteria->compare('hidratos_carbono',$this->hidratos_carbono,true);
 		$criteria->compare('acucares',$this->acucares,true);
 		$criteria->compare('proteinas',$this->proteinas,true);

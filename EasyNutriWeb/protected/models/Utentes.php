@@ -142,7 +142,8 @@ class Utentes extends CActiveRecord
         $criteria->compare('profissao', $this->profissao, true);
         $criteria->compare('estado_civil', $this->estado_civil, true);
         $criteria->compare('motivo_consulta', $this->motivo_consulta, true);
-        $criteria->compare('medico_id', $this->medico_id);
+       // $criteria->compare('medico_id', $this->medico_id);
+        $criteria->compare('medico_id', Yii::app()->user->userid);
 
         return new CActiveDataProvider($this, array(
             'criteria' => $criteria,

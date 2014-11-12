@@ -13,7 +13,7 @@ $this->menu = array(
 
 ?>
 
-<h2>Perfil de <?php echo $model->nome; ?></h2>
+<h2><?php echo $model->nome; ?></h2>
 
 <?php echo TbHtml::tabbableTabs(array(
     array('label' => 'Dados Pessoais', 'active' => 'true', 'content' => $this->renderPartial('_dados_utente',
