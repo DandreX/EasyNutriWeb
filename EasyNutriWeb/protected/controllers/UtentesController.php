@@ -109,7 +109,8 @@ class UtentesController extends Controller
             ->queryAll();
         foreach ($queryMassa as $linha) {
             array_push($massa['valores'], array(
-                'js:Date.UTC('.gmdate("Y, m, d", strtotime($linha['datas'])).')', floatval($linha['massa']) ));
+                'js:Date.UTC('.gmdate("Y, m, d",strtotime('-1 month',strtotime($linha['datas']))
+                    ).')', floatval($linha['massa']) ));
         }
         $graficos = array();
         $graficos['peso'] = $pesos;
