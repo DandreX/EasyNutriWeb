@@ -54,7 +54,7 @@
 <h4>Descrição</h4>
 
 <?php
-exit();
+
 $this->widget('ext.groupgridview.BootGroupGridView', array(
     'id' => 'tabela_refeicoes',
     'type' => TbHtml::GRID_TYPE_BORDERED,
