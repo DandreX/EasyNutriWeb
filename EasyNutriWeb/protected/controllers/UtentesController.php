@@ -91,10 +91,10 @@ class UtentesController extends Controller
         foreach($queryPesos as $linha){
             if ($linha['em_Casa']==0) {
                 array_push($pesos['valoresConsulta'], array(
-                    'js:Date.UTC('.gmdate("Y, m, d", strtotime($linha['datas'])).')', floatval($linha['pesos']) ));
+                    'js:Date.UTC('.gmdate("Y, m, d", strtotime('-1 month',strtotime($linha['datas']))).')', floatval($linha['pesos']) ));
             }else {
                 array_push($pesos['valoresCasa'], array(
-                    'js:Date.UTC('.gmdate("Y, m, d", strtotime($linha['datas'])).')', floatval($linha['pesos']) ));
+                    'js:Date.UTC('.gmdate("Y, m, d", strtotime('-1 month',strtotime($linha['datas']))).')', floatval($linha['pesos']) ));
             }
 
         }
