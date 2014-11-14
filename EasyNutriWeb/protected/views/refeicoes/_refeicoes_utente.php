@@ -2,6 +2,9 @@
 
 /*@var $dpsRefeicoes Dataprovider[] com refeicoes*/
 /*@var $dpTotalDiario Dataprovider com totaisdiarios*/
+var_dump($dpTotalDiario);
+var_dump($dpsRefeicoes);
+exit();
 ?>
 <h4>Totais consumidos</h4>
 <?php $this->widget('bootstrap.widgets.TbGridView', array(
