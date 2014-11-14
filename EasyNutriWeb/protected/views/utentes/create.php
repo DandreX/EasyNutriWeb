@@ -2,10 +2,10 @@
 /* @var $this UtentesController */
 /* @var $model Utentes */
 
-$this->breadcrumbs=array(
-	'Utentes'=>array('index'),
-	'Create',
-);
+//$this->breadcrumbs=array(
+//	'Utentes'=>array('index'),
+//	'Create',
+//);
 
 $this->menu = array(
     //array('label'=>'List Utentes', 'url'=>array('index')),

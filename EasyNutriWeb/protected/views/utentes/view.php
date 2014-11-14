@@ -2,6 +2,8 @@
 /* @var $this UtentesController */
 /* @var $model Utentes */
 /* @var $modelDiarioAlimentar DiarioAlimentar */
+/* @var $dpDadosAntro CActiveDataProvider */
+/* @var $dpNotificacoes CActiveDataProvider */
 
 $this->menu = array(
     //array('label'=>'List Utentes', 'url'=>array('index')),
@@ -11,7 +13,7 @@ $this->menu = array(
 
 ?>
 
-<h2>Perfil de <?php echo $model->nome; ?></h2>
+<h2><?php echo $model->nome; ?></h2>
 
 <?php echo TbHtml::tabbableTabs(array(
     array('label' => 'Dados Pessoais', 'active' => 'true', 'content' => $this->renderPartial('_dados_utente',
@@ -23,10 +25,15 @@ $this->menu = array(
                 'dataProvider' => $dataProvider,
             ),
             true)),
+    array('label' => 'Dados Antro.', 'content' => $this->renderPartial('_dados_antro',array(
+            'dpDadosAntro'=>$dpDadosAntro,
+            'graficos'=>$graficos,
+        ),true)),
     array('label' => 'Notificações', 'content' => $this->renderPartial('_notificacoes',
             array('dpNotificacoes' => $dpNotificacoes,
             ),
             true)),
+
 ))?>
 
 

@@ -11,8 +11,8 @@ $this->menu = array(
 
 );
 
-$this->breadcrumbs=array(
-    'Dados Antros'=>array('index'),
+$this->breadcrumbs = array(
+    'Dados Antros' => array('index'),
     'Todos os registos',
 );
 
@@ -54,12 +54,15 @@ $('.search-form form').submit(function(){
             'name' => 'tipoMedicaoSearch',
             'value' => '$data->tipoMedicao ? $data->tipoMedicao->descricao: "-"'
         ),
-        'valor',
+        array(
+            'name'=>'valor',
+            'value'=>'number_format($data->valor, 2)',
+        ),
         'data_med',
 
 
         array(
-            'class' => 'CButtonColumn',
+            'class' => 'TbButtonColumn',
         ),
     ),
 )); ?>

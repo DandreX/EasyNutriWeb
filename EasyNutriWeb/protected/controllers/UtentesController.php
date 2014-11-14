@@ -44,31 +44,82 @@ class UtentesController extends Controller
     public function actionView($id)
     {
 
-            $dataProviderRefeicoes = new CActiveDataProvider('Refeicoes', array(
-                'criteria' => array(
-                    'with'=>array('diario'),
-                    'condition' => 'diario.user_id=' . $id),
-                'sort'=>array(
-                    'defaultOrder'=>'data_refeicao Desc'
-                ),
+        $dataProviderRefeicoes = new CActiveDataProvider('Refeicoes', array(
+            'criteria' => array(
+                'with' => array('diario'),
+                'condition' => 'diario.user_id=' . $id),
+            'sort' => array(
+                'defaultOrder' => 'data_refeicao Desc'
+            ),
 //                'pagination'=>array(
 //                    'pageSize'=>7,
 //                ),
-            ));
+        ));
 
-        $dpNotificacoes = new CActiveDataProvider('Notificacoes',array(
-            'criteria'=>array(
-                'condition'=>'utente_id=:id',
-                'params'=>array(
-                    ':id'=>$id,
+        $dpDadosAntro = new CActiveDataProvider('VResumosAntro', array(
+            'criteria' => array(
+                'condition' => 'utente_id=:id',
+                'params' => array(
+                    ':id' => $id,
                 ),
             ),
         ));
 
+        $dpNotificacoes = new CActiveDataProvider('Notificacoes', array(
+            'criteria' => array(
+                'condition' => 'utente_id=:id',
+                'params' => array(
+                    ':id' => $id,
+                ),
+
+            ),
+            'sort' => array(
+                'defaultOrder' => 'data desc',
+            ),
+        ));
+        $pesos = array();
+        $pesos['valoresConsulta'] = array();
+        $pesos['valoresCasa'] = array();
+        $queryPesos = Yii::app()->db->createCommand()
+            ->select('valor as pesos, cast(data_med as date) as datas,em_casa, em_Casa')
+            ->from('dados_antro')
+            ->where('tipo_medicao_id = 1 and utente_id = ' . $id)
+            ->order('data_med')
+            ->queryAll();
+
+
+        foreach($queryPesos as $linha){
+            if ($linha['em_Casa']==0) {
+                array_push($pesos['valoresConsulta'], array(
+                    'js:Date.UTC('.gmdate("Y, m, d", strtotime($linha['datas'])).')', floatval($linha['pesos']) ));
+            }else {
+                array_push($pesos['valoresCasa'], array(
+                    'js:Date.UTC('.gmdate("Y, m, d", strtotime($linha['datas'])).')', floatval($linha['pesos']) ));
+            }
+
+        }
+
+        $massa = array();
+        $massa['valores'] = array();
+        $queryMassa = Yii::app()->db->createCommand()
+            ->select('valor as massa, cast(data_med as date) as datas,em_casa')
+            ->from('dados_antro')
+            ->where('tipo_medicao_id = 6 and utente_id = ' . $id)
+            ->order('data_med')
+            ->queryAll();
+        foreach ($queryMassa as $linha) {
+            array_push($massa['valores'], array(
+                'js:Date.UTC('.gmdate("Y, m, d", strtotime($linha['datas'])).')', floatval($linha['massa']) ));
+        }
+        $graficos = array();
+        $graficos['peso'] = $pesos;
+        $graficos['massa'] = $massa;
         $this->render('view', array(
             'model' => $this->loadModel($id),
             'dataProvider' => $dataProviderRefeicoes,
-            'dpNotificacoes'=>$dpNotificacoes,
+            'dpNotificacoes' => $dpNotificacoes,
+            'dpDadosAntro' => $dpDadosAntro,
+            'graficos' => $graficos,
         ));
     }
 
@@ -86,7 +137,7 @@ class UtentesController extends Controller
         if (isset($_POST['Utentes'])) {
             try {
                 $model->attributes = $_POST['Utentes'];
-                $model->medico_id = 1;
+                $model->medico_id = Yii::app()->user->userid;
                 $model->password = 'easynutri';
 
 
@@ -172,9 +223,10 @@ class UtentesController extends Controller
         $model = new Utentes('search');
         //  $model = Utentes::model()->findAllByAttributes(array(),'medico_id=:userid', array(':userid'=>Yii::app()->user->userid));
         $model->unsetAttributes(); // clear any default values
-        if (isset($_GET['Utentes']))
+        if (isset($_GET['Utentes'])) {
+            ChromePhp::log($_GET['Utentes']);
             $model->attributes = $_GET['Utentes'];
-
+        }
         $this->render('admin', array(
             'model' => $model,
         ));

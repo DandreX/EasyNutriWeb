@@ -4,8 +4,8 @@
 
 
 $this->menu = array(
-    array('label' => 'Listar Notificações', 'url' => array('index')),
-    array('label' => 'Criar Notificações', 'url' => array('create')),
+    array('label' => 'Listar Notificações', 'url' => array('index'), 'active' => true),
+    array('label' => 'Nova Notificação', 'url' => array('create')),
 );
 
 Yii::app()->clientScript->registerScript('search', "
@@ -22,13 +22,13 @@ $('.search-form form').submit(function(){
 ");
 ?>
 
-<h1>Manage Notificações</h1>
+<h1>Notificações Enviadas</h1>
 
-<p>
-    You may optionally enter a comparison operator (<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>
-        &lt;&gt;</b>
-    or <b>=</b>) at the beginning of each of your search values to specify how the comparison should be done.
-</p>
+<!--<p>-->
+<!--    You may optionally enter a comparison operator (<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>-->
+<!--        &lt;&gt;</b>-->
+<!--    or <b>=</b>) at the beginning of each of your search values to specify how the comparison should be done.-->
+<!--</p>-->
 
 <?php echo CHtml::link('Advanced Search', '#', array('class' => 'search-button')); ?>
 <div class="search-form" style="display:none">
@@ -37,19 +37,21 @@ $('.search-form form').submit(function(){
     )); ?>
 </div><!-- search-form -->
 
-<?php $this->widget('zii.widgets.grid.CGridView', array(
+<?php $this->widget('bootstrap.widgets.TbGridView', array(
+    'type' => TbHtml::GRID_TYPE_HOVER,
     'id' => 'notificacoes-grid',
     'dataProvider' => $model->search(),
     'filter' => $model,
     'columns' => array(
-        'id',
-        'medico_id',
-        'utente_id',
-        'descricao',
         'data',
-        'assunto',
         array(
-            'class' => 'CButtonColumn',
+            'value' => '$data->NomeUtente',
+            'header' => 'Utente',
+        ),
+        'assunto',
+        'descricao',
+        array(
+            'class' => 'TbButtonColumn',
         ),
     ),
 )); ?>

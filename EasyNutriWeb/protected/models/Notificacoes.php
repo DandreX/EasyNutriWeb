@@ -95,7 +95,7 @@ class Notificacoes extends CActiveRecord
         $criteria = new CDbCriteria;
 
         $criteria->compare('id', $this->id);
-        $criteria->compare('medico_id', $this->medico_id);
+        $criteria->compare('medico_id', Yii::app()->user->userid,true);
         $criteria->compare('utente_id', $this->utente_id);
         $criteria->compare('descricao', $this->descricao, true);
         $criteria->compare('data', $this->data, true);
@@ -104,6 +104,9 @@ class Notificacoes extends CActiveRecord
 
         return new CActiveDataProvider($this, array(
             'criteria' => $criteria,
+            'sort' => array(
+                'defaultOrder' => 'data desc',
+            )
         ));
     }
 

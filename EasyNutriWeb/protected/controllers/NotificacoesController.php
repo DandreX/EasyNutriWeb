@@ -79,11 +79,12 @@ class NotificacoesController extends Controller
         ));
     }
 
-    public function actionAjaxCreate(){
+    public function actionAjaxCreate()
+    {
         $model = new Notificacoes;
 
         // Uncomment the following line if AJAX validation is needed
-         $this->performAjaxValidation($model);
+        $this->performAjaxValidation($model);
 //        var_dump($_POST);
 //        exit();
         if (isset($_POST['Notificacoes'])) {
@@ -92,10 +93,10 @@ class NotificacoesController extends Controller
             $model->utente_id = $_POST['idUtente'];
             $model->medico_id = Yii::app()->user->userid;
             $model->data = date('Y-m-d H:m');
-            if ($model->save()){
+            if ($model->save()) {
                 print_r("guardou");
                 exit();
-            }else{
+            } else {
                 throw new Exception('Erro a guardar notificacao');
             }
 
@@ -103,7 +104,7 @@ class NotificacoesController extends Controller
 
         $this->renderPartial('_partial_create', array(
             'model' => $model,
-        ),false,true);
+        ), false, true);
     }
 
     /**
@@ -148,10 +149,11 @@ class NotificacoesController extends Controller
      */
     public function actionIndex()
     {
-        $dataProvider = new CActiveDataProvider('Notificacoes');
-        $this->render('index', array(
-            'dataProvider' => $dataProvider,
-        ));
+        $this->redirect(array('admin'));
+//        $dataProvider = new CActiveDataProvider('Notificacoes');
+//        $this->render('index', array(
+//            'dataProvider' => $dataProvider,
+//        ));
     }
 
     /**
@@ -195,4 +197,6 @@ class NotificacoesController extends Controller
             Yii::app()->end();
         }
     }
+
+
 }
