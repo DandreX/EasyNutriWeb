@@ -2,9 +2,6 @@
 
 /*@var $dpsRefeicoes Dataprovider[] com refeicoes*/
 /*@var $dpTotalDiario Dataprovider com totaisdiarios*/
-var_dump($dpTotalDiario);
-var_dump($dpsRefeicoes);
-exit();
 ?>
 <h4>Totais consumidos</h4>
 <?php $this->widget('bootstrap.widgets.TbGridView', array(
@@ -57,7 +54,7 @@ exit();
 <h4>Descrição</h4>
 
 <?php
-
+exit();
 $this->widget('ext.groupgridview.BootGroupGridView', array(
     'id' => 'tabela_refeicoes',
     'type' => TbHtml::GRID_TYPE_BORDERED,
