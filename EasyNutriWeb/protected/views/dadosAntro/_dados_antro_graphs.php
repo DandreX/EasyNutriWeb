@@ -3,10 +3,12 @@
 $pesos = $graficos['peso'];
 $massa = $graficos['massa'];
 ?>
+
 <div>
 <!--<h4>Histórico de Pesagens</h4>-->
-<?php $this->Widget('ext.highcharts.HighchartsWidget', array(
-    'id'=>'grafico_peso',
+    <?php if ($pesos['valoresConsulta'] != null || $pesos['valoresCasa'] != null)
+        $this->Widget('ext.highcharts.HighchartsWidget', array(
+            'id'=>'grafico_peso',
     'options' => array(
         'chart' => array(
 //            'width'=>850,
@@ -37,12 +39,14 @@ $massa = $graficos['massa'];
            ),
         ),
     )
-));?>
+        )); else echo "Não existem registos de peso disponiveis!"
+    ?>
 </div>
 <!--<h4>Histórico de Massa Gorda</h4>-->
 <div >
-<?php $this->Widget('ext.highcharts.HighchartsWidget', array(
-    'id'=>'grafico_massa',
+    <?php  if ($massa['valores'] != null)
+        $this->Widget('ext.highcharts.HighchartsWidget', array(
+            'id'=>'grafico_massa',
     'options' => array(
         'chart' => array(
             'borderWidth'=>2,
@@ -68,5 +72,5 @@ $massa = $graficos['massa'];
 
         ),
     )
-));?>
+        )); else echo "Não existem registos de massa gorda disponiveis!"?>
 </div>

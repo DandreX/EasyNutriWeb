@@ -19,10 +19,10 @@
 class DadosAntro extends CActiveRecord
 {
     //constantes das escalas temporais dos graficos
-    public static $ULTIMO_MES=0;
-    public static $ULTIMOS_6MESES=1;
-    public static $ULTIMO_ANO=2;
-    public static $TODOS=3;
+    public static $ULTIMO_MES = 0;
+    public static $ULTIMOS_6MESES = 1;
+    public static $ULTIMO_ANO = 2;
+    public static $TODOS = 3;
 
 
     public $nomeUtenteSearch;
@@ -50,8 +50,9 @@ class DadosAntro extends CActiveRecord
         }
     }
 
-    public function getLocal(){
-        return ($this->em_Casa==0)?"Consulta":"Em casa";
+    public function getLocal()
+    {
+        return ($this->em_Casa == 0) ? "Consulta" : "Em casa";
     }
 
     /**
@@ -65,7 +66,7 @@ class DadosAntro extends CActiveRecord
             array('tipo_medicao_id, valor, data_med, utente_id', 'required'),
             array('tipo_medicao_id, utente_id', 'numerical', 'integerOnly' => true),
             array('valor', 'numerical'),
-            array('em_Casa', 'length', 'max'=>1),
+            array('em_Casa', 'length', 'max' => 1),
 //            array('unidade', 'length', 'max' => 10),
             // The following rule is used by search().
             // @todo Please remove those attributes that should not be searched.
@@ -100,9 +101,9 @@ class DadosAntro extends CActiveRecord
             'utente_id' => 'Utente',
             'nomeUtenteSearch' => 'Utente',
             'tipoMedicaoSearch' => 'Medição',
-            'em_Casa'=>'Local Medição',
-            'local'=>'Local',
-            'tipoMedicaoDesc'=>'Medição',
+            'em_Casa' => 'Local Medição',
+            'local' => 'Local',
+            'tipoMedicaoDesc' => 'Medição',
         );
     }
 
@@ -130,15 +131,12 @@ class DadosAntro extends CActiveRecord
         $criteria->compare('valor', $this->valor);
         $criteria->compare('data_med', $this->data_med, true);
         $criteria->compare('utente_id', $this->utente_id);
-        $criteria->compare('em_Casa', $this->em_Casa,true);
+        $criteria->compare('em_Casa', $this->em_Casa, true);
         $criteria->compare('utente.nome', $this->nomeUtenteSearch, true);
         $criteria->compare('tipoMedicao.descricao', $this->tipoMedicaoSearch, true);
         $criteria->compare('utente.medico_id', Yii::app()->user->userid, true);
         return new CActiveDataProvider($this, array(
             'criteria' => $criteria,
-            'sort' => array(
-                'defaultOrder' => 'data_med desc',
-            )
         ));
     }
 

@@ -32,11 +32,11 @@
         ),
         array(
             'name' => 'hidratos_carbono',
-            'header' => 'Hidratos Carbono (g)'
+            'header' => 'Hidratos de Carbono (g)'
         ),
         array(
             'name' => 'acucares',
-            'header' => 'Açucares (g)',
+            'header' => 'Açúcares (g)',
         ),
 
 
@@ -80,7 +80,10 @@ $this->widget('ext.groupgridview.BootGroupGridView', array(
             'value' => '$data->quant',
             'header' => 'Quantidade',
         ),
-        'porcao',
+        array(
+            'name' => 'porcao',
+            'header' => 'Porção',
+        ),
         array(
             'name' => 'calorias',
             'header' => 'Energia (Kcal)',
@@ -99,11 +102,11 @@ $this->widget('ext.groupgridview.BootGroupGridView', array(
         ),
         array(
             'name' => 'hidratos_carbono',
-            'header' => 'Hidratos Carbono (g)'
+            'header' => 'Hidratos de Carbono (g)'
         ),
         array(
             'name' => 'acucares',
-            'header' => 'Açucares (g)',
+            'header' => 'Açúcares (g)',
         ),
 
 

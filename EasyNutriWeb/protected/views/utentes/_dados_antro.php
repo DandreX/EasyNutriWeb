@@ -2,7 +2,7 @@
 /* var $dpDadosAntro CActiveDataProvider VResumosAntro*/
 /* var $model Utente*/
 ?>
-<h4>Ultimos Dados Antropométricos</h4>
+<h4>Últimos Dados Antropométricos</h4>
 <?php $this->widget('ext.groupgridview.BootGroupGridView', array(
     'id' => 'dados-antro-grid',
     'type' => TbHtml::GRID_TYPE_BORDERED,
@@ -44,6 +44,7 @@
 //        'color' => TbHtml::BUTTON_COLOR_PRIMARY,
 //        'id'=>'escalas'
 //    )   ); ?>
+
 <div id="graficos"></div>
 
 <script type="text/javascript">

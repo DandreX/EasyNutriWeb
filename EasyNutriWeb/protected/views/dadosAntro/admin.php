@@ -55,14 +55,17 @@ $('.search-form form').submit(function(){
             'value' => '$data->tipoMedicao ? $data->tipoMedicao->descricao: "-"'
         ),
         array(
-            'name'=>'valor',
-            'value'=>'number_format($data->valor, 2)',
+            'name' => 'valor',
+            'value' => 'number_format($data->valor, 2)',
         ),
         'data_med',
-
-
         array(
             'class' => 'TbButtonColumn',
+            'buttons' => array(
+                'view' => array(
+                    'visible' => 'false',
+                ),
+            ),
         ),
     ),
 )); ?>
