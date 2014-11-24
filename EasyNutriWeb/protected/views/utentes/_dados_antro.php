@@ -1,7 +1,6 @@
 <?php
 /* var $dpDadosAntro CActiveDataProvider VResumosAntro*/
-$pesos = $graficos['peso'];
-$massa = $graficos['massa'];
+/* var $model Utente*/
 ?>
 <h4>Ultimos Dados Antropométricos</h4>
 <?php $this->widget('ext.groupgridview.BootGroupGridView', array(
@@ -19,80 +18,56 @@ $massa = $graficos['massa'];
 //            'value' => '$data->tipoMedicao ? $data->tipoMedicao->descricao: "-"'
 //        ),
         array(
-            'name'=>'valor',
-            'value'=>'number_format($data->valor, 2)',
+            'name' => 'valor',
+            'value' => 'number_format($data->valor, 2)',
         ),
         'data',
         'local'
     ),
 
 )); ?>
-<div style="width:100%;margin: 0 auto">
-<?php $this->Widget('ext.highcharts.HighchartsWidget', array(
-    'id'=>'grafico_peso',
-    'options' => array(
-        'chart' => array(
-//            'width'=>850,
-            'borderWidth'=>2,
-            'borderColor'=>'#c3d9ff',
-        ),
-        'title' => array('text' => 'Histórico de Pesagens'),
-        'xAxis' => array(
-            'type'=>'datetime',
-            'title' => array('text' => 'Tempo'),
-        ),
-        'yAxis' => array(
-            'title' => array('text' => 'Pesos (Kg)'),
-            'floor' => 0,
-        ),
-        'tooltip' => array(
-            'pointFormat'=>'{point.x:%e. %b}: {point.y:.1f} kg',
-        ),
-        'series' => array(
-            array(
-                'name' => 'Na consulta',
-                'data' => $pesos['valoresConsulta']
-            ),
-           array(
-               'name' => 'Em casa',
-               'data'=>$pesos['valoresCasa']
-           ),
-        ),
-    )
-));?>
-</div>
+<h4>Estatísticas</h4>
+<?php
+//echo TbHtml::buttonGroup(
+//    array(
+//        array(
+//            'label' => 'Todos',
+//            'id' => 'escala-todos',
+//            'url'=>'#graficos',
+//        ),
+//        array('label' => 'Último mês','url'=>'#graficos',),
+//        array('label' => 'Últimos 6 meses','url'=>'#graficos',),
+//        array('label' => 'Último ano','url'=>'#graficos',  ),
+//    ),
+//    array(
+//        'toggle' => TbHtml::BUTTON_TOGGLE_RADIO,
+//        'color' => TbHtml::BUTTON_COLOR_PRIMARY,
+//        'id'=>'escalas'
+//    )   ); ?>
+<div id="graficos"></div>
 
-<div >
-<?php $this->Widget('ext.highcharts.HighchartsWidget', array(
-    'id'=>'grafico_massa',
-    'options' => array(
-        'chart' => array(
-            'borderWidth'=>2,
-            'borderColor'=>'#c3d9ff',
-//            'marginBottom'=>5,
+<script type="text/javascript">
 
-        ),
-        'title' => array('text' => 'Histórico de Massa Gorda'),
-        'xAxis' => array(
-            'type'=>'datetime',
-            'title' => array('text' => 'Tempo'),
-        ),
-        'yAxis' => array(
-            'title' => array('text' => 'Massa Gorda (%)'),
-            'floor' => 0,
-        ),
-        'series' => array(
-            array(
-                'name' => 'Em casa',
-                'data'=>$massa['valores'],
-            ),
-
-        ),
-    )
-));?>
-</div>
-<!--<script type="text/javascript">-->
-<!--    $( document ).ready(function() {-->
-<!--        console.log( "ready!" );-->
-<!--    });-->
-<!--</script>-->
+    var getGraphs = function (escala) {
+        $.ajax({
+            type: 'GET',
+            url: '<?php echo
+                Yii::app()->createAbsoluteUrl("dadosAntro/ViewGraphs&idUtente=$model->id"); ?>' +
+                '&escala=' + escala,
+            success: function (data) {
+                $('#graficos').html(data);
+                // $('#spinner_place').empty();
+            },
+            error: function (data) { // if error occured
+                alert("Ocorreu um erro a obter os gráficos");
+                //$('#spinner_place').empty();
+            },
+            dataType: 'html'
+        });
+    }
+    $(document).ready(function () {
+            console.log('getgraphs');
+            getGraphs('<?php echo(DadosAntro::$TODOS);?>');
+        }
+    );
+</script>

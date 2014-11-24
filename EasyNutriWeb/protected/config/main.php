@@ -68,7 +68,7 @@ return array(
         // uncomment the following to use a MySQL database
 
         'db' => array(
-            'connectionString' => 'sqlsrv:Server=192.168.246.64,1433\SQLEXPRESS;Database=EasyNutriDB',
+            'connectionString' => 'sqlsrv:Server=Dandrex-laptop\SQLEXPRESS;Database=EasyNutriDB',
             'username' => 'EasyNutri',
             'password' => 'dreamteam',
 

@@ -18,6 +18,12 @@
  */
 class DadosAntro extends CActiveRecord
 {
+    //constantes das escalas temporais dos graficos
+    public static $ULTIMO_MES=0;
+    public static $ULTIMOS_6MESES=1;
+    public static $ULTIMO_ANO=2;
+    public static $TODOS=3;
+
 
     public $nomeUtenteSearch;
     public $tipoMedicaoSearch;

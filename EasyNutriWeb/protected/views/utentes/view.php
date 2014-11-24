@@ -27,7 +27,8 @@ $this->menu = array(
             true)),
     array('label' => 'Dados Antro.', 'content' => $this->renderPartial('_dados_antro',array(
             'dpDadosAntro'=>$dpDadosAntro,
-            'graficos'=>$graficos,
+            'model'=>$model,
+            //'graficos'=>$graficos,
         ),true)),
     array('label' => 'Notificações', 'content' => $this->renderPartial('_notificacoes',
             array('dpNotificacoes' => $dpNotificacoes,

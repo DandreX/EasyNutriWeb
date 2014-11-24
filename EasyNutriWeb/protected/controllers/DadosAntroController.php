@@ -27,16 +27,7 @@ class DadosAntroController extends Controller
     public function accessRules()
     {
         return array(
-//			array('allow',  // allow all users to perform 'index' and 'view' actions
-//				'actions'=>array('index','view'),
-//				'users'=>array('*'),
-//			),
-//			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-//				'actions'=>array('create','update'),
-//				'users'=>array('@'),
-//			),
             array('allow', // allow admin user to perform 'admin' and 'delete' actions
-                'actions' => array('index', 'view', 'create', 'update', 'admin', 'delete'),
                 'users' => array('@'),
             ),
             array('deny', // deny all users
@@ -145,6 +136,51 @@ class DadosAntroController extends Controller
         $this->render('admin', array(
             'model' => $model,
         ));
+    }
+
+    public function actionViewGraphs($idUtente,$escala){
+        $pesos = array();
+        $pesos['valoresConsulta'] = array();
+        $pesos['valoresCasa'] = array();
+        $queryPesos = Yii::app()->db->createCommand()
+            ->select('valor as pesos, cast(data_med as date) as datas,em_casa, em_Casa')
+            ->from('dados_antro')
+            ->where('tipo_medicao_id = 1 and utente_id = ' . $idUtente)
+            ->order('data_med')
+            ->queryAll();
+
+
+        foreach($queryPesos as $linha){
+            if ($linha['em_Casa']==0) {
+                array_push($pesos['valoresConsulta'], array(
+                    'js:Date.UTC('.gmdate("Y, m, d", strtotime('-1 month',strtotime($linha['datas']))).')', floatval($linha['pesos']) ));
+            }else {
+                array_push($pesos['valoresCasa'], array(
+                    'js:Date.UTC('.gmdate("Y, m, d", strtotime('-1 month',strtotime($linha['datas']))).')', floatval($linha['pesos']) ));
+            }
+
+        }
+
+        $massa = array();
+        $massa['valores'] = array();
+        $queryMassa = Yii::app()->db->createCommand()
+            ->select('valor as massa, cast(data_med as date) as datas,em_casa')
+            ->from('dados_antro')
+            ->where('tipo_medicao_id = 6 and utente_id = ' . $idUtente)
+            ->order('data_med')
+            ->queryAll();
+        foreach ($queryMassa as $linha) {
+            array_push($massa['valores'], array(
+                'js:Date.UTC('.gmdate("Y, m, d",strtotime('-1 month',strtotime($linha['datas']))
+                ).')', floatval($linha['massa']) ));
+        }
+        $graficos = array();
+        $graficos['peso'] = $pesos;
+        $graficos['massa'] = $massa;
+
+        $this->renderPartial('_dados_antro_graphs', array(
+            'graficos' => $graficos,
+        ),false,true);
     }
 
     /**
