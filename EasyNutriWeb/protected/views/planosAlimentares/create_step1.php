@@ -1,6 +1,6 @@
 <?php
 /* @var $this PlanosAlimentaresController */
-/* @var $model PlanosAlimentares */
+/* @var $model PlanosAlimentarForm */
 
 Yii::app()->clientScript->registerScriptFile(
     Yii::app()->baseUrl.'/js/FormulasNutri.js',
@@ -63,8 +63,14 @@ $this->menu = array(
             <?php echo TbHtml::uneditableField('-', array('id' => 'imcCatTerVal')); ?>
             <?php echo TbHtml::label('NEDs', 'nedsTerVal'); ?>
             <?php echo TbHtml::uneditableField('-', array('id' => 'nedsTerVal')); ?>
+            <input type="hidden" id="PlanoAlimentarForm_neds" name="PlanoAlimentarForm[neds]">
+            <input type="hidden" id="PlanoAlimentarForm_passo" name="PlanoAlimentarForm[passo]" value="1">
         </div>
     </fieldset>
+
+    <?php echo TbHtml::formActions(array(
+        TbHtml::submitButton('Proximo', array('color' => TbHtml::BUTTON_COLOR_PRIMARY)),
+    )); ?>
 
     <?php $this->endWidget(); ?>
 </div>
@@ -97,6 +103,7 @@ $this->menu = array(
         var neds = calcNeds(peso, altura, sexo, idade, actividade);
         console.log("NEDS: "+neds);
         $('#nedsAtualVal').text(neds.toFixed(0));
+
     }
 
     var updateVarsAndCalc = function(sexo,idade){
@@ -115,7 +122,10 @@ $this->menu = array(
 
         var neds = calcNeds(pesoAcordado, altura, sexo, idade, actividade);
         $('#nedsTerVal').text(neds.toFixed(0));
+        $('#PlanoAlimentarForm_neds').val(neds.toFixed(0));
     }
+
+
 
     $(document).ready(function () {
         var sexo = '<?php echo($model->sexo) ?>';

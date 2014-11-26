@@ -53,21 +53,32 @@ class PlanosAlimentaresController extends Controller
 	 */
 	public function actionCreate()
 	{
+
 		$model=new PlanoAlimentarForm();
+
+        // Uncomment the following line if AJAX validation is needed
+		// $this->performAjaxValidation($model);
+		if(isset($_POST['PlanoAlimentarForm']))
+		{
+
+
+			$model->attributes=$_POST['PlanoAlimentarForm'];
+            $model->passo = $model->passo+1;
+			switch($model->passo){
+                case 2:
+                    ChromePhp::log("entrou no switch");
+                    $this->render('create_step2',array(
+                        'model'=>$model,
+                    ));
+                    return;
+            }
+
+		}
+        //todo inicializar valores
         $model->idade=20;
         $model->pesoAtual=60;
         $model->altura=1.80;
         $model->sexo='M';
-
-		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
-		if(isset($_POST['PlanosAlimentares']))
-		{
-			$model->attributes=$_POST['PlanosAlimentares'];
-
-			if($model->save())
-				$this->redirect(array('view','id'=>$model->Id));
-		}
 
 		$this->render('create_step1',array(
 			'model'=>$model,

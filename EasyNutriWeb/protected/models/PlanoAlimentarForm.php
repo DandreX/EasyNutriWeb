@@ -21,14 +21,15 @@ class PlanoAlimentarForm extends CFormModel {
     public $altura;
     public $sexo;
     public $pesoAcordado;
+    public $neds;
+    public $passo;
     /**
      * Declares the validation rules.
      */
     public function rules()
     {
         return array(
-            // name, email, subject and body are required
-            array('actividade, idade, pesoAtual,altura, pesoAcordado', 'required'),
+            array('actividade, idade, pesoAtual,altura, pesoAcordado,neds,passo', 'required'),
 
         );
     }
