@@ -49,21 +49,21 @@ $this->widget('zii.widgets.jui.CJuiDatePicker', array(
                 'data-dismiss' => 'modal',
                 'color' => TbHtml::BUTTON_COLOR_PRIMARY)),
         TbHtml::button('Cancelar', array(
-            'id'=>'btnCancelar',
-            'color'=>TbHtml::BUTTON_COLOR_DANGER,
+            'id' => 'btnCancelar',
+            'color' => TbHtml::BUTTON_COLOR_DANGER,
             'data-dismiss' => 'modal')),
     ),
 )); ?>
 <script type="text/javascript" id="modalButtons">
     $('#btnCreate').click(function () {
-        var data=$("#notificacoes-form").serialize()+'&idUtente='+'<?php echo($model->id) ?>';
+        var data = $("#notificacoes-form").serialize() + '&idUtente=' + '<?php echo($model->id) ?>';
         console.log(data);
         $.ajax({
             type: 'POST',
             url: '<?php echo Yii::app()->createAbsoluteUrl("notificacoes/AjaxCreate"); ?>',
-            data:data,
+            data: data,
             success: function (data) {
-              alert("Notificação enviada com sucesso");
+                alert("Notificação enviada com sucesso");
             },
             error: function (data) { // if error occured
                 alert("Erro ao enviar notificacao");
@@ -71,7 +71,7 @@ $this->widget('zii.widgets.jui.CJuiDatePicker', array(
             dataType: 'html'
         });
     });
-    $('#btnCancelar').click(function(){
+    $('#btnCancelar').click(function () {
         $('#Notificacoes_assunto').val('');
         $('#Notificacoes_descricao').val('');
     });
@@ -96,8 +96,9 @@ $this->widget('zii.widgets.jui.CJuiDatePicker', array(
 
     var semaforo = true;
     var requestRefeicoes = function () {
-        var spinner="\x3Cdiv class=\"spinner\"\x3E\n \x3Cdiv class=\"rect1\"\x3E\x3C\x2Fdiv\x3E\n \x3Cdiv class=\"rect2\"\x3E\x3C\x2Fdiv\x3E\n \x3Cdiv class=\"rect3\"\x3E\x3C\x2Fdiv\x3E\n \x3Cdiv class=\"rect4\"\x3E\x3C\x2Fdiv\x3E\n \x3Cdiv class=\"rect5\"\x3E\x3C\x2Fdiv\x3E\n\x3C\x2Fdiv\x3E";
+        var spinner = "\x3Cdiv class=\"spinner\"\x3E\n \x3Cdiv class=\"rect1\"\x3E\x3C\x2Fdiv\x3E\n \x3Cdiv class=\"rect2\"\x3E\x3C\x2Fdiv\x3E\n \x3Cdiv class=\"rect3\"\x3E\x3C\x2Fdiv\x3E\n \x3Cdiv class=\"rect4\"\x3E\x3C\x2Fdiv\x3E\n \x3Cdiv class=\"rect5\"\x3E\x3C\x2Fdiv\x3E\n\x3C\x2Fdiv\x3E";
         $('#spinner_place').html(spinner);
+        $('#refeicoes').empty();
         var dataPesquisa = $("#data_pesquisa").val();
         console.log("request made");
         $.ajax({
@@ -105,20 +106,20 @@ $this->widget('zii.widgets.jui.CJuiDatePicker', array(
             url: '<?php echo Yii::app()->createAbsoluteUrl("refeicoes/AjaxRefeicoes&idUtente=$model->id&data="); ?>' + dataPesquisa,
             success: function (data) {
                 $('#refeicoes').html(data);
-               $('#spinner_place').empty();
+                $('#spinner_place').empty();
             },
             error: function (data) { // if error occured
                 alert("Ocorreu um erro a obter refeicao");
-               $('#spinner_place').empty();
+                $('#spinner_place').empty();
             },
             dataType: 'html'
         });
-            }
+    }
     $(document).ready(requestRefeicoes);
-    semaforo=false;
+    semaforo = false;
     $("#data_pesquisa").change(function () {
         requestRefeicoes();
-        if(!semaforo){
+        if (!semaforo) {
             requestRefeicoes();
         }
 
