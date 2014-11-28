@@ -1,3 +1,3 @@
 <?php
-header("Location: http://easynutriweb.azurewebsites.net/EasyNutriWeb/");
+header("Location: http://easynutri.azurewebsites.net/EasyNutriWeb/");
 exit();
