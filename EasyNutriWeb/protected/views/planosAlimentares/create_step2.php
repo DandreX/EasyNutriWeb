@@ -158,14 +158,50 @@ $this->menu = array(
         var calcDosesPao = function () {
             var subTotalHC = $('#tabelaDistribuicao > table >tbody  tr:nth-child(6) >td:nth-child(5)').text();
             var totalHC = $('#gramasGlicidos').text();
-            dosesPao = (parseInt(totalHC) - parseInt(subTotalHC)) / 15;
-            $('#tabelaDistribuicao > table >tbody  tr:nth-child(7) >td:nth-child(2)').text(dosesPao.toFixed(0));
-            for (i in equivalencias) {
-                alimento = equivalencias[i];
-                for (j in alimento) {
-                    var nutrival = alimento[j];
-                    var calc = dosesPao * nutrival;
-                    $('#tabelaDistribuicao > table >tbody  tr:nth-child(' + i + ') >td:nth-child(' + j + ')').text(calc);
+            if (subTotalHC != 0) {
+                dosesPao = (parseInt(totalHC) - parseInt(subTotalHC)) / 15;
+                $('#tabelaDistribuicao > table >tbody  tr:nth-child(7) >td:nth-child(2)').text(dosesPao.toFixed(0));
+                for (i in equivalencias) {
+                    alimento = equivalencias[7];
+                    for (j in alimento) {
+                        var nutrival = alimento[j];
+                        var calc = dosesPao * nutrival;
+                        $('#tabelaDistribuicao > table >tbody  tr:nth-child(7) >td:nth-child(' + j + ')').text(calc.toFixed(1));
+                    }
+                }
+            }
+        };
+
+        var calcDosesCarne = function () {
+            var subTotalProteinas = $('#tabelaDistribuicao > table >tbody  tr:nth-child(9) >td:nth-child(3)').text();
+            var totalProteinas = $('#gramasProteinas').text();
+            if (subTotalProteinas != 0) {
+                dosesProteinas = (parseInt(totalProteinas) - parseInt(subTotalProteinas)) / 7;
+                $('#tabelaDistribuicao > table >tbody  tr:nth-child(10) >td:nth-child(2)').text(dosesProteinas.toFixed(0));
+                for (i in equivalencias) {
+                    alimento = equivalencias[10];
+                    for (j in alimento) {
+                        var nutrival = alimento[j];
+                        var calc = dosesProteinas * nutrival;
+                        $('#tabelaDistribuicao > table >tbody  tr:nth-child(10) >td:nth-child(' + j + ')').text(calc.toFixed(1));
+                    }
+                }
+            }
+        };
+
+        var calcDosesGordura = function () {
+            var subTotalLipidos = $('#tabelaDistribuicao > table >tbody  tr:nth-child(11) >td:nth-child(4)').text();
+            var totalLipidos = $('#gramasLipidos').text();
+            if (subTotalLipidos != 0) {
+                dosesGordura = (parseInt(totalLipidos) - parseInt(subTotalLipidos)) / 5;
+                $('#tabelaDistribuicao > table >tbody  tr:nth-child(12) >td:nth-child(2)').text(dosesGordura.toFixed(0));
+                for (i in equivalencias) {
+                    alimento = equivalencias[12];
+                    for (j in alimento) {
+                        var nutrival = alimento[j];
+                        var calc = dosesGordura * nutrival;
+                        $('#tabelaDistribuicao > table >tbody  tr:nth-child(12) >td:nth-child(' + j + ')').text(calc.toFixed(1));
+                    }
                 }
             }
         };
@@ -197,17 +233,16 @@ $this->menu = array(
                                 $('#tabelaDistribuicao > table >tbody  tr:nth-child(' + i + ') >td:nth-child(' + j + ')').text(calc);
                             }
                         }
-                        else if (i == 6) {
-                            calculoSubTotal(3, 6, 1, 5);
-
-                        }
-
-                        else if (i == 9) {
-                            calculoSubTotal(3, 6, 7, 8);
-                        }
                     }
+                    calculoSubTotal(3, 6, 1, 5);
                     calcDosesPao();
-                }, 1000);
+                    calcDosesCarne();
+                    calcDosesGordura();
+                    calculoSubTotal(3, 6, 6, 8);
+                    calculoSubTotal(3, 6, 9, 10);
+                    calculoSubTotal(3, 6, 11, 12);
+
+                }, 400);
 
             });
         })
