@@ -77,50 +77,50 @@ class UtentesController extends Controller
                 'defaultOrder' => 'data desc',
             ),
         ));
-        $pesos = array();
-        $pesos['valoresConsulta'] = array();
-        $pesos['valoresCasa'] = array();
-        $queryPesos = Yii::app()->db->createCommand()
-            ->select('valor as pesos, cast(data_med as date) as datas,em_casa, em_Casa')
-            ->from('dados_antro')
-            ->where('tipo_medicao_id = 1 and utente_id = ' . $id)
-            ->order('data_med')
-            ->queryAll();
-
-
-        foreach($queryPesos as $linha){
-            if ($linha['em_Casa']==0) {
-                array_push($pesos['valoresConsulta'], array(
-                    'js:Date.UTC('.gmdate("Y, m, d", strtotime('-1 month',strtotime($linha['datas']))).')', floatval($linha['pesos']) ));
-            }else {
-                array_push($pesos['valoresCasa'], array(
-                    'js:Date.UTC('.gmdate("Y, m, d", strtotime('-1 month',strtotime($linha['datas']))).')', floatval($linha['pesos']) ));
-            }
-
-        }
-
-        $massa = array();
-        $massa['valores'] = array();
-        $queryMassa = Yii::app()->db->createCommand()
-            ->select('valor as massa, cast(data_med as date) as datas,em_casa')
-            ->from('dados_antro')
-            ->where('tipo_medicao_id = 6 and utente_id = ' . $id)
-            ->order('data_med')
-            ->queryAll();
-        foreach ($queryMassa as $linha) {
-            array_push($massa['valores'], array(
-                'js:Date.UTC('.gmdate("Y, m, d",strtotime('-1 month',strtotime($linha['datas']))
-                    ).')', floatval($linha['massa']) ));
-        }
-        $graficos = array();
-        $graficos['peso'] = $pesos;
-        $graficos['massa'] = $massa;
+//        $pesos = array();
+//        $pesos['valoresConsulta'] = array();
+//        $pesos['valoresCasa'] = array();
+//        $queryPesos = Yii::app()->db->createCommand()
+//            ->select('valor as pesos, cast(data_med as date) as datas,em_casa, em_Casa')
+//            ->from('dados_antro')
+//            ->where('tipo_medicao_id = 1 and utente_id = ' . $id)
+//            ->order('data_med')
+//            ->queryAll();
+//
+//
+//        foreach($queryPesos as $linha){
+//            if ($linha['em_Casa']==0) {
+//                array_push($pesos['valoresConsulta'], array(
+//                    'js:Date.UTC('.gmdate("Y, m, d", strtotime('-1 month',strtotime($linha['datas']))).')', floatval($linha['pesos']) ));
+//            }else {
+//                array_push($pesos['valoresCasa'], array(
+//                    'js:Date.UTC('.gmdate("Y, m, d", strtotime('-1 month',strtotime($linha['datas']))).')', floatval($linha['pesos']) ));
+//            }
+//
+//        }
+//
+//        $massa = array();
+//        $massa['valores'] = array();
+//        $queryMassa = Yii::app()->db->createCommand()
+//            ->select('valor as massa, cast(data_med as date) as datas,em_casa')
+//            ->from('dados_antro')
+//            ->where('tipo_medicao_id = 6 and utente_id = ' . $id)
+//            ->order('data_med')
+//            ->queryAll();
+//        foreach ($queryMassa as $linha) {
+//            array_push($massa['valores'], array(
+//                'js:Date.UTC('.gmdate("Y, m, d",strtotime('-1 month',strtotime($linha['datas']))
+//                    ).')', floatval($linha['massa']) ));
+//        }
+//        $graficos = array();
+//        $graficos['peso'] = $pesos;
+//        $graficos['massa'] = $massa;
         $this->render('view', array(
             'model' => $this->loadModel($id),
             'dataProvider' => $dataProviderRefeicoes,
             'dpNotificacoes' => $dpNotificacoes,
             'dpDadosAntro' => $dpDadosAntro,
-            'graficos' => $graficos,
+//            'graficos' => $graficos,
         ));
     }
 

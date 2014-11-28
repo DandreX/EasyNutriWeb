@@ -1,5 +1,4 @@
 <?php
-
 // uncomment the following to define a path alias
 // Yii::setPathOfAlias('local','path/to/local-folder');
 
@@ -11,6 +10,7 @@ return array(
 
     'aliases' => array(
         'bootstrap' => realpath(__DIR__ . '/../extensions/bootstrap'),
+        'editable' => realpath(__DIR__ . '/../extensions/x-editable'),
     ),
     // preloading 'log' component
     'preload' => array('log'),
@@ -23,6 +23,7 @@ return array(
         'bootstrap.behaviors.*',
         'application.models.*',
         'application.components.*',
+        'editable.*'
     ),
 
     'modules' => array(
@@ -48,6 +49,15 @@ return array(
             // enable cookie-based authentication
             'allowAutoLogin' => true,
         ),
+
+        'editable' => array(
+            'class' => 'editable.EditableConfig',
+            'form' => 'bootstrap', //form style: 'bootstrap', 'jqueryui', 'plain'
+            'mode' => 'inline', //mode: 'popup' or 'inline'
+            'defaults' => array( //default settings for all editable elements
+                'emptytext' => 'Click to edit'
+            )
+        ),
         // uncomment the following to enable URLs in path-format
         /*
         'urlManager'=>array(
@@ -68,9 +78,9 @@ return array(
         // uncomment the following to use a MySQL database
 
         'db' => array(
-            'connectionString' => 'sqlsrv:Server=d49d8d0f-9984-4a6f-ad44-a3c70132c22c.sqlserver.sequelizer.com;Database=dbd49d8d0f99844a6fad44a3c70132c22c;MultipleActiveResultSets=True;',
-            'username' => 'yylicmyuwpassojh',
-            'password' => 'wRtkmsa7jcF7MoguiBuz3a2R2He7rStKiuHmzTXN6Djc5ajNBNHqn5wwXKrLocNz',
+            'connectionString' => 'sqlsrv:Server=192.168.246.64,1433\SQLEXPRESS;Database=EasyNutriDB',
+            'username' => 'EasyNutri',
+            'password' => 'dreamteam',
 
 //            'connectionString' => 'sqlsrv:Server=(localdb)\v11.0;Database=EasyNutriDB;',
 //            'username' => 'localuser',
@@ -97,6 +107,7 @@ return array(
             ),
         ),
     ),
+
 
     // application-level parameters that can be accessed
     // using Yii::app()->params['paramName']

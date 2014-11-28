@@ -25,7 +25,7 @@
                 array(),
                 $condition = 'medico_id=:userid',
                 $params = array(
-                    ':userid'=>Yii::app()->user->userid,
+                    ':userid' => Yii::app()->user->userid,
                 )
             ),
             'id', 'nome');
@@ -49,7 +49,7 @@
     </div>
 
     <div class="row buttons">
-        <?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
+        <?php echo CHtml::submitButton($model->isNewRecord ? 'Enviar' : 'Save'); ?>
     </div>
 
     <?php $this->endWidget(); ?>

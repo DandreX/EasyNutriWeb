@@ -6,6 +6,7 @@
     margin-bottom: 0px;
     padding-top: 0px;
 }
+
 /*----------SPINNER-----------*/
 
 .spinner {
@@ -68,10 +69,7 @@
 
 /*----------SPINNER  END-----------*/
 
-
-
-
-#grafico_peso, #grafico_massa{
+#grafico_peso, #grafico_massa {
     /*margin: 0 auto;*/
     margin-top: 30px;
     /*margin-right: 10px;*/
@@ -113,4 +111,24 @@
 #descNotificacao {
     margin: 10px;
     margin-bottom: 0px;
+}
+
+.tabelaInput .controls-row {
+    margin-left: 20px !important;
+}
+
+.calculoDoses .controls-row {
+    margin-left: 0px !important;
+    padding-left: 2px !important;
+    padding-right: 2px !important;
+
+}
+
+.tabelaInput * span, .tabelaInput * input {
+    margin-left: 1px !important;
+    max-width: 130px !important;
+}
+
+.calculoDoses .controls-row [class*="span"] + [class*="span"] {
+    margin-left: 1px !important;
 }
