@@ -77,6 +77,13 @@ class PlanosAlimentaresController extends Controller
                         'tabelaDistribuicao' => $arrayProvider,
                     ));
                     return;
+                case 3:
+                    $tabelaRefeicoes = array();
+                    $this->render('create_step3', array(
+                        'model' => $model,
+//                        'tabelaDistribuicao' => $arrayProvider,
+                    ));
+                    return;
             }
 
         }
