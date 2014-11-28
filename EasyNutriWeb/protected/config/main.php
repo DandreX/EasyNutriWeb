@@ -1,5 +1,4 @@
 <?php
-
 // uncomment the following to define a path alias
 // Yii::setPathOfAlias('local','path/to/local-folder');
 
@@ -11,6 +10,7 @@ return array(
 
     'aliases' => array(
         'bootstrap' => realpath(__DIR__ . '/../extensions/bootstrap'),
+        'editable' => realpath(__DIR__ . '/../extensions/x-editable'),
     ),
     // preloading 'log' component
     'preload' => array('log'),
@@ -23,6 +23,7 @@ return array(
         'bootstrap.behaviors.*',
         'application.models.*',
         'application.components.*',
+        'editable.*'
     ),
 
     'modules' => array(
@@ -47,6 +48,15 @@ return array(
         'user' => array(
             // enable cookie-based authentication
             'allowAutoLogin' => true,
+        ),
+
+        'editable' => array(
+            'class' => 'editable.EditableConfig',
+            'form' => 'bootstrap', //form style: 'bootstrap', 'jqueryui', 'plain'
+            'mode' => 'inline', //mode: 'popup' or 'inline'
+            'defaults' => array( //default settings for all editable elements
+                'emptytext' => 'Click to edit'
+            )
         ),
         // uncomment the following to enable URLs in path-format
         /*
