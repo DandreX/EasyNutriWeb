@@ -52,6 +52,15 @@ class PlanoAlimentarForm extends CFormModel
     public $pesoAcordado;
     public $neds;
     public $passo;
+    public $doses = array(
+        'leite'=>0,
+        'vegB'=>0,
+        'fruta'=>0,
+        'pao'=>0,
+        'supa'=>0,
+        'carne'=>0,
+        'gordura'=>0,
+    );
 
     /**
      * Declares the validation rules.
@@ -59,7 +68,7 @@ class PlanoAlimentarForm extends CFormModel
     public function rules()
     {
         return array(
-            array('actividade, idade, pesoAtual,altura, pesoAcordado,neds,passo', 'required'),
+            array('actividade, pesoAtual,altura, pesoAcordado,neds,passo', 'required'),
 
         );
     }
@@ -79,4 +88,6 @@ class PlanoAlimentarForm extends CFormModel
             'pesoAcordado' => 'Peso Acordado',
         );
     }
+
+
 } 
