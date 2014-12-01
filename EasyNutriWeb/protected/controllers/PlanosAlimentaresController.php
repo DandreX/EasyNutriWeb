@@ -90,6 +90,12 @@ class PlanosAlimentaresController extends Controller
                         'tabelaQuantAlimentos' => $arrayProvider,
                     ));
                     return;
+                case 4:
+                    $this->render('create_step4', array(
+                        'model' => $model,
+//                        'tabelaQuantAlimentos' => $arrayProvider,
+                    ));
+                    return;
             }
 
         }

@@ -19,6 +19,8 @@ $this->menu = array(
         'layout' => TbHtml::FORM_LAYOUT_HORIZONTAL,
     )); ?>
 
+    <input type="hidden" id="PlanoAlimentarForm_passo" name="PlanoAlimentarForm[passo]" value="3">
+
     <div class="calculoAlimentosRef">
         <p><b><br>Cálculo das doses</br></b></p>
 
