@@ -25,6 +25,18 @@ class PlanoAlimentarForm extends CFormModel
         array('id' => 13, 'alimento' => 'Total', 'doses' => '', 'proteinas' => '', 'gordura' => '', 'hc' => '', 'calorias' => ''),
 
     );
+
+    public static $tabelaQuantAlimentos = array(
+        array('id' => 1, 'refeicao' => 'Pequeno-Almoço', 'hora' => '09:00', 'leiteMG' => '', 'vegB' => '', 'fruta' => '', 'pao' => '', 'carne' => '', 'gordura' => ''),
+        array('id' => 2, 'refeicao' => 'Meio manhã', 'hora' => '11h00', 'leiteMG' => '', 'vegB' => '', 'fruta' => '', 'pao' => '', 'carne' => '', 'gordura' => ''),
+        array('id' => 3, 'refeicao' => 'Almoço', 'hora' => '13h30', 'leiteMG' => '', 'vegB' => '', 'fruta' => '', 'pao' => '', 'carne' => '', 'gordura' => ''),
+        array('id' => 4, 'refeicao' => 'Meio tarde', 'hora' => '16h30', 'leiteMG' => '', 'vegB' => '', 'fruta' => '', 'pao' => '', 'carne' => '', 'gordura' => ''),
+        array('id' => 5, 'refeicao' => 'Jantar', 'hora' => '20h00', 'leiteMG' => '', 'vegB' => '', 'fruta' => '', 'pao' => '', 'carne' => '', 'gordura' => ''),
+        array('id' => 6, 'refeicao' => 'Ceia', 'hora' => '23h30', 'leiteMG' => '', 'vegB' => '', 'fruta' => '', 'pao' => '', 'carne' => '', 'gordura' => ''),
+        array('id' => 7, 'refeicao' => 'Total', 'hora' => '', 'leiteMG' => '', 'vegB' => '', 'fruta' => '', 'pao' => '', 'carne' => '', 'gordura' => '')
+    );
+
+
     public $actividade;
     //valores predefinidos para a actividade fisica
     public $actividades = array(

@@ -78,9 +78,16 @@ class PlanosAlimentaresController extends Controller
                     ));
                     return;
                 case 3:
+                    $tabelaQuantAlimentos = PlanoAlimentarForm::$tabelaQuantAlimentos;
+                    $arrayProvider = new CArrayDataProvider($tabelaQuantAlimentos, array(
+                        'id' => 'id',
+                        'totalItemCount' => 14,
+                        'pagination' => array(
+                            'pageSize' => 14,
+                        )));
                     $this->render('create_step3', array(
                         'model' => $model,
-//                        'tabelaDistribuicao' => $arrayProvider,
+                        'tabelaQuantAlimentos' => $arrayProvider,
                     ));
                     return;
             }

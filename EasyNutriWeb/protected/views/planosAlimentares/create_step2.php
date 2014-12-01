@@ -22,6 +22,9 @@ $this->menu = array(
     'layout' => TbHtml::FORM_LAYOUT_HORIZONTAL,
 )); ?>
 
+<input type="hidden" id="PlanoAlimentarForm_passo" name="PlanoAlimentarForm[passo]" value="2">
+
+
 <div class="tabelaInput">
     <?php echo TbHtml::controlsRow(array(
         TbHtml::uneditableField('Variável', array('span' => 2)),
@@ -116,7 +119,7 @@ $this->menu = array(
                 ),
             ),
             array(
-                'name' => 'proteinas',
+                'name' => '',
                 'header' => 'Proteinas',
                 'headerHtmlOptions' => array('style' => 'width: 110px'),
             ),
