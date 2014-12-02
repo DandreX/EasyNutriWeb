@@ -20,10 +20,26 @@ $this->menu = array(
 <div id="formPlanoStep2">
 <?php $form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
     'layout' => TbHtml::FORM_LAYOUT_HORIZONTAL,
+    'id'=>'formPasso2',
 )); ?>
 
-<input type="hidden" id="PlanoAlimentarForm_passo" name="PlanoAlimentarForm[passo]" value="2">
+<!--valores do form anterior-->
+<input type="hidden" id="passoAtual" name="passoAtual" value="2">
+<input type="hidden" id="irPara" name="irPara" value="3" >
 
+
+<input type="hidden" name="PlanoAlimentarForm[actividade]" id="PlanoAlimentarForm_actividade"
+       value="<?php echo($model->actividade); ?>" >
+<input type="hidden" name="PlanoAlimentarForm[pesoAtual]" id="PlanoAlimentarForm_pesoAtual"
+       value="<?php echo($model->pesoAtual); ?>">
+<input name="PlanoAlimentarForm[altura]" id="PlanoAlimentarForm_altura" type="hidden"
+       value="<?php echo($model->altura); ?>">
+<input name="PlanoAlimentarForm[pesoAcordado]" id="PlanoAlimentarForm_pesoAcordado" type="hidden"
+       value="<?php echo($model->pesoAcordado); ?>">
+<input type="hidden" id="PlanoAlimentarForm_neds" name="PlanoAlimentarForm[neds]"
+       value="<?php echo($model->neds); ?>"  >
+<input type="hidden" id="PlanoAlimentarForm_restricaoNeds" name="PlanoAlimentarForm[restricaoNeds]"
+       value="<?php echo($model->restricaoNeds); ?>"  >
 
 <div class="tabelaInput">
     <?php echo TbHtml::controlsRow(array(
@@ -53,12 +69,14 @@ $this->menu = array(
         TbHtml::textField('text', '', array('span' => 2, 'id' => 'percGlicidos')),
         TbHtml::uneditableField('-', array('span' => 2)),
         TbHtml::uneditableField('', array('span' => 2, 'id' => 'gramasGlicidos')),
+
+
     )); ?>
 </div>
 
 <script type="text/javascript">
     $(document).ready(function () {
-        var neds = <?php echo($model->neds); ?>;
+        var neds = $("#PlanoAlimentarForm_neds").val();
         var peso = 72.3;
         console.log(neds);
         $('#percProteinas').change(function () {
@@ -159,17 +177,21 @@ $this->menu = array(
         };
 
         var calcDosesPao = function () {
+            //obter o 1º subtotal de hidratos de carbono
             var subTotalHC = $('#tabelaDistribuicao > table >tbody  tr:nth-child(6) >td:nth-child(5)').text();
+            // obter gramas de glicidos definidos
             var totalHC = $('#gramasGlicidos').text();
+            //se o gramas de hc estiver definido calcula doses de pao
             if (subTotalHC != 0) {
                 dosesPao = (parseInt(totalHC) - parseInt(subTotalHC)) / 15;
-                $('#tabelaDistribuicao > table >tbody  tr:nth-child(7) >td:nth-child(2)').text(dosesPao.toFixed(0));
+                //preencher doses de pao na tabela
+                $('#tabelaDistribuicao > table >tbody  tr:nth-child(7) >td:nth-child(2) > a').text(dosesPao.toFixed(0));
                 for (i in equivalencias) {
                     alimento = equivalencias[7];
                     for (j in alimento) {
                         var nutrival = alimento[j];
                         var calc = dosesPao * nutrival;
-                        $('#tabelaDistribuicao > table >tbody  tr:nth-child(7) >td:nth-child(' + j + ')').text(calc.toFixed(1));
+                        $('#tabelaDistribuicao > table >tbody  tr:nth-child(7) >td:nth-child(' + j + ') ').text(calc.toFixed(1));
                     }
                 }
             }
@@ -180,7 +202,7 @@ $this->menu = array(
             var totalProteinas = $('#gramasProteinas').text();
             if (subTotalProteinas != 0) {
                 dosesProteinas = (parseInt(totalProteinas) - parseInt(subTotalProteinas)) / 7;
-                $('#tabelaDistribuicao > table >tbody  tr:nth-child(10) >td:nth-child(2)').text(dosesProteinas.toFixed(0));
+                $('#tabelaDistribuicao > table >tbody  tr:nth-child(10) >td:nth-child(2) a').text(dosesProteinas.toFixed(0));
                 for (i in equivalencias) {
                     alimento = equivalencias[10];
                     for (j in alimento) {
@@ -197,7 +219,7 @@ $this->menu = array(
             var totalLipidos = $('#gramasLipidos').text();
             if (subTotalLipidos != 0) {
                 dosesGordura = (parseInt(totalLipidos) - parseInt(subTotalLipidos)) / 5;
-                $('#tabelaDistribuicao > table >tbody  tr:nth-child(12) >td:nth-child(2)').text(dosesGordura.toFixed(0));
+                $('#tabelaDistribuicao > table >tbody  tr:nth-child(12) >td:nth-child(2) a').text(dosesGordura.toFixed(0));
                 for (i in equivalencias) {
                     alimento = equivalencias[12];
                     for (j in alimento) {
@@ -209,8 +231,35 @@ $this->menu = array(
             }
         };
 
+        //verifica se as percentagem de macronutrientes estao definidas
+        var verificaDistMacroNutri = function(){
+                var bool = true;
+                $("#percProteinas, #percLipidos, #percGlicidos").each(function(index, val){
+                    var perc = $(this).val();
+                   console.log( $(this).attr('id') +' '+parseInt(perc));
+                    if(parseInt(perc)<=0 || isNaN(parseInt(perc))){
+                        bool=false;
+                    }
+            });
+            return bool;
+        };
+
 
         $(document).ready(function () {
+            //desativar enter form submit
+            $('#formPasso2').on("keyup keypress", function(e) {
+                var code = e.keyCode || e.which;
+                if (code  == 13) {
+                    e.preventDefault();
+                    return false;
+                }
+            });
+
+            $('#btnAnterior').click(function(){
+                $('#irPara').val(1);
+                $('#btnSubmeter').click();
+            });
+
             $('#tabelaDistribuicao > table >tbody  tr:nth-child(6) >td:nth-child(2)').empty();
             $('#tabelaDistribuicao > table >tbody  tr:nth-child(9) >td:nth-child(2)').empty();
             $('#tabelaDistribuicao > table >tbody  tr:nth-child(11) >td:nth-child(2)').empty();
@@ -225,6 +274,11 @@ $this->menu = array(
 
 
             $('#tabelaDistribuicao > table >tbody tr>td:nth-child(2)').change(function () {
+                if(!verificaDistMacroNutri()){
+                    alert('Falta preencher a percentagem de macronutrientes');
+                   $(".editable-cancel").click();
+                    return;
+                }
                 setTimeout(function () {
                     for (i in equivalencias) {
                         alimento = equivalencias[i];
@@ -245,7 +299,7 @@ $this->menu = array(
                     calculoSubTotal(3, 6, 9, 10);
                     calculoSubTotal(3, 6, 11, 12);
 
-                }, 400);
+                }, 100);
 
             });
         })
@@ -263,7 +317,11 @@ $this->menu = array(
 
 
 <?php echo TbHtml::formActions(array(
-    TbHtml::submitButton('Proximo', array('color' => TbHtml::BUTTON_COLOR_PRIMARY)),
+    TbHtml::button('Anterior',array('id'=>'btnAnterior')),
+    TbHtml::submitButton('Próximo', array(
+        'color' => TbHtml::BUTTON_COLOR_PRIMARY,
+        'id'=>'btnSubmeter')),
+
 )); ?>
 
 <?php $this->endWidget(); ?>

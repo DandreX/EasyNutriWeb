@@ -132,3 +132,11 @@
 .calculoDoses .controls-row [class*="span"] + [class*="span"] {
     margin-left: 1px !important;
 }
+
+div#formPlanoStep1DadosAtuais, #formPlanoStep1DadosTerapeuticas{
+    float:left;
+}
+
+div#formPlanoStep1DadosAtuaisCalc, #formPlanoStep1DadosTerapeuticasCalc{
+    float:right;
+}

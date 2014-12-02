@@ -61,6 +61,7 @@ class PlanoAlimentarForm extends CFormModel
         'carne'=>0,
         'gordura'=>0,
     );
+    public $restricaoNeds;
 
     /**
      * Declares the validation rules.
@@ -68,7 +69,10 @@ class PlanoAlimentarForm extends CFormModel
     public function rules()
     {
         return array(
-            array('actividade, pesoAtual,altura, pesoAcordado,neds,passo', 'required'),
+
+            array('actividade, pesoAtual,altura, pesoAcordado, neds', 'required'),
+            array('pesoAtual,altura, pesoAcordado, neds, restricaoNeds','numerical'),
+           array('restricaoNeds', 'safe'),
 
         );
     }
@@ -86,6 +90,7 @@ class PlanoAlimentarForm extends CFormModel
             'pesoAtual' => 'Peso Atual',
             'altura' => 'Altura',
             'pesoAcordado' => 'Peso Acordado',
+            'restricaoNeds' =>'Restrição Energética'
         );
     }
 

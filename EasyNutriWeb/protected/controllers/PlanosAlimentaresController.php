@@ -53,18 +53,27 @@ class PlanosAlimentaresController extends Controller
      */
     public function actionCreate()
     {
-
         $model = new PlanoAlimentarForm();
-
         // Uncomment the following line if AJAX validation is needed
         // $this->performAjaxValidation($model);
         if (isset($_POST['PlanoAlimentarForm'])) {
 
-
+            $passoAtual=$_POST['passoAtual'];
+            $irPara=$_POST['irPara'];
+            ChromePhp::error("Post is set. PassoAtual:".$passoAtual." IrPara: ".$irPara);
+            $model->setScenario("step".$passoAtual);
             $model->attributes = $_POST['PlanoAlimentarForm'];
-            $model->passo = $model->passo + 1;
-            switch ($model->passo) {
+            if($model->validate()||$irPara<$passoAtual){
+                ChromePhp::log($model->getScenario(). "é valido");
+                $passoAtual=$irPara;
+            }else{
+                ChromePhp::log($model->getScenario(). "não valido");
+            }
+
+
+            switch ($passoAtual) {
                 case 2:
+                    ChromePhp::log('a processar passo 2');
                     $tabelaDistribuicao = PlanoAlimentarForm::$tabelaDistribuicao;
                     $arrayProvider = new CArrayDataProvider($tabelaDistribuicao, array(
                         'id' => 'id',
@@ -78,6 +87,7 @@ class PlanosAlimentaresController extends Controller
                     ));
                     return;
                 case 3:
+                    ChromePhp::log('a processar passo 3');
                     $tabelaQuantAlimentos = PlanoAlimentarForm::$tabelaQuantAlimentos;
                     $arrayProvider = new CArrayDataProvider($tabelaQuantAlimentos, array(
                         'id' => 'id',
@@ -91,6 +101,7 @@ class PlanosAlimentaresController extends Controller
                     ));
                     return;
                 case 4:
+                    ChromePhp::log('a processar passo 4');
                     $this->render('create_step4', array(
                         'model' => $model,
 //                        'tabelaQuantAlimentos' => $arrayProvider,
@@ -104,7 +115,7 @@ class PlanosAlimentaresController extends Controller
         $model->pesoAtual = 60;
         $model->altura = 1.80;
         $model->sexo = 'M';
-
+        ChromePhp::log('carregado passo 1 por default');
         $this->render('create_step1', array(
             'model' => $model,
         ));

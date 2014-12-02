@@ -26,12 +26,13 @@ $this->menu = array(
         'layout' => TbHtml::FORM_LAYOUT_HORIZONTAL,
     )); ?>
 
-    <?php echo $form->dropDownListControlGroup($model, 'actividade',
-        $model->actividades, array('empty' => '---')); ?>
+
 
     <fieldset>
         <legend>Situação Atual</legend>
         <div id="formPlanoStep1DadosAtuais">
+            <?php echo $form->dropDownListControlGroup($model, 'actividade',
+                $model->actividades, array('empty' => '---')); ?>
             <?php echo $form->uneditableFieldControlGroup($model, 'idade'); ?>
             <?php echo $form->textFieldControlGroup($model, 'pesoAtual'); ?>
             <?php echo $form->textFieldControlGroup($model, 'altura'); ?>
@@ -55,16 +56,20 @@ $this->menu = array(
         <legend>Terapeutica a aplicar</legend>
         <div id="formPlanoStep1DadosTerapeuticas">
         <?php echo $form->textFieldControlGroup($model, 'pesoAcordado'); ?>
+        <?php echo $form->textFieldControlGroup($model, 'neds'); ?>
+        <?php echo $form->textFieldControlGroup($model, 'restricaoNeds'); ?>
+
+
         </div>
         <div id="formPlanoStep1DadosTerapeuticasCalc">
             <?php echo TbHtml::label('IMC', 'imcVal'); ?>
             <?php echo TbHtml::uneditableField('-', array('id' => 'imcTerVal')); ?>
             <?php echo TbHtml::label('Categoria IMC', 'imcCatTerVal'); ?>
             <?php echo TbHtml::uneditableField('-', array('id' => 'imcCatTerVal')); ?>
-            <?php echo TbHtml::label('NEDs', 'nedsTerVal'); ?>
-            <?php echo TbHtml::uneditableField('-', array('id' => 'nedsTerVal')); ?>
-            <input type="hidden" id="PlanoAlimentarForm_neds" name="PlanoAlimentarForm[neds]">
-            <input type="hidden" id="PlanoAlimentarForm_passo" name="PlanoAlimentarForm[passo]" value="1">
+<!--            --><?php //echo TbHtml::label('NEDs', 'nedsTerVal'); ?>
+<!--            --><?php //echo TbHtml::uneditableField('-', array('id' => 'nedsTerVal')); ?>
+            <input type="hidden" id="passoAtual" name="passoAtual" value="1">
+            <input type="hidden" id="irPara" name="irPara" value="2" >
         </div>
     </fieldset>
 
@@ -80,7 +85,7 @@ $this->menu = array(
     var updateVals = function (peso, altura, sexo, idade, actividade) {
         var mbr = calcMetabolismoBasal(peso, altura, sexo, idade);
         console.log("MBR: " + mbr);
-        $('#mbrVal').text(mbr.toFixed(2));
+        $('#mbrVal').text(mbr.toFixed(0);
         var imc = calcIMC(peso, altura);
         console.log("IMC: " + imc);
         $('#imcVal').text(imc.toFixed(2));
@@ -147,6 +152,13 @@ $this->menu = array(
                 var actividade = $('#PlanoAlimentarForm_actividade').val();
                 updateTerapeutica(pesoAcordado,altura,sexo,idade,actividade);
             });
+        $('#PlanoAlimentarForm_restricaoNeds').change(function(){
+            var inputNeds = $('#PlanoAlimentarForm_neds');
+            var restricao = $(this).val();
+            var neds = inputNeds.val();
+            console.log("restricao: ",restricao,neds);
+            inputNeds.val(neds-restricao);
+        });
     });
 
 
