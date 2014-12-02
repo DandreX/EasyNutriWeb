@@ -85,7 +85,7 @@ $this->menu = array(
     var updateVals = function (peso, altura, sexo, idade, actividade) {
         var mbr = calcMetabolismoBasal(peso, altura, sexo, idade);
         console.log("MBR: " + mbr);
-        $('#mbrVal').text(mbr.toFixed(0);
+        $('#mbrVal').text(mbr.toFixed(0));
         var imc = calcIMC(peso, altura);
         console.log("IMC: " + imc);
         $('#imcVal').text(imc.toFixed(2));
