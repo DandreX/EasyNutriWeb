@@ -15,7 +15,10 @@ $this->menu = array(
 
 <h3>Distribuicao das NEDs por macronutrientes</h3>
 
-<p><b>NEDs estipulados:</b> <?php echo($model->neds); ?> Kcal</p>
+<p><b>NEDs estipulados:</b> <?php echo($model->neds); ?> Kcal
+   <b>Peso acordado:</b> <?php echo($model->pesoAcordado); ?> Kg
+</p>
+
 
 <div id="formPlanoStep2">
 <?php $form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
@@ -40,6 +43,8 @@ $this->menu = array(
        value="<?php echo($model->neds); ?>"  >
 <input type="hidden" id="PlanoAlimentarForm_restricaoNeds" name="PlanoAlimentarForm[restricaoNeds]"
        value="<?php echo($model->restricaoNeds); ?>"  >
+
+<!--END valores do form anterior-->
 
 <div class="tabelaInput">
     <?php echo TbHtml::controlsRow(array(
