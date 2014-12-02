@@ -89,7 +89,8 @@ $this->menu = array(
         var imc = calcIMC(peso, altura);
         console.log("IMC: " + imc);
         $('#imcVal').text(imc.toFixed(2));
-//       TODO calc imc cat;
+        var catIMC = calcIMCCat(imc, idade);
+        $('#imcCatVal').text(catIMC);
 
         var pesoRef = calcPesoRef(altura, sexo, idade);
         $('#pesoRefVal').text(pesoRef.toFixed(1) + ' Kg');
@@ -123,7 +124,8 @@ $this->menu = array(
     var updateTerapeutica = function(pesoAcordado, altura, sexo,idade,actividade){
         var imc = calcIMC(pesoAcordado, altura);
         $('#imcTerVal').text(imc.toFixed(2));
-        //       TODO calc imc cat;
+        var catIMC = calcIMCCat(imc, idade);
+        $('#imcCatTerVal').text(catIMC);
 
         var neds = calcNeds(pesoAcordado, altura, sexo, idade, actividade);
         $('#nedsTerVal').text(neds.toFixed(0));

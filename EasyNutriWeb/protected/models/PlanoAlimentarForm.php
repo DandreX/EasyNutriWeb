@@ -27,13 +27,13 @@ class PlanoAlimentarForm extends CFormModel
     );
 
     public static $tabelaQuantAlimentos = array(
-        array('id' => 1, 'refeicao' => 'Pequeno-Almoço', 'hora' => '09:00', 'leiteMG' => '', 'vegB' => '', 'fruta' => '', 'pao' => '', 'carne' => '', 'gordura' => ''),
-        array('id' => 2, 'refeicao' => 'Meio manhã', 'hora' => '11h00', 'leiteMG' => '', 'vegB' => '', 'fruta' => '', 'pao' => '', 'carne' => '', 'gordura' => ''),
-        array('id' => 3, 'refeicao' => 'Almoço', 'hora' => '13h30', 'leiteMG' => '', 'vegB' => '', 'fruta' => '', 'pao' => '', 'carne' => '', 'gordura' => ''),
-        array('id' => 4, 'refeicao' => 'Meio tarde', 'hora' => '16h30', 'leiteMG' => '', 'vegB' => '', 'fruta' => '', 'pao' => '', 'carne' => '', 'gordura' => ''),
-        array('id' => 5, 'refeicao' => 'Jantar', 'hora' => '20h00', 'leiteMG' => '', 'vegB' => '', 'fruta' => '', 'pao' => '', 'carne' => '', 'gordura' => ''),
-        array('id' => 6, 'refeicao' => 'Ceia', 'hora' => '23h30', 'leiteMG' => '', 'vegB' => '', 'fruta' => '', 'pao' => '', 'carne' => '', 'gordura' => ''),
-        array('id' => 7, 'refeicao' => 'Total', 'hora' => '', 'leiteMG' => '', 'vegB' => '', 'fruta' => '', 'pao' => '', 'carne' => '', 'gordura' => '')
+        array('id' => 1, 'refeicao' => 'Pequeno-Almoço', 'hora' => '09:00', 'leiteMG' => '', 'vegB' => '', 'fruta' => '', 'pao' => '','suplementosA'=>'', 'carne' =>'', 'gordura' => ''),
+        array('id' => 2, 'refeicao' => 'Meio da manhã', 'hora' => '11h00', 'leiteMG' => '', 'vegB' => '', 'fruta' => '', 'pao' => '', 'suplementosA'=>'','carne' => '', 'gordura' => ''),
+        array('id' => 3, 'refeicao' => 'Almoço', 'hora' => '13h30', 'leiteMG' => '', 'vegB' => '', 'fruta' => '', 'pao' => '', 'suplementosA'=>'','carne' => '', 'gordura' => ''),
+        array('id' => 4, 'refeicao' => 'Meio da tarde', 'hora' => '16h30', 'leiteMG' => '', 'vegB' => '', 'fruta' => '', 'pao' => '','suplementosA'=>'', 'carne' => '', 'gordura' => ''),
+        array('id' => 5, 'refeicao' => 'Jantar', 'hora' => '20h00', 'leiteMG' => '', 'vegB' => '', 'fruta' => '', 'pao' => '', 'suplementosA'=>'','carne' => '', 'gordura' => ''),
+        array('id' => 6, 'refeicao' => 'Ceia', 'hora' => '23h30', 'leiteMG' => '', 'vegB' => '', 'fruta' => '', 'pao' => '', 'suplementosA'=>'','carne' => '', 'gordura' => ''),
+        array('id' => 7, 'refeicao' => 'Total', 'hora' => '', 'leiteMG' => '', 'vegB' => '', 'fruta' => '', 'pao' => '','suplementosA'=>'', 'carne' => '', 'gordura' => '')
     );
 
 
@@ -52,6 +52,14 @@ class PlanoAlimentarForm extends CFormModel
     public $pesoAcordado;
     public $neds;
     public $passo;
+    public $horasRefeicao = array(
+        'Pequeno-Almoco'=>'9:00',
+        'Meio da Manha'=>'11:00',
+        'Almoco'=>'13:30',
+        'Meio da Tarde'=>'16:30',
+        'Jantar'=>'20:00',
+        'Ceia'=>'23:30',
+    );
     public $doses = array(
         'leite'=>0,
         'vegB'=>0,
@@ -63,6 +71,7 @@ class PlanoAlimentarForm extends CFormModel
     );
     public $restricaoNeds;
 
+    public $batatas = 'batata frita';
     /**
      * Declares the validation rules.
      */

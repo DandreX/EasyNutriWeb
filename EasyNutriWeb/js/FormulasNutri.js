@@ -1,4 +1,3 @@
-
 var calcMetabolismoBasal = function (peso, altura, sexo, idade) {
     var res;
     altura = altura * 100;
@@ -17,7 +16,31 @@ var calcIMC = function (peso, altura) {
 };
 
 var calcIMCCat = function (imc, idade) {
-
+    var catIMC = "";
+    if (idade < 65) {
+        if (imc < 18.5) {
+            catIMC = "Baixo Peso";
+        } else if (imc < 24.9) {
+            catIMC = "Peso Normal";
+        } else if (imc < 29.9) {
+            catIMC = "Pré-obesidade";
+        } else if (imc < 34.9) {
+            catIMC = "Obesidade (Classe I)";
+        } else if (imc < 39.9) {
+            catIMC = "Obesidade (Classe II)";
+        } else {
+            catIMC = "Obesidade (Classe III)";
+        }
+    } else{
+        if(imc < 22){
+            catIMC = "Desnutrição";
+        } else if(imc < 27){
+            catIMC = "Eutrofia";
+        } else{
+            catIMC = "Obesidade";
+        }
+    }
+    return catIMC;
 }
 
 
@@ -56,17 +79,17 @@ var actividades = {
 };
 var calcNeds = function (peso, altura, sexo, idade, actividade) {
     console.log(actividades, actividade);
-    if(typeof actividades[actividade]=='undefined'){
+    if (typeof actividades[actividade] == 'undefined') {
         return 0;
     }
     var pa = actividades[actividade][sexo];
     console.log(pa);
     var res = 0;
     if (sexo == "M") {
-        console.log("calc neds para M, pa:" +pa);
+        console.log("calc neds para M, pa:" + pa);
         res = 662 - 9.53 - idade + pa * (15.91 * peso + 539.6 * altura);
     } else if (sexo == "F") {
-        console.log("calc neds para F, pa:" +pa);
+        console.log("calc neds para F, pa:" + pa);
         res = 354 - 6.91 - idade + pa * (9.36 * peso + 726 * altura);
     }
 

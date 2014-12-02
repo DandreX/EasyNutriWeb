@@ -53,7 +53,9 @@ class PlanosAlimentaresController extends Controller
      */
     public function actionCreate()
     {
+
         $model = new PlanoAlimentarForm();
+
         // Uncomment the following line if AJAX validation is needed
         // $this->performAjaxValidation($model);
         if (isset($_POST['PlanoAlimentarForm'])) {
@@ -101,10 +103,16 @@ class PlanosAlimentaresController extends Controller
                     ));
                     return;
                 case 4:
+                   $alimentos = Alimentos::model()->findAll();
+                   $arrayAlimentos = array();
+                   foreach($alimentos as $alim)
+                   {
+                       $arrayAlimentos[$alim->id] = $alim->nome;
+                   }
                     ChromePhp::log('a processar passo 4');
                     $this->render('create_step4', array(
                         'model' => $model,
-//                        'tabelaQuantAlimentos' => $arrayProvider,
+                        'modelAlimentos'=> $arrayAlimentos,
                     ));
                     return;
             }

@@ -94,9 +94,7 @@
     font-size: 12pt;
 }
 
-#cabecalhoUtente {
 
-}
 
 #cabecalhoData {
     float: right;
@@ -140,3 +138,9 @@ div#formPlanoStep1DadosAtuais, #formPlanoStep1DadosTerapeuticas{
 div#formPlanoStep1DadosAtuaisCalc, #formPlanoStep1DadosTerapeuticasCalc{
     float:right;
 }
+.tipoRefeicao, .horaRefeicao {
+    margin-left: 10px;
+    font-size: 10pt;
+    display: inline-block;
+}
+

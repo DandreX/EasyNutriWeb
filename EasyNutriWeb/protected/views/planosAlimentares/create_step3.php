@@ -22,7 +22,7 @@ $this->menu = array(
     <input type="hidden" id="PlanoAlimentarForm_passo" name="PlanoAlimentarForm[passo]" value="3">
 
     <div class="calculoAlimentosRef">
-        <p><b><br>Cálculo das doses</br></b></p>
+        <p><b><br>Cálculo das doses <font color="red">(Opcional)</font></br></b></p>
 
         <?php $this->widget('bootstrap.widgets.TbGridView', array(
             'id' => 'tabelaAlimentoRef',
@@ -36,25 +36,25 @@ $this->menu = array(
                     'header' => 'Refeição',
                     'headerHtmlOptions' => array('style' => 'width: 110px'),
                 ),
-                array(
-                    'class' => 'editable.EditableColumn',
-                    'name' => 'hora',
-                    'header' => 'Hora',
-                    'headerHtmlOptions' => array('style' => 'width: 100px'),
-                    'editable' => array(
-                        'type' => 'combodate',
-                        'viewformat' => 'HH:mm',
-                        'format' => 'HH:mm',
-                        'template' => 'HH:mm',
-                        'placement' => 'right',
-                        'emptytext' => "HH:mm",
-                        'mode' => 'popup',
-                    )
-                ),
+//                array(
+//                    'class' => 'editable.EditableColumn',
+//                    'name' => 'hora',
+//                    'header' => 'Hora',
+//                    'headerHtmlOptions' => array('style' => 'width: 80px'),
+//                    'editable' => array(
+//                        'type' => 'combodate',
+//                        'viewformat' => 'HH:mm',
+//                        'format' => 'HH:mm',
+//                        'template' => 'HH:mm',
+//                        'placement' => 'right',
+//                        'emptytext' => "HH:mm",
+//                        'mode' => 'popup',
+//                    )
+//                ),
                 array(
                     'class' => 'editable.EditableColumn',
                     'name' => 'leiteMG',
-                    'header' => 'Leite MG',
+                    'header' => 'Leite (' . $model->doses['leite'] . ' doses)',
                     'headerHtmlOptions' => array('style' => 'width: 110px'),
                     'editable' => array(
                         'emptytext' => "0",
@@ -63,7 +63,7 @@ $this->menu = array(
                 array(
                     'class' => 'editable.EditableColumn',
                     'name' => 'vegB',
-                    'header' => 'Veg. B',
+                    'header' => 'Veg. B (' . $model->doses['vegB'] . ' doses)',
                     'headerHtmlOptions' => array('style' => 'width: 110px'),
                     'editable' => array(
                         'emptytext' => "0",
@@ -72,7 +72,7 @@ $this->menu = array(
                 array(
                     'class' => 'editable.EditableColumn',
                     'name' => 'fruta',
-                    'header' => 'Fruta',
+                    'header' => 'Fruta (' . $model->doses['fruta'] . ' doses)',
                     'headerHtmlOptions' => array('style' => 'width: 110px'),
                     'editable' => array(
                         'emptytext' => "0",
@@ -81,7 +81,16 @@ $this->menu = array(
                 array(
                     'class' => 'editable.EditableColumn',
                     'name' => 'pao',
-                    'header' => 'Pao eq',
+                    'header' => 'Pao eq (' . $model->doses['pao'] . ' doses)',
+                    'headerHtmlOptions' => array('style' => 'width: 110px'),
+                    'editable' => array(
+                        'emptytext' => "0",
+                    ),
+                ),
+                array(
+                    'class' => 'editable.EditableColumn',
+                    'name' => 'suplementosA',
+                    'header' => 'Sup. A (' . $model->doses['supa'] . ' doses)',
                     'headerHtmlOptions' => array('style' => 'width: 110px'),
                     'editable' => array(
                         'emptytext' => "0",
@@ -90,8 +99,8 @@ $this->menu = array(
                 array(
                     'class' => 'editable.EditableColumn',
                     'name' => 'carne',
-                    'header' => 'Carne eq',
-                    'headerHtmlOptions' => array('style' => 'width: 110px'),
+                    'header' => 'Carne eq (' . $model->doses['carne'] . ' doses)',
+                    'headerHtmlOptions' => array('style' => 'width: 120px'),
                     'editable' => array(
                         'emptytext' => "0",
                     ),
@@ -99,7 +108,7 @@ $this->menu = array(
                 array(
                     'class' => 'editable.EditableColumn',
                     'name' => 'gordura',
-                    'header' => 'Gordura',
+                    'header' => 'Gordura (' . $model->doses['gordura'] . ' doses)',
                     'headerHtmlOptions' => array('style' => 'width: 110px'),
                     'editable' => array(
                         'emptytext' => "0",
@@ -119,7 +128,7 @@ $this->menu = array(
 
                 $('#tabelaAlimentoRef table >tbody tr>td').change(function () {
                         setTimeout(function () {
-                            for (colunas = 3; colunas <= 8; colunas++) {
+                            for (colunas = 2; colunas <= 8; colunas++) {
                                 var calcTotal = 0;
                                 for (linhas = 1; linhas <= 6; linhas++) {
                                     var valor = $('#tabelaAlimentoRef > table >tbody  tr:nth-child(' + linhas + ')>td:nth-child(' + colunas + ')').text();
