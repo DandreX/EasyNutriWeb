@@ -42,6 +42,8 @@ $this->breadcrumbs = array(
            value="<?php echo($model->utenteId); ?>" >
     <input type="hidden" name="PlanoAlimentarForm[utenteNome]" id="PlanoAlimentarForm_utenteNome"
            value="<?php echo($model->utenteNome); ?>" >
+    <input type="hidden" name="PlanoAlimentarForm[sexo]" id="PlanoAlimentarForm_sexo"
+           value="<?php echo($model->sexo); ?>" >
 
     <!--END valores do form anterior-->
 
@@ -78,7 +80,7 @@ $this->breadcrumbs = array(
                 array(
                     'class' => 'editable.EditableColumn',
                     'name' => 'leiteMG',
-                    'header' => 'Leite (' . $model->doses['leite'] . ' doses)',
+                    'header' => 'Leite <br>(' . $model->doses['leite'] . ' doses)',
                     'headerHtmlOptions' => array('style' => 'width: 110px'),
                     'editable' => array(
                         'emptytext' => "0",
@@ -87,7 +89,7 @@ $this->breadcrumbs = array(
                 array(
                     'class' => 'editable.EditableColumn',
                     'name' => 'vegB',
-                    'header' => 'Veg. B (' . $model->doses['vegB'] . ' doses)',
+                    'header' => 'Veg. B <br>(' . $model->doses['vegB'] . ' doses)',
                     'headerHtmlOptions' => array('style' => 'width: 110px'),
                     'editable' => array(
                         'emptytext' => "0",
@@ -96,7 +98,7 @@ $this->breadcrumbs = array(
                 array(
                     'class' => 'editable.EditableColumn',
                     'name' => 'fruta',
-                    'header' => 'Fruta (' . $model->doses['fruta'] . ' doses)',
+                    'header' => 'Fruta <br> (' . $model->doses['fruta'] . ' doses)',
                     'headerHtmlOptions' => array('style' => 'width: 110px'),
                     'editable' => array(
                         'emptytext' => "0",
@@ -105,7 +107,7 @@ $this->breadcrumbs = array(
                 array(
                     'class' => 'editable.EditableColumn',
                     'name' => 'pao',
-                    'header' => 'Pao eq (' . $model->doses['pao'] . ' doses)',
+                    'header' => 'Pao eq <br> (' . $model->doses['pao'] . ' doses)',
                     'headerHtmlOptions' => array('style' => 'width: 110px'),
                     'editable' => array(
                         'emptytext' => "0",
@@ -114,7 +116,7 @@ $this->breadcrumbs = array(
                 array(
                     'class' => 'editable.EditableColumn',
                     'name' => 'suplementosA',
-                    'header' => 'Sup. A (' . $model->doses['supa'] . ' doses)',
+                    'header' => 'Sup. A <br>(' . $model->doses['supa'] . ' doses)',
                     'headerHtmlOptions' => array('style' => 'width: 110px'),
                     'editable' => array(
                         'emptytext' => "0",
@@ -123,7 +125,7 @@ $this->breadcrumbs = array(
                 array(
                     'class' => 'editable.EditableColumn',
                     'name' => 'carne',
-                    'header' => 'Carne eq (' . $model->doses['carne'] . ' doses)',
+                    'header' => 'Carne eq <br> (' . $model->doses['carne'] . ' doses)',
                     'headerHtmlOptions' => array('style' => 'width: 120px'),
                     'editable' => array(
                         'emptytext' => "0",
@@ -132,7 +134,7 @@ $this->breadcrumbs = array(
                 array(
                     'class' => 'editable.EditableColumn',
                     'name' => 'gordura',
-                    'header' => 'Gordura (' . $model->doses['gordura'] . ' doses)',
+                    'header' => 'Gordura <br>(' . $model->doses['gordura'] . ' doses)',
                     'headerHtmlOptions' => array('style' => 'width: 110px'),
                     'editable' => array(
                         'emptytext' => "0",

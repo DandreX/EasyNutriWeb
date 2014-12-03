@@ -133,11 +133,11 @@ class PlanosAlimentaresController extends Controller
                     'utente_id'=>$utenteId,
                 ),
                 array(
-                    'order'=>'data_med ASC'
+                    'order'=>'data_med DESC'
                 )
             );
             //if peso não existe then 0
-            $model->pesoAtual = $pesoModel!=null?$pesoModel->valor:0;
+            $model->pesoAtual = $pesoModel!=null?round($pesoModel->valor,1):0;
             ChromePhp::log("Peso Atual: ".$model->pesoAtual);
 
             //obter altura mais recente do utente
@@ -147,11 +147,11 @@ class PlanosAlimentaresController extends Controller
                     'utente_id'=>$utenteId,
                 ),
                 array(
-                    'order'=>'data_med ASC'
+                    'order'=>'data_med DESC'
                 )
             );
             //if altura não existe then 0
-            $model->altura = $alturaModel!=null?$alturaModel->valor:0;
+            $model->altura = $alturaModel!=null?round($alturaModel->valor,2):0;
             ChromePhp::log("Altura Atual: ".$model->altura);
 
         } else

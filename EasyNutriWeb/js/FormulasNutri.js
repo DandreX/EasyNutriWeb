@@ -1,4 +1,12 @@
+var validarInputNum = function(input){
+        return input!==undefined&& input>0;
+}
+
 var calcMetabolismoBasal = function (peso, altura, sexo, idade) {
+    if(!validarInputNum(altura) || !validarInputNum(peso) || !validarInputNum(idade) || (sexo!='M' && sexo!='F' )){
+        console.log('calcMetabolismoBasal input invalido');
+        return 0;
+    }
     var res;
     altura = altura * 100;
     console.log(peso, altura, sexo, idade);
@@ -45,8 +53,12 @@ var calcIMCCat = function (imc, idade) {
 
 
 var calcPesoRef = function (altura, sexo, idade) {
+    if(!validarInputNum(altura) && !validarInputNum(idade) && (sexo!='M' && sexo!='F' )){
+        console.log('calcPesoRef input invalido');
+        return 0;
+    }
     altura = altura * 100;
-    var factorSexo = (sexo == 'M') ? 0 : 0.05;
+    var factorSexo = (sexo == 'F') ? 0.05 : 0;
     var idadeAjustada = (idade > 45) ? 45 : idade;
     var res = (50 + 0.75 * (altura - 150) + 0.8 * (altura - 100 + idadeAjustada / 2)) / 2;
     return res = res - res * factorSexo;

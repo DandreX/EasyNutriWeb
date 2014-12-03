@@ -48,8 +48,19 @@ $this->breadcrumbs = array(
        value="<?php echo($model->utenteId); ?>" >
 <input type="hidden" name="PlanoAlimentarForm[utenteNome]" id="PlanoAlimentarForm_utenteNome"
        value="<?php echo($model->utenteNome); ?>" >
+<input type="hidden" name="PlanoAlimentarForm[sexo]" id="PlanoAlimentarForm_sexo"
+       value="<?php echo($model->sexo); ?>" >
 
 <!--END valores do form anterior-->
+
+<!--valores das doses a enviar no POST-->
+<div id="dosesFields">
+<?php foreach($model->doses as $key =>$value):?>
+<input type="hidden" name="PlanoAlimentarForm[doses][<?php echo($key)?>]" id="PlanoAlimentarForm_dose_<?php echo($key)?>" >
+<?php endforeach;?>
+</div>
+<!--END valores das doses a enviar no POST-->
+
 
 <div class="tabelaInput">
     <?php echo TbHtml::controlsRow(array(
@@ -257,9 +268,6 @@ $this->breadcrumbs = array(
 
         $(document).ready(function () {
 
-
-
-
             $('#tabelaDistribuicao > table >tbody  tr:nth-child(6) >td:nth-child(2)').empty();
             $('#tabelaDistribuicao > table >tbody  tr:nth-child(9) >td:nth-child(2)').empty();
             $('#tabelaDistribuicao > table >tbody  tr:nth-child(11) >td:nth-child(2)').empty();
@@ -302,8 +310,42 @@ $this->breadcrumbs = array(
                 }, 100);
 
             });
-        })
-        ;
+
+//          Associar valor das doses ao POST
+            $('#btnSubmeter').click(function(){
+                var iDose =0; //indice do input da dose a preencher
+                var temLeite = false;
+                //precorrer todas as linhas da tabela
+                $('#tabelaDistribuicao > table >tbody tr').each(function(i){
+                    //salta as linhas dos subtotais
+                    if(i==0||i==6 || i==9 ||i==11 ||i>=13){
+                        return;
+                    }
+                    //obtem a dose da linha i
+                    var dose =$('#tabelaDistribuicao > table >tbody tr:nth-child('+i+') >td:nth-child(2)').text();
+                    //se a dose de leite ja estiver definida
+                    //salta a linha atual se for uma linha de leite
+                    if((i==1 || i==2 || i==3) && temLeite){
+                        return;
+                    }
+                    //ao encontrar dose de leite mete a flag a true
+                    if((i==1 || i==2 || i==3) && dose>0){
+                       temLeite=true;
+                    }
+
+                    if((i>=3 && !temLeite)){
+                        iDose++;
+                        temLeite=true;
+                    }else if(temLeite){
+                        iDose++;
+                    }
+
+                    //preenche o input com o valor da dose
+                    $('#dosesFields input:nth-child('+iDose+')').val(dose);
+                });
+            });
+//          END --- Associar valor das doses ao POST
+        });
 
     </script>
 

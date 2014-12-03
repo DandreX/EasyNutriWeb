@@ -39,7 +39,8 @@ $this->breadcrumbs = array(
            value="<?php echo($model->utenteId); ?>" >
     <input type="hidden" name="PlanoAlimentarForm[utenteNome]" id="PlanoAlimentarForm_utenteNome"
            value="<?php echo($model->utenteNome); ?>" >
-
+    <input type="hidden" name="PlanoAlimentarForm[sexo]" id="PlanoAlimentarForm_sexo"
+           value="<?php echo($model->sexo); ?>" >
     <!--END valores do form anterior-->
 
 

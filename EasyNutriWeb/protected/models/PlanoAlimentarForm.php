@@ -82,7 +82,7 @@ class PlanoAlimentarForm extends CFormModel
 
             array('actividade, pesoAtual,altura, pesoAcordado, neds', 'required'),
             array('pesoAtual,altura, pesoAcordado, neds, restricaoNeds','numerical'),
-            array('restricaoNeds, utenteId,utenteNome', 'safe'),
+            array('restricaoNeds, utenteId,utenteNome, sexo,idade, doses', 'safe'),
 
         );
     }

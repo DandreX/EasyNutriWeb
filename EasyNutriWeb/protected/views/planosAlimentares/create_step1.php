@@ -34,6 +34,8 @@ $this->breadcrumbs = array(
            value="<?php echo($model->utenteId); ?>" >
     <input type="hidden" name="PlanoAlimentarForm[utenteNome]" id="PlanoAlimentarForm_utenteNome"
            value="<?php echo($model->utenteNome); ?>" >
+    <input type="hidden" name="PlanoAlimentarForm[sexo]" id="PlanoAlimentarForm_sexo"
+           value="<?php echo($model->sexo); ?>" >
 
     <fieldset>
         <legend>Situação Atual</legend>
@@ -89,6 +91,7 @@ $this->breadcrumbs = array(
 <script type="text/javascript">
 
     var updateVals = function (peso, altura, sexo, idade, actividade) {
+        console.log("updateVals",peso,altura,sexo,idade,actividade);
         var mbr = calcMetabolismoBasal(peso, altura, sexo, idade);
         console.log("MBR: " + mbr);
         $('#mbrVal').text(mbr.toFixed(0));
