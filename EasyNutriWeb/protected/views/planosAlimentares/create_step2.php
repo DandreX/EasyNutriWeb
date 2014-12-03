@@ -290,7 +290,7 @@ $this->breadcrumbs = array(
                 setTimeout(function () {
                     for (i in equivalencias) {
                         alimento = equivalencias[i];
-                        if (i != 6 && i != 9 && i != 11 && i != 13) {
+                        if (i != 6 || i != 9 || i != 11 || i != 13) {
                             var dose = $('#tabelaDistribuicao > table >tbody  tr:nth-child(' + i + ')>td:nth-child(2) a').text();
                             for (j in alimento) {
                                 var nutrival = alimento[j];

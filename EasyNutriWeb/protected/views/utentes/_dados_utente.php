@@ -1,3 +1,5 @@
+
+
 <?php $this->widget('bootstrap.widgets.TbDetailView', array(
     'type' => TbHtml::DETAIL_TYPE_STRIPED,
     'data' => $model,
@@ -14,4 +16,5 @@
         'nif',
         'motivo_consulta',
     ),
-)); ?>
+));
+?>

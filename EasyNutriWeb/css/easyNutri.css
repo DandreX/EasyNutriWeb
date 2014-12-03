@@ -144,3 +144,31 @@ div#formPlanoStep1DadosAtuaisCalc, #formPlanoStep1DadosTerapeuticasCalc{
     display: inline-block;
 }
 
+div #form fieldset {
+    width: 1120px;
+    display: inline-block;
+    float: left;
+    margin: 15px 0 0 0;
+    padding: 10px;
+}
+
+div #formUtentes label {
+    font-weight: bold;
+    font-size: 0.9em;
+    display: block;
+}
+
+div #formUtentes .row {
+    float: left;
+    width: 400px;
+    margin: 0px;
+    display: inline-block;
+    margin-left: 30px;
+}
+
+div #formUtentes #textNome{
+    width: 640px;
+}
+div #formUtentes #formNomeUtente{
+    width: 900px;
+}

@@ -13,10 +13,10 @@ $this->menu = array(
 
 ?>
 
-<h2><?php echo $model->nome; ?></h2>
+<h2><?php echo $model->nome;?></h2>
 
 <?php echo TbHtml::tabbableTabs(array(
-    array('label' => 'Perfil', 'active' => 'true', 'content' => $this->renderPartial('_dados_utente',
+    array('label' => 'Perfil', 'active' => 'true', 'content' => $this->renderPartial('_form',
             array('model' => $model
             ),
             true)),
