@@ -7,26 +7,33 @@ Yii::app()->clientScript->registerScriptFile(
     CClientScript::POS_END
 );
 
+Yii::app()->clientScript->registerScriptFile(
+    Yii::app()->baseUrl.'/js/PlanoAlimentarForm.js',
+    CClientScript::POS_END
+);
+
 $this->breadcrumbs = array(
-    'Planos Alimentares' => array('index'),
-    'Create',
+    'Passo 1',
 );
 
-$this->menu = array(
-    array('label' => 'List PlanosAlimentares', 'url' => array('index')),
-    array('label' => 'Manage PlanosAlimentares', 'url' => array('admin')),
-);
+
 ?>
-
+<h4>Utente: <?php echo($model->utenteNome)?></h4>
 <h3>Cálculo das Necessidades Energéticas Diárias (NEDs) </h3>
 
 
 <div id="formPlanoStep1">
     <?php $form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
         'layout' => TbHtml::FORM_LAYOUT_HORIZONTAL,
+        'id'=>'formPlanoAlimentar'
     )); ?>
 
-
+    <input type="hidden" id="passoAtual" name="passoAtual" value="1">
+    <input type="hidden" id="irPara" name="irPara" value="2" >
+    <input type="hidden" name="PlanoAlimentarForm[utenteId]" id="PlanoAlimentarForm_utenteId"
+           value="<?php echo($model->utenteId); ?>" >
+    <input type="hidden" name="PlanoAlimentarForm[utenteNome]" id="PlanoAlimentarForm_utenteNome"
+           value="<?php echo($model->utenteNome); ?>" >
 
     <fieldset>
         <legend>Situação Atual</legend>
@@ -68,8 +75,7 @@ $this->menu = array(
             <?php echo TbHtml::uneditableField('-', array('id' => 'imcCatTerVal')); ?>
 <!--            --><?php //echo TbHtml::label('NEDs', 'nedsTerVal'); ?>
 <!--            --><?php //echo TbHtml::uneditableField('-', array('id' => 'nedsTerVal')); ?>
-            <input type="hidden" id="passoAtual" name="passoAtual" value="1">
-            <input type="hidden" id="irPara" name="irPara" value="2" >
+
         </div>
     </fieldset>
 
@@ -119,6 +125,7 @@ $this->menu = array(
         altura = parseFloat(altura);
         var actividade = $('#PlanoAlimentarForm_actividade').val();
         updateVals(peso, altura, sexo, idade, actividade);
+
     };
 
     var updateTerapeutica = function(pesoAcordado, altura, sexo,idade,actividade){

@@ -36,7 +36,8 @@ class PlanoAlimentarForm extends CFormModel
         array('id' => 7, 'refeicao' => 'Total', 'hora' => '', 'leiteMG' => '', 'vegB' => '', 'fruta' => '', 'pao' => '','suplementosA'=>'', 'carne' => '', 'gordura' => '')
     );
 
-
+    public $utenteId;
+    public $utenteNome;
     public $actividade;
     //valores predefinidos para a actividade fisica
     public $actividades = array(
@@ -81,7 +82,7 @@ class PlanoAlimentarForm extends CFormModel
 
             array('actividade, pesoAtual,altura, pesoAcordado, neds', 'required'),
             array('pesoAtual,altura, pesoAcordado, neds, restricaoNeds','numerical'),
-           array('restricaoNeds', 'safe'),
+            array('restricaoNeds, utenteId,utenteNome', 'safe'),
 
         );
     }

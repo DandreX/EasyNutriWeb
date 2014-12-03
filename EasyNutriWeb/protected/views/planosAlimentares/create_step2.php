@@ -2,17 +2,18 @@
 /* @var $this PlanosAlimentaresController */
 /* @var $model PlanosAlimentarForm */
 
+Yii::app()->clientScript->registerScriptFile(
+    Yii::app()->baseUrl.'/js/PlanoAlimentarForm.js',
+    CClientScript::POS_END
+);
+
 $this->breadcrumbs = array(
-    'Planos Alimentares' => array('index'),
-    'Create',
+    'Passo 1','Passo 2',
 );
 
-$this->menu = array(
-    array('label' => 'List PlanosAlimentares', 'url' => array('index')),
-    array('label' => 'Manage PlanosAlimentares', 'url' => array('admin')),
-);
+
 ?>
-
+<h4>Utente: <?php echo($model->utenteNome)?></h4>
 <h3>Distribuicao das NEDs por macronutrientes</h3>
 
 <p><b>NEDs estipulados:</b> <?php echo($model->neds); ?> Kcal
@@ -23,7 +24,7 @@ $this->menu = array(
 <div id="formPlanoStep2">
 <?php $form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
     'layout' => TbHtml::FORM_LAYOUT_HORIZONTAL,
-    'id'=>'formPasso2',
+    'id'=>'formPlanoAlimentar'
 )); ?>
 
 <!--valores do form anterior-->
@@ -43,6 +44,10 @@ $this->menu = array(
        value="<?php echo($model->neds); ?>"  >
 <input type="hidden" id="PlanoAlimentarForm_restricaoNeds" name="PlanoAlimentarForm[restricaoNeds]"
        value="<?php echo($model->restricaoNeds); ?>"  >
+<input type="hidden" name="PlanoAlimentarForm[utenteId]" id="PlanoAlimentarForm_utenteId"
+       value="<?php echo($model->utenteId); ?>" >
+<input type="hidden" name="PlanoAlimentarForm[utenteNome]" id="PlanoAlimentarForm_utenteNome"
+       value="<?php echo($model->utenteNome); ?>" >
 
 <!--END valores do form anterior-->
 
@@ -251,19 +256,9 @@ $this->menu = array(
 
 
         $(document).ready(function () {
-            //desativar enter form submit
-            $('#formPasso2').on("keyup keypress", function(e) {
-                var code = e.keyCode || e.which;
-                if (code  == 13) {
-                    e.preventDefault();
-                    return false;
-                }
-            });
 
-            $('#btnAnterior').click(function(){
-                $('#irPara').val(1);
-                $('#btnSubmeter').click();
-            });
+
+
 
             $('#tabelaDistribuicao > table >tbody  tr:nth-child(6) >td:nth-child(2)').empty();
             $('#tabelaDistribuicao > table >tbody  tr:nth-child(9) >td:nth-child(2)').empty();

@@ -44,8 +44,8 @@
                         array('label' => 'Utentes', 'url' => array('/utentes/admin')),
                         array('label' => 'Registos Antropométricos', 'url' => array('/dadosAntro/admin')),
                         array('label' => 'Notificações', 'url' => array('/notificacoes/admin')),
-                        array('label' => 'Plano Alimentar', 'url' => array(
-                            '/planosalimentares/create')),
+//                        array('label' => 'Plano Alimentar', 'url' => array(
+//                            '/planosalimentares/create')),
                         array('label' => 'Login', 'url' => array('/site/login'), 'visible' => Yii::app()->user->isGuest),
                         array('label' => 'Logout (' . Yii::app()->user->name . ')', 'url' => array('/site/logout'), 'visible' => !Yii::app()->user->isGuest)
                     ),

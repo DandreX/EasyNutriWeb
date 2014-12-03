@@ -119,10 +119,49 @@ class PlanosAlimentaresController extends Controller
 
         }
         //todo inicializar valores
+        if(isset($_POST['utenteId'])){
+            $utenteId = $_POST['utenteId'];
+            $utente =Utentes::model()->findByPk($utenteId);
+            $model->sexo = $utente->sexo;
+            $model->utenteId=$utenteId;
+            $model->utenteNome=$utente->nome;
+
+            //obter peso mais recente do utente
+            $pesoModel = DadosAntro::model()->findByAttributes(
+                array(
+                    'tipo_medicao_id'=>1,//1 = id peso
+                    'utente_id'=>$utenteId,
+                ),
+                array(
+                    'order'=>'data_med ASC'
+                )
+            );
+            //if peso não existe then 0
+            $model->pesoAtual = $pesoModel!=null?$pesoModel->valor:0;
+            ChromePhp::log("Peso Atual: ".$model->pesoAtual);
+
+            //obter altura mais recente do utente
+            $alturaModel = DadosAntro::model()->findByAttributes(
+                array(
+                    'tipo_medicao_id'=>2,//2 = id altura
+                    'utente_id'=>$utenteId,
+                ),
+                array(
+                    'order'=>'data_med ASC'
+                )
+            );
+            //if altura não existe then 0
+            $model->altura = $alturaModel!=null?$alturaModel->valor:0;
+            ChromePhp::log("Altura Atual: ".$model->altura);
+
+        } else
+            //se o passoAtual existir significa que o formulario apenas retrocedeu
+            //e nao é necessario lancar excessao
+            if(!isset($_POST['passoAtual'])){
+
+            throw new CException('Utente não encontrado ao criar plano alimentar');
+        }
         $model->idade = 20;
-        $model->pesoAtual = 60;
-        $model->altura = 1.80;
-        $model->sexo = 'M';
         ChromePhp::log('carregado passo 1 por default');
         $this->render('create_step1', array(
             'model' => $model,
