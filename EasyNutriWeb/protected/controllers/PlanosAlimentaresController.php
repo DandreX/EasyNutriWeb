@@ -72,6 +72,10 @@ class PlanosAlimentaresController extends Controller
                 ChromePhp::log($model->getScenario(). "não valido");
             }
 
+//            if(isset($_POST['PlanoAlimentarForm']['alimentos'])){
+//                var_dump($_POST['PlanoAlimentarForm']['alimentos']);
+//                exit();
+//            }
 
             switch ($passoAtual) {
                 case 2:
@@ -103,6 +107,8 @@ class PlanosAlimentaresController extends Controller
                     ));
                     return;
                 case 4:
+                    //obter refeicoes menos o snack
+                   $refeicoes = TiposRefeicao::model()->findAll('id!=7');
                    $alimentos = Alimentos::model()->findAll();
                    $arrayAlimentos = array();
                    foreach($alimentos as $alim)
@@ -113,6 +119,7 @@ class PlanosAlimentaresController extends Controller
                     $this->render('create_step4', array(
                         'model' => $model,
                         'modelAlimentos'=> $arrayAlimentos,
+                        'refeicoes'=>$refeicoes,
                     ));
                     return;
             }

@@ -54,12 +54,12 @@ class PlanoAlimentarForm extends CFormModel
     public $neds;
     public $passo;
     public $horasRefeicao = array(
-        'Pequeno-Almoco'=>'9:00',
-        'Meio da Manha'=>'11:00',
-        'Almoco'=>'13:30',
-        'Meio da Tarde'=>'16:30',
-        'Jantar'=>'20:00',
-        'Ceia'=>'23:30',
+        1=>'9:00',
+        2=>'11:00',
+        3=>'13:30',
+        4=>'16:30',
+        5=>'20:00',
+        6=>'23:30',
     );
     public $doses = array(
         'leite'=>0,
