@@ -5,7 +5,6 @@
 ?>
 <?php
 $dataPesquisa = date('Y-m-d');
-
 ?>
 
 <h4>Diario alimentar do dia</h4>
@@ -21,6 +20,7 @@ $this->widget('zii.widgets.jui.CJuiDatePicker', array(
         'changeYear' => 'true',
         'changeMonth' => 'true',
         'maxDate' => 'today',
+        'beforeShowDay'=>'highlightDays'
     ),
     // 'onEmpty'=>'sem resultados'
 ));
@@ -122,10 +122,43 @@ $this->widget('zii.widgets.jui.CJuiDatePicker', array(
         if (!semaforo) {
             requestRefeicoes();
         }
-
-
     });
+
+//    $(document).ready(function () {
+//        // fairly standard configuration, importantly containing beforeShowDay and onChangeMonthYear custom methods
+//        $("#datepicker").datepicker({
+//            beforeShowDay: function (date) {
+//                var freeDays = ['28/11/2014', '02/12/2014'];
+//                console.log('bat5ats', freeDays);
+//                for (var i = 0; i < freeDays.length; i++) {
+//                    if (new Date(freeDays[i]).toString() == date.toString()) {
+//                        return [true, 'free-day', 'no to-do items due']; // [0] = true | false if this day is selectable, [1] = class to add, [2] = tooltip to display
+//                    }
+//                }
+//
+//                return [true, ''];
+//
+//            }
+//        });
+//    });
+
+
+    // runs for every day displayed in datepicker, adds class and tooltip if matched to days in freeDays array
+    function highlightDays(date) {
+        <!--        var freeDays = '-->
+        <?php //echo  $datasDiario; ?><!--' ;-->
+        var freeDays = ['28/11/2014', '02/12/2014'];
+        console.log('bat5ats', freeDays);
+        for (var i = 0; i < freeDays.length; i++) {
+            if (new Date(freeDays[i]).toString() == date.toString()) {
+                return [true, 'free-day', 'no to-do items due']; // [0] = true | false if this day is selectable, [1] = class to add, [2] = tooltip to display
+            }
+        }
+
+        return [true, ''];
+    }
 </script>
+
 
 
 
