@@ -58,15 +58,10 @@ $this->breadcrumbs = array(
 
                 <p class="horaRefeicao"><br><b>Hora: </b><?php echo $model->horasRefeicao[$refeicao->id] ?> </p>
                 <br>
-
+                <div class="linhasRefeicao">
                 <div class="linhaPlano">
                     <?php echo TbHtml::textField('PlanoAlimentarForm[alimentos][' . $refeicao->id . '][]', ''); ?>
-                    <?php echo TbHtml::button('+',
-                        array(
-                            'class' => 'btnAbrirModal',
-                            'color' => TbHtml::BUTTON_COLOR_PRIMARY,
-                            'data-toggle' => 'modal',
-                            'data-target' => '#modalPesquisa',)); ?>
+
                     <?php echo TbHtml::button('x',
                         array(
                             'class' => 'btnApagarLinha',
@@ -74,13 +69,20 @@ $this->breadcrumbs = array(
                         )); ?>
                     <br>
                 </div>
+                </div>
+                <?php echo TbHtml::button('Adicionar alimento',
+                    array(
+                        'class' => 'btnAbrirModal',
+                        'color' => TbHtml::BUTTON_COLOR_PRIMARY,
+                        'data-toggle' => 'modal',
+                        'data-target' => '#modalPesquisa',)); ?>
 
             </div>
         <?php endforeach; ?>
 
     </div>
 
-
+    <br>
     <?php echo TbHtml::button('Anterior', array('id' => 'btnAnterior')); ?>
     <?php echo TbHtml::submitButton('Guardar', array(
         'color' => TbHtml::BUTTON_COLOR_PRIMARY,
@@ -92,7 +94,7 @@ $this->breadcrumbs = array(
     <?php $this->widget('bootstrap.widgets.TbModal', array(
         'id' => 'modalPesquisa',
         'header' => 'Pesquisar Alimento',
-        'content' => '<p>One fine body...</p>',
+        'content' => '',
         'footer' => array(
             TbHtml::button('Adicionar', array(
                 'id' => 'addAlimento',
@@ -105,21 +107,49 @@ $this->breadcrumbs = array(
 
 <script type="text/javascript">
 
+    var pesquisarAlimento = function(query){
+        $.ajax({
+            type: 'GET',
+            url: '<?php echo Yii::app()->createAbsoluteUrl("planosAlimentares/popularModal&query="); ?>'+query,
+            success: function (data) {
+                $('#modalPesquisa div.modal-body').html(data);
+                $('#btnQuery').click(function(){
+                    var queryVal =$('#queryAlimento').val();
+                   pesquisarAlimento(queryVal);
+                    console.log("a pesquisar", queryVal);
+                });
+            },
+            error: function (data) { // if error occured
+                alert("Ocorreu um erro");
+            },
+            dataType: 'html'
+        });
+    }
+
     $(document).ready(function(){
-        var divPai = null;
+        pesquisarAlimento();
+
+
+        var divLinhasRefeicao = null;
         var divLinhaHtml = null;
         var divProprio;
         //guardar div que foram clicados
         $('.btnAbrirModal').click(function () {
-            divPai = $(this).parent().parent();
+
+            divLinhasRefeicao = $(this).parent().find('.linhasRefeicao');
+            console.log("divLinhasRefeicao",divLinhasRefeicao);
             divProprio = $(this).parent();
-            divLinhaHtml = $(this).closest('div');
+            divLinhaHtml = $(this).parent().children().find('div');
+//            console.log('divLinhaHtml',divLinhaHtml);
             divLinhaHtml = divLinhaHtml.get(0).outerHTML;
-            console.log(divLinhaHtml);
+            console.log('divLinhaHtml.OuterHtml',divLinhaHtml);
+
+          //  console.log(divProprio,divPai,divLinhaHtml);
         });
         //adicona nova linha quando é adicionado um alimento
         $('#addAlimento').click(function () {
-            divPai.append(divLinhaHtml);
+           // divLinhaHtml.insertBefore(divLinhaHtml.lastChild());
+            divLinhasRefeicao.append(divLinhaHtml);
         });
         //remove linha
         $('.btnApagarLinha').live("click",function(){

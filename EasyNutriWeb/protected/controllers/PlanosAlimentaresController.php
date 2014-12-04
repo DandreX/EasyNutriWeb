@@ -60,16 +60,16 @@ class PlanosAlimentaresController extends Controller
         // $this->performAjaxValidation($model);
         if (isset($_POST['PlanoAlimentarForm'])) {
 
-            $passoAtual=$_POST['passoAtual'];
-            $irPara=$_POST['irPara'];
-            ChromePhp::error("Post is set. PassoAtual:".$passoAtual." IrPara: ".$irPara);
-            $model->setScenario("step".$passoAtual);
+            $passoAtual = $_POST['passoAtual'];
+            $irPara = $_POST['irPara'];
+            ChromePhp::error("Post is set. PassoAtual:" . $passoAtual . " IrPara: " . $irPara);
+            $model->setScenario("step" . $passoAtual);
             $model->attributes = $_POST['PlanoAlimentarForm'];
-            if($model->validate()||$irPara<$passoAtual){
-                ChromePhp::log($model->getScenario(). "é valido");
-                $passoAtual=$irPara;
-            }else{
-                ChromePhp::log($model->getScenario(). "não valido");
+            if ($model->validate() || $irPara < $passoAtual) {
+                ChromePhp::log($model->getScenario() . "é valido");
+                $passoAtual = $irPara;
+            } else {
+                ChromePhp::log($model->getScenario() . "não valido");
             }
 
 //            if(isset($_POST['PlanoAlimentarForm']['alimentos'])){
@@ -108,66 +108,65 @@ class PlanosAlimentaresController extends Controller
                     return;
                 case 4:
                     //obter refeicoes menos o snack
-                   $refeicoes = TiposRefeicao::model()->findAll('id!=7');
-                   $alimentos = Alimentos::model()->findAll();
-                   $arrayAlimentos = array();
-                   foreach($alimentos as $alim)
-                   {
-                       $arrayAlimentos[$alim->id] = $alim->nome;
-                   }
+                    $refeicoes = TiposRefeicao::model()->findAll('id!=7');
+                    $alimentos = Alimentos::model()->findAll();
+                    $arrayAlimentos = array();
+                    foreach ($alimentos as $alim) {
+                        $arrayAlimentos[$alim->id] = $alim->nome;
+                    }
                     ChromePhp::log('a processar passo 4');
                     $this->render('create_step4', array(
                         'model' => $model,
-                        'modelAlimentos'=> $arrayAlimentos,
-                        'refeicoes'=>$refeicoes,
+                        'modelAlimentos' => $arrayAlimentos,
+                        'refeicoes' => $refeicoes,
                     ));
                     return;
             }
 
         }
         //todo inicializar valores
-        if(isset($_POST['utenteId'])){
+        if (isset($_POST['utenteId'])) {
             $utenteId = $_POST['utenteId'];
-            $utente =Utentes::model()->findByPk($utenteId);
+            $utente = Utentes::model()->findByPk($utenteId);
             $model->sexo = $utente->sexo;
-            $model->utenteId=$utenteId;
-            $model->utenteNome=$utente->nome;
+            $model->utenteId = $utenteId;
+            $model->utenteNome = $utente->nome;
 
             //obter peso mais recente do utente
             $pesoModel = DadosAntro::model()->findByAttributes(
                 array(
-                    'tipo_medicao_id'=>1,//1 = id peso
-                    'utente_id'=>$utenteId,
+                    'tipo_medicao_id' => 1, //1 = id peso
+                    'utente_id' => $utenteId,
                 ),
                 array(
-                    'order'=>'data_med DESC'
+                    'order' => 'data_med DESC'
                 )
             );
             //if peso não existe then 0
-            $model->pesoAtual = $pesoModel!=null?round($pesoModel->valor,1):0;
-            ChromePhp::log("Peso Atual: ".$model->pesoAtual);
+            $model->pesoAtual = $pesoModel != null ? round($pesoModel->valor, 1) : 0;
+            ChromePhp::log("Peso Atual: " . $model->pesoAtual);
 
             //obter altura mais recente do utente
             $alturaModel = DadosAntro::model()->findByAttributes(
                 array(
-                    'tipo_medicao_id'=>2,//2 = id altura
-                    'utente_id'=>$utenteId,
+                    'tipo_medicao_id' => 2, //2 = id altura
+                    'utente_id' => $utenteId,
                 ),
                 array(
-                    'order'=>'data_med DESC'
+                    'order' => 'data_med DESC'
                 )
             );
             //if altura não existe then 0
-            $model->altura = $alturaModel!=null?round($alturaModel->valor,2):0;
-            ChromePhp::log("Altura Atual: ".$model->altura);
+            $model->altura = $alturaModel != null ? round($alturaModel->valor, 2) : 0;
+            ChromePhp::log("Altura Atual: " . $model->altura);
 
         } else
             //se o passoAtual existir significa que o formulario apenas retrocedeu
             //e nao é necessario lancar excessao
-            if(!isset($_POST['passoAtual'])){
+            if (!isset($_POST['passoAtual'])) {
 
-            throw new CException('Utente não encontrado ao criar plano alimentar');
-        }
+                throw new CException('Utente não encontrado ao criar plano alimentar');
+            }
         $model->idade = 20;
         ChromePhp::log('carregado passo 1 por default');
         $this->render('create_step1', array(
@@ -238,6 +237,22 @@ class PlanosAlimentaresController extends Controller
         $this->render('admin', array(
             'model' => $model,
         ));
+    }
+
+    public function actionPopularModal($query)
+    {
+        $query = isset($query)?$query:'';
+        $model = Alimentos::model()->findAll(
+            'nome LIKE :nome',
+            array(':nome'=>"%$query%")
+        );
+     //   $model = Alimentos::model()->findAll();
+
+        $this->renderPartial('_pesquisar_alimento',
+            array(
+                'query'=>$query,
+                'model' => $model
+            ),false,true);
     }
 
     /**
