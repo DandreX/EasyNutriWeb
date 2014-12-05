@@ -172,3 +172,7 @@ div #formUtentes #textNome{
 div #formUtentes #formNomeUtente{
     width: 900px;
 }
+
+#modalPesquisa{
+    width: 700px;
+}

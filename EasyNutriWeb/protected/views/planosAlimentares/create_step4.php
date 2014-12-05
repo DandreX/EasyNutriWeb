@@ -54,21 +54,33 @@ $this->breadcrumbs = array(
     <div id="detalhesPlanoAlimentar">
         <?php foreach ($refeicoes as $refeicao): ?>
             <div id="<?php echo('refeicao' . $refeicao->id); ?>">
-                <p class="tipoRefeicao"><br><b>Refeição:</b> <?php echo($refeicao->descricao) ?></p>
-
-                <p class="horaRefeicao"><br><b>Hora: </b><?php echo $model->horasRefeicao[$refeicao->id] ?> </p>
+                <h4><?php echo($refeicao->descricao) ?></h4>
+                <p>Hora:
+                <?php
+                $this->widget('editable.Editable', array(
+                    'type' => 'combodate',
+                    'name' => 'horasRefeicao[' . $refeicao->id . ']',
+                    'text' => date('H:i', strtotime($model->horasRefeicao[$refeicao->id])),
+                    'placement' => 'right',
+                    'format' => 'YYYY-MM-DD HH:mm', //in this format date sent to server
+                    'viewformat' => 'HH:mm', //in this format date is displayed
+                    'template' => 'HH:mm', //template for dropdowns
+                    'combodate' => array('minYear' => 1980, 'maxYear' => 2013),
+                ));
+                ?></p>
                 <br>
-                <div class="linhasRefeicao">
-                <div class="linhaPlano">
-                    <?php echo TbHtml::textField('PlanoAlimentarForm[alimentos][' . $refeicao->id . '][]', ''); ?>
 
-                    <?php echo TbHtml::button('x',
-                        array(
-                            'class' => 'btnApagarLinha',
-                            'color' => TbHtml::BUTTON_COLOR_DANGER,
-                        )); ?>
-                    <br>
-                </div>
+                <div class="linhasRefeicao">
+                    <div class="linhaPlano">
+                        <?php echo TbHtml::textField('PlanoAlimentarForm[alimentos][' . $refeicao->id . '][]', ''); ?>
+
+                        <?php echo TbHtml::button('x',
+                            array(
+                                'class' => 'btnApagarLinha',
+                                'color' => TbHtml::BUTTON_COLOR_DANGER,
+                            )); ?>
+                        <br>
+                    </div>
                 </div>
                 <?php echo TbHtml::button('Adicionar alimento',
                     array(
@@ -93,6 +105,7 @@ $this->breadcrumbs = array(
 
     <?php $this->widget('bootstrap.widgets.TbModal', array(
         'id' => 'modalPesquisa',
+        'backdrop'=>true,
         'header' => 'Pesquisar Alimento',
         'content' => '',
         'footer' => array(
@@ -107,15 +120,18 @@ $this->breadcrumbs = array(
 
 <script type="text/javascript">
 
-    var pesquisarAlimento = function(query){
+    var pesquisarAlimento = function (query) {
         $.ajax({
             type: 'GET',
-            url: '<?php echo Yii::app()->createAbsoluteUrl("planosAlimentares/popularModal&query="); ?>'+query,
+            url: '<?php echo Yii::app()->createAbsoluteUrl("planosAlimentares/popularModal&query="); ?>' + query,
             success: function (data) {
                 $('#modalPesquisa div.modal-body').html(data);
-                $('#btnQuery').click(function(){
-                    var queryVal =$('#queryAlimento').val();
-                   pesquisarAlimento(queryVal);
+                var inputText =$('#queryAlimento');
+                inputText.focus();
+                inputText.val(inputText.val());
+                inputText.keyup(function () {
+                    var queryVal = inputText.val();
+                    pesquisarAlimento(queryVal);
                     console.log("a pesquisar", queryVal);
                 });
             },
@@ -126,7 +142,7 @@ $this->breadcrumbs = array(
         });
     }
 
-    $(document).ready(function(){
+    $(document).ready(function () {
         pesquisarAlimento();
 
 
@@ -137,29 +153,33 @@ $this->breadcrumbs = array(
         $('.btnAbrirModal').click(function () {
 
             divLinhasRefeicao = $(this).parent().find('.linhasRefeicao');
-            console.log("divLinhasRefeicao",divLinhasRefeicao);
+            console.log("divLinhasRefeicao", divLinhasRefeicao);
             divProprio = $(this).parent();
             divLinhaHtml = $(this).parent().children().find('div');
 //            console.log('divLinhaHtml',divLinhaHtml);
             divLinhaHtml = divLinhaHtml.get(0).outerHTML;
-            console.log('divLinhaHtml.OuterHtml',divLinhaHtml);
+            console.log('divLinhaHtml.OuterHtml', divLinhaHtml);
 
-          //  console.log(divProprio,divPai,divLinhaHtml);
+            //  console.log(divProprio,divPai,divLinhaHtml);
         });
         //adicona nova linha quando é adicionado um alimento
         $('#addAlimento').click(function () {
-           // divLinhaHtml.insertBefore(divLinhaHtml.lastChild());
+            // divLinhaHtml.insertBefore(divLinhaHtml.lastChild());
             divLinhasRefeicao.append(divLinhaHtml);
         });
         //remove linha
-        $('.btnApagarLinha').live("click",function(){
-//            var count = $(this).parent().parent().children().filter('input').size();
-//            console.log($(this).parent().parent().children().filter('input'),count);
-//            if(count>1){
+        $('.btnApagarLinha').live("click", function () {
+            divLinhasRefeicao = $(this).parent().parent();
+//            console.log("apagar", divLinhasRefeicao);
+            var count = divLinhasRefeicao.get(0).childElementCount
+//            console.log("total antes apagar:",count);
+            if(count>1){
 //                console.log("remover linha",this);
-//                $(this).parent().remove();
-//            }
-           $(this).parent().remove();
+                $(this).parent().remove();
+            }else{
+//                console.log("LIMPAR",divLinhasRefeicao.find('input'));
+                divLinhasRefeicao.find('input').val('');
+            }
         });
 
     });

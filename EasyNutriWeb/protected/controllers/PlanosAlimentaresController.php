@@ -242,12 +242,23 @@ class PlanosAlimentaresController extends Controller
     public function actionPopularModal($query)
     {
         $query = isset($query)?$query:'';
-        $model = Alimentos::model()->findAll(
-            'nome LIKE :nome',
-            array(':nome'=>"%$query%")
-        );
-     //   $model = Alimentos::model()->findAll();
+//        $model = Alimentos::model()->findAll(
+//            'nome LIKE :nome',
+//            array(':nome'=>"%$query%")
+//        );
+        $model = new CActiveDataProvider('Alimentos', array(
+            'criteria'=>array(
+                'condition'=>'nome LIKE :nome',
+                'params'=>array(
+                    ':nome'=>"%$query%"
+                ),
+            ),
 
+        ));
+//        $model = Alimentos::model()->findAll();
+//        $model = new CActiveDataProvider('Alimentos');
+//
+//        var_dump($model);
         $this->renderPartial('_pesquisar_alimento',
             array(
                 'query'=>$query,

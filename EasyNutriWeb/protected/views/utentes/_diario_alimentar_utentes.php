@@ -20,7 +20,7 @@ $this->widget('zii.widgets.jui.CJuiDatePicker', array(
         'changeYear' => 'true',
         'changeMonth' => 'true',
         'maxDate' => 'today',
-        'beforeShowDay'=>'highlightDays'
+        'beforeShowDay'=>'js:highlightDays'
     ),
     // 'onEmpty'=>'sem resultados'
 ));
