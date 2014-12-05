@@ -176,3 +176,16 @@ div #formUtentes #formNomeUtente{
 #modalPesquisa{
     width: 700px;
 }
+
+#btnOpenFormUtentes,#btnOpenFormDadosAntro, #btnOpenFormParamAntro, #btnOpenNovaNotificacao{
+    float: right;
+    margin-left: 5px;
+}
+
+.free-day {
+    background: #2e9500;
+}
+
+.free-day a {
+    opacity: 0.7;
+}

@@ -37,6 +37,12 @@ $('.search-form form').submit(function(){
     )); ?>
 </div><!-- search-form -->
 
+<?php echo
+TbHtml::button('Nova Notificação', array('id' => 'btnOpenNovaNotificacao', 'color' => TbHtml::BUTTON_COLOR_PRIMARY));
+?>
+<br>
+<br>
+
 <?php $this->widget('bootstrap.widgets.TbGridView', array(
     'type' => TbHtml::GRID_TYPE_HOVER,
     'id' => 'notificacoes-grid',
@@ -55,3 +61,10 @@ $('.search-form form').submit(function(){
         ),
     ),
 )); ?>
+
+<script type="text/javascript">
+    $('#btnOpenNovaNotificacao').click(function(){
+        var url = '<?php echo Yii::app()->createUrl("notificacoes/create"); ?>';
+        location.href = url;
+    });
+</script>
