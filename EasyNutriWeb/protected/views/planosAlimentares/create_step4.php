@@ -107,7 +107,8 @@ $this->breadcrumbs = array(
         'id' => 'modalPesquisa',
         'backdrop'=>true,
         'header' => 'Pesquisar Alimento',
-        'content' => '',
+        'onShown'=>'js:attachModalListenner',
+        'content' => $this->renderPartial('_modal_layout',array(),true,false),
         'footer' => array(
             TbHtml::button('Adicionar', array(
                 'id' => 'addAlimento',
@@ -125,15 +126,7 @@ $this->breadcrumbs = array(
             type: 'GET',
             url: '<?php echo Yii::app()->createAbsoluteUrl("planosAlimentares/popularModal&query="); ?>' + query,
             success: function (data) {
-                $('#modalPesquisa div.modal-body').html(data);
-                var inputText =$('#queryAlimento');
-                inputText.focus();
-                inputText.val(inputText.val());
-                inputText.keyup(function () {
-                    var queryVal = inputText.val();
-                    pesquisarAlimento(queryVal);
-                    console.log("a pesquisar", queryVal);
-                });
+                $('#modalPesquisa div.modal-body div#modalPesquisaResultados').html(data);
             },
             error: function (data) { // if error occured
                 alert("Ocorreu um erro");
@@ -142,8 +135,20 @@ $this->breadcrumbs = array(
         });
     }
 
+    var attachModalListenner = function(){
+        console.log('attached listenner');
+        var inputText =$('#queryAlimento');
+        inputText.focus();
+        inputText.val(inputText.val());
+        inputText.keyup(function () {
+            var queryVal = inputText.val();
+            pesquisarAlimento(queryVal);
+           // console.log("a pesquisar", queryVal);
+        });
+    };
+
     $(document).ready(function () {
-        pesquisarAlimento();
+    //    pesquisarAlimento();
 
 
         var divLinhasRefeicao = null;

@@ -252,7 +252,12 @@ class PlanosAlimentaresController extends Controller
                 'params'=>array(
                     ':nome'=>"%$query%"
                 ),
+                'offset'=>0,
+                'limit'=>5,
             ),
+            'pagination'=>false,
+            'totalItemCount'=>10
+
 
         ));
 //        $model = Alimentos::model()->findAll();
