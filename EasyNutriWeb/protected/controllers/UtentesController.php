@@ -56,11 +56,22 @@ class UtentesController extends Controller
 //                ),
         ));
         $queryDatasDiarioAlimentar = Yii::app()->db->createCommand()
-            ->select('cast(data_diario as date)')
+            ->select('distinct cast(data_diario as date)')
             ->from('diario_alimentar')
             ->where('user_id = ' . $id)
             ->queryAll();
-        $datasDiarioAlimentar = json_encode($queryDatasDiarioAlimentar);
+
+
+
+        $datasDiarioAlimentar = "[";
+        foreach ($queryDatasDiarioAlimentar as $i) {
+           $datasDiarioAlimentar = $datasDiarioAlimentar."\"".$i['']."\"".",";
+        }
+        $datasDiarioAlimentar[strlen($datasDiarioAlimentar)-1]="]";
+
+
+
+
 
         $dpDadosAntro = new CActiveDataProvider('VResumosAntro', array(
             'criteria' => array(

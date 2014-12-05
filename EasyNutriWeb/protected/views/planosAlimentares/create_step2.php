@@ -90,8 +90,11 @@ $this->breadcrumbs = array(
         TbHtml::textField('text', '', array('span' => 2, 'id' => 'percGlicidos')),
         TbHtml::uneditableField('-', array('span' => 2)),
         TbHtml::uneditableField('', array('span' => 2, 'id' => 'gramasGlicidos')),
-
-
+    )); ?>
+    <?php echo TbHtml::controlsRow(array(
+        TbHtml::uneditableField('', array('id'=> 'ultimaLinhaDistNed', 'span' => 2)),
+        TbHtml::uneditableField('Total', array('id'=> '', 'span' => 2)),
+        TbHtml::uneditableField('', array('span' => 3, 'id'=> 'totalVet' )),
     )); ?>
 </div>
 
@@ -99,36 +102,84 @@ $this->breadcrumbs = array(
     $(document).ready(function () {
         var neds = $("#PlanoAlimentarForm_neds").val();
         var peso = 72.3;
-        console.log(neds);
+
         $('#percProteinas').change(function () {
             var percProteinas = $('#percProteinas').val();
+            if(percProteinas<15){
+                $('#percProteinas').css('color', '#FF0000');
+            }else if(percProteinas >35){
+                $('#percProteinas').css('color', '#FF0000');
+            }else{
+                $('#percProteinas').css('color', 'black');
+            }
             var gProteinas = (percProteinas / 100 * neds) / 4;
             var gkg = (gProteinas / 72.3);
             $('#gramasProteinas').text(gProteinas.toFixed(0));
             $('#gramasKgProteinas').val(gkg.toFixed(1));
+            calculoTotalNED();
         });
         $('#gramasKgProteinas').change(function () {
-
-
             var gramasKg = $('#gramasKgProteinas').val();
             gramasKg = parseFloat(gramasKg);
             var percProteinas = (72.3 * gramasKg * 4) * 100 / neds;
             var gProteinas = peso * gramasKg;
-            console.log(percProteinas);
+            if(percProteinas<15){
+                $('#percProteinas').css('color', '#FF0000');
+            }else if(percProteinas >35){
+                $('#percProteinas').css('color', '#FF0000');
+            }else{
+                $('#percProteinas').css('color', 'black');
+            }
             $('#percProteinas').val(percProteinas.toFixed(0));
             $('#gramasProteinas').text(gProteinas.toFixed(0));
+            calculoTotalNED();
         });
+
         $('#percLipidos').change(function () {
             var percLipidos = $('#percLipidos').val();
-
+            if(percLipidos<20){
+                $('#percLipidos').css('color', '#FF0000');
+            }else if(percLipidos >35){
+                $('#percLipidos').css('color', '#FF0000');
+            }else{
+                $('#percLipidos').css('color', 'black');
+            }
             var gLipidos = (percLipidos / 100 * neds) / 9;
             $('#gramasLipidos').text(gLipidos.toFixed(0));
+            calculoTotalNED();
         });
+
         $('#percGlicidos').change(function () {
             var percGlicidos = $('#percGlicidos').val();
+            if(percGlicidos<45){
+                $('#percGlicidos').css('color', '#FF0000');
+            }else if(percGlicidos >60){
+                $('#percGlicidos').css('color', '#FF0000');
+            }else{
+                $('#percGlicidos').css('color', 'black');
+            }
             var gGlicidos = (percGlicidos / 100 * neds) / 4;
             $('#gramasGlicidos').text(gGlicidos.toFixed(0));
+            calculoTotalNED();
         });
+
+        var calculoTotalNED = function(){
+            var percLipidos = $('#percLipidos').val();
+            var percGlicidos = $('#percGlicidos').val();
+            var percProteinas = $('#percProteinas').val();
+
+            if(percGlicidos != "" && percLipidos != "" && percProteinas != ""){
+                var Totalperc =  parseInt(percGlicidos) +  parseInt(percLipidos) +  parseInt(percProteinas);
+                console.log(Totalperc);
+                $('#totalVet').text(Totalperc.toFixed(0) + '%');
+                if(Totalperc > 100){
+                    $('#totalVet').css('color', '#FF0000');
+                }else{
+                    $('#totalVet').css('color', 'black');
+                }
+            }
+
+        }
     });
 </script>
 
