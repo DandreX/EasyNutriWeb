@@ -7,11 +7,11 @@ $this->breadcrumbs = array(
     'Os meus utentes',
 );
 
-$this->menu = array(
-    array('label' => 'Meus Utentes', 'url' => '#', 'active' => true),
-    //array('label'=>'List Utentes', 'url'=>array('index')),
-    array('label' => 'Novo Utente', 'url' => array('create')),
-);
+//$this->menu = array(
+//    array('label' => 'Meus Utentes', 'url' => '#', 'active' => true),
+//    //array('label'=>'List Utentes', 'url'=>array('index')),
+//    array('label' => 'Novo Utente', 'url' => array('create')),
+//);
 
 Yii::app()->clientScript->registerScript('search', "
 $('.search-button').click(function(){
@@ -29,12 +29,21 @@ $('.search-form form').submit(function(){
 
 <h1>Os meus utentes</h1>
 
+
+
+
 <?php echo CHtml::link('Advanced Search', '#', array('class' => 'search-button')); ?>
 <div class="search-form" style="display:none">
     <?php $this->renderPartial('_search', array(
         'model' => $model,
     )); ?>
 </div><!-- search-form -->
+
+<?php echo
+TbHtml::button('Novo Utente', array('id' => 'btnOpenFormUtentes', 'color' => TbHtml::BUTTON_COLOR_PRIMARY));
+?>
+<br>
+<br>
 
 <?php $this->widget('bootstrap.widgets.TbGridView', array(
     'type' => TbHtml::GRID_TYPE_HOVER,
@@ -58,3 +67,10 @@ $('.search-form form').submit(function(){
         ),
     ),
 )); ?>
+
+<script type="text/javascript">
+    $('#btnOpenFormUtentes').click(function(){
+      var url = '<?php echo Yii::app()->createUrl("utentes/create"); ?>';
+        location.href = url;
+    });
+</script>

@@ -23,6 +23,7 @@ $this->menu = array(
     array('label' => 'Diário Alimentar', 'content' => $this->renderPartial('_diario_alimentar_utentes',
             array('model' => $model,
                 'dataProvider' => $dataProvider,
+                'datasDiario' => $dataDiario,
             ),
             true)),
     array('label' => 'Plano Alimentar', 'content' => $this->renderPartial('_plano_alimentar',

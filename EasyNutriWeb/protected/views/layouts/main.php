@@ -52,7 +52,7 @@
                 ),
             ),
         )); ?>
-        <?php echo TbHtml::pills($this->menu); ?>
+<!--        --><?php //echo TbHtml::pills($this->menu); ?>
     </div>
     <!-- mainmenu -->
     <?php if (isset($this->breadcrumbs)): ?>

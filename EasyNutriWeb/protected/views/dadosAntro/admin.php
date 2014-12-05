@@ -41,6 +41,15 @@ $('.search-form form').submit(function(){
     )); ?>
 </div><!-- search-form -->
 
+<?php echo
+TbHtml::button('Novo Registo Antropométrico', array('id' => 'btnOpenFormDadosAntro', 'color' => TbHtml::BUTTON_COLOR_PRIMARY));
+?>
+<?php echo
+TbHtml::button('Novo Parâmetro Antropométrico', array('id' => 'btnOpenFormParamAntro', 'color' => TbHtml::BUTTON_COLOR_PRIMARY));
+?>
+<br>
+<br>
+
 <?php $this->widget('bootstrap.widgets.TbGridView', array(
     'id' => 'dados-antro-grid',
     'dataProvider' => $model->search(),
@@ -69,3 +78,17 @@ $('.search-form form').submit(function(){
         ),
     ),
 )); ?>
+
+<script type="text/javascript">
+    $('#btnOpenFormDadosAntro').click(function(){
+        var url = '<?php echo Yii::app()->createUrl("dadosAntro/create"); ?>';
+        location.href = url;
+    });
+</script>
+
+<script type="text/javascript">
+    $('#btnOpenFormParamAntro').click(function(){
+        var url = '<?php echo Yii::app()->createUrl("tipoMedicao/create"); ?>';
+        location.href = url;
+    });
+</script>
