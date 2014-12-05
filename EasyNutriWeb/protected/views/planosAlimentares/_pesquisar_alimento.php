@@ -3,21 +3,21 @@
 /* @var $query string */
 ?>
 
-<?php
-
-//var_dump($model, $query);
-//$dp = $model->search();
-$this->widget('bootstrap.widgets.TbGridView', array(
+<?php $this->widget('bootstrap.widgets.TbGridView', array(
     'dataProvider' => $model,
+    'enableSorting' => false,
     'columns' => array(
         array(
             'name' => 'id',
             'header' => '#',
-            'htmlOptions' => array('color' =>'width: 60px'),
+            'htmlOptions' => array('color' =>'width: 15px'),
         ),
         array(
             'name' => 'nome',
-            'header' => 'First name',
+            'header' => 'Alimento',
+        ),
+        array(
+            'class'=>'CCheckBoxColumn',
         ),
     ),
 )); ?>

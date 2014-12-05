@@ -14807,3 +14807,31 @@ Stack trace:
 REQUEST_URI=/easynutriweb/index.php?r=planosAlimentares/popularModal&query=a
 HTTP_REFERER=http://localhost/easynutriweb/index.php?r=planosalimentares/create
 ---
+2014/12/05 16:21:08 [error] [exception.CException] exception 'CException' with message 'Property "TbModal.events" is not defined.' in C:\Users\Andre\EasyNutriWorkspace\EasyNutriWeb\framework\base\CComponent.php:173
+Stack trace:
+#0 C:\Users\Andre\EasyNutriWorkspace\EasyNutriWeb\framework\web\CWidgetFactory.php(161): CComponent->__set('events', 'js:attachModalL...')
+#1 C:\Users\Andre\EasyNutriWorkspace\EasyNutriWeb\framework\web\CBaseController.php(146): CWidgetFactory->createWidget(Object(PlanosAlimentaresController), 'bootstrap.widge...', Array)
+#2 C:\Users\Andre\EasyNutriWorkspace\EasyNutriWeb\framework\web\CBaseController.php(172): CBaseController->createWidget('bootstrap.widge...', Array)
+#3 C:\Users\Andre\EasyNutriWorkspace\EasyNutriWeb\EasyNutriWeb\protected\views\planosAlimentares\create_step4.php(122): CBaseController->widget('bootstrap.widge...', Array)
+#4 C:\Users\Andre\EasyNutriWorkspace\EasyNutriWeb\framework\web\CBaseController.php(126): require('C:\Users\Andre\...')
+#5 C:\Users\Andre\EasyNutriWorkspace\EasyNutriWeb\framework\web\CBaseController.php(95): CBaseController->renderInternal('C:\Users\Andre\...', Array, true)
+#6 C:\Users\Andre\EasyNutriWorkspace\EasyNutriWeb\framework\web\CController.php(869): CBaseController->renderFile('C:\Users\Andre\...', Array, true)
+#7 C:\Users\Andre\EasyNutriWorkspace\EasyNutriWeb\framework\web\CController.php(782): CController->renderPartial('create_step4', Array, true)
+#8 C:\Users\Andre\EasyNutriWorkspace\EasyNutriWeb\EasyNutriWeb\protected\controllers\PlanosAlimentaresController.php(122): CController->render('create_step4', Array)
+#9 C:\Users\Andre\EasyNutriWorkspace\EasyNutriWeb\framework\web\actions\CInlineAction.php(49): PlanosAlimentaresController->actionCreate()
+#10 C:\Users\Andre\EasyNutriWorkspace\EasyNutriWeb\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#11 C:\Users\Andre\EasyNutriWorkspace\EasyNutriWeb\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#12 C:\Users\Andre\EasyNutriWorkspace\EasyNutriWeb\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#13 C:\Users\Andre\EasyNutriWorkspace\EasyNutriWeb\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#14 C:\Users\Andre\EasyNutriWorkspace\EasyNutriWeb\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#15 C:\Users\Andre\EasyNutriWorkspace\EasyNutriWeb\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#16 C:\Users\Andre\EasyNutriWorkspace\EasyNutriWeb\framework\web\CController.php(291): CFilterChain->run()
+#17 C:\Users\Andre\EasyNutriWorkspace\EasyNutriWeb\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#18 C:\Users\Andre\EasyNutriWorkspace\EasyNutriWeb\framework\web\CWebApplication.php(282): CController->run('create')
+#19 C:\Users\Andre\EasyNutriWorkspace\EasyNutriWeb\framework\web\CWebApplication.php(141): CWebApplication->runController('planosalimentar...')
+#20 C:\Users\Andre\EasyNutriWorkspace\EasyNutriWeb\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#21 C:\Users\Andre\EasyNutriWorkspace\EasyNutriWeb\EasyNutriWeb\index.php(13): CApplication->run()
+#22 {main}
+REQUEST_URI=/easynutriweb/index.php?r=planosalimentares/create
+HTTP_REFERER=http://localhost/easynutriweb/index.php?r=planosalimentares/create
+---

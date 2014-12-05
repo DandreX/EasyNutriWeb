@@ -268,7 +268,7 @@ class PlanosAlimentaresController extends Controller
             array(
                 'query'=>$query,
                 'model' => $model
-            ),false,true);
+            ),false,false);
     }
 
     /**

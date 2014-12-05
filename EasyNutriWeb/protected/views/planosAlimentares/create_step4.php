@@ -107,6 +107,7 @@ $this->breadcrumbs = array(
         'id' => 'modalPesquisa',
         'backdrop'=>true,
         'header' => 'Pesquisar Alimento',
+        'onHide'=>'js:limparModal',
         'onShown'=>'js:attachModalListenner',
         'content' => $this->renderPartial('_modal_layout',array(),true,false),
         'footer' => array(
@@ -114,12 +115,27 @@ $this->breadcrumbs = array(
                 'id' => 'addAlimento',
                 'data-dismiss' => 'modal',
                 'color' => TbHtml::BUTTON_COLOR_PRIMARY)),
-            TbHtml::button('Close', array('data-dismiss' => 'modal')),
+            TbHtml::button('Cancelar', array(
+                'id'=>'btnCloseModal',
+                'data-dismiss' => 'modal')),
         ),
     )); ?>
 </div>
 
 <script type="text/javascript">
+
+    var attachModalListenner = function(){
+        console.log('attached listenner');
+        var inputText =$('#queryAlimento');
+        inputText.focus();
+        inputText.keyup(function () {
+            var queryVal = inputText.val();
+            pesquisarAlimento(queryVal);
+        });
+        $('#addAlimento').click(function(){
+
+        });
+    };
 
     var pesquisarAlimento = function (query) {
         $.ajax({
@@ -127,6 +143,12 @@ $this->breadcrumbs = array(
             url: '<?php echo Yii::app()->createAbsoluteUrl("planosAlimentares/popularModal&query="); ?>' + query,
             success: function (data) {
                 $('#modalPesquisa div.modal-body div#modalPesquisaResultados').html(data);
+                $('#modalPesquisa div.modal-body div#modalPesquisaResultados tr').live('click', function() {
+                    $(this).siblings().find(':checkbox').prop('checked',false);
+                    $(this).siblings().removeClass('selected');
+                    $(this).addClass('selected');
+                    $(this).find(':checkbox').prop('checked', true);
+                });
             },
             error: function (data) { // if error occured
                 alert("Ocorreu um erro");
@@ -135,22 +157,12 @@ $this->breadcrumbs = array(
         });
     }
 
-    var attachModalListenner = function(){
-        console.log('attached listenner');
-        var inputText =$('#queryAlimento');
-        inputText.focus();
-        inputText.val(inputText.val());
-        inputText.keyup(function () {
-            var queryVal = inputText.val();
-            pesquisarAlimento(queryVal);
-           // console.log("a pesquisar", queryVal);
-        });
-    };
+    var limparModal = function(){
+        $('div#modalPesquisaResultados').empty();
+        $('#queryAlimento').val('');
+    }
 
     $(document).ready(function () {
-    //    pesquisarAlimento();
-
-
         var divLinhasRefeicao = null;
         var divLinhaHtml = null;
         var divProprio;
@@ -186,6 +198,7 @@ $this->breadcrumbs = array(
                 divLinhasRefeicao.find('input').val('');
             }
         });
+
 
     });
 
