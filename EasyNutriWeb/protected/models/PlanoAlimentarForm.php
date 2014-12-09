@@ -85,8 +85,17 @@ class PlanoAlimentarForm extends CFormModel
             array('pesoAtual,altura, pesoAcordado, neds, restricaoNeds','numerical'),
             array('restricaoNeds, utenteId,utenteNome, sexo,idade, doses, plano', 'safe'),
             array('plano', 'required', 'on'=>'step4'),
+            array('plano','planoValido', 'on'=>'step4' )
 
         );
+    }
+
+
+    public function planoValido($attribute,$params){
+        if(empty($attribute)){
+
+        }
+        $this->addError($attribute, 'teste');
     }
 
     /**
