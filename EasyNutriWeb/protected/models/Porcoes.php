@@ -1,33 +1,28 @@
 <?php
 
 /**
- * This is the model class for table "alimentos".
+ * This is the model class for table "porcoes".
  *
- * The followings are the available columns in table 'alimentos':
- * @property string $id
- * @property string $nome
- * @property double $kcal
- * @property double $agua
- * @property double $proteinas
- * @property double $lipidos
- * @property double $hidratos_carbono
- * @property double $acucares
- * @property double $fibras
- * @property string $unidade
+ * The followings are the available columns in table 'porcoes':
+ * @property string $descricao
+ * @property double $porcao
+ * @property string $id_alimento
+ * @property integer $id
+ * @property string $unidades
  *
  * The followings are the available model relations:
  * @property LinhasRefeicao[] $linhasRefeicaos
- * @property Porcoes[] $porcoes
+ * @property Alimentos $idAlimento
  * @property LinhasPlano[] $linhasPlanos
  */
-class Alimentos extends CActiveRecord
+class Porcoes extends CActiveRecord
 {
 	/**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
 	{
-		return 'alimentos';
+		return 'porcoes';
 	}
 
 	/**
@@ -38,12 +33,13 @@ class Alimentos extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id', 'required'),
-			array('kcal, agua, proteinas, lipidos, hidratos_carbono, acucares, fibras', 'numerical'),
-			array('id, nome, unidade', 'length', 'max'=>255),
+			array('descricao, porcao, id_alimento, unidades', 'required'),
+			array('porcao', 'numerical'),
+			array('descricao, id_alimento', 'length', 'max'=>255),
+			array('unidades', 'length', 'max'=>10),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, nome, kcal, agua, proteinas, lipidos, hidratos_carbono, acucares, fibras, unidade', 'safe', 'on'=>'search'),
+			array('descricao, porcao, id_alimento, id, unidades', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -55,9 +51,9 @@ class Alimentos extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'linhasRefeicaos' => array(self::HAS_MANY, 'LinhasRefeicao', 'alimento_id'),
-			'porcoes' => array(self::HAS_MANY, 'Porcoes', 'id_alimento'),
-			'linhasPlanos' => array(self::HAS_MANY, 'LinhasPlano', 'id_alimento'),
+			'linhasRefeicaos' => array(self::HAS_MANY, 'LinhasRefeicao', 'porcao_id'),
+			'idAlimento' => array(self::BELONGS_TO, 'Alimentos', 'id_alimento'),
+			'linhasPlanos' => array(self::HAS_MANY, 'LinhasPlano', 'id_porcao'),
 		);
 	}
 
@@ -67,16 +63,11 @@ class Alimentos extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
+			'descricao' => 'Descricao',
+			'porcao' => 'Porcao',
+			'id_alimento' => 'Id Alimento',
 			'id' => 'ID',
-			'nome' => 'Nome',
-			'kcal' => 'Kcal',
-			'agua' => 'Agua',
-			'proteinas' => 'Proteinas',
-			'lipidos' => 'Lipidos',
-			'hidratos_carbono' => 'Hidratos Carbono',
-			'acucares' => 'Acucares',
-			'fibras' => 'Fibras',
-			'unidade' => 'Unidade',
+			'unidades' => 'Unidades',
 		);
 	}
 
@@ -98,16 +89,11 @@ class Alimentos extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('id',$this->id,true);
-		$criteria->compare('nome',$this->nome,true);
-		$criteria->compare('kcal',$this->kcal);
-		$criteria->compare('agua',$this->agua);
-		$criteria->compare('proteinas',$this->proteinas);
-		$criteria->compare('lipidos',$this->lipidos);
-		$criteria->compare('hidratos_carbono',$this->hidratos_carbono);
-		$criteria->compare('acucares',$this->acucares);
-		$criteria->compare('fibras',$this->fibras);
-		$criteria->compare('unidade',$this->unidade,true);
+		$criteria->compare('descricao',$this->descricao,true);
+		$criteria->compare('porcao',$this->porcao);
+		$criteria->compare('id_alimento',$this->id_alimento,true);
+		$criteria->compare('id',$this->id);
+		$criteria->compare('unidades',$this->unidades,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -118,7 +104,7 @@ class Alimentos extends CActiveRecord
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
 	 * @param string $className active record class name.
-	 * @return Alimentos the static model class
+	 * @return Porcoes the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{

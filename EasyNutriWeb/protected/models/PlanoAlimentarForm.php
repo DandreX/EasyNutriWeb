@@ -73,6 +73,7 @@ class PlanoAlimentarForm extends CFormModel
     public $restricaoNeds;
 
     public $batatas = 'batata frita';
+    public $plano ;
     /**
      * Declares the validation rules.
      */
@@ -82,7 +83,8 @@ class PlanoAlimentarForm extends CFormModel
 
             array('actividade, pesoAtual,altura, pesoAcordado, neds', 'required'),
             array('pesoAtual,altura, pesoAcordado, neds, restricaoNeds','numerical'),
-            array('restricaoNeds, utenteId,utenteNome, sexo,idade, doses', 'safe'),
+            array('restricaoNeds, utenteId,utenteNome, sexo,idade, doses, plano', 'safe'),
+            array('plano', 'required', 'on'=>'step4'),
 
         );
     }

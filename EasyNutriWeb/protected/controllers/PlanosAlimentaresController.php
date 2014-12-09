@@ -59,12 +59,14 @@ class PlanosAlimentaresController extends Controller
         // Uncomment the following line if AJAX validation is needed
         // $this->performAjaxValidation($model);
         if (isset($_POST['PlanoAlimentarForm'])) {
-
+//            var_dump($_POST['PlanoAlimentarForm']);
+//            exit();
             $passoAtual = $_POST['passoAtual'];
             $irPara = $_POST['irPara'];
             ChromePhp::error("Post is set. PassoAtual:" . $passoAtual . " IrPara: " . $irPara);
             $model->setScenario("step" . $passoAtual);
             $model->attributes = $_POST['PlanoAlimentarForm'];
+
             if ($model->validate() || $irPara < $passoAtual) {
                 ChromePhp::log($model->getScenario() . "é valido");
                 $passoAtual = $irPara;
@@ -72,10 +74,6 @@ class PlanosAlimentaresController extends Controller
                 ChromePhp::log($model->getScenario() . "não valido");
             }
 
-//            if(isset($_POST['PlanoAlimentarForm']['alimentos'])){
-//                var_dump($_POST['PlanoAlimentarForm']['alimentos']);
-//                exit();
-//            }
 
             switch ($passoAtual) {
                 case 2:
@@ -115,12 +113,15 @@ class PlanosAlimentaresController extends Controller
                         $arrayAlimentos[$alim->id] = $alim->nome;
                     }
                     ChromePhp::log('a processar passo 4');
+
+
                     $this->render('create_step4', array(
                         'model' => $model,
                         'modelAlimentos' => $arrayAlimentos,
                         'refeicoes' => $refeicoes,
                     ));
                     return;
+
             }
 
         }
@@ -239,6 +240,35 @@ class PlanosAlimentaresController extends Controller
         ));
     }
 
+
+
+    /**
+     * Returns the data model based on the primary key given in the GET variable.
+     * If the data model is not found, an HTTP exception will be raised.
+     * @param integer $id the ID of the model to be loaded
+     * @return PlanosAlimentares the loaded model
+     * @throws CHttpException
+     */
+    public function loadModel($id)
+    {
+        $model = PlanosAlimentares::model()->findByPk($id);
+        if ($model === null)
+            throw new CHttpException(404, 'The requested page does not exist.');
+        return $model;
+    }
+
+    /**
+     * Performs the AJAX validation.
+     * @param PlanosAlimentares $model the model to be validated
+     */
+    protected function performAjaxValidation($model)
+    {
+        if (isset($_POST['ajax']) && $_POST['ajax'] === 'planos-alimentares-form') {
+            echo CActiveForm::validate($model);
+            Yii::app()->end();
+        }
+    }
+
     public function actionPopularModal($query)
     {
         $query = isset($query)?$query:'';
@@ -271,30 +301,20 @@ class PlanosAlimentaresController extends Controller
             ),false,false);
     }
 
-    /**
-     * Returns the data model based on the primary key given in the GET variable.
-     * If the data model is not found, an HTTP exception will be raised.
-     * @param integer $id the ID of the model to be loaded
-     * @return PlanosAlimentares the loaded model
-     * @throws CHttpException
-     */
-    public function loadModel($id)
-    {
-        $model = PlanosAlimentares::model()->findByPk($id);
-        if ($model === null)
-            throw new CHttpException(404, 'The requested page does not exist.');
-        return $model;
+    public function actionAddAlimento($idAlimento,$idRefeicao){
+        $alimento = Alimentos::model()->findByPk($idAlimento);
+        $porcoes = $alimento->porcoes;
+        $this->renderPartial('_linha_plano',array(
+            'alimento'=>$alimento,
+            'idRefeicao'=>$idRefeicao,
+            'porcoes'=>$porcoes,
+        ),false,true);
+
     }
 
-    /**
-     * Performs the AJAX validation.
-     * @param PlanosAlimentares $model the model to be validated
-     */
-    protected function performAjaxValidation($model)
-    {
-        if (isset($_POST['ajax']) && $_POST['ajax'] === 'planos-alimentares-form') {
-            echo CActiveForm::validate($model);
-            Yii::app()->end();
-        }
+    public function actionAddLinhaVazia($idRefeicao){
+        $this->renderPartial('_linha_plano_vazia',array(
+            'idRefeicao'=>$idRefeicao,
+        ),false,true);
     }
 }

@@ -4,6 +4,7 @@
 ?>
 
 <?php $this->widget('bootstrap.widgets.TbGridView', array(
+    'id'=>'tabelaPesquisa',
     'dataProvider' => $model,
     'enableSorting' => false,
     'columns' => array(
