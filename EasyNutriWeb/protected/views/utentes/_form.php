@@ -7,6 +7,22 @@
 $naoEditavel = $model->getScenario() == 'view';
 ?>
 
+<?php  if($naoEditavel): ?>
+    <?php
+    $form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
+        'layout' => TbHtml::FORM_LAYOUT_INLINE,
+        'action' => Yii::app()->createUrl("utentes/update&id=" . $model->id),
+    ));
+
+    echo TbHtml::formActions(array(
+        TbHtml::submitButton('Editar Dados Pessoais', array('color' => TbHtml::BUTTON_COLOR_PRIMARY)),
+    ));
+
+    $this->endWidget();
+    ?>
+
+<?php endif ?>
+
 <div id="formUtentes">
 
     <?php $form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(

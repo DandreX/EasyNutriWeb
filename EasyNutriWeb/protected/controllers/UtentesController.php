@@ -70,6 +70,7 @@ class UtentesController extends Controller
         $datasDiarioAlimentar[strlen($datasDiarioAlimentar)-1]="]";
 
 
+         $modelFichaClinica = FichaClinica::model()->findByAttributes(array('idUtente' => $id));
 
 
 
@@ -104,6 +105,7 @@ class UtentesController extends Controller
             'dpNotificacoes' => $dpNotificacoes,
             'dpDadosAntro' => $dpDadosAntro,
             'dataDiario' => $datasDiarioAlimentar,
+            'modelFichaClinica' => $modelFichaClinica,
         ));
     }
 

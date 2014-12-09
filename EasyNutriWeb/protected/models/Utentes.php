@@ -22,7 +22,11 @@
  * The followings are the available model relations:
  * @property DadosAntro[] $dadosAntros
  * @property DiarioAlimentar[] $diarioAlimentars
+ * @property Notificacoes[] $notificacoes
  * @property Users $medico
+ * * @property PlanosAlimentares[] $planosAlimentares
+ * @property FichaClinica[] $fichaClinicas
+ * @property HabitosAlimentares[] $habitosAlimentares
  */
 class Utentes extends CActiveRecord
 {
@@ -84,6 +88,8 @@ class Utentes extends CActiveRecord
             'dadosAntros' => array(self::HAS_MANY, 'DadosAntro', 'utente_id'),
             'diarioAlimentars' => array(self::HAS_MANY, 'DiarioAlimentar', 'user_id'),
             'medico' => array(self::BELONGS_TO, 'Users', 'medico_id'),
+            'fichaClinicas' => array(self::HAS_MANY, 'FichaClinica', 'idUtente'),
+            'habitosAlimentares' => array(self::HAS_MANY, 'HabitosAlimentares', 'idUtente'),
         );
     }
 

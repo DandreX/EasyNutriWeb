@@ -193,3 +193,53 @@ div #formUtentes #formNomeUtente{
 #ultimaLinhaDistNed{
     border: 0px !important;
 }
+
+div #formFichaClinica label {
+    font-weight: bold;
+    font-size: 0.9em;
+    display: block;
+}
+
+div #formFichaClinica .row {
+    float: left;
+    width: 400px;
+    margin: 0px;
+    display: inline-block;
+    margin-left: 30px;
+}
+
+
+div #formFichaClinica .dadosFichaClinica{
+    float: left;
+    width: 400px;
+    margin: 0px;
+    margin-left: 30px;
+    display: block;
+}
+
+div #formFichaClinica .dadosFichaClinica .control-label{
+    display: block;
+    width: 350px;
+    text-align: center;
+    margin-left: 40px;
+}
+div #formFichaClinica .dadosFichaClinica .controls{
+    margin-left: 0px !important;
+}
+
+div #formFichaClinica .dadosFichaClinica textarea{
+margin-left: 40px;
+width: 350px !important;
+}
+.btnFormsViewUtentes{
+    height: 20px;
+}
+
+.btnFormsViewUtentes button{
+    float: right;
+   margin-bottom: 10px;
+}
+
+#btnEnviarNotificacao{
+    float: right;
+}

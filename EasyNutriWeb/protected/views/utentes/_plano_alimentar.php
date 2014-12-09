@@ -14,3 +14,8 @@
 <?php $this->endWidget(); ?>
 
 <p>Este utente ainda não tem nenhum plano alimentar</p>
+
+<script type="text/javascript">
+    $('.form-actions').addClass('btnFormsViewUtentes');
+    $('.form-actions').removeClass('form-actions');
+</script>

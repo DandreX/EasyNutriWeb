@@ -12,6 +12,28 @@ $this->menu = array(
 );
 
 ?>
+<?php echo TbHtml::button('Enviar notificação', array(
+    'id' =>'btnEnviarNotificacao',
+    'color' => TbHtml::BUTTON_COLOR_PRIMARY,
+    'size' => TbHtml::BUTTON_SIZE_DEFAULT,
+    'data-toggle' => 'modal',
+    'data-target' => '#ModalNotificacao',
+)); ?>
+<?php $this->widget('bootstrap.widgets.TbModal', array(
+    'id' => 'ModalNotificacao',
+    'header' => 'Nova Notificação',
+    'content' => '',
+    'footer' => array(
+        TbHtml::button('Enviar Notificação',
+            array('id' => 'btnCreate',
+                'data-dismiss' => 'modal',
+                'color' => TbHtml::BUTTON_COLOR_PRIMARY)),
+        TbHtml::button('Cancelar', array(
+            'id' => 'btnCancelar',
+            'color' => TbHtml::BUTTON_COLOR_DANGER,
+            'data-dismiss' => 'modal')),
+    ),
+)); ?>
 
 <h2><?php echo $model->nome;?></h2>
 
@@ -20,6 +42,12 @@ $this->menu = array(
             array('model' => $model
             ),
             true)),
+    array('label' => 'Ficha Clínica', 'content' => $this->renderPartial('_ficha_clinica',
+            array('model' => $model,
+                'modelFichaClinica' => $modelFichaClinica,
+            ),
+
+            true)),
     array('label' => 'Diário Alimentar', 'content' => $this->renderPartial('_diario_alimentar_utentes',
             array('model' => $model,
                 'dataProvider' => $dataProvider,
@@ -27,10 +55,12 @@ $this->menu = array(
             ),
             true)),
     array('label' => 'Plano Alimentar', 'content' => $this->renderPartial('_plano_alimentar',
-        array('model' => $model,
+            array('model' => $model,
 
-        ),
-        true)),
+            ),
+
+            true)),
+
     array('label' => 'Dados Antro.', 'content' => $this->renderPartial('_dados_antro',array(
             'dpDadosAntro'=>$dpDadosAntro,
             'model'=>$model,
@@ -42,5 +72,3 @@ $this->menu = array(
             true)),
 
 ))?>
-
-

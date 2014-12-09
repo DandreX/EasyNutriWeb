@@ -3,6 +3,17 @@
 
 ?>
 <!---->
+
+<?php $form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
+    'layout' => TbHtml::FORM_LAYOUT_INLINE,
+    'action'=>Yii::app()->createUrl("notificacoes/admin"),
+)); ?>
+<?php echo TbHtml::formActions(array(
+    TbHtml::submitButton('Todas as notificações', array('color' => TbHtml::BUTTON_COLOR_PRIMARY)),
+)); ?>
+
+<?php $this->endWidget(); ?>
+
 <?php $this->widget('bootstrap.widgets.TbGridView', array(
     'type' => TbHtml::GRID_TYPE_HOVER,
     'dataProvider' => $dpNotificacoes,
@@ -33,3 +44,8 @@
         ),
     ),
 )); ?>
+
+<script type="text/javascript">
+    $('.form-actions').addClass('btnFormsViewUtentes');
+    $('.form-actions').removeClass('form-actions');
+</script>

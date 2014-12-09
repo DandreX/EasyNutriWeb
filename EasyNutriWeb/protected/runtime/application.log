@@ -14835,3 +14835,363 @@ Stack trace:
 REQUEST_URI=/easynutriweb/index.php?r=planosalimentares/create
 HTTP_REFERER=http://localhost/easynutriweb/index.php?r=planosalimentares/create
 ---
+2014/12/09 15:41:59 [error] [php] Undefined variable: naoEditavel (C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\EasyNutriWeb\protected\views\fichaClinica\_form.php:14)
+Stack trace:
+#0 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CController.php(869): FichaClinicaController->renderFile()
+#1 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\EasyNutriWeb\protected\views\fichaClinica\create.php(18): FichaClinicaController->renderPartial()
+#2 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CBaseController.php(126): require()
+#3 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CBaseController.php(95): FichaClinicaController->renderInternal()
+#4 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CController.php(869): FichaClinicaController->renderFile()
+#5 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CController.php(782): FichaClinicaController->renderPartial()
+#6 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\EasyNutriWeb\protected\controllers\FichaClinicaController.php(79): FichaClinicaController->render()
+#7 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\actions\CInlineAction.php(49): FichaClinicaController->actionCreate()
+#8 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CController.php(308): CInlineAction->runWithParams()
+#9 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\filters\CFilterChain.php(133): FichaClinicaController->runAction()
+#10 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#11 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#12 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\filters\CInlineFilter.php(58): FichaClinicaController->filterAccessControl()
+#13 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#14 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CController.php(291): CFilterChain->run()
+#15 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CController.php(265): FichaClinicaController->runActionWithFilters()
+#16 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CWebApplication.php(282): FichaClinicaController->run()
+#17 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#18 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#19 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\EasyNutriWeb\index.php(13): CWebApplication->run()
+REQUEST_URI=/easynutri/index.php?r=fichaClinica/create
+in C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\EasyNutriWeb\protected\views\fichaClinica\_form.php (14)
+in C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\EasyNutriWeb\protected\views\fichaClinica\create.php (18)
+in C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\EasyNutriWeb\protected\controllers\FichaClinicaController.php (79)
+2014/12/09 16:21:55 [error] [exception.CHttpException.400] exception 'CHttpException' with message 'Your request is invalid.' in C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CController.php:336
+Stack trace:
+#0 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CController.php(309): CController->invalidActionParams(Object(CInlineAction))
+#1 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#2 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#3 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#4 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#5 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#6 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CController.php(291): CFilterChain->run()
+#7 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CWebApplication.php(282): CController->run('create')
+#9 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CWebApplication.php(141): CWebApplication->runController('fichaClinica/cr...')
+#10 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#11 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\EasyNutriWeb\index.php(13): CApplication->run()
+#12 {main}
+REQUEST_URI=/easynutri/index.php?r=fichaClinica/create
+HTTP_REFERER=http://localhost/easynutri/index.php?r=utentes/view&id=2
+---
+2014/12/09 16:22:39 [error] [exception.CHttpException.400] exception 'CHttpException' with message 'Your request is invalid.' in C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CController.php:336
+Stack trace:
+#0 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CController.php(309): CController->invalidActionParams(Object(CInlineAction))
+#1 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#2 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#3 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#4 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#5 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#6 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CController.php(291): CFilterChain->run()
+#7 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CWebApplication.php(282): CController->run('create')
+#9 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CWebApplication.php(141): CWebApplication->runController('fichaClinica/cr...')
+#10 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#11 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\EasyNutriWeb\index.php(13): CApplication->run()
+#12 {main}
+REQUEST_URI=/easynutri/index.php?r=fichaClinica/create
+HTTP_REFERER=http://localhost/easynutri/index.php?r=utentes/view&id=2
+---
+2014/12/09 16:23:20 [error] [exception.CHttpException.400] exception 'CHttpException' with message 'Your request is invalid.' in C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CController.php:336
+Stack trace:
+#0 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CController.php(309): CController->invalidActionParams(Object(CInlineAction))
+#1 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#2 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#3 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#4 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#5 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#6 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CController.php(291): CFilterChain->run()
+#7 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CWebApplication.php(282): CController->run('create')
+#9 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CWebApplication.php(141): CWebApplication->runController('fichaClinica/cr...')
+#10 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#11 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\EasyNutriWeb\index.php(13): CApplication->run()
+#12 {main}
+REQUEST_URI=/easynutri/index.php?r=fichaClinica/create
+HTTP_REFERER=http://localhost/easynutri/index.php?r=utentes/view&id=2
+---
+2014/12/09 16:25:05 [error] [exception.CHttpException.400] exception 'CHttpException' with message 'Your request is invalid.' in C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CController.php:336
+Stack trace:
+#0 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CController.php(309): CController->invalidActionParams(Object(CInlineAction))
+#1 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#2 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#3 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#4 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#5 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#6 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CController.php(291): CFilterChain->run()
+#7 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CWebApplication.php(282): CController->run('create')
+#9 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CWebApplication.php(141): CWebApplication->runController('fichaClinica/cr...')
+#10 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#11 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\EasyNutriWeb\index.php(13): CApplication->run()
+#12 {main}
+REQUEST_URI=/easynutri/index.php?r=fichaClinica/create
+HTTP_REFERER=http://localhost/easynutri/index.php?r=utentes/view&id=2
+---
+2014/12/09 16:33:37 [error] [exception.CException] exception 'CException' with message 'UtentesController cannot find the requested view "fichaClinica/update".' in C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CController.php:878
+Stack trace:
+#0 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\EasyNutriWeb\protected\views\utentes\_ficha_clinica.php(18): CController->renderPartial('fichaClinica/up...', Array)
+#1 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CBaseController.php(126): require('C:\Users\Sofia ...')
+#2 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CBaseController.php(95): CBaseController->renderInternal('C:\Users\Sofia ...', Array, true)
+#3 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CController.php(869): CBaseController->renderFile('C:\Users\Sofia ...', Array, true)
+#4 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\EasyNutriWeb\protected\views\utentes\view.php(40): CController->renderPartial('_ficha_clinica', Array, true)
+#5 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CBaseController.php(126): require('C:\Users\Sofia ...')
+#6 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CBaseController.php(95): CBaseController->renderInternal('C:\Users\Sofia ...', Array, true)
+#7 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CController.php(869): CBaseController->renderFile('C:\Users\Sofia ...', Array, true)
+#8 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CController.php(782): CController->renderPartial('view', Array, true)
+#9 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\EasyNutriWeb\protected\controllers\UtentesController.php(107): CController->render('view', Array)
+#10 [internal function]: UtentesController->actionView('2')
+#11 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs(Object(UtentesController), Array)
+#12 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\actions\CInlineAction.php(47): CAction->runWithParamsInternal(Object(UtentesController), Object(ReflectionMethod), Array)
+#13 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#14 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#15 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#16 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#17 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#18 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#19 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CController.php(291): CFilterChain->run()
+#20 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#21 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CWebApplication.php(282): CController->run('view')
+#22 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CWebApplication.php(141): CWebApplication->runController('utentes/view')
+#23 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#24 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\EasyNutriWeb\index.php(13): CApplication->run()
+#25 {main}
+REQUEST_URI=/easynutri/index.php?r=utentes/view&id=2
+HTTP_REFERER=http://localhost/easynutri/index.php?r=utentes/admin
+---
+2014/12/09 16:35:57 [error] [exception.CException] exception 'CException' with message 'UtentesController cannot find the requested view "/easynutri/index.php?r=fichaClinica/update&idUtente=2".' in C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CController.php:878
+Stack trace:
+#0 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\EasyNutriWeb\protected\views\utentes\_ficha_clinica.php(18): CController->renderPartial('/easynutri/inde...', Array)
+#1 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CBaseController.php(126): require('C:\Users\Sofia ...')
+#2 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CBaseController.php(95): CBaseController->renderInternal('C:\Users\Sofia ...', Array, true)
+#3 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CController.php(869): CBaseController->renderFile('C:\Users\Sofia ...', Array, true)
+#4 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\EasyNutriWeb\protected\views\utentes\view.php(40): CController->renderPartial('_ficha_clinica', Array, true)
+#5 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CBaseController.php(126): require('C:\Users\Sofia ...')
+#6 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CBaseController.php(95): CBaseController->renderInternal('C:\Users\Sofia ...', Array, true)
+#7 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CController.php(869): CBaseController->renderFile('C:\Users\Sofia ...', Array, true)
+#8 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CController.php(782): CController->renderPartial('view', Array, true)
+#9 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\EasyNutriWeb\protected\controllers\UtentesController.php(107): CController->render('view', Array)
+#10 [internal function]: UtentesController->actionView('2')
+#11 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs(Object(UtentesController), Array)
+#12 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\actions\CInlineAction.php(47): CAction->runWithParamsInternal(Object(UtentesController), Object(ReflectionMethod), Array)
+#13 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#14 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#15 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#16 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#17 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#18 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#19 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CController.php(291): CFilterChain->run()
+#20 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#21 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CWebApplication.php(282): CController->run('view')
+#22 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CWebApplication.php(141): CWebApplication->runController('utentes/view')
+#23 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#24 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\EasyNutriWeb\index.php(13): CApplication->run()
+#25 {main}
+REQUEST_URI=/easynutri/index.php?r=utentes/view&id=2
+HTTP_REFERER=http://localhost/easynutri/index.php?r=utentes/admin
+---
+2014/12/09 17:02:41 [error] [exception.CException] exception 'CException' with message 'Property "FichaClinica.nome" is not defined.' in C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\base\CComponent.php:130
+Stack trace:
+#0 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\db\ar\CActiveRecord.php(145): CComponent->__get('nome')
+#1 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\helpers\CHtml.php(2529): CActiveRecord->__get('nome')
+#2 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\helpers\CHtml.php(2252): CHtml::resolveValue(Object(FichaClinica), 'nome')
+#3 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\EasyNutriWeb\protected\extensions\bootstrap\helpers\TbHtml.php(2255): CHtml::activeInputField('text', Object(FichaClinica), 'nome', Array)
+#4 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\EasyNutriWeb\protected\extensions\bootstrap\helpers\TbHtml.php(1498): TbHtml::activeTextInputField('text', Object(FichaClinica), 'nome', Array)
+#5 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\EasyNutriWeb\protected\extensions\bootstrap\helpers\TbHtml.php(2148): TbHtml::activeTextField(Object(FichaClinica), 'nome', Array)
+#6 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\EasyNutriWeb\protected\extensions\bootstrap\helpers\TbHtml.php(2104): TbHtml::createActiveInput('textField', Object(FichaClinica), 'nome', Array, Array)
+#7 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\EasyNutriWeb\protected\extensions\bootstrap\widgets\TbActiveForm.php(705): TbHtml::activeControlGroup('textField', Object(FichaClinica), 'nome', Array, Array)
+#8 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\EasyNutriWeb\protected\extensions\bootstrap\widgets\TbActiveForm.php(447): TbActiveForm->createControlGroup('textField', Object(FichaClinica), 'nome', Array)
+#9 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\EasyNutriWeb\protected\views\utentes\_form.php(25): TbActiveForm->textFieldControlGroup(Object(FichaClinica), 'nome', Array)
+#10 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CBaseController.php(126): require('C:\Users\Sofia ...')
+#11 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CBaseController.php(95): CBaseController->renderInternal('C:\Users\Sofia ...', Array, true)
+#12 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CController.php(869): CBaseController->renderFile('C:\Users\Sofia ...', Array, true)
+#13 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\EasyNutriWeb\protected\views\utentes\_ficha_clinica.php(21): CController->renderPartial('_form', Array)
+#14 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CBaseController.php(126): require('C:\Users\Sofia ...')
+#15 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CBaseController.php(95): CBaseController->renderInternal('C:\Users\Sofia ...', Array, true)
+#16 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CController.php(869): CBaseController->renderFile('C:\Users\Sofia ...', Array, true)
+#17 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\EasyNutriWeb\protected\views\utentes\view.php(40): CController->renderPartial('_ficha_clinica', Array, true)
+#18 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CBaseController.php(126): require('C:\Users\Sofia ...')
+#19 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CBaseController.php(95): CBaseController->renderInternal('C:\Users\Sofia ...', Array, true)
+#20 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CController.php(869): CBaseController->renderFile('C:\Users\Sofia ...', Array, true)
+#21 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CController.php(782): CController->renderPartial('view', Array, true)
+#22 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\EasyNutriWeb\protected\controllers\UtentesController.php(109): CController->render('view', Array)
+#23 [internal function]: UtentesController->actionView('2')
+#24 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs(Object(UtentesController), Array)
+#25 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\actions\CInlineAction.php(47): CAction->runWithParamsInternal(Object(UtentesController), Object(ReflectionMethod), Array)
+#26 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#27 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#28 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#29 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#30 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#31 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#32 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CController.php(291): CFilterChain->run()
+#33 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#34 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CWebApplication.php(282): CController->run('view')
+#35 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CWebApplication.php(141): CWebApplication->runController('utentes/view')
+#36 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#37 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\EasyNutriWeb\index.php(13): CApplication->run()
+#38 {main}
+REQUEST_URI=/easynutri/index.php?r=utentes/view&id=2
+HTTP_REFERER=http://localhost/easynutri/index.php?r=utentes/admin
+---
+2014/12/09 17:07:52 [error] [exception.CException] exception 'CException' with message 'UtentesController contains improperly nested widget tags in its view "C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\EasyNutriWeb\protected\views\utentes\_ficha_clinica.php". A TbActiveForm widget does not have an endWidget() call.' in C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CBaseController.php:101
+Stack trace:
+#0 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CController.php(869): CBaseController->renderFile('C:\Users\Sofia ...', Array, true)
+#1 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\EasyNutriWeb\protected\views\utentes\view.php(40): CController->renderPartial('_ficha_clinica', Array, true)
+#2 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CBaseController.php(126): require('C:\Users\Sofia ...')
+#3 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CBaseController.php(95): CBaseController->renderInternal('C:\Users\Sofia ...', Array, true)
+#4 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CController.php(869): CBaseController->renderFile('C:\Users\Sofia ...', Array, true)
+#5 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CController.php(782): CController->renderPartial('view', Array, true)
+#6 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\EasyNutriWeb\protected\controllers\UtentesController.php(109): CController->render('view', Array)
+#7 [internal function]: UtentesController->actionView('2')
+#8 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs(Object(UtentesController), Array)
+#9 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\actions\CInlineAction.php(47): CAction->runWithParamsInternal(Object(UtentesController), Object(ReflectionMethod), Array)
+#10 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#11 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#12 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#13 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#14 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#15 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#16 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CController.php(291): CFilterChain->run()
+#17 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#18 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CWebApplication.php(282): CController->run('view')
+#19 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CWebApplication.php(141): CWebApplication->runController('utentes/view')
+#20 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#21 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\EasyNutriWeb\index.php(13): CApplication->run()
+#22 {main}
+REQUEST_URI=/easynutri/index.php?r=utentes/view&id=2
+HTTP_REFERER=http://localhost/easynutri/index.php?r=utentes/admin
+---
+2014/12/09 17:09:42 [error] [exception.CHttpException.400] exception 'CHttpException' with message 'Your request is invalid.' in C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CController.php:336
+Stack trace:
+#0 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CController.php(309): CController->invalidActionParams(Object(CInlineAction))
+#1 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#2 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#3 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#4 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#5 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#6 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CController.php(291): CFilterChain->run()
+#7 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CWebApplication.php(282): CController->run('update')
+#9 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CWebApplication.php(141): CWebApplication->runController('fichaClinica/up...')
+#10 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#11 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\EasyNutriWeb\index.php(13): CApplication->run()
+#12 {main}
+REQUEST_URI=/easynutri/index.php?r=fichaClinica/update&idUtente=2
+HTTP_REFERER=http://localhost/easynutri/index.php?r=utentes/view&id=2
+---
+2014/12/09 17:11:39 [error] [exception.CHttpException.400] exception 'CHttpException' with message 'Your request is invalid.' in C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CController.php:336
+Stack trace:
+#0 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CController.php(309): CController->invalidActionParams(Object(CInlineAction))
+#1 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#2 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#3 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#4 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#5 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#6 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CController.php(291): CFilterChain->run()
+#7 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CWebApplication.php(282): CController->run('update')
+#9 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CWebApplication.php(141): CWebApplication->runController('fichaClinica/up...')
+#10 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#11 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\EasyNutriWeb\index.php(13): CApplication->run()
+#12 {main}
+REQUEST_URI=/easynutri/index.php?r=fichaClinica/update&idUtente=1
+HTTP_REFERER=http://localhost/easynutri/index.php?r=utentes/view&id=2
+---
+2014/12/09 18:15:18 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "utentesController/view".' in C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CWebApplication.php(141): CWebApplication->runController('utentesControll...')
+#1 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\EasyNutriWeb\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/easynutri/index.php?r=utentesController/view&id=1
+HTTP_REFERER=http://localhost/easynutri/index.php?r=fichaClinica/update&id=1
+---
+2014/12/09 18:15:58 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "utentesController/view".' in C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CWebApplication.php(141): CWebApplication->runController('utentesControll...')
+#1 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\EasyNutriWeb\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/easynutri/index.php?r=utentesController/view&id=1
+HTTP_REFERER=http://localhost/easynutri/index.php?r=fichaClinica/update&id=1
+---
+2014/12/09 18:23:57 [error] [exception.CException] exception 'CException' with message 'UtentesController contains improperly nested widget tags in its view "C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\EasyNutriWeb\protected\views\utentes\_form.php". A TbActiveForm widget does not have an endWidget() call.' in C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CBaseController.php:101
+Stack trace:
+#0 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CController.php(869): CBaseController->renderFile('C:\Users\Sofia ...', Array, true)
+#1 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\EasyNutriWeb\protected\views\utentes\view.php(22): CController->renderPartial('_form', Array, true)
+#2 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CBaseController.php(126): require('C:\Users\Sofia ...')
+#3 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CBaseController.php(95): CBaseController->renderInternal('C:\Users\Sofia ...', Array, true)
+#4 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CController.php(869): CBaseController->renderFile('C:\Users\Sofia ...', Array, true)
+#5 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CController.php(782): CController->renderPartial('view', Array, true)
+#6 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\EasyNutriWeb\protected\controllers\UtentesController.php(109): CController->render('view', Array)
+#7 [internal function]: UtentesController->actionView('2')
+#8 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs(Object(UtentesController), Array)
+#9 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\actions\CInlineAction.php(47): CAction->runWithParamsInternal(Object(UtentesController), Object(ReflectionMethod), Array)
+#10 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#11 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#12 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#13 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#14 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#15 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#16 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CController.php(291): CFilterChain->run()
+#17 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#18 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CWebApplication.php(282): CController->run('view')
+#19 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CWebApplication.php(141): CWebApplication->runController('utentes/view')
+#20 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#21 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\EasyNutriWeb\index.php(13): CApplication->run()
+#22 {main}
+REQUEST_URI=/easynutri/index.php?r=utentes/view&id=2
+HTTP_REFERER=http://localhost/easynutri/index.php?r=utentes/admin
+---
+2014/12/09 18:27:40 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "update".' in C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CWebApplication.php(141): CWebApplication->runController('update')
+#1 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\EasyNutriWeb\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/easynutri/index.php?r=update&id=2
+HTTP_REFERER=http://localhost/easynutri/index.php?r=utentes/view&id=2
+---
+2014/12/09 18:28:16 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "update".' in C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CWebApplication.php(141): CWebApplication->runController('update')
+#1 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\EasyNutriWeb\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/easynutri/index.php?r=update&id=2
+HTTP_REFERER=http://localhost/easynutri/index.php?r=utentes/view&id=2
+---
+2014/12/09 18:48:02 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[23000]: [Microsoft][SQL Server Native Client 11.0][SQL Server]The DELETE statement conflicted with the REFERENCE constraint "FK_dadosAntro_utentesID". The conflict occurred in database "EasyNutriDB", table "dbo.dados_antro", column 'utente_id'.. The SQL statement executed was: DELETE FROM [dbo].[utentes] WHERE [dbo].[utentes].[id]=4.
+in C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\EasyNutriWeb\protected\controllers\UtentesController.php (182)
+in C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\EasyNutriWeb\index.php (13)
+2014/12/09 18:48:02 [error] [exception.CHttpException.500] exception 'CHttpException' with message '
+Impossivel apagar utente' in C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\EasyNutriWeb\protected\controllers\UtentesController.php:184
+Stack trace:
+#0 [internal function]: UtentesController->actionDelete('4')
+#1 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs(Object(UtentesController), Array)
+#2 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\actions\CInlineAction.php(47): CAction->runWithParamsInternal(Object(UtentesController), Object(ReflectionMethod), Array)
+#3 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#5 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CController.php(1116): CFilterChain->run()
+#6 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\filters\CInlineFilter.php(58): CController->filterPostOnly(Object(CFilterChain))
+#7 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#8 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#9 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#10 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#11 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#12 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CController.php(291): CFilterChain->run()
+#13 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#14 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CWebApplication.php(282): CController->run('delete')
+#15 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CWebApplication.php(141): CWebApplication->runController('utentes/delete')
+#16 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#17 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\EasyNutriWeb\index.php(13): CApplication->run()
+#18 {main}
+REQUEST_URI=/easynutri/index.php?ajax=utentes-grid&id=4&r=utentes%2Fdelete
+HTTP_REFERER=http://localhost/easynutri/index.php?r=utentes/admin
+---

@@ -33,27 +33,7 @@ $this->widget('zii.widgets.jui.CJuiDatePicker', array(
 
 
 
-<?php echo TbHtml::button('Enviar notificação', array(
-    'color' => TbHtml::BUTTON_COLOR_PRIMARY,
-    'size' => TbHtml::BUTTON_SIZE_DEFAULT,
-    'data-toggle' => 'modal',
-    'data-target' => '#ModalNotificacao',
-)); ?>
-<?php $this->widget('bootstrap.widgets.TbModal', array(
-    'id' => 'ModalNotificacao',
-    'header' => 'Nova Notificação',
-    'content' => '',
-    'footer' => array(
-        TbHtml::button('Enviar Notificação',
-            array('id' => 'btnCreate',
-                'data-dismiss' => 'modal',
-                'color' => TbHtml::BUTTON_COLOR_PRIMARY)),
-        TbHtml::button('Cancelar', array(
-            'id' => 'btnCancelar',
-            'color' => TbHtml::BUTTON_COLOR_DANGER,
-            'data-dismiss' => 'modal')),
-    ),
-)); ?>
+
 <script type="text/javascript" id="modalButtons">
     $('#btnCreate').click(function () {
         var data = $("#notificacoes-form").serialize() + '&idUtente=' + '<?php echo($model->id) ?>';

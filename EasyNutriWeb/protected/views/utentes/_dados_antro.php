@@ -2,7 +2,19 @@
 /* var $dpDadosAntro CActiveDataProvider VResumosAntro*/
 /* var $model Utente*/
 ?>
+
+<?php $form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
+    'layout' => TbHtml::FORM_LAYOUT_INLINE,
+    'action'=>Yii::app()->createUrl("dadosAntro/admin"),
+)); ?>
+<?php echo TbHtml::formActions(array(
+    TbHtml::submitButton('Todos os dados antropométricos', array('color' => TbHtml::BUTTON_COLOR_PRIMARY)),
+)); ?>
+
+<?php $this->endWidget(); ?>
+
 <h4>Últimos Dados Antropométricos</h4>
+
 <?php $this->widget('ext.groupgridview.BootGroupGridView', array(
     'id' => 'dados-antro-grid',
     'type' => TbHtml::GRID_TYPE_BORDERED,
@@ -71,4 +83,9 @@
             getGraphs('<?php echo(DadosAntro::$TODOS);?>');
         }
     );
+</script>
+
+<script type="text/javascript">
+    $('.form-actions').addClass('btnFormsViewUtentes');
+    $('.form-actions').removeClass('form-actions');
 </script>
