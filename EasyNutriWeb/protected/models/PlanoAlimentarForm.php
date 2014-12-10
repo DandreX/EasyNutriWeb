@@ -86,7 +86,8 @@ class PlanoAlimentarForm extends CFormModel
 
             array('actividade, pesoAtual,altura, pesoAcordado, neds', 'required'),
             array('pesoAtual,altura, pesoAcordado, neds, restricaoNeds', 'numerical'),
-            array('restricaoNeds, utenteId,utenteNome, sexo,idade, doses, plano', 'safe'),
+            array('restricaoNeds, utenteId,utenteNome,
+             sexo,idade, doses, plano, prescricao,verEquivalencias, horasRefeicao', 'safe'),
             array('plano', 'required', 'on' => 'step4'),
             array('plano', 'planoValido', 'on' => 'step4')
 
@@ -204,7 +205,8 @@ class PlanoAlimentarForm extends CFormModel
             'pesoAtual' => 'Peso Atual',
             'altura' => 'Altura',
             'pesoAcordado' => 'Peso Acordado',
-            'restricaoNeds' => 'Restrição Energética'
+            'restricaoNeds' => 'Restrição Energética',
+            'prescricao'=>'Prescrição',
         );
     }
 

@@ -18,9 +18,9 @@ $this->breadcrumbs = array(
 
 <h4>Utente: <?php echo($model->utenteNome) ?></h4>
 <h3>Plano Alimentar</h3>
-<?php if(!empty($model->errors["plano"])):?>
-    <?php echo TbHtml::alert(TbHtml::ALERT_COLOR_ERROR, implode('<br>',$model->errors["plano"])); ?>
-<?php endif;?>
+<?php if (!empty($model->errors["plano"])): ?>
+    <?php echo TbHtml::alert(TbHtml::ALERT_COLOR_ERROR, implode('<br>', $model->errors["plano"])); ?>
+<?php endif; ?>
 <div id="formPlanoStep3">
     <!--    --><?php //$form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
     //        'layout' => TbHtml::FORM_LAYOUT_HORIZONTAL,
@@ -75,18 +75,7 @@ $this->breadcrumbs = array(
                 <br>
 
                 <div class="linhasRefeicao">
-<!--                    <div class="linhaPlano">-->
-<!--                        --><?php //echo TbHtml::textField('PlanoAlimentarForm[plano][' . $refeicao->id . '][][quant]', ''); ?>
-<!--                        --><?php //echo TbHtml::textField('PlanoAlimentarForm[plano][' . $refeicao->id . '][][unidade]', ''); ?>
-<!--                        --><?php //echo TbHtml::textField('PlanoAlimentarForm[plano][' . $refeicao->id . '][][alimento]', ''); ?>
-<!---->
-<!--                        --><?php //echo TbHtml::button('x',
-//                            array(
-//                                'class' => 'btnApagarLinha',
-//                                'color' => TbHtml::BUTTON_COLOR_DANGER,
-//                            )); ?>
-<!--                        <br>-->
-<!--                    </div>-->
+                    <!--                linha de refeicao é injetada aqui com AJAX-->
                 </div>
                 <?php echo TbHtml::button('+',
                     array(
@@ -103,6 +92,15 @@ $this->breadcrumbs = array(
 
             </div>
         <?php endforeach; ?>
+        <br>
+
+    </div>
+    <div>
+
+        <p>Prescrição Diatetica / Notas</p>
+        <?php echo TbHtml::textArea('PlanoAlimentarForm[prescricao]', '', array('rows' => 5)); ?>
+        <?php echo TbHtml::checkBox('PlanoAlimentarForm[verEquivalencias]', true, array(
+            'label' => 'Permitir acesso à tabela de equivalencias')); ?>
 
     </div>
 
@@ -179,12 +177,12 @@ $this->breadcrumbs = array(
         var divLinhaHtml = null;
         var divProprio;
         var linhas = {
-            1:0,
-            2:0,
-            3:0,
-            4:0,
-            5:0,
-            6:0
+            1: 0,
+            2: 0,
+            3: 0,
+            4: 0,
+            5: 0,
+            6: 0
         }
         //guardar div que foram clicados
         $('.btnAbrirModal, .btnAddLinha').click(function () {
@@ -204,7 +202,7 @@ $this->breadcrumbs = array(
                 $.ajax({
                     type: 'GET',
                     url: '<?php echo Yii::app()->createAbsoluteUrl("planosAlimentares/addAlimento"); ?>'
-                        + '&idAlimento=' + idAlimento + "&idRefeicao=" + idRefeicao+ "&idLinha="+idLinha,
+                        + '&idAlimento=' + idAlimento + "&idRefeicao=" + idRefeicao + "&idLinha=" + idLinha,
                     success: function (data) {
                         div.append(data);
                     },
@@ -235,15 +233,15 @@ $this->breadcrumbs = array(
         });
 
         //Adiciona uma linha vazia
-        $('.btnAddLinha').click(function(){
-            var div =divLinhasRefeicao;
+        $('.btnAddLinha').click(function () {
+            var div = divLinhasRefeicao;
             var idRefeicao = div.parent().attr('id').replace('refeicao', '');
             idRefeicao = parseInt(idRefeicao);
             var idLinha = linhas[idRefeicao]++;
             $.ajax({
                 type: 'GET',
                 url: '<?php echo Yii::app()->createAbsoluteUrl("planosAlimentares/addLinhaVazia"); ?>'
-                    + "&idRefeicao=" +  idRefeicao+ "&idLinha="+idLinha,
+                    + "&idRefeicao=" + idRefeicao + "&idLinha=" + idLinha,
                 success: function (data) {
                     div.append(data);
                 },
@@ -252,6 +250,17 @@ $this->breadcrumbs = array(
                 },
                 dataType: 'html'
             });
+        });
+
+        //Adiciona as horas de refeicao ao form antes de submeter
+        $('div#formPlanoStep3 form').submit(function () {
+            for (var i = 1; i <= 6; i++) {
+                var hora = $('[rel="horasRefeicao[' + i + ']_new"]').text();
+                var input = $("<input>")
+                    .attr("type", "hidden")
+                    .attr("name", "PlanoAlimentarForm[horasRefeicao][" + i + "]").val(hora);
+                $(this).append(input);
+            }
         });
     });
 

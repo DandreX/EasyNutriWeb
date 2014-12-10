@@ -22,7 +22,7 @@ ChromePhp::log($porcoes);
         <?php echo TbHtml::dropDownList('PlanoAlimentarForm[plano][' . $idRefeicao . '][' . $idLinha . '][unidade]', '',
             $porcoes); ?>
     <?php endif; ?>
-    <?php echo TbHtml::textField('PlanoAlimentarForm[plano][' . $idRefeicao . '][' . $idRefeicao . '][alimento]',
+    <?php echo TbHtml::textField('PlanoAlimentarForm[plano][' . $idRefeicao . '][' . $idLinha . '][alimento]',
         $alimento->nome, array(
             'readonly' => true,
         )); ?>

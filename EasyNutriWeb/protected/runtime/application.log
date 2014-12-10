@@ -16012,3 +16012,6 @@ REQUEST_URI=/easynutriweb/index.php?r=planosalimentares/create
 in C:\Users\Andre\EasyNutriWorkspace\EasyNutriWeb\EasyNutriWeb\protected\models\PlanoAlimentarForm.php (152)
 in C:\Users\Andre\EasyNutriWorkspace\EasyNutriWeb\EasyNutriWeb\protected\controllers\PlanosAlimentaresController.php (79)
 in C:\Users\Andre\EasyNutriWorkspace\EasyNutriWeb\EasyNutriWeb\index.php (13)
+2014/12/10 18:48:24 [warning] [application] Failed to set unsafe attribute "horasRefeicao" of "PlanoAlimentarForm".
+in C:\Users\Andre\EasyNutriWorkspace\EasyNutriWeb\EasyNutriWeb\protected\controllers\PlanosAlimentaresController.php (68)
+in C:\Users\Andre\EasyNutriWorkspace\EasyNutriWeb\EasyNutriWeb\index.php (13)
