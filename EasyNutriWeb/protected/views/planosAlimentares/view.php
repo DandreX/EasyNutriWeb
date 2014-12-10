@@ -1,11 +1,13 @@
 <?php
 /* @var $this PlanosAlimentaresController */
 /* @var $model PlanosAlimentares */
+/* @var $dpLinhasPlano LinhasPlano*/
 
 $this->breadcrumbs=array(
 	'Planos Alimentares'=>array('index'),
 	$model->Id,
 );
+
 
 $this->menu=array(
 	array('label'=>'List PlanosAlimentares', 'url'=>array('index')),
@@ -16,15 +18,37 @@ $this->menu=array(
 );
 ?>
 
-<h1>View PlanosAlimentares #<?php echo $model->Id; ?></h1>
+<h1> Plano Alimentar de <?php echo $model->idUtente->nome ?></h1>
+    <div id="propriedadesPlanoAlimentar">
+        <div id="dataPrescricao">
+            <?php echo TbHtml::label('Data Prescrição', 'text'); ?>
+            <?php echo TbHtml::uneditableField(''.$model->data_presc); ?>
+        </div>
+        <div id="apresentaTabela">
+            <?php echo TbHtml::checkBox('apresentaTabela',($model->apresentaTabela == 1)?true:false, array('label' => 'Apresenta Tabela','disabled'=> true)); ?>
+        </div>
+    </div>
+<?php
+$this->widget('ext.groupgridview.GroupGridView', array(
+    'id' => 'grid1',
+    'dataProvider' => $dpLinhasPlano,
+    'mergeColumns' => array('refeicao', 'hora'),
+    'columns' => array(
+//        array(
+//            'value'=>'getRefeicao',
+//            'header'=>'Refeicao',
+//        ),
+        'refeicao',
+        'hora',
+        'descricao',
 
-<?php $this->widget('zii.widgets.CDetailView', array(
-	'data'=>$model,
-	'attributes'=>array(
-		'Id',
-		'id_utente',
-		'id_medico',
-		'data_presc',
-		'ned',
-	),
-)); ?>
+
+//        array(
+//            'value'=>'idAlimento->nome',
+//            'header'=>'Alimento'
+//        ),
+
+        array('class' => 'CButtonColumn'),
+    ),
+));
+?>

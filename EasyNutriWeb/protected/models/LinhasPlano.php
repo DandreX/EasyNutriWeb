@@ -29,6 +29,9 @@ class LinhasPlano extends CActiveRecord
 		return 'linhas_plano';
 	}
 
+    public function getRefeicao(){
+        return $this->idTipoRefeicao->descricao;
+    }
 	/**
 	 * @return array validation rules for model attributes.
 	 */

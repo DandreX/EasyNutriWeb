@@ -36,14 +36,24 @@ class PlanosAlimentaresController extends Controller
         );
     }
 
+
     /**
      * Displays a particular model.
      * @param integer $id the ID of the model to be displayed
      */
     public function actionView($id)
     {
+        $dpLinhasPlano = new CActiveDataProvider('LinhasPlano', array(
+            'criteria' => array(
+              'condition'=> 'id_plano=:id',
+                'params' => array(':id'=>$id,
+                ),
+            ),
+        ));
+
         $this->render('view', array(
             'model' => $this->loadModel($id),
+            'dpLinhasPlano' => $dpLinhasPlano,
         ));
     }
 

@@ -8,6 +8,9 @@ $dataPesquisa = date('Y-m-d');
 ?>
 
 <h4>Diario alimentar do dia</h4>
+
+<?php echo TbHtml::button('', array('class'=>'btnRefresh', 'icon' => 'refresh', 'onclick'=>'btnRefreshDiarioAlim();')); ?>
+
 <?php
 $this->widget('zii.widgets.jui.CJuiDatePicker', array(
 //    'attribute' => 'dataPesquisa',
@@ -117,6 +120,12 @@ $this->widget('zii.widgets.jui.CJuiDatePicker', array(
         }
 
         return [true, ''];
+    }
+
+
+    function btnRefreshDiarioAlim(){
+        window.location = '<?php Yii::app()->getRequest()->getURL(); ?>'+"#tab_3";
+        window.location.reload();
     }
 </script>
 
