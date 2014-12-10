@@ -228,9 +228,9 @@ div #formFichaClinica .dadosFichaClinica .controls{
 }
 
 div #formFichaClinica .dadosFichaClinica textarea{
-margin-left: 40px;
-width: 350px !important;
-}
+     margin-left: 40px;
+     width: 350px !important;
+ }
 .btnFormsViewUtentes{
     height: 20px;
 }
@@ -242,4 +242,17 @@ width: 350px !important;
 
 #btnEnviarNotificacao{
     float: right;
+}
+
+div #formDadosAntro label {
+    font-weight: bold;
+    font-size: 0.9em;
+    display: block;
+}
+
+div #formDadosAntro .row {
+    width: 400px;
+    margin: 0px;
+    display: inline-block;
+    margin-left: 30px;
 }

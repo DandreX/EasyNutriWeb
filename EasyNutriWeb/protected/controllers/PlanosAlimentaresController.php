@@ -126,11 +126,17 @@ class PlanosAlimentaresController extends Controller
         }
         //todo inicializar valores
         if (isset($_POST['utenteId'])) {
+
+
+
+
             $utenteId = $_POST['utenteId'];
             $utente = Utentes::model()->findByPk($utenteId);
+
             $model->sexo = $utente->sexo;
             $model->utenteId = $utenteId;
             $model->utenteNome = $utente->nome;
+            $model->idade = $utente->idade;
 
             //obter peso mais recente do utente
             $pesoModel = DadosAntro::model()->findByAttributes(
@@ -167,7 +173,6 @@ class PlanosAlimentaresController extends Controller
 
                 throw new CException('Utente não encontrado ao criar plano alimentar');
             }
-        $model->idade = 20;
         ChromePhp::log('carregado passo 1 por default');
         $this->render('create_step1', array(
             'model' => $model,

@@ -32,6 +32,7 @@ $('.search-form form').submit(function(){
 
 
 
+
 <?php echo CHtml::link('Advanced Search', '#', array('class' => 'search-button')); ?>
 <div class="search-form" style="display:none">
     <?php $this->renderPartial('_search', array(
@@ -44,12 +45,14 @@ TbHtml::button('Novo Utente', array('id' => 'btnOpenFormUtentes', 'color' => TbH
 ?>
 <br>
 <br>
-
+<?php echo TbHtml::alert(TbHtml::ALERT_COLOR_INFO, 'Clique numa linha para visualizar os dados de um utente.'); ?>
 <?php $this->widget('bootstrap.widgets.TbGridView', array(
     'type' => TbHtml::GRID_TYPE_HOVER,
     'id' => 'utentes-grid',
     'dataProvider' => $model->search(),
     'filter' => $model,
+    'selectableRows'=>1,
+    'selectionChanged'=>'function(id){ location.href = "'.$this->createUrl('view').'/id/"+$.fn.yiiGridView.getSelection(id);}',
     'enableSorting' => false,
     'columns' => array(
         'nome',
@@ -62,7 +65,15 @@ TbHtml::button('Novo Utente', array('id' => 'btnOpenFormUtentes', 'color' => TbH
 
         array(
             'class' => 'TbButtonColumn',
-            'htmlOptions' => array('width' => 60),
+            'buttons' => array(
+                'update' => array(
+                    'visible' => 'false',
+                ),
+                'delete' => array(
+                    'visible' => 'false',
+                ),
+            ),
+            'htmlOptions' => array('width' => 10),
             // 'afterDelete' => "function(link,success,data){ if (success) alert(data); } ",
         ),
     ),

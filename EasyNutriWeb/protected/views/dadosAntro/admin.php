@@ -67,6 +67,7 @@ TbHtml::button('Novo Parâmetro Antropométrico', array('id' => 'btnOpenFormPara
             'name' => 'valor',
             'value' => 'number_format($data->valor, 2)',
         ),
+        'observacoes',
         'data_med',
         array(
             'class' => 'TbButtonColumn',

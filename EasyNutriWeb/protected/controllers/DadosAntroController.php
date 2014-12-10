@@ -84,7 +84,7 @@ class DadosAntroController extends Controller
         if (isset($_POST['DadosAntro'])) {
             $model->attributes = $_POST['DadosAntro'];
             if ($model->save())
-                $this->redirect(array('view', 'id' => $model->id));
+                $this->redirect(array('admin'));
         }
 
         $this->render('update', array(

@@ -11,6 +11,7 @@
  * @property string $unidade
  * @property integer $utente_id
  * @property string $em_Casa
+ * @property string $observacoes
  *
  * The followings are the available model relations:
  * @property TipoMedicao $tipoMedicao
@@ -67,6 +68,7 @@ class DadosAntro extends CActiveRecord
             array('tipo_medicao_id, utente_id', 'numerical', 'integerOnly' => true),
             array('valor', 'numerical'),
             array('em_Casa', 'length', 'max' => 1),
+            array('observacoes', 'safe'),
 //            array('unidade', 'length', 'max' => 10),
             // The following rule is used by search().
             // @todo Please remove those attributes that should not be searched.
@@ -104,6 +106,7 @@ class DadosAntro extends CActiveRecord
             'em_Casa' => 'Local Medição',
             'local' => 'Local',
             'tipoMedicaoDesc' => 'Medição',
+            'observacoes' => 'Observacoes',
         );
     }
 
@@ -132,6 +135,7 @@ class DadosAntro extends CActiveRecord
         $criteria->compare('data_med', $this->data_med, true);
         $criteria->compare('utente_id', $this->utente_id);
         $criteria->compare('em_Casa', $this->em_Casa, true);
+        $criteria->compare('observacoes',$this->observacoes,true);
         $criteria->compare('utente.nome', $this->nomeUtenteSearch, true);
         $criteria->compare('tipoMedicao.descricao', $this->tipoMedicaoSearch, true);
         $criteria->compare('utente.medico_id', Yii::app()->user->userid, true);

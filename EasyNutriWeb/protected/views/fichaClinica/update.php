@@ -16,6 +16,6 @@ $this->menu=array(
 );
 ?>
 
-<h1>Alterar Ficha Clinica <?php echo $model->id; ?></h1>
+<h1>Alterar Ficha Clinica de <?php echo $model->utente->nome; ?></h1>
 
 <?php $this->renderPartial('_form', array('model'=>$model)); ?>

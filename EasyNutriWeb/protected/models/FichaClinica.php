@@ -22,7 +22,7 @@
  * @property integer $idUtente
  *
  * The followings are the available model relations:
- * @property Utentes $idUtente0
+ * @property Utentes $utente
  */
 class FichaClinica extends CActiveRecord
 {
@@ -60,7 +60,7 @@ class FichaClinica extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'idUtente0' => array(self::BELONGS_TO, 'Utentes', 'idUtente'),
+			'utente' => array(self::BELONGS_TO, 'Utentes', 'idUtente'),
 		);
 	}
 

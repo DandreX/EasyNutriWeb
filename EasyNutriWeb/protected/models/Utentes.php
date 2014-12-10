@@ -48,6 +48,13 @@ class Utentes extends CActiveRecord
         return $this->medico->nome;
     }
 
+    public function getIdade(){
+        $data_nascimento = new DateTime($this->data_nascimento);
+        $now = new DateTime();
+        $idade = $data_nascimento->diff($now);
+        $idade= $idade->format('%y');
+        return $idade;
+    }
 
     /**
      * @return array validation rules for model attributes.
@@ -114,6 +121,7 @@ class Utentes extends CActiveRecord
             'motivo_consulta' => 'Motivo Consulta',
             'medico_id' => 'Medico',
             'medicoNome' => 'Medico',
+            'idade'=>'Idade',
         );
     }
 
