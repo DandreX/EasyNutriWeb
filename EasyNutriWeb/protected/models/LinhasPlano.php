@@ -11,6 +11,7 @@
  * @property double $quant
  * @property integer $id_porcao
  * @property string $hora
+ * @property string $descricao
  *
  * The followings are the available model relations:
  * @property Alimentos $idAlimento
@@ -36,13 +37,13 @@ class LinhasPlano extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('Id, id_plano, id_tipo_refeicao, id_alimento, quant, hora', 'required'),
-			array('Id, id_plano, id_tipo_refeicao, id_porcao', 'numerical', 'integerOnly'=>true),
+			array('id_plano, id_tipo_refeicao, quant, hora, descricao', 'required'),
+			array('id_plano, id_tipo_refeicao, id_porcao', 'numerical', 'integerOnly'=>true),
 			array('quant', 'numerical'),
 			array('id_alimento', 'length', 'max'=>255),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('Id, id_plano, id_tipo_refeicao, id_alimento, quant, id_porcao, hora', 'safe', 'on'=>'search'),
+			array('Id, id_plano, id_tipo_refeicao, id_alimento, quant, id_porcao, hora, descricao', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -74,6 +75,7 @@ class LinhasPlano extends CActiveRecord
 			'quant' => 'Quant',
 			'id_porcao' => 'Id Porcao',
 			'hora' => 'Hora',
+			'descricao' => 'Descricao',
 		);
 	}
 
@@ -102,6 +104,7 @@ class LinhasPlano extends CActiveRecord
 		$criteria->compare('quant',$this->quant);
 		$criteria->compare('id_porcao',$this->id_porcao);
 		$criteria->compare('hora',$this->hora,true);
+		$criteria->compare('descricao',$this->descricao,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

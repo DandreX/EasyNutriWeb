@@ -18,6 +18,9 @@ $this->breadcrumbs = array(
 
 <h4>Utente: <?php echo($model->utenteNome) ?></h4>
 <h3>Plano Alimentar</h3>
+<?php if(!empty($model->errors["plano"])):?>
+    <?php echo TbHtml::alert(TbHtml::ALERT_COLOR_ERROR, implode('<br>',$model->errors["plano"])); ?>
+<?php endif;?>
 <div id="formPlanoStep3">
     <!--    --><?php //$form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
     //        'layout' => TbHtml::FORM_LAYOUT_HORIZONTAL,
@@ -175,6 +178,14 @@ $this->breadcrumbs = array(
         var divLinhasRefeicao = null;
         var divLinhaHtml = null;
         var divProprio;
+        var linhas = {
+            1:0,
+            2:0,
+            3:0,
+            4:0,
+            5:0,
+            6:0
+        }
         //guardar div que foram clicados
         $('.btnAbrirModal, .btnAddLinha').click(function () {
             divLinhasRefeicao = $(this).parent().find('.linhasRefeicao');
@@ -188,12 +199,12 @@ $this->breadcrumbs = array(
             var div = divLinhasRefeicao;
             var idRefeicao = div.parent().attr('id').replace('refeicao', '');
             idRefeicao = parseInt(idRefeicao);
-
+            var idLinha = linhas[idRefeicao]++;
             if (idAlimento != '') {
                 $.ajax({
                     type: 'GET',
                     url: '<?php echo Yii::app()->createAbsoluteUrl("planosAlimentares/addAlimento"); ?>'
-                        + '&idAlimento=' + idAlimento + "&idRefeicao=" + idRefeicao,
+                        + '&idAlimento=' + idAlimento + "&idRefeicao=" + idRefeicao+ "&idLinha="+idLinha,
                     success: function (data) {
                         div.append(data);
                     },
@@ -228,10 +239,11 @@ $this->breadcrumbs = array(
             var div =divLinhasRefeicao;
             var idRefeicao = div.parent().attr('id').replace('refeicao', '');
             idRefeicao = parseInt(idRefeicao);
+            var idLinha = linhas[idRefeicao]++;
             $.ajax({
                 type: 'GET',
                 url: '<?php echo Yii::app()->createAbsoluteUrl("planosAlimentares/addLinhaVazia"); ?>'
-                    + "&idRefeicao=" + idRefeicao,
+                    + "&idRefeicao=" +  idRefeicao+ "&idLinha="+idLinha,
                 success: function (data) {
                     div.append(data);
                 },

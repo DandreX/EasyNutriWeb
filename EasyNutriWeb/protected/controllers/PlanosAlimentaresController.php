@@ -74,6 +74,14 @@ class PlanosAlimentaresController extends Controller
                 ChromePhp::log($model->getScenario() . "não valido");
             }
 
+            if ($passoAtual==5) {
+                ChromePhp::log("Passo 5 set");
+                if ($model->guardarPlanoAlimentar()==null) {
+                    $model->addError('plano','Ocorreu um erro ao guardar');
+                    $passoAtual=4;
+                    ChromePhp::log("Erro guardar plano");
+                }
+            }
 
             switch ($passoAtual) {
                 case 2:
@@ -105,23 +113,20 @@ class PlanosAlimentaresController extends Controller
                     ));
                     return;
                 case 4:
+                    ChromePhp::log('a processar passo 4');
                     //obter refeicoes menos o snack
                     $refeicoes = TiposRefeicao::model()->findAll('id!=7');
-                    $alimentos = Alimentos::model()->findAll();
-                    $arrayAlimentos = array();
-                    foreach ($alimentos as $alim) {
-                        $arrayAlimentos[$alim->id] = $alim->nome;
-                    }
-                    ChromePhp::log('a processar passo 4');
-
 
                     $this->render('create_step4', array(
                         'model' => $model,
-                        'modelAlimentos' => $arrayAlimentos,
                         'refeicoes' => $refeicoes,
                     ));
                     return;
-
+                case 5:
+                    $this->render('create_step5', array(
+                        'model' => $model,
+                    ));
+                    return;
             }
 
         }
@@ -306,20 +311,22 @@ class PlanosAlimentaresController extends Controller
             ),false,false);
     }
 
-    public function actionAddAlimento($idAlimento,$idRefeicao){
+    public function actionAddAlimento($idAlimento,$idRefeicao,$idLinha){
         $alimento = Alimentos::model()->findByPk($idAlimento);
         $porcoes = $alimento->porcoes;
         $this->renderPartial('_linha_plano',array(
             'alimento'=>$alimento,
             'idRefeicao'=>$idRefeicao,
+            'idLinha'=>$idLinha,
             'porcoes'=>$porcoes,
         ),false,true);
 
     }
 
-    public function actionAddLinhaVazia($idRefeicao){
+    public function actionAddLinhaVazia($idRefeicao,$idLinha){
         $this->renderPartial('_linha_plano_vazia',array(
             'idRefeicao'=>$idRefeicao,
+            'idLinha'=>$idLinha
         ),false,true);
     }
 }

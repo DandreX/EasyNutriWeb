@@ -9,6 +9,8 @@
  * @property integer $id_medico
  * @property string $data_presc
  * @property integer $ned
+ * @property integer $apresentaTabela
+ * @property string $prescricao_dietetica
  *
  * The followings are the available model relations:
  * @property Users $idMedico
@@ -34,10 +36,11 @@ class PlanosAlimentares extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('id_utente, id_medico, data_presc, ned', 'required'),
-			array('id_utente, id_medico, ned', 'numerical', 'integerOnly'=>true),
+			array('id_utente, id_medico, ned, apresentaTabela', 'numerical', 'integerOnly'=>true),
+			array('prescricao_dietetica', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('Id, id_utente, id_medico, data_presc, ned', 'safe', 'on'=>'search'),
+			array('Id, id_utente, id_medico, data_presc, ned, apresentaTabela, prescricao_dietetica', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -66,6 +69,8 @@ class PlanosAlimentares extends CActiveRecord
 			'id_medico' => 'Id Medico',
 			'data_presc' => 'Data Presc',
 			'ned' => 'Ned',
+			'apresentaTabela' => 'Apresenta Tabela',
+			'prescricao_dietetica' => 'Prescricao Dietetica',
 		);
 	}
 
@@ -92,6 +97,8 @@ class PlanosAlimentares extends CActiveRecord
 		$criteria->compare('id_medico',$this->id_medico);
 		$criteria->compare('data_presc',$this->data_presc,true);
 		$criteria->compare('ned',$this->ned);
+		$criteria->compare('apresentaTabela',$this->apresentaTabela);
+		$criteria->compare('prescricao_dietetica',$this->prescricao_dietetica,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

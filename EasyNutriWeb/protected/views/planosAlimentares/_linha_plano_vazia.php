@@ -1,8 +1,11 @@
-<?php /* @var idRefeicao int*/?>
+<?php
+/* @var idRefeicao int*/
+/* @var idLinha int*/
+?>
 <div class="linhaPlano">
-    <?php echo TbHtml::textField('PlanoAlimentarForm[plano][' . $idRefeicao . '][][quant]', ''); ?>
-    <?php echo TbHtml::textField('PlanoAlimentarForm[plano][' . $idRefeicao . '][][unidade]', ''); ?>
-    <?php echo TbHtml::textField('PlanoAlimentarForm[plano][' . $idRefeicao . '][][alimento]', ''); ?>
+    <?php echo TbHtml::textField('PlanoAlimentarForm[plano][' . $idRefeicao . '][' . $idLinha . '][quant]', ''); ?>
+    <?php echo TbHtml::textField('PlanoAlimentarForm[plano][' . $idRefeicao . '][' . $idLinha . '][unidade]', ''); ?>
+    <?php echo TbHtml::textField('PlanoAlimentarForm[plano][' . $idRefeicao . '][' . $idLinha . '][alimento]', ''); ?>
 
     <?php echo TbHtml::button('x',
         array(
