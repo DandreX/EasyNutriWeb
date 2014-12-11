@@ -42,7 +42,7 @@
                 array('class' => 'bootstrap.widgets.TbNav',
                     'items' => array(
                         array('label' => 'Os Meus Utentes', 'url' => array('/utentes/admin')),
-                        array('label' => 'Registos Antropométricos', 'url' => array('/dadosAntro/admin')),
+//                        array('label' => 'Registos Antropométricos', 'url' => array('/dadosAntro/admin')),
                         array('label' => 'Notificações', 'url' => array('/notificacoes/admin')),
 //                        array('label' => 'Plano Alimentar', 'url' => array(
 //                            '/planosalimentares/create')),

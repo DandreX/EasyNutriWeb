@@ -55,6 +55,7 @@ $this->breadcrumbs = array(
 
 
     <div id="detalhesPlanoAlimentar">
+        <hr>
         <?php foreach ($refeicoes as $refeicao): ?>
             <div id="<?php echo('refeicao' . $refeicao->id); ?>">
                 <h4><?php echo($refeicao->descricao) ?></h4>
@@ -75,6 +76,13 @@ $this->breadcrumbs = array(
                 <br>
 
                 <div class="linhasRefeicao">
+                    <?php if (!empty($model->plano[$refeicao->id])): ?>
+                        <?php $idLinha = 1000;?>
+                        <?php foreach ($model->plano[$refeicao->id] as $refeicaoPlano): ; ?>
+<!--                            --><?php //var_dump($refeicaoPlano)?>
+                            <?php $this->actionReloadLinhas($refeicaoPlano,$refeicao->id,$idLinha--); ?>
+                        <?php endforeach; ?>
+                    <?php endif; ?>
                     <!--                linha de refeicao é injetada aqui com AJAX-->
                 </div>
                 <?php echo TbHtml::button('+',
@@ -91,6 +99,7 @@ $this->breadcrumbs = array(
 
 
             </div>
+            <hr>
         <?php endforeach; ?>
         <br>
 
@@ -220,16 +229,8 @@ $this->breadcrumbs = array(
         //remove linha
         $('.btnApagarLinha').live("click", function () {
             divLinhasRefeicao = $(this).parent().parent();
-//            console.log("apagar", divLinhasRefeicao);
-            var count = divLinhasRefeicao.get(0).childElementCount
-//            console.log("total antes apagar:",count);
-            if (count > 1) {
-//                console.log("remover linha",this);
-                $(this).parent().remove();
-            } else {
-//                console.log("LIMPAR",divLinhasRefeicao.find('input'));
-                divLinhasRefeicao.find('input').val('');
-            }
+            $(this).parent().remove();
+
         });
 
         //Adiciona uma linha vazia

@@ -117,7 +117,7 @@ class PlanoAlimentarForm extends CFormModel
                                 return;
                             }
                         } else {
-                            $this->addError($attribute, "Existem campos por definir".print_r($linhaRefeicao,true));
+                            $this->addError($attribute, "Existem campos por definir" . print_r($linhaRefeicao, true));
                             return;
                         }
                     }
@@ -157,14 +157,15 @@ class PlanoAlimentarForm extends CFormModel
                         //ChromePhp::log(print_r($linhaPlano, true));
                         if (isset($linhaRefeicao['id'])) {
                             $linhaPlano->id_alimento = $linhaRefeicao['id'];
-                            $linhaPlano->id_porcao = $linhaRefeicao['unidade'];
-                        } else {
+                            if ($linhaRefeicao['unidade'] != 0) {
+                                $linhaPlano->id_porcao = $linhaRefeicao['unidade'];
+                            }
 
                         }
                         $linhaPlano->quant = $linhaRefeicao['quant'];
                         $linhaPlano->descricao = $this->gerarDescricaoLinhaPlano($linhaRefeicao);
                         if (!$linhaPlano->save()) {
-                            throw new Exception("Error on save linha");
+                            throw new Exception("Error on save linha: " . print_r($linhaPlano->errors, true));
                         }
                     }
                 }
@@ -184,11 +185,13 @@ class PlanoAlimentarForm extends CFormModel
 
     private function gerarDescricaoLinhaPlano($linhaRefeicao)
     {
-        if (isset($linhaRefeicao['id'])) {
-            $desc = $linhaRefeicao['quant'] . ' ' . $linhaRefeicao['unidade'] . ' ' . $linhaRefeicao['alimento'];
+        if (isset($linhaRefeicao['id'])&& is_numeric($linhaRefeicao['unidade'])) {
+            $porcao = Porcoes::model()->findByPk($linhaRefeicao['unidade']);
+            $textoPorcao = $porcao->descricao;
         } else {
-            $desc = $linhaRefeicao['quant'] . ' ' . $linhaRefeicao['unidade'] . ' ' . $linhaRefeicao['alimento'];
+            $textoPorcao = $linhaRefeicao['unidade'];
         }
+        $desc = $linhaRefeicao['quant'] . ' ' . $textoPorcao . ' de ' . $linhaRefeicao['alimento'];
         return $desc;
     }
 
@@ -206,7 +209,7 @@ class PlanoAlimentarForm extends CFormModel
             'altura' => 'Altura',
             'pesoAcordado' => 'Peso Acordado',
             'restricaoNeds' => 'Restrição Energética',
-            'prescricao'=>'Prescrição',
+            'prescricao' => 'Prescrição',
         );
     }
 

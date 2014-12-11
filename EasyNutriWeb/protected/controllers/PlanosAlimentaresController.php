@@ -36,7 +36,6 @@ class PlanosAlimentaresController extends Controller
         );
     }
 
-
     /**
      * Displays a particular model.
      * @param integer $id the ID of the model to be displayed
@@ -133,9 +132,10 @@ class PlanosAlimentaresController extends Controller
                     ));
                     return;
                 case 5:
-                    $this->render('create_step5', array(
-                        'model' => $model,
-                    ));
+                    $url = Yii::app()->createUrl('utentes/view', array('id'=>$model->utenteId,
+                        '#'=>"tab_4"));
+
+                    $this->redirect($url);
                     return;
             }
 
@@ -338,6 +338,25 @@ class PlanosAlimentaresController extends Controller
             'idRefeicao'=>$idRefeicao,
             'idLinha'=>$idLinha
         ),false,true);
+    }
+
+    public function actionReloadLinhas($refeicaoPlano,$idRefeicao,$idLinha){
+        //ex: var_dump($refeicaoPlano) =
+        //array(3) { ["quant"]=> string(4) "asdf" ["unidade"]=> string(4) "asdf" ["alimento"]=> string(4) "sadf" }
+        $alimento = null;
+        $porcoes = null;
+        if(isset($refeicaoPlano['id'])){
+            //alimento da bd
+            $alimento = Alimentos::model()->findByPk($refeicaoPlano['id']);
+            $porcoes = $alimento->porcoes;
+        }
+        $this->renderPartial('_linha_plano_reload',array(
+            'alimento'=>$alimento,
+            'idRefeicao'=>$idRefeicao,
+            'idLinha'=>$idLinha,
+            'porcoes'=>$porcoes,
+            'refeicaoPlano'=>$refeicaoPlano,
+        ),false);
     }
 
     public function actionUltimoPlano($idUtente){

@@ -15,7 +15,7 @@ $this->menu = array(
 ?>
 <?php echo TbHtml::button('Enviar notificação', array(
     'id' => 'btnEnviarNotificacao',
-    'color' => TbHtml::BUTTON_COLOR_PRIMARY,
+    'color' => TbHtml::BUTTON_COLOR_SUCCESS,
     'size' => TbHtml::BUTTON_SIZE_DEFAULT,
     'data-toggle' => 'modal',
     'data-target' => '#ModalNotificacao',

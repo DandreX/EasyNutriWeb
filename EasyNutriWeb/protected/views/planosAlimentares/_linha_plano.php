@@ -6,6 +6,7 @@
 ?>
 <?php
 $porcoes = CHtml::listData($porcoes, 'id', 'descricao');
+
 ChromePhp::log($porcoes);
 ?>
 <div class="linhaPlano">
@@ -19,6 +20,7 @@ ChromePhp::log($porcoes);
                 'readonly' => true,
             )); ?>
     <?php else: ?>
+        <?php $porcoes[$alimento->unidade]=$alimento->unidade; ?>
         <?php echo TbHtml::dropDownList('PlanoAlimentarForm[plano][' . $idRefeicao . '][' . $idLinha . '][unidade]', '',
             $porcoes); ?>
     <?php endif; ?>
