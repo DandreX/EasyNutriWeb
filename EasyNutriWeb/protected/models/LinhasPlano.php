@@ -32,6 +32,7 @@ class LinhasPlano extends CActiveRecord
     public function getRefeicao(){
         return $this->idTipoRefeicao->descricao;
     }
+
 	/**
 	 * @return array validation rules for model attributes.
 	 */

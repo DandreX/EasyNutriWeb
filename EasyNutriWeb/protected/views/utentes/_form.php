@@ -85,7 +85,7 @@ $naoEditavel = $model->getScenario() == 'view';
         <div class="row">
             <?php echo $form->dropDownListControlGroup($model, 'estado_civil',
                 array('Solteiro' => 'Solteiro', 'Casado' => 'Casado', 'Viuvo' => 'Viuvo', 'Divorciado' => 'Divorciado'),
-                array('empty' => 'Escolha o estado civil', "disabled"=> $naoEditavel)); ?>
+                array('empty' => !$naoEditavel?'Escolha o estado civil':'---', "disabled"=> $naoEditavel)); ?>
             <?php echo $form->error($model, 'estado_civil'); ?>
         </div>
 

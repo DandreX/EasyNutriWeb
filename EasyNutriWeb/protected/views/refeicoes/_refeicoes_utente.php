@@ -60,15 +60,17 @@ $this->widget('ext.groupgridview.BootGroupGridView', array(
     'type' => TbHtml::GRID_TYPE_BORDERED,
     'extraRowColumns' => array('tipo_refeicao'),
     'extraRowPos' => 'above',
-    'mergeColumns' => array('hora'),
+    'mergeColumns' => array('Hora'),
     'dataProvider' => $dpsRefeicoes,
     'selectableRows' => 1,
     'enableSorting' => false,
+    'summaryText' => '',
     'emptyText' => 'Não existem refeicoes para este dia',
     'showTableOnEmpty' => false,
     'columns' => array(
 
         array(
+            'name'=>'Hora',
             'value' => '$data->hora',
             'header' => 'Hora',
         ),

@@ -344,8 +344,9 @@ class PlanosAlimentaresController extends Controller
         $criteria=new CDbCriteria();
         $params = array();
 
-        $criteria->addCondition('id_utente='.$idUtente );
+        $criteria->addCondition('id_utente=:idUtente');
         $params[':idUtente']=$idUtente;
+        $criteria->params = $params;
         $criteria->order = 'data_presc DESC';
 
 
@@ -358,7 +359,6 @@ class PlanosAlimentaresController extends Controller
                 ),
             ),
         ));
-
 
         $this->renderPartial('view', array(
             'planoAlimentarUtente' => $planoAlimentar,

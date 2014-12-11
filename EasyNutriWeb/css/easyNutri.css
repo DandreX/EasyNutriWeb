@@ -283,7 +283,8 @@ div #formDadosAntro .row {
 }
 
 #propriedadesPlanoAlimentar{
-margin: 20px;
+    margin-bottom: 20px;
+    margin-top: 50px;
 }
 
 #propriedadesPlanoAlimentar  #apresentaTabela{
@@ -291,3 +292,39 @@ margin: 20px;
     float: right;
     margin: 5px;
 }
+
+#propriedadesPlanoAlimentar  #apresentaTabela label{
+    font-weight: bold;
+}
+
+#textPrescDietetica{
+    width: auto !important;
+    height: auto !important;
+    display: inline-block !important;
+    color: black !important;
+    background-color: #ffffff;
+    border: hidden;
+}
+
+#labelPrescDietetica{
+    font-weight: bold;
+}
+
+
+#prescricaoDietetica{
+    margin: 10px;
+}
+
+#textPrescData{
+    display: inline;
+    color: black !important;
+    background-color: #ffffff;
+    border: hidden;
+
+}
+
+#labelPrescData{
+    font-weight: bold;
+    display: inline;
+}
+
