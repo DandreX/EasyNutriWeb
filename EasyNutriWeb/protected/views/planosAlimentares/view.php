@@ -34,8 +34,11 @@ $this->widget('ext.groupgridview.BootGroupGridView', array(
     'id' => 'grid1',
     'type' => TbHtml::GRID_TYPE_BORDERED,
     'dataProvider' => $dpLinhasPlano,
+    'template' => '{items}{pager}',
+    'enablePagination'=>false,
     'mergeColumns' => array('Refeicao', 'Hora'),
     'summaryText' => '',
+    'enableSorting' => false,
     'columns' => array(
         array(
             'name'=>'Refeicao',

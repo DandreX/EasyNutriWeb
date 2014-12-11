@@ -377,6 +377,7 @@ class PlanosAlimentaresController extends Controller
                 'params' => array(':id'=>$planoAlimentar->Id,
                 ),
             ),
+            'pagination'=>false,
         ));
 
         $this->renderPartial('view', array(
