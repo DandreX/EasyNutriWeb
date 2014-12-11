@@ -126,7 +126,10 @@ class UtentesController extends Controller
             try {
                 $model->attributes = $_POST['Utentes'];
                 $model->medico_id = Yii::app()->user->userid;
-                $model->password = 'easynutri';
+                $defaultPw = "easynutri";
+                $hash=hash("sha256", $defaultPw);
+
+                $model->password = $hash;
 
 
                 if ($model->save())
