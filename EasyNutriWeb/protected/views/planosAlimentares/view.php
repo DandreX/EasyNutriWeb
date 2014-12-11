@@ -44,7 +44,7 @@ $this->widget('ext.groupgridview.BootGroupGridView', array(
         ),
         array(
             'name'=>'Hora',
-            'value'=>'date("h:m", strtotime($data->hora))',
+            'value'=>'date("H:i", strtotime($data->hora))',
             'htmlOptions' => array('style' => 'width: 80px;'),
         ),
 

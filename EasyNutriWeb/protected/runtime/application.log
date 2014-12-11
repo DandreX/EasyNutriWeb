@@ -17522,3 +17522,26 @@ Stack trace:
 REQUEST_URI=/easynutri/index.php?r=refeicoes/AjaxRefeicoes&idUtente=2&data=2014-12-02
 HTTP_REFERER=http://localhost/easynutri/index.php?r=utentes/view/id/2
 ---
+2014/12/11 18:59:48 [error] [php] Trying to get property of non-object (C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\EasyNutriWeb\protected\views\dadosAntro\_dados_antro_graphs.php:6)
+Stack trace:
+#0 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CController.php(869): DadosAntroController->renderFile()
+#1 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\EasyNutriWeb\protected\controllers\DadosAntroController.php(183): DadosAntroController->renderPartial()
+#2 unknown(0): DadosAntroController->actionViewGraphs()
+#3 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs()
+#4 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\actions\CInlineAction.php(47): CInlineAction->runWithParamsInternal()
+#5 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CController.php(308): CInlineAction->runWithParams()
+#6 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\filters\CFilterChain.php(133): DadosAntroController->runAction()
+#7 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#8 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#9 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\filters\CInlineFilter.php(58): DadosAntroController->filterAccessControl()
+#10 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#11 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CController.php(291): CFilterChain->run()
+#12 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CController.php(265): DadosAntroController->runActionWithFilters()
+#13 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CWebApplication.php(282): DadosAntroController->run()
+#14 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#15 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#16 C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\EasyNutriWeb\index.php(13): CWebApplication->run()
+REQUEST_URI=/easynutri/index.php?r=dadosAntro/ViewGraphs&idUtente=2&escala=3
+in C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\EasyNutriWeb\protected\views\dadosAntro\_dados_antro_graphs.php (6)
+in C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\EasyNutriWeb\protected\controllers\DadosAntroController.php (183)
+in C:\Users\Sofia Oliveira\Dropbox\ESTG\ProjetoEasyNutri\EasyNutriWeb\EasyNutriWeb\index.php (13)

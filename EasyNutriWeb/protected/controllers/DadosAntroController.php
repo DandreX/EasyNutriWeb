@@ -143,7 +143,7 @@ class DadosAntroController extends Controller
         $pesos['valoresConsulta'] = array();
         $pesos['valoresCasa'] = array();
         $queryPesos = Yii::app()->db->createCommand()
-            ->select('valor as pesos, cast(data_med as date) as datas,em_casa, em_Casa')
+            ->select('valor as pesos, data_med as datas,em_casa, em_Casa')
             ->from('dados_antro')
             ->where('tipo_medicao_id = 1 and utente_id = ' . $idUtente)
             ->order('data_med')
@@ -153,10 +153,10 @@ class DadosAntroController extends Controller
         foreach($queryPesos as $linha){
             if ($linha['em_Casa']==0) {
                 array_push($pesos['valoresConsulta'], array(
-                    'js:Date.UTC('.gmdate("Y, m, d", strtotime('-1 month',strtotime($linha['datas']))).')', floatval($linha['pesos']) ));
+                    'js:Date.UTC('.gmdate("Y, m, d, H, i, s", strtotime('-1 month',strtotime($linha['datas']))).')', floatval($linha['pesos']) ));
             }else {
                 array_push($pesos['valoresCasa'], array(
-                    'js:Date.UTC('.gmdate("Y, m, d", strtotime('-1 month',strtotime($linha['datas']))).')', floatval($linha['pesos']) ));
+                    'js:Date.UTC('.gmdate("Y, m, d, H, i, s", strtotime('-1 month',strtotime($linha['datas']))).')', floatval($linha['pesos']) ));
             }
 
         }
@@ -164,14 +164,14 @@ class DadosAntroController extends Controller
         $massa = array();
         $massa['valores'] = array();
         $queryMassa = Yii::app()->db->createCommand()
-            ->select('valor as massa, cast(data_med as date) as datas,em_casa')
+            ->select('valor as massa, data_med as datas,em_casa')
             ->from('dados_antro')
             ->where('tipo_medicao_id = 6 and utente_id = ' . $idUtente)
             ->order('data_med')
             ->queryAll();
         foreach ($queryMassa as $linha) {
             array_push($massa['valores'], array(
-                'js:Date.UTC('.gmdate("Y, m, d",strtotime('-1 month',strtotime($linha['datas']))
+                'js:Date.UTC('.gmdate("Y, m, d, H, i, s",strtotime('-1 month',strtotime($linha['datas']))
                 ).')', floatval($linha['massa']) ));
         }
         $graficos = array();

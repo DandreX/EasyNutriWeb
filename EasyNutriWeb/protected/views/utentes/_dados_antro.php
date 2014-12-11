@@ -33,7 +33,11 @@
             'name' => 'valor',
             'value' => 'number_format($data->valor, 2)',
         ),
-        'data',
+        array(
+            'header' => 'Data/Hora',
+            'value'=>'date("Y-m-d H:i", strtotime($data->data))',
+            'htmlOptions' => array('style' => 'width: 350px;'),
+        ),
         'local'
     ),
 
