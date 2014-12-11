@@ -339,4 +339,31 @@ class PlanosAlimentaresController extends Controller
             'idLinha'=>$idLinha
         ),false,true);
     }
+
+    public function actionUltimoPlano($idUtente){
+        $criteria=new CDbCriteria();
+        $params = array();
+
+        $criteria->addCondition('id_utente='.$idUtente );
+        $params[':idUtente']=$idUtente;
+        $criteria->order = 'data_presc DESC';
+
+
+        $planoAlimentar = PlanosAlimentares::model()->find($criteria);
+
+        $dpLinhasPlano = new CActiveDataProvider('LinhasPlano', array(
+            'criteria' => array(
+                'condition'=> 'id_plano=:id',
+                'params' => array(':id'=>$planoAlimentar->Id,
+                ),
+            ),
+        ));
+
+
+        $this->renderPartial('view', array(
+            'planoAlimentarUtente' => $planoAlimentar,
+            'dpLinhasPlano'=>$dpLinhasPlano,
+        ), false, true);
+
+    }
 }

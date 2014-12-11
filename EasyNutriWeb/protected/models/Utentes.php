@@ -95,6 +95,7 @@ class Utentes extends CActiveRecord
             'dadosAntros' => array(self::HAS_MANY, 'DadosAntro', 'utente_id'),
             'diarioAlimentars' => array(self::HAS_MANY, 'DiarioAlimentar', 'user_id'),
             'medico' => array(self::BELONGS_TO, 'Users', 'medico_id'),
+            'planosAlimentares' => array(self::HAS_MANY, 'PlanosAlimentares', 'id_utente'),
             'fichaClinicas' => array(self::HAS_MANY, 'FichaClinica', 'idUtente'),
             'habitosAlimentares' => array(self::HAS_MANY, 'HabitosAlimentares', 'idUtente'),
         );

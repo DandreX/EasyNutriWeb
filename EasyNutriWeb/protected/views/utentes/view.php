@@ -4,7 +4,7 @@
 /* @var $modelDiarioAlimentar DiarioAlimentar */
 /* @var $dpDadosAntro CActiveDataProvider */
 /* @var $dpNotificacoes CActiveDataProvider */
-/* @var $tabIndex int*/
+/* @var $tabIndex int */
 
 $this->menu = array(
     //array('label'=>'List Utentes', 'url'=>array('index')),
@@ -14,7 +14,7 @@ $this->menu = array(
 
 ?>
 <?php echo TbHtml::button('Enviar notificação', array(
-    'id' =>'btnEnviarNotificacao',
+    'id' => 'btnEnviarNotificacao',
     'color' => TbHtml::BUTTON_COLOR_PRIMARY,
     'size' => TbHtml::BUTTON_SIZE_DEFAULT,
     'data-toggle' => 'modal',
@@ -36,10 +36,10 @@ $this->menu = array(
     ),
 )); ?>
 
-<h2><?php echo $model->nome;?></h2>
+<h2><?php echo $model->nome; ?></h2>
 
 <?php echo TbHtml::tabbableTabs(array(
-    array('label' => 'Perfil',  'content' => $this->renderPartial('_form',
+    array('label' => 'Perfil', 'content' => $this->renderPartial('_form',
             array('model' => $model
             ),
             true)),
@@ -57,16 +57,14 @@ $this->menu = array(
             true)),
     array('label' => 'Plano Alimentar', 'content' => $this->renderPartial('_plano_alimentar',
             array('model' => $model,
+            ), true)
+    ),
 
-            ),
-
-            true)),
-
-    array('label' => 'Dados Antro.', 'content' => $this->renderPartial('_dados_antro',array(
-            'dpDadosAntro'=>$dpDadosAntro,
-            'model'=>$model,
+    array('label' => 'Dados Antro.', 'content' => $this->renderPartial('_dados_antro', array(
+            'dpDadosAntro' => $dpDadosAntro,
+            'model' => $model,
             //'graficos'=>$graficos,
-        ),true)),
+        ), true)),
     array('label' => 'Notificações', 'content' => $this->renderPartial('_notificacoes',
             array('dpNotificacoes' => $dpNotificacoes,
             ),
@@ -75,14 +73,14 @@ $this->menu = array(
 ))?>
 
 <script type="text/javascript">
-    $(document).ready(function(){
+    $(document).ready(function () {
         var tab = window.location.hash;
-        tab=tab==""?'#tab_1':tab;
-        var link = $('[href="'+tab+'"]');
+        tab = tab == "" ? '#tab_1' : tab;
+        var link = $('[href="' + tab + '"]');
         link.click();
-      $('[role="menuitem"] a').click(function(){
-          window.location.hash =  $(this).attr("href");
-      });
+        $('[role="menuitem"] a').click(function () {
+            window.location.hash = $(this).attr("href");
+        });
     });
 
 </script>
