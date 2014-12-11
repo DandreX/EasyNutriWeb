@@ -107,7 +107,10 @@ $this->breadcrumbs = array(
     <div>
 
         <p>Prescrição Diatetica / Notas</p>
-        <?php echo TbHtml::textArea('PlanoAlimentarForm[prescricao]', '', array('rows' => 5)); ?>
+        <?php ?>
+        <?php echo TbHtml::textArea('PlanoAlimentarForm[prescricao]',
+            isset($model->prescricao)?$model->prescricao:''
+            , array('rows' => 5)); ?>
         <?php echo TbHtml::checkBox('PlanoAlimentarForm[verEquivalencias]', true, array(
             'label' => 'Permitir acesso à tabela de equivalencias')); ?>
 
