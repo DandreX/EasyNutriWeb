@@ -139,8 +139,11 @@ class DadosAntro extends CActiveRecord
         $criteria->compare('utente.nome', $this->nomeUtenteSearch, true);
         $criteria->compare('tipoMedicao.descricao', $this->tipoMedicaoSearch, true);
         $criteria->compare('utente.medico_id', Yii::app()->user->userid, true);
+        $criteria->limit=30;
         return new CActiveDataProvider($this, array(
             'criteria' => $criteria,
+            'pagination'=>false,
+
         ));
     }
 

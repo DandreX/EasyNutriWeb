@@ -15,7 +15,7 @@ $naoEditavel = $model->getScenario() == 'view';
     ));
 
     echo TbHtml::formActions(array(
-        TbHtml::submitButton('Editar Dados Pessoais', array('color' => TbHtml::BUTTON_COLOR_PRIMARY)),
+        TbHtml::submitButton('Editar Perfil', array('color' => TbHtml::BUTTON_COLOR_PRIMARY)),
     ));
 
     $this->endWidget();
@@ -59,6 +59,7 @@ $naoEditavel = $model->getScenario() == 'view';
                                 'changeYear' => 'true',
                                 'changeMonth' => 'true',
                                 'maxDate' => 'today',
+                                'yearRange'=> "-130:+0",
                             ),
                         ));
                         ?>

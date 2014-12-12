@@ -291,6 +291,8 @@ class PlanosAlimentaresController extends Controller
 
     public function actionPopularModal($query)
     {
+        $firstLetter = substr($query,0,1);
+//        CVarDumper::dump($firstLetter,10,true);
         $query = isset($query)?$query:'';
 //        $model = Alimentos::model()->findAll(
 //            'nome LIKE :nome',
@@ -300,10 +302,13 @@ class PlanosAlimentaresController extends Controller
             'criteria'=>array(
                 'condition'=>'nome LIKE :nome',
                 'params'=>array(
-                    ':nome'=>"%$query%"
+                    ':nome'=>"%$query%",
                 ),
+                'order'=>"
+                    CASE WHEN SUBSTRING(nome,1,1) = '".$firstLetter."'
+                    THEN 0 ELSE 1 END ;",
                 'offset'=>0,
-                'limit'=>5,
+                'limit'=>15,
             ),
             'pagination'=>false,
             'totalItemCount'=>10

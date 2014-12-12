@@ -54,6 +54,7 @@ TbHtml::button('Novo Parâmetro Antropométrico', array('id' => 'btnOpenFormPara
     'id' => 'dados-antro-grid',
     'dataProvider' => $model->search(),
     'filter' => $model,
+//    'ajaxUrl'=>Yii::app()->createUrl('dadosAntro/admin'),
     'columns' => array(
         array(
             'name' => 'nomeUtenteSearch',
@@ -78,6 +79,7 @@ TbHtml::button('Novo Parâmetro Antropométrico', array('id' => 'btnOpenFormPara
             ),
         ),
     ),
+     'enablePagination' => true
 )); ?>
 
 <script type="text/javascript">

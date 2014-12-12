@@ -19,3 +19,13 @@ $this->menu = array(
     <h1><?php echo $model->nome; ?></h1>
 
 <?php $this->renderPartial('_form', array('model' => $model)); ?>
+
+
+<script>
+    $( document ).ready(function(){
+        if($('#Utentes_nif').val()==0){
+            $('#Utentes_nif').val('');
+        }
+
+    });
+</script>
