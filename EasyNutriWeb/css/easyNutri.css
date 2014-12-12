@@ -91,7 +91,6 @@
 #cabecalhoAssunto {
     font-size: 12pt;
     margin-left: 10px;
-    font-size: 12pt;
 }
 
 
@@ -328,3 +327,24 @@ div #formDadosAntro .row {
     display: inline;
 }
 
+#nedsPlanoAlimentar{
+    display: inline;
+   margin-left: 25px;
+}
+
+#labelNed{
+    font-weight: bold;
+    display: inline;
+
+}
+
+#textNed{
+    display: inline;
+    color: black !important;
+    background-color: #ffffff;
+    border: hidden;
+}
+
+.linhaPlano input:nth-child(4){
+    width: 470px !important;
+}
