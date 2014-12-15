@@ -16,6 +16,8 @@ $this->breadcrumbs = array(
 
 ?>
 
+<?php //CVarDumper::dump($model->dosesDistribuidas,10,true);?>
+
 <h4>Utente: <?php echo($model->utenteNome) ?></h4>
 <h3>Plano Alimentar</h3>
 <?php if (!empty($model->errors["plano"])): ?>
@@ -51,6 +53,17 @@ $this->breadcrumbs = array(
            value="<?php echo($model->utenteNome); ?>">
     <input type="hidden" name="PlanoAlimentarForm[sexo]" id="PlanoAlimentarForm_sexo"
            value="<?php echo($model->sexo); ?>">
+
+
+    <?php foreach ($model->dosesDistribuidas as $key => $refeicao): ?>
+        <?php foreach ($model->dosesDistribuidas[$key] as $keyMacro => $macroNutri): ?>
+            <input type="hidden"
+                   name="PlanoAlimentarForm[dosesDistribuidas][<?php echo $key ?>][<?php echo $keyMacro ?>]"
+                   id="PlanoAlimentarForm_<?php echo $key ?>_<?php echo $keyMacro ?>"
+                   value="<?php echo $macroNutri?>"/>
+        <?php endforeach; ?>
+    <?php endforeach; ?>
+
     <!--END valores do form anterior-->
 
 
@@ -59,7 +72,7 @@ $this->breadcrumbs = array(
         <?php foreach ($refeicoes as $refeicao): ?>
             <div id="<?php echo('refeicao' . $refeicao->id); ?>">
                 <h4><?php echo($refeicao->descricao) ?></h4>
-
+                <p><?php echo $model->descDosesRefeicao($refeicao->id)?></p>
                 <p>Hora:
                     <?php
                     $this->widget('editable.Editable', array(

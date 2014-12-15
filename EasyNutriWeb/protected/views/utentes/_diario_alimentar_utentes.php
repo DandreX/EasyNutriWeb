@@ -7,7 +7,7 @@
 $dataPesquisa = date('Y-m-d');
 ?>
 
-<h4>Diario alimentar do dia</h4>
+<h4>Diário alimentar do dia</h4>
 
 <?php echo TbHtml::button('', array('class'=>'btnRefresh', 'icon' => 'refresh', 'onclick'=>'btnRefreshDiarioAlim();')); ?>
 

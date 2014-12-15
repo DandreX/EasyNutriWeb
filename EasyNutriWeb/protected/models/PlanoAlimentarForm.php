@@ -36,6 +36,16 @@ class PlanoAlimentarForm extends CFormModel
         array('id' => 7, 'refeicao' => 'Total', 'hora' => '', 'leiteMG' => '', 'vegB' => '', 'fruta' => '', 'pao' => '', 'suplementosA' => '', 'carne' => '', 'gordura' => '')
     );
 
+    public static $dosesString = array(
+        'leite' => "Leite",
+        'vegB' => "Vegetais B",
+        'fruta' => "Fruta",
+        'pao' => "Pão",
+        'supa' => "Suplementos A",
+        'carne' => "Carne",
+        'gordura' => "Gordura",
+    );
+
     public $utenteId;
     public $utenteNome;
     public $actividade;
@@ -70,6 +80,66 @@ class PlanoAlimentarForm extends CFormModel
         'carne' => 0,
         'gordura' => 0,
     );
+
+
+
+    public $dosesDistribuidas =array(
+        1 => array(
+            'leite' => 0,
+            'vegB' => 0,
+            'fruta' => 0,
+            'pao' => 0,
+            'supa' => 0,
+            'carne' => 0,
+            'gordura' => 0,
+        ),
+        2 => array(
+            'leite' => 0,
+            'vegB' => 0,
+            'fruta' => 0,
+            'pao' => 0,
+            'supa' => 0,
+            'carne' => 0,
+            'gordura' => 0,
+        ),
+        3 =>array(
+            'leite' => 0,
+            'vegB' => 0,
+            'fruta' => 0,
+            'pao' => 0,
+            'supa' => 0,
+            'carne' => 0,
+            'gordura' => 0,
+        ),
+        4 => array(
+            'leite' => 0,
+            'vegB' => 0,
+            'fruta' => 0,
+            'pao' => 0,
+            'supa' => 0,
+            'carne' => 0,
+            'gordura' => 0,
+        ),
+        5 => array(
+            'leite' => 0,
+            'vegB' => 0,
+            'fruta' => 0,
+            'pao' => 0,
+            'supa' => 0,
+            'carne' => 0,
+            'gordura' => 0,
+        ),
+        6 => array(
+            'leite' => 0,
+            'vegB' => 0,
+            'fruta' => 0,
+            'pao' => 0,
+            'supa' => 0,
+            'carne' => 0,
+            'gordura' => 0,
+        ),
+    );
+
     public $restricaoNeds;
 
     public $batatas = 'batata frita';
@@ -87,7 +157,7 @@ class PlanoAlimentarForm extends CFormModel
             array('actividade, pesoAtual,altura, pesoAcordado, neds', 'required'),
             array('pesoAtual,altura, pesoAcordado, neds, restricaoNeds', 'numerical'),
             array('restricaoNeds, utenteId,utenteNome,
-             sexo,idade, doses, plano, prescricao,verEquivalencias, horasRefeicao', 'safe'),
+             sexo,idade, doses, plano, prescricao,verEquivalencias, horasRefeicao, dosesDistribuidas', 'safe'),
             array('plano', 'required', 'on' => 'step4'),
             array('plano', 'planoValido', 'on' => 'step4')
 
@@ -211,6 +281,21 @@ class PlanoAlimentarForm extends CFormModel
             'restricaoNeds' => 'Restrição Energética',
             'prescricao' => 'Prescrição',
         );
+    }
+
+    public function descDosesRefeicao($idRefeicao){
+        $desc="Doses: ";
+        foreach($this->dosesDistribuidas[$idRefeicao] as $keyNutri => $valor){
+            if ($valor > 0) {
+                $desc=$desc.PlanoAlimentarForm::$dosesString[$keyNutri]." - ".$valor.", ";
+            }
+
+        }
+        if (strlen($desc)==7) {
+            return "";
+        }
+        $desc[strlen($desc)-2]=" ";
+        return $desc;
     }
 
 

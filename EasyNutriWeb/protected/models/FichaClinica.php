@@ -81,7 +81,7 @@ class FichaClinica extends CActiveRecord
 			'patologias' => 'Patologias',
 			'alergias_alim' => 'Alergias Alimentares',
 			'intol_alim' => 'Intolerâncias Alimentares',
-			'problem_digestao' => 'Problemas Digestão',
+			'problem_digestao' => 'Problemas Digestivos',
 			'transito_intestinal' => 'Trânsito Intestinal',
 			'habitos_toxicos' => 'Hábitos Tóxicos',
 			'medic_suplem_alim' => 'Medicamentos/Suplementos Alimentares',

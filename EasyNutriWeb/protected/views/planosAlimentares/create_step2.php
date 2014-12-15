@@ -51,6 +51,15 @@ $this->breadcrumbs = array(
 <input type="hidden" name="PlanoAlimentarForm[sexo]" id="PlanoAlimentarForm_sexo"
        value="<?php echo($model->sexo); ?>" >
 
+<?php foreach ($model->dosesDistribuidas as $key => $refeicao): ?>
+    <?php foreach ($model->dosesDistribuidas[$key] as $keyMacro => $macroNutri): ?>
+        <input type="hidden"
+               name="PlanoAlimentarForm[dosesDistribuidas][<?php echo $key ?>][<?php echo $keyMacro ?>]"
+               id="PlanoAlimentarForm_<?php echo $key ?>_<?php echo $keyMacro ?>"
+               value="<?php echo $macroNutri?>"/>
+    <?php endforeach; ?>
+<?php endforeach; ?>
+
 <!--END valores do form anterior-->
 
 <!--valores das doses a enviar no POST-->
