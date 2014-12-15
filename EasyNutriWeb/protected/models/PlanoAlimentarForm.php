@@ -9,6 +9,7 @@
 class PlanoAlimentarForm extends CFormModel
 {
 
+
     public static $tabelaDistribuicao = array(
         array('id' => 1, 'alimento' => 'Leite Gordo', 'doses' => '', 'proteinas' => '', 'gordura' => '', 'hc' => '', 'calorias' => ''),
         array('id' => 2, 'alimento' => 'Leite Meio Gordo', 'doses' => '', 'proteinas' => '', 'gordura' => '', 'hc' => '', 'calorias' => ''),
@@ -71,6 +72,11 @@ class PlanoAlimentarForm extends CFormModel
         5 => '20:00',
         6 => '23:30',
     );
+
+    /**
+     * Array dos totais de macronutrientes obtidos no passo 2 que vão ser distribuidos no passo 3
+     * @var array
+     */
     public $doses = array(
         'leite' => 0,
         'vegB' => 0,
@@ -81,9 +87,11 @@ class PlanoAlimentarForm extends CFormModel
         'gordura' => 0,
     );
 
-
-
-    public $dosesDistribuidas =array(
+    /**
+     * Array das doses de macronutrientes definidas no passo 3 para cada refeicão
+     * @var array
+     */
+    public $dosesDistribuidas = array(
         1 => array(
             'leite' => 0,
             'vegB' => 0,
@@ -102,7 +110,7 @@ class PlanoAlimentarForm extends CFormModel
             'carne' => 0,
             'gordura' => 0,
         ),
-        3 =>array(
+        3 => array(
             'leite' => 0,
             'vegB' => 0,
             'fruta' => 0,
@@ -143,7 +151,13 @@ class PlanoAlimentarForm extends CFormModel
     public $restricaoNeds;
 
     public $batatas = 'batata frita';
+
+    /**
+     * Dados das linhas por refeicao do plano alimentar obtidos no passo 4
+     * @var array
+     */
     public $plano;
+
     public $prescricao;
     public $verEquivalencias;
 
@@ -159,12 +173,17 @@ class PlanoAlimentarForm extends CFormModel
             array('restricaoNeds, utenteId,utenteNome,
              sexo,idade, doses, plano, prescricao,verEquivalencias, horasRefeicao, dosesDistribuidas', 'safe'),
             array('plano', 'required', 'on' => 'step4'),
-            array('plano', 'planoValido', 'on' => 'step4')
+            array('plano', 'planoValido', 'on' => 'step4'),
+            array('dosesDistribuidas', 'dosesValidas'),
 
         );
     }
 
-
+    /**
+     * Verfica se as linhas do plano alimentar criadas no passo 4 são validas
+     * @param $attribute plano
+     * @param $params not used
+     */
     public function planoValido($attribute, $params)
     {
         try {
@@ -198,11 +217,28 @@ class PlanoAlimentarForm extends CFormModel
         } catch (Exception $e) {
             $this->addError($attribute, 'Erro inexperado:' . $e->getMessage());
         }
-        //$this->addError($attribute, 'Teste auto fail');
-
-
     }
 
+
+    /**
+     * Valida se os valores das doses distribuidas são validos
+     * @param $attribute dosesDistribuidas
+     * @param $params
+     */
+    public  function dosesValidas($attribute, $params){
+        foreach ($this->dosesDistribuidas as $i => $dosesRefeicao) {
+            foreach($dosesRefeicao as $j => $dose){
+                if (!is_numeric($dose)) {
+                    $this->addError($attribute,"O valor ".$dose. " não é uma dose valida (ex: 2, 1.5)");
+                }
+            }
+        }
+    }
+
+    /*
+     * Cria e guarda um plano alimentar e respetivas linhas com base nos valores
+     * deste Model.
+     */
     public function guardarPlanoAlimentar()
     {
         ChromePhp::log(print_r($this->plano, true));
@@ -253,15 +289,43 @@ class PlanoAlimentarForm extends CFormModel
         return null;
     }
 
+
+    /**
+     * Constroi o valor do campo descricao do Model LinhasPlano
+     * @param $linhaRefeicao Representa uma linha de refeicao criada no passo 4
+     * @return string valor a ser usado no campo descricao
+     */
     private function gerarDescricaoLinhaPlano($linhaRefeicao)
     {
-        if (isset($linhaRefeicao['id'])&& is_numeric($linhaRefeicao['unidade'])) {
+        if (isset($linhaRefeicao['id']) && is_numeric($linhaRefeicao['unidade'])) {
             $porcao = Porcoes::model()->findByPk($linhaRefeicao['unidade']);
             $textoPorcao = $porcao->descricao;
         } else {
             $textoPorcao = $linhaRefeicao['unidade'];
         }
         $desc = $linhaRefeicao['quant'] . ' ' . $textoPorcao . ' de ' . $linhaRefeicao['alimento'];
+        return $desc;
+    }
+
+
+    /**
+     * Construi um resumo das doses de macronutriente (passo 3) para uma determinada refeicao
+     * @param $idRefeicao Id to tipo de refeicao
+     * @return string resumo das doses para aquela refeicao
+     */
+    public function descDosesRefeicao($idRefeicao)
+    {
+        $desc = "Doses: ";
+        foreach ($this->dosesDistribuidas[$idRefeicao] as $keyNutri => $valor) {
+            if ($valor > 0) {
+                $desc = $desc . PlanoAlimentarForm::$dosesString[$keyNutri] . " - " . $valor . ", ";
+            }
+
+        }
+        if (strlen($desc) == 7) {
+            return "";
+        }
+        $desc[strlen($desc) - 2] = " ";
         return $desc;
     }
 
@@ -283,20 +347,7 @@ class PlanoAlimentarForm extends CFormModel
         );
     }
 
-    public function descDosesRefeicao($idRefeicao){
-        $desc="Doses: ";
-        foreach($this->dosesDistribuidas[$idRefeicao] as $keyNutri => $valor){
-            if ($valor > 0) {
-                $desc=$desc.PlanoAlimentarForm::$dosesString[$keyNutri]." - ".$valor.", ";
-            }
 
-        }
-        if (strlen($desc)==7) {
-            return "";
-        }
-        $desc[strlen($desc)-2]=" ";
-        return $desc;
-    }
 
 
 } 

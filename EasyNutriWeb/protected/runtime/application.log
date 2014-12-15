@@ -19482,3 +19482,71 @@ Stack trace:
 #22 {main}
 REQUEST_URI=/easynutri/index.php?r=utentes/view/id/6
 ---
+2014/12/15 21:16:14 [error] [exception.CDbException] exception 'CDbException' with message 'The table "ficha_clinica" for active record class "FichaClinica" cannot be found in the database.' in C:\Users\DandreX\EasyNutriWorkspace\EasyNutriWeb\framework\db\ar\CActiveRecord.php:2362
+Stack trace:
+#0 C:\Users\DandreX\EasyNutriWorkspace\EasyNutriWeb\framework\db\ar\CActiveRecord.php(411): CActiveRecordMetaData->__construct(Object(FichaClinica))
+#1 C:\Users\DandreX\EasyNutriWorkspace\EasyNutriWeb\framework\db\ar\CActiveRecord.php(658): CActiveRecord->getMetaData()
+#2 C:\Users\DandreX\EasyNutriWorkspace\EasyNutriWeb\framework\db\ar\CActiveRecord.php(1518): CActiveRecord->getTableSchema()
+#3 C:\Users\DandreX\EasyNutriWorkspace\EasyNutriWeb\EasyNutriWeb\protected\controllers\UtentesController.php(80): CActiveRecord->findByAttributes(Array)
+#4 [internal function]: UtentesController->actionView('2')
+#5 C:\Users\DandreX\EasyNutriWorkspace\EasyNutriWeb\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs(Object(UtentesController), Array)
+#6 C:\Users\DandreX\EasyNutriWorkspace\EasyNutriWeb\framework\web\actions\CInlineAction.php(47): CAction->runWithParamsInternal(Object(UtentesController), Object(ReflectionMethod), Array)
+#7 C:\Users\DandreX\EasyNutriWorkspace\EasyNutriWeb\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#8 C:\Users\DandreX\EasyNutriWorkspace\EasyNutriWeb\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#9 C:\Users\DandreX\EasyNutriWorkspace\EasyNutriWeb\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#10 C:\Users\DandreX\EasyNutriWorkspace\EasyNutriWeb\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#11 C:\Users\DandreX\EasyNutriWorkspace\EasyNutriWeb\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#12 C:\Users\DandreX\EasyNutriWorkspace\EasyNutriWeb\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#13 C:\Users\DandreX\EasyNutriWorkspace\EasyNutriWeb\framework\web\CController.php(291): CFilterChain->run()
+#14 C:\Users\DandreX\EasyNutriWorkspace\EasyNutriWeb\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#15 C:\Users\DandreX\EasyNutriWorkspace\EasyNutriWeb\framework\web\CWebApplication.php(282): CController->run('view')
+#16 C:\Users\DandreX\EasyNutriWorkspace\EasyNutriWeb\framework\web\CWebApplication.php(141): CWebApplication->runController('utentes/view/id...')
+#17 C:\Users\DandreX\EasyNutriWorkspace\EasyNutriWeb\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#18 C:\Users\DandreX\EasyNutriWorkspace\EasyNutriWeb\EasyNutriWeb\index.php(13): CApplication->run()
+#19 {main}
+REQUEST_URI=/easynutriweb/index.php?r=utentes/view/id/2
+HTTP_REFERER=http://localhost/easynutriweb/index.php?r=utentes/admin
+---
+2014/12/15 21:17:46 [error] [exception.CException] exception 'CException' with message 'Property "FichaClinica.histPeso" is not defined.' in C:\Users\DandreX\EasyNutriWorkspace\EasyNutriWeb\framework\base\CComponent.php:130
+Stack trace:
+#0 C:\Users\DandreX\EasyNutriWorkspace\EasyNutriWeb\framework\db\ar\CActiveRecord.php(145): CComponent->__get('histPeso')
+#1 C:\Users\DandreX\EasyNutriWorkspace\EasyNutriWeb\framework\web\helpers\CHtml.php(2529): CActiveRecord->__get('histPeso')
+#2 C:\Users\DandreX\EasyNutriWorkspace\EasyNutriWeb\framework\web\helpers\CHtml.php(1654): CHtml::resolveValue(Object(FichaClinica), 'histPeso')
+#3 C:\Users\DandreX\EasyNutriWorkspace\EasyNutriWeb\EasyNutriWeb\protected\extensions\bootstrap\helpers\TbHtml.php(1602): CHtml::activeTextArea(Object(FichaClinica), 'histPeso', Array)
+#4 C:\Users\DandreX\EasyNutriWorkspace\EasyNutriWeb\EasyNutriWeb\protected\extensions\bootstrap\helpers\TbHtml.php(2162): TbHtml::activeTextArea(Object(FichaClinica), 'histPeso', Array)
+#5 C:\Users\DandreX\EasyNutriWorkspace\EasyNutriWeb\EasyNutriWeb\protected\extensions\bootstrap\helpers\TbHtml.php(2104): TbHtml::createActiveInput('textArea', Object(FichaClinica), 'histPeso', Array, Array)
+#6 C:\Users\DandreX\EasyNutriWorkspace\EasyNutriWeb\EasyNutriWeb\protected\extensions\bootstrap\widgets\TbActiveForm.php(705): TbHtml::activeControlGroup('textArea', Object(FichaClinica), 'histPeso', Array, Array)
+#7 C:\Users\DandreX\EasyNutriWorkspace\EasyNutriWeb\EasyNutriWeb\protected\extensions\bootstrap\widgets\TbActiveForm.php(538): TbActiveForm->createControlGroup('textArea', Object(FichaClinica), 'histPeso', Array)
+#8 C:\Users\DandreX\EasyNutriWorkspace\EasyNutriWeb\EasyNutriWeb\protected\views\utentes\_form_ficha_clinica.php(43): TbActiveForm->textAreaControlGroup(Object(FichaClinica), 'histPeso', Array)
+#9 C:\Users\DandreX\EasyNutriWorkspace\EasyNutriWeb\framework\web\CBaseController.php(126): require('C:\Users\Dandre...')
+#10 C:\Users\DandreX\EasyNutriWorkspace\EasyNutriWeb\framework\web\CBaseController.php(95): CBaseController->renderInternal('C:\Users\Dandre...', Array, true)
+#11 C:\Users\DandreX\EasyNutriWorkspace\EasyNutriWeb\framework\web\CController.php(869): CBaseController->renderFile('C:\Users\Dandre...', Array, true)
+#12 C:\Users\DandreX\EasyNutriWorkspace\EasyNutriWeb\EasyNutriWeb\protected\views\utentes\_ficha_clinica.php(21): CController->renderPartial('_form_ficha_cli...', Array)
+#13 C:\Users\DandreX\EasyNutriWorkspace\EasyNutriWeb\framework\web\CBaseController.php(126): require('C:\Users\Dandre...')
+#14 C:\Users\DandreX\EasyNutriWorkspace\EasyNutriWeb\framework\web\CBaseController.php(95): CBaseController->renderInternal('C:\Users\Dandre...', Array, true)
+#15 C:\Users\DandreX\EasyNutriWorkspace\EasyNutriWeb\framework\web\CController.php(869): CBaseController->renderFile('C:\Users\Dandre...', Array, true)
+#16 C:\Users\DandreX\EasyNutriWorkspace\EasyNutriWeb\EasyNutriWeb\protected\views\utentes\view.php(51): CController->renderPartial('_ficha_clinica', Array, true)
+#17 C:\Users\DandreX\EasyNutriWorkspace\EasyNutriWeb\framework\web\CBaseController.php(126): require('C:\Users\Dandre...')
+#18 C:\Users\DandreX\EasyNutriWorkspace\EasyNutriWeb\framework\web\CBaseController.php(95): CBaseController->renderInternal('C:\Users\Dandre...', Array, true)
+#19 C:\Users\DandreX\EasyNutriWorkspace\EasyNutriWeb\framework\web\CController.php(869): CBaseController->renderFile('C:\Users\Dandre...', Array, true)
+#20 C:\Users\DandreX\EasyNutriWorkspace\EasyNutriWeb\framework\web\CController.php(782): CController->renderPartial('view', Array, true)
+#21 C:\Users\DandreX\EasyNutriWorkspace\EasyNutriWeb\EasyNutriWeb\protected\controllers\UtentesController.php(116): CController->render('view', Array)
+#22 [internal function]: UtentesController->actionView('2')
+#23 C:\Users\DandreX\EasyNutriWorkspace\EasyNutriWeb\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs(Object(UtentesController), Array)
+#24 C:\Users\DandreX\EasyNutriWorkspace\EasyNutriWeb\framework\web\actions\CInlineAction.php(47): CAction->runWithParamsInternal(Object(UtentesController), Object(ReflectionMethod), Array)
+#25 C:\Users\DandreX\EasyNutriWorkspace\EasyNutriWeb\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#26 C:\Users\DandreX\EasyNutriWorkspace\EasyNutriWeb\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#27 C:\Users\DandreX\EasyNutriWorkspace\EasyNutriWeb\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#28 C:\Users\DandreX\EasyNutriWorkspace\EasyNutriWeb\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#29 C:\Users\DandreX\EasyNutriWorkspace\EasyNutriWeb\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#30 C:\Users\DandreX\EasyNutriWorkspace\EasyNutriWeb\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#31 C:\Users\DandreX\EasyNutriWorkspace\EasyNutriWeb\framework\web\CController.php(291): CFilterChain->run()
+#32 C:\Users\DandreX\EasyNutriWorkspace\EasyNutriWeb\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#33 C:\Users\DandreX\EasyNutriWorkspace\EasyNutriWeb\framework\web\CWebApplication.php(282): CController->run('view')
+#34 C:\Users\DandreX\EasyNutriWorkspace\EasyNutriWeb\framework\web\CWebApplication.php(141): CWebApplication->runController('utentes/view/id...')
+#35 C:\Users\DandreX\EasyNutriWorkspace\EasyNutriWeb\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#36 C:\Users\DandreX\EasyNutriWorkspace\EasyNutriWeb\EasyNutriWeb\index.php(13): CApplication->run()
+#37 {main}
+REQUEST_URI=/easynutriweb/index.php?r=utentes/view/id/2
+HTTP_REFERER=http://localhost/easynutriweb/index.php?r=utentes/admin
+---

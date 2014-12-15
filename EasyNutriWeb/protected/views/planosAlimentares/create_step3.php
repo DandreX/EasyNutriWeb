@@ -49,6 +49,10 @@ $this->breadcrumbs = array(
 
     <!--END valores do form anterior-->
 
+    <?php if (!empty($model->errors["dosesDistribuidas"])): ?>
+        <?php echo TbHtml::alert(TbHtml::ALERT_COLOR_ERROR, implode('<br>', $model->errors["dosesDistribuidas"])); ?>
+    <?php endif; ?>
+
     <div class="calculoAlimentosRef">
         <p><b><br>Cálculo das doses <font color="red">(Opcional)</font></br></b></p>
 
@@ -153,6 +157,31 @@ $this->breadcrumbs = array(
 
     <script type="text/javascript">
 
+        //TODO validar totais finais com os iniciais
+        var dosesMacroNutri = {
+            1: 0,
+            2: 0,
+            3: 0,
+            4: 0,
+            5: 0,
+            6: 0,
+            7: 0
+        };
+
+        var calcularTabelaDist = function(){
+            for (colunas = 2; colunas <= 8; colunas++) {
+                var calcTotal = 0;
+                for (linhas = 1; linhas <= 6; linhas++) {
+                    var valor = $('#tabelaAlimentoRef > table >tbody  tr:nth-child(' + linhas + ')>td:nth-child(' + colunas + ')').text();
+
+                    calcTotal = calcTotal + parseFloat(valor);
+                }
+                console.log(calcTotal);
+                $('#tabelaAlimentoRef > table >tbody  tr:nth-child(7)>td:nth-child(' + colunas + ')').text(calcTotal.toFixed(1));
+            }
+        };
+
+
         $(document).ready(function () {
             //limpa a ultima linha da tabela
             for (coluna = 2; coluna <= 8; coluna++) {
@@ -161,37 +190,28 @@ $this->breadcrumbs = array(
             //muda a cor da ultima linha para azul claro
             $('#tabelaAlimentoRef > table >tbody  tr:last-child td').css('background-color', 'lightblue');
 
-            //TODO inicializar a tabela com valores se existirem
+            //inicializa a tabela com valores caso ja tenho sido definidos
             $('tbody tr').each(function (indexLinha) {
 
                 $(this).find('td').each(function (indexColuna) {
 
-//                    if (indexColuna == 0) {
-//                        return;
-//                    }
-//                    var refeicaoId = indexLinha + 1;
-//                    var cellValue = $(this).text();
-//                    var child = indexLinha * 7 + indexColuna;
-//                    var hiddenField = $('#inputsTabela input:nth-child(' + child + ')');
-//                    hiddenField.val(cellValue);
-//                        console.log("Linha", indexLinha, "Coluna", indexColuna,"Child",child,
-//                            "Value", cellValue, "hidden",hiddenField);
+                    if (indexColuna == 0 || indexLinha ==6) {
+                        return;
+                    }
+                    var refeicaoId = indexLinha + 1;
+                    var child = indexLinha * 7 + indexColuna;
+                    var hiddenFieldVal = $('#inputsTabela input:nth-child(' + child + ')').val();
+                    $(this).find('a').text(hiddenFieldVal);
+                        console.log("Linha", indexLinha, "Coluna", indexColuna,"Child",child,
+                             "hiddenVal",hiddenFieldVal);
                 });
             });
+            calcularTabelaDist();
 
             //calcula todos os totais quando se muda um valor
             $('#tabelaAlimentoRef table >tbody tr>td').change(function () {
                     setTimeout(function () {
-                        for (colunas = 2; colunas <= 8; colunas++) {
-                            var calcTotal = 0;
-                            for (linhas = 1; linhas <= 6; linhas++) {
-                                var valor = $('#tabelaAlimentoRef > table >tbody  tr:nth-child(' + linhas + ')>td:nth-child(' + colunas + ')').text();
-
-                                calcTotal = calcTotal + parseFloat(valor);
-                            }
-                            console.log(calcTotal);
-                            $('#tabelaAlimentoRef > table >tbody  tr:nth-child(7)>td:nth-child(' + colunas + ')').text(calcTotal.toFixed(1));
-                        }
+                        calcularTabelaDist();
                     }, 200);
                 }
             );
