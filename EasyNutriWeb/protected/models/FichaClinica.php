@@ -45,7 +45,7 @@ class FichaClinica extends CActiveRecord
 			array('idUtente', 'required'),
 			array('idUtente', 'numerical', 'integerOnly'=>true),
 			array('peso_nascenca, peso_minimo, peso_maximo, peso_habitual', 'numerical'),
-			array('tent_perda_peso, antec_familiares, antec_pessoais, patologias, alergias_alim, intol_alim, problem_digestao, transito_intestinal, habitos_toxicos, medic_suplem_alim', 'safe'),
+			array('tent_perda_peso, antec_familiares, antec_pessoais, patologias, alergias_alim, intol_alim, problem_digestao, transito_intestinal, habitos_toxicos, medic_suplem_alim, histPeso', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id, peso_nascenca, peso_minimo, peso_maximo, peso_habitual, tent_perda_peso, antec_familiares, antec_pessoais, patologias, alergias_alim, intol_alim, problem_digestao, transito_intestinal, habitos_toxicos, medic_suplem_alim, idUtente', 'safe', 'on'=>'search'),
@@ -86,6 +86,7 @@ class FichaClinica extends CActiveRecord
 			'habitos_toxicos' => 'Hábitos Tóxicos',
 			'medic_suplem_alim' => 'Medicamentos/Suplementos Alimentares',
 			'idUtente' => 'Id Utente',
+            'histPeso' => 'Histórico de Peso',
 		);
 	}
 
@@ -123,6 +124,7 @@ class FichaClinica extends CActiveRecord
 		$criteria->compare('habitos_toxicos',$this->habitos_toxicos,true);
 		$criteria->compare('medic_suplem_alim',$this->medic_suplem_alim,true);
 		$criteria->compare('idUtente',$this->idUtente);
+        $criteria->compare('histPeso',$this->histPeso,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

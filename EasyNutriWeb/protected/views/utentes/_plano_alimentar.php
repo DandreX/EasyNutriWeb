@@ -16,7 +16,7 @@
 
 
 <?php if(count($model->planosAlimentares)==0): ?>
-    <p>Este utente ainda não tem nenhum plano alimentar</p>
+    <?php echo TbHtml::alert(TbHtml::ALERT_COLOR_DEFAULT, 'Este utente ainda não tem nenhum plano alimentar.'); ?>
 <?php else: ?>
    <div id="planoAlimentar"></div>
 <?php endif ?>

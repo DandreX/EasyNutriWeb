@@ -70,7 +70,7 @@ class PlanosAlimentares extends CActiveRecord
 			'data_presc' => 'Data Presc',
 			'ned' => 'Ned',
 			'apresentaTabela' => 'Apresenta Tabela',
-			'prescricao_dietetica' => 'Prescricao Dietetica',
+			'prescricao_dietetica' => 'Recomendações',
 		);
 	}
 

@@ -346,5 +346,9 @@ div #formDadosAntro .row {
 }
 
 .linhaPlano input:nth-child(4){
-    width: 470px !important;
+    width: 400px !important;
+}
+
+div #formFichaClinica .form-actions{
+    clear: both;
 }

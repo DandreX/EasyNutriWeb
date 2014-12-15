@@ -25,9 +25,14 @@
             <?php echo TbHtml::label('Data de Prescrição:', 'text', array('id'=>'labelPrescData')); ?>
             <?php echo TbHtml::uneditableField(date("Y-m-d", strtotime($planoAlimentarUtente->data_presc)), array('id'=>'textPrescData')); ?>
         </div>
+        <div id="nedsPlanoAlimentar">
+            <?php echo TbHtml::label('Neds:', 'text', array('id'=>'labelNed')); ?>
+            <?php echo TbHtml::uneditableField($planoAlimentarUtente->ned, array('id'=>'textNed')); ?>
+        </div>
         <div id="apresentaTabela">
             <?php echo TbHtml::checkBox('apresentaTabela',($planoAlimentarUtente->apresentaTabela == 1)?true:false, array('label' => 'Pode ver tabela de equivalências','disabled'=> true)); ?>
         </div>
+
     </div>
 <?php
 $this->widget('ext.groupgridview.BootGroupGridView', array(

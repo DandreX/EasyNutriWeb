@@ -40,6 +40,10 @@
             <?php echo $form->textAreaControlGroup($model,'tent_perda_peso',array('rows' => 6, 'cols' => 100)); ?>
             <?php echo $form->error($model,'tent_perda_peso'); ?>
         </div>
+        <div class="dadosFichaClinica">
+            <?php echo $form->textAreaControlGroup($model,'histPeso',array('rows' => 6, 'cols' => 100)); ?>
+            <?php echo $form->error($model,'histPeso'); ?>
+        </div>
     </fieldset>
     <fieldset>
         <legend>Antecedentes</legend>
@@ -53,8 +57,7 @@
             <?php echo $form->error($model,'antec_pessoais'); ?>
         </div>
     </fieldset>
-    <fieldset>
-        <legend>Doenças</legend>
+
         <div class="dadosFichaClinica">
             <?php echo $form->textAreaControlGroup($model,'patologias',array('rows' => 6, 'cols' => 60)); ?>
             <?php echo $form->error($model,'patologias'); ?>
@@ -89,7 +92,6 @@
             <?php echo $form->textAreaControlGroup($model,'medic_suplem_alim',array('rows' => 6, 'cols' => 60)); ?>
             <?php echo $form->error($model,'medic_suplem_alim'); ?>
         </div>
-    </fieldset>
 
     <?php echo TbHtml::formActions(array(
         TbHtml::submitButton($model->isNewRecord ? 'Create' : 'Save', array('color' => TbHtml::BUTTON_COLOR_PRIMARY)),

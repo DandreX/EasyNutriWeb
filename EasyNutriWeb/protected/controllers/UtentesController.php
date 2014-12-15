@@ -67,9 +67,14 @@ class UtentesController extends Controller
 
         $datasDiarioAlimentar = "[";
         foreach ($queryDatasDiarioAlimentar as $i) {
-           $datasDiarioAlimentar = $datasDiarioAlimentar."\"".$i['']."\"".",";
+            $datasDiarioAlimentar = $datasDiarioAlimentar."\"".$i['']."\"".",";
         }
-        $datasDiarioAlimentar[strlen($datasDiarioAlimentar)-1]="]";
+        if(strlen($datasDiarioAlimentar)>1){
+            $datasDiarioAlimentar[strlen($datasDiarioAlimentar)-1]="]";
+        } else {
+            $datasDiarioAlimentar = $datasDiarioAlimentar."]";
+        }
+
 
 
          $modelFichaClinica = FichaClinica::model()->findByAttributes(array('idUtente' => $id));

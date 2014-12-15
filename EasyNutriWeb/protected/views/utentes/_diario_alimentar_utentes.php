@@ -1,7 +1,7 @@
 <?php
 /* @var $model Utente */
 /* @var $refeicoes Refeicoes */
-/*@var $data array*/
+/* @var $datasDiario array*/
 ?>
 <?php
 $dataPesquisa = date('Y-m-d');
@@ -31,9 +31,6 @@ $this->widget('zii.widgets.jui.CJuiDatePicker', array(
 
 <div id="spinner_place"></div>
 <div id="refeicoes"></div>
-
-
-
 
 
 

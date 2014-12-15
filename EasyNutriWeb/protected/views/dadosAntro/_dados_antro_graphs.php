@@ -66,7 +66,7 @@ $massa = $graficos['massa'];
         ),
         'series' => array(
             array(
-                'name' => 'Em casa',
+                'name' => 'Na consulta',
                 'data'=>$massa['valores'],
             ),
 
