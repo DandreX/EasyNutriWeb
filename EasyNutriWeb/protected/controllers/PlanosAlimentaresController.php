@@ -89,6 +89,15 @@ class PlanosAlimentaresController extends Controller
                     $model->addError('plano','Ocorreu um erro ao guardar');
                     $passoAtual=4;
                     ChromePhp::log("Erro guardar plano");
+                } else {
+                    //enviar notificação ao utilzador
+                    $notificação = new Notificacoes();
+                    $notificação->utente_id=$model->utenteId;
+                    $notificação->medico_id = Yii::app()->user->userid;
+                    $notificação->data = date('Y-m-d H:m');
+                    $notificação->assunto="Plano alimentar";
+                    $notificação->descricao = Notificacoes::$notifPlanoAlimentar;
+                    $notificação->save();
                 }
             }
 

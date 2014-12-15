@@ -17,6 +17,9 @@
  */
 class Notificacoes extends CActiveRecord
 {
+    public static $notifPlanoAlimentar ="O seu plano alimentar foi utilzado por favor
+                                        consulte-o no seperador 'Plano Alimentar'";
+
     /**
      * @return string the associated database table name
      */

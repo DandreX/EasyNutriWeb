@@ -139,6 +139,8 @@ class DadosAntroController extends Controller
     }
 
     public function actionViewGraphs($idUtente,$escala){
+        $modelUtente = Utentes::model()->findByPk($idUtente);
+
         $pesos = array();
         $pesos['valoresConsulta'] = array();
         $pesos['valoresCasa'] = array();
@@ -180,6 +182,7 @@ class DadosAntroController extends Controller
 
         $this->renderPartial('_dados_antro_graphs', array(
             'graficos' => $graficos,
+            'modelUtente'=>$modelUtente,
         ),false,true);
     }
 

@@ -70,21 +70,10 @@ return array(
         ),
         */
 
-//        'db' => array(
-//            'connectionString' => 'Data Source=sqlsrv:Server=192.168.246.64,1433\SQLEXPRESS;Initial Catalog=EasyNutriDB;Integrated Security=False;User ID=EasyNutri;Password=dreamteam;',
-//
-//        ),
-
-        // uncomment the following to use a MySQL database
-
         'db' => array(
-            'connectionString' => 'sqlsrv:Server=dandrex-pc\SQLEXPRESS;Database=EasyNutriDB',
+            'connectionString' => 'sqlsrv:Server=192.168.246.64,1433\SQLEXPRESS;Database=EasyNutriDB',
             'username' => 'EasyNutri',
             'password' => 'dreamteam',
-
-//            'connectionString' => 'sqlsrv:Server=(localdb)\v11.0;Database=EasyNutriDB;',
-//            'username' => 'localuser',
-//              'password' => 'localuser',
         ),
 
         'errorHandler' => array(
