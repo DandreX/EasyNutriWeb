@@ -70,7 +70,10 @@ class PlanosAlimentaresController extends Controller
         if (isset($_POST['PlanoAlimentarForm'])) {
 //            var_dump($_POST['PlanoAlimentarForm']);
 //            exit();
+            $passoAnterior = $_POST['passoAtual'];
+
             $passoAtual = $_POST['passoAtual'];
+
             $irPara = $_POST['irPara'];
             ChromePhp::error("Post is set. PassoAtual:" . $passoAtual . " IrPara: " . $irPara);
             $model->setScenario("step" . $passoAtual);
@@ -117,19 +120,28 @@ class PlanosAlimentaresController extends Controller
                     ));
                     return;
                 case 3:
-                    ChromePhp::log('a processar passo 3');
-                    $tabelaQuantAlimentos = PlanoAlimentarForm::$tabelaQuantAlimentos;
-                    $arrayProvider = new CArrayDataProvider($tabelaQuantAlimentos, array(
-                        'id' => 'id',
-                        'totalItemCount' => 14,
-                        'pagination' => array(
-                            'pageSize' => 14,
-                        )));
-                    $this->render('create_step3', array(
-                        'model' => $model,
-                        'tabelaQuantAlimentos' => $arrayProvider,
-                    ));
-                    return;
+                    $skip = false;
+                    foreach($model->doses as $dose){
+                        if($dose!=0){
+                            $skip=true;
+                        }
+                    }
+                    ChromePhp::log("Saltar passo 3?".((!$skip)?'nao saltar':'saltar'). "Passo anterior:".$passoAnterior);
+                    if (!$skip && $passoAnterior ==4) {
+                            ChromePhp::log('a processar passo 3');
+                            $tabelaQuantAlimentos = PlanoAlimentarForm::$tabelaQuantAlimentos;
+                            $arrayProvider = new CArrayDataProvider($tabelaQuantAlimentos, array(
+                                'id' => 'id',
+                                'totalItemCount' => 14,
+                                'pagination' => array(
+                                    'pageSize' => 14,
+                                )));
+                            $this->render('create_step3', array(
+                                'model' => $model,
+                                'tabelaQuantAlimentos' => $arrayProvider,
+                            ));
+                            return;
+                    }
                 case 4:
                     ChromePhp::log('a processar passo 4');
                     //obter refeicoes menos o snack

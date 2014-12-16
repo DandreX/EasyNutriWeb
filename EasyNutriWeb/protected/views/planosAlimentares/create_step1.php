@@ -102,6 +102,19 @@ $this->breadcrumbs = array(
 </div>
 
 <script type="text/javascript">
+
+    /**
+     * Obtem o valor de um input field e substitui "," por "." no input e devolve o valor
+     * @param idInput id do input field (sem #)
+     * @returns {string} valor substituido
+     */
+    var replaceAndGetCommaInput = function(idInput){
+        var value = $('#'+idInput).val();
+        value = value.replace(',','.');
+        $('#'+idInput).val(value);
+        return value;
+    }
+
         var updateVals = function (peso, altura, sexo, idade, actividade) {
             console.log("updateVals",peso,altura,sexo,idade,actividade);
             var mbr = calcMetabolismoBasal(peso, altura, sexo, idade);
@@ -140,12 +153,15 @@ $this->breadcrumbs = array(
         }
 
         var updateVarsAndCalc = function(sexo,idade){
-            var peso = $('#PlanoAlimentarForm_pesoAtual').val();
+
+            var peso = replaceAndGetCommaInput('PlanoAlimentarForm_pesoAtual');
             peso = parseFloat(peso);
-            var altura = $('#PlanoAlimentarForm_altura').val();
-            altura = parseFloat(altura);
+            var altura = replaceAndGetCommaInput('PlanoAlimentarForm_altura');
             var actividade = $('#PlanoAlimentarForm_actividade').val();
-            updateVals(peso, altura, sexo, idade, actividade);
+            if (peso!=0&& altura !=0) {
+                updateVals(peso, altura, sexo, idade, actividade);
+            }
+
 
         };
 

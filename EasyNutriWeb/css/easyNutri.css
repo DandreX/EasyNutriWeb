@@ -373,3 +373,12 @@ div .linhaPlanoAlimento{
 }
 
 /*END PLANO ALIMENTAR*/
+
+/* MODAL NOTIFICAÇÕES*/
+#ModalNotificacao input, #ModalNotificacao textarea{
+    width: 515px;
+    max-width: 515px;
+}
+
+/*END MODAL NOTIFICAÇÕES*/
+

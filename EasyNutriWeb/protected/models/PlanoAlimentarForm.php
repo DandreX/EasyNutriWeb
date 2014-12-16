@@ -339,11 +339,12 @@ class PlanoAlimentarForm extends CFormModel
         return array(
             'actividade' => 'Actividade Física',
             'idade' => 'Idade',
-            'pesoAtual' => 'Peso Atual',
-            'altura' => 'Altura',
-            'pesoAcordado' => 'Peso Acordado',
-            'restricaoNeds' => 'Restrição Energética',
+            'pesoAtual' => 'Peso Atual (kg)',
+            'altura' => 'Altura (m)',
+            'pesoAcordado' => 'Peso Acordado (kg)',
+            'restricaoNeds' => 'Restrição Energética (kcal)',
             'prescricao' => 'Prescrição',
+            'neds'=>'NEDs (kcal)'
         );
     }
 
