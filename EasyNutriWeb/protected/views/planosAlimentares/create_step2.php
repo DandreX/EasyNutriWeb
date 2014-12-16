@@ -81,7 +81,7 @@ $this->breadcrumbs = array(
     )); ?>
     <?php echo TbHtml::controlsRow(array(
         TbHtml::uneditableField('Proteínas', array('span' => 2)),
-        TbHtml::uneditableField('15%-35%', array('span' => 3)),
+        TbHtml::uneditableField('10%-35%', array('span' => 3)),
         TbHtml::textField('text', '', array('span' => 2, 'id' => 'percProteinas')),
         TbHtml::textField('text', '', array('span' => 2, 'id' => 'gramasKgProteinas')),
         TbHtml::uneditableField('', array('span' => 2, 'id' => 'gramasProteinas')),
@@ -95,7 +95,7 @@ $this->breadcrumbs = array(
     )); ?>
     <?php echo TbHtml::controlsRow(array(
         TbHtml::uneditableField('Hidratos de Carbono', array('span' => 2)),
-        TbHtml::uneditableField('45%-60%', array('span' => 3)),
+        TbHtml::uneditableField('45%-65%', array('span' => 3)),
         TbHtml::textField('text', '', array('span' => 2, 'id' => 'percGlicidos')),
         TbHtml::uneditableField('-', array('span' => 2)),
         TbHtml::uneditableField('', array('span' => 2, 'id' => 'gramasGlicidos')),
@@ -114,7 +114,7 @@ $this->breadcrumbs = array(
 
         $('#percProteinas').change(function () {
             var percProteinas = $('#percProteinas').val();
-            if(percProteinas<15){
+            if(percProteinas<10){
                 $('#percProteinas').css('color', '#FF0000');
             }else if(percProteinas >35){
                 $('#percProteinas').css('color', '#FF0000');
@@ -132,7 +132,7 @@ $this->breadcrumbs = array(
             gramasKg = parseFloat(gramasKg);
             var percProteinas = (72.3 * gramasKg * 4) * 100 / neds;
             var gProteinas = peso * gramasKg;
-            if(percProteinas<15){
+            if(percProteinas<10){
                 $('#percProteinas').css('color', '#FF0000');
             }else if(percProteinas >35){
                 $('#percProteinas').css('color', '#FF0000');
@@ -162,7 +162,7 @@ $this->breadcrumbs = array(
             var percGlicidos = $('#percGlicidos').val();
             if(percGlicidos<45){
                 $('#percGlicidos').css('color', '#FF0000');
-            }else if(percGlicidos >60){
+            }else if(percGlicidos >65){
                 $('#percGlicidos').css('color', '#FF0000');
             }else{
                 $('#percGlicidos').css('color', 'black');
@@ -183,12 +183,13 @@ $this->breadcrumbs = array(
                 $('#totalVet').text(Totalperc.toFixed(0) + '%');
                 if(Totalperc > 100){
                     $('#totalVet').css('color', '#FF0000');
+                }else if(Totalperc < 100){
+                    $('#totalVet').css('color',  '#FF0000');
                 }else{
-                    $('#totalVet').css('color', 'black');
+                        $('#totalVet').css('color',  'black');
+                    }
                 }
-            }
-
-        }
+            };
     });
 </script>
 

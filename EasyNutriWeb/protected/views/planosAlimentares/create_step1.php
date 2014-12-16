@@ -79,7 +79,7 @@ $this->breadcrumbs = array(
         <div id="formPlanoStep1DadosTerapeuticas">
         <?php echo $form->textFieldControlGroup($model, 'pesoAcordado'); ?>
         <?php echo $form->textFieldControlGroup($model, 'neds'); ?>
-        <?php echo $form->textFieldControlGroup($model, 'restricaoNeds'); ?>
+        <?php echo $form->textFieldControlGroup($model, 'restricaoNeds', array('help' => 'ATENÇÃO: IMC do utente requer restrição energética!')); ?>
 
 
         </div>
@@ -102,80 +102,93 @@ $this->breadcrumbs = array(
 </div>
 
 <script type="text/javascript">
+        var updateVals = function (peso, altura, sexo, idade, actividade) {
+            console.log("updateVals",peso,altura,sexo,idade,actividade);
+            var mbr = calcMetabolismoBasal(peso, altura, sexo, idade);
+            console.log("MBR: " + mbr);
+            $('#mbrVal').text(mbr.toFixed(0));
+            var imc = calcIMC(peso, altura);
+            console.log("IMC: " + imc);
+            $('#imcVal').text(imc.toFixed(2));
+            var catIMC = calcIMCCat(imc, idade);
+            $('#imcCatVal').text(catIMC);
 
-    var updateVals = function (peso, altura, sexo, idade, actividade) {
-        console.log("updateVals",peso,altura,sexo,idade,actividade);
-        var mbr = calcMetabolismoBasal(peso, altura, sexo, idade);
-        console.log("MBR: " + mbr);
-        $('#mbrVal').text(mbr.toFixed(0));
-        var imc = calcIMC(peso, altura);
-        console.log("IMC: " + imc);
-        $('#imcVal').text(imc.toFixed(2));
-        var catIMC = calcIMCCat(imc, idade);
-        $('#imcCatVal').text(catIMC);
+            if (imc <= 27){
+                $('#PlanoAlimentarForm_restricaoNeds ~ p').css('display', 'none');
+                $('#PlanoAlimentarForm_restricaoNeds ~ p').css('color', '#FF0000');
+            }else{
+                $('#PlanoAlimentarForm_restricaoNeds ~ p').css('display', 'block');
+            }
+            var pesoRef = calcPesoRef(altura, sexo, idade);
+            $('#pesoRefVal').text(pesoRef.toFixed(1) + ' Kg');
+            $('#PlanoAlimentarForm_pesoAcordado').val(pesoRef.toFixed(1));
+            if (imc > 30 || imc < 18) {
+                console.log(peso, pesoRef, imc);
+                var pesoAjust = calcPesoAjust(peso, pesoRef, imc);
+                console.log("Peso ajustado: " + pesoAjust);
+                $('#pesoAjustVal').text(pesoAjust + ' Kg');
+                $('#pesoAjustVal, label[for="pesoAjustVal"] ').show();
+                $('#PlanoAlimentarForm_pesoAcordado').val(pesoAjust.toFixed(1));
 
-        var pesoRef = calcPesoRef(altura, sexo, idade);
-        $('#pesoRefVal').text(pesoRef.toFixed(1) + ' Kg');
-        $('#PlanoAlimentarForm_pesoAcordado').val(pesoRef.toFixed(1));
-        if (imc > 30 || imc < 18) {
-            console.log(peso, pesoRef, imc);
-            var pesoAjust = calcPesoAjust(peso, pesoRef, imc);
-            console.log("Peso ajustado: " + pesoAjust);
-            $('#pesoAjustVal').text(pesoAjust + ' Kg');
-            $('#pesoAjustVal, label[for="pesoAjustVal"] ').show();
-            $('#PlanoAlimentarForm_pesoAcordado').val(pesoAjust.toFixed(1));
+            } else {
+                $('#pesoAjustVal, label[for="pesoAjustVal"] ').hide();
+            }
+            var neds = calcNeds(peso, altura, sexo, idade, actividade);
+            console.log("NEDS: "+neds);
+            $('#nedsAtualVal').text(neds.toFixed(0));
 
-        } else {
-            $('#pesoAjustVal, label[for="pesoAjustVal"] ').hide();
         }
-        var neds = calcNeds(peso, altura, sexo, idade, actividade);
-        console.log("NEDS: "+neds);
-        $('#nedsAtualVal').text(neds.toFixed(0));
 
-    }
+        var updateVarsAndCalc = function(sexo,idade){
+            var peso = $('#PlanoAlimentarForm_pesoAtual').val();
+            peso = parseFloat(peso);
+            var altura = $('#PlanoAlimentarForm_altura').val();
+            altura = parseFloat(altura);
+            var actividade = $('#PlanoAlimentarForm_actividade').val();
+            updateVals(peso, altura, sexo, idade, actividade);
 
-    var updateVarsAndCalc = function(sexo,idade){
-        var peso = $('#PlanoAlimentarForm_pesoAtual').val();
-        peso = parseFloat(peso);
-        var altura = $('#PlanoAlimentarForm_altura').val();
-        altura = parseFloat(altura);
-        var actividade = $('#PlanoAlimentarForm_actividade').val();
-        updateVals(peso, altura, sexo, idade, actividade);
+        };
 
-    };
+        var updateTerapeutica = function(pesoAcordado, altura, sexo,idade,actividade){
+            var imc = calcIMC(pesoAcordado, altura);
+            $('#imcTerVal').text(imc.toFixed(2));
+            var catIMC = calcIMCCat(imc, idade);
+            $('#imcCatTerVal').text(catIMC);
 
-    var updateTerapeutica = function(pesoAcordado, altura, sexo,idade,actividade){
-        var imc = calcIMC(pesoAcordado, altura);
-        $('#imcTerVal').text(imc.toFixed(2));
-        var catIMC = calcIMCCat(imc, idade);
-        $('#imcCatTerVal').text(catIMC);
+            var neds = calcNeds(pesoAcordado, altura, sexo, idade, actividade);
+            $('#nedsTerVal').text(neds.toFixed(0));
+            $('#PlanoAlimentarForm_neds').val(neds.toFixed(0));
+        }
 
-        var neds = calcNeds(pesoAcordado, altura, sexo, idade, actividade);
-        $('#nedsTerVal').text(neds.toFixed(0));
-        $('#PlanoAlimentarForm_neds').val(neds.toFixed(0));
-    }
 
 
 
     $(document).ready(function () {
         var sexo = '<?php echo($model->sexo) ?>';
         var idade = '<?php echo($model->idade) ?>';
+        if(idade!=0){
         updateVarsAndCalc(sexo,idade);
         $('#PlanoAlimentarForm_pesoAtual,#PlanoAlimentarForm_altura,#PlanoAlimentarForm_actividade ')
             .change(function () {
                 updateVarsAndCalc(sexo,idade);
             });
+        }
+
         $('#PlanoAlimentarForm_pesoAcordado,#PlanoAlimentarForm_altura,#PlanoAlimentarForm_actividade ')
             .change(function () {
-                var pesoAcordado = $('#PlanoAlimentarForm_pesoAcordado').val();
-                if(pesoAcordado == ""){
-                    return;
+                if(idade != 0 ) {
+                    var pesoAcordado = $('#PlanoAlimentarForm_pesoAcordado').val();
+                    if(pesoAcordado == ""){
+                        return;
+                    }
+                    pesoAcordado = parseFloat(pesoAcordado);
+                    var altura = $('#PlanoAlimentarForm_altura').val();
+                    altura = parseFloat(altura);
+                    var actividade = $('#PlanoAlimentarForm_actividade').val();
+                    if(altura != 0 || actividade != ""){
+                        updateTerapeutica(pesoAcordado,altura,sexo,idade,actividade);
+                    }
                 }
-                pesoAcordado = parseFloat(pesoAcordado);
-                var altura = $('#PlanoAlimentarForm_altura').val();
-                altura = parseFloat(altura);
-                var actividade = $('#PlanoAlimentarForm_actividade').val();
-                updateTerapeutica(pesoAcordado,altura,sexo,idade,actividade);
             });
         $('#PlanoAlimentarForm_restricaoNeds').change(function(){
             var inputNeds = $('#PlanoAlimentarForm_neds');
