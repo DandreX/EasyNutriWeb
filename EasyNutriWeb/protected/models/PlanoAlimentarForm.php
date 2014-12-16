@@ -249,7 +249,7 @@ class PlanoAlimentarForm extends CFormModel
             $planoAlimentar->id_medico = Yii::app()->user->userid;
             $planoAlimentar->id_utente = $this->utenteId;
             $planoAlimentar->ned = $this->neds;
-            $planoAlimentar->prescricao_dietetica = $this->prescricao;
+            $planoAlimentar->recomendacoes = $this->prescricao;
             $planoAlimentar->apresentaTabela = $this->verEquivalencias;
 
             if ($planoAlimentar->save()) {
@@ -282,6 +282,7 @@ class PlanoAlimentarForm extends CFormModel
             $transaction->commit();
             return $planoAlimentar;
         } catch (Exception $e) {
+            ChromePhp::log($e->getTraceAsString());
             $transaction->rollback();
             $this->addError('plano', $e->getMessage());
         }
