@@ -345,10 +345,31 @@ div #formDadosAntro .row {
     border: hidden;
 }
 
-.linhaPlano input:nth-child(4){
-    width: 400px !important;
-}
+/*.linhaPlano input:not([type="hidden"]):nth-child(3){*/
+    /*width: 400px !important;*/
+/*}*/
+
+
+/*PLANO ALIMENTAR*/
 
 div #formFichaClinica .form-actions{
     clear: both;
 }
+
+div .linhaPlanoQuantidade{
+    width: 80px !important;
+}
+div .linhaPlanoUnidade{
+
+}
+
+div .linhaPlanoAlimento{
+    width: 450px !important;
+}
+
+#PlanoAlimentarForm_prescricao{
+    width: 600px !important;
+
+}
+
+/*END PLANO ALIMENTAR*/

@@ -17,7 +17,7 @@
  */
 class Notificacoes extends CActiveRecord
 {
-    public static $notifPlanoAlimentar ="O seu plano alimentar foi utilzado por favor
+    public static $notifPlanoAlimentar ="O seu plano alimentar foi atualizado por favor
                                         consulte-o no seperador 'Plano Alimentar'";
 
     /**

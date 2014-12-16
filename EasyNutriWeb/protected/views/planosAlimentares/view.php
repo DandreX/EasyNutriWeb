@@ -63,5 +63,5 @@ $this->widget('ext.groupgridview.BootGroupGridView', array(
 ?>
 <div id="prescricaoDietetica">
     <?php echo TbHtml::label('Prescrição Dietética', 'text', array('id'=>'labelPrescDietetica')); ?>
-    <?php echo TbHtml::uneditableField($planoAlimentarUtente->prescricao_dietetica, array('id'=>'textPrescDietetica')); ?>
+    <?php echo TbHtml::uneditableField($planoAlimentarUtente->recomendacoes, array('id'=>'textPrescDietetica')); ?>
 </div>

@@ -16,35 +16,57 @@ $fromDB = isset($alimento);
     <?php endif; ?>
 
     <?php echo TbHtml::textField('PlanoAlimentarForm[plano][' . $idRefeicao . '][' . $idLinha . '][quant]',
-        $refeicaoPlano['quant']); ?>
+        $refeicaoPlano['quant'],
+        array(
+            'placeholder'=>'Quantidade',
+            'class'=>'linhaPlanoQuantidade',
+        )
+    ); ?>
 
     <?php if ($fromDB): ?>
         <?php
-            $porcoes = CHtml::listData($porcoes, 'id', 'descricao');
+        $porcoes = CHtml::listData($porcoes, 'id', 'descricao');
         ?>
         <?php if (empty($porcoes)): ?>
             <?php echo TbHtml::textField('PlanoAlimentarForm[plano][' . $idRefeicao . '][' . $idLinha . '][unidade]',
                 $alimento->unidade, array(
                     'readonly' => true,
+                    'placeholder' => 'Unidade',
+                    'class'=>'linhaPlanoUnidade',
                 )); ?>
         <?php else: ?>
-            <?php $porcoes[$alimento->unidade]=$alimento->unidade;?>
+            <?php $porcoes[$alimento->unidade] = $alimento->unidade; ?>
             <?php echo TbHtml::dropDownList('PlanoAlimentarForm[plano][' . $idRefeicao . '][' . $idLinha . '][unidade]', '',
-                $porcoes); ?>
+                $porcoes,
+                array(
+                    'class'=>'linhaPlanoUnidade'
+                )
+            ); ?>
         <?php endif; ?>
     <?php else: ?>
         <?php echo TbHtml::textField('PlanoAlimentarForm[plano][' . $idRefeicao . '][' . $idLinha . '][unidade]',
-            $refeicaoPlano["unidade"]); ?>
+            $refeicaoPlano["unidade"],
+        array(
+            'placeholder'=>'Unidade',
+            'class'=>'linhaPlanoUnidade',
+        )
+        ); ?>
     <?php endif; ?>
 
     <?php if ($fromDB): ?>
         <?php echo TbHtml::textField('PlanoAlimentarForm[plano][' . $idRefeicao . '][' . $idLinha . '][alimento]',
             $alimento->nome, array(
                 'readonly' => true,
+                'class'=>'linhaPlanoAlimento',
             )); ?>
     <?php else: ?>
         <?php echo TbHtml::textField('PlanoAlimentarForm[plano][' . $idRefeicao . '][' . $idLinha . '][alimento]',
-            $refeicaoPlano['alimento']); ?>
+            $refeicaoPlano['alimento'],
+            array(
+             'placeholder'=>'Alimento',
+                'class'=>'linhaPlanoAlimento',
+            )
+        ); ?>
     <?php endif; ?>
     <?php echo TbHtml::button('x',
         array(
