@@ -13,8 +13,10 @@ Yii::app()->clientScript->registerScriptFile(
 );
 
 $this->breadcrumbs = array(
-    'Passo 1',
+    $model->utenteNome=>(Yii::app()->createUrl('utentes/view',array('id'=>$model->utenteId))),
+    'Novo plano alimentar','Passo 1',
 );
+
 
 
 ?>
@@ -38,7 +40,10 @@ $this->breadcrumbs = array(
            value="<?php echo($model->sexo); ?>">
     <input type="hidden" name="PlanoAlimentarForm[idade]" id="PlanoAlimentarForm_idade"
            value="<?php echo($model->idade); ?>">
-
+    <?php foreach($model->doses as $key => $value):?>
+        <input type="hidden" name="PlanoAlimentarForm[doses][<?php echo $key ?>]"
+               value="<?php echo($value); ?>">
+    <?php endforeach;?>
     <?php foreach ($model->distMacro as $key => $value): ?>
         <input type="hidden" name="PlanoAlimentarForm[distMacro][<?php echo $key ?>]"
                value="<?php echo($value); ?>">
@@ -172,7 +177,7 @@ $this->breadcrumbs = array(
 
 
     };
-
+    var nedsTer=0;
     var calcTerapeutica = function (pesoAcordado, altura, sexo, idade, actividade) {
         var imc = calcIMC(pesoAcordado, altura);
         $('#imcTerVal').text(imc.toFixed(2));
@@ -180,8 +185,9 @@ $this->breadcrumbs = array(
         $('#imcCatTerVal').text(catIMC);
 
         var neds = calcNeds(pesoAcordado, altura, sexo, idade, actividade);
-        $('#nedsTerVal').text(neds.toFixed(0));
-        $('#PlanoAlimentarForm_neds').val(neds.toFixed(0));
+        var nedsTer = neds.toFixed(0);
+        $('#nedsTerVal').text(nedsTer);
+        $('#PlanoAlimentarForm_neds').val(nedsTer);
     };
 
     var updateTerapeutica = function (sexo, idade) {
@@ -217,12 +223,18 @@ $this->breadcrumbs = array(
             .change(function () {
                 updateTerapeutica(sexo, idade)
             });
+
         $('#PlanoAlimentarForm_restricaoNeds').change(function () {
             var inputNeds = $('#PlanoAlimentarForm_neds');
             var restricao = $(this).val();
-            var neds = inputNeds.val();
+
+            var peso = replaceAndGetCommaInput('PlanoAlimentarForm_pesoAtual');
+            peso = parseFloat(peso);
+            var altura = replaceAndGetCommaInput('PlanoAlimentarForm_altura');
+            var actividade = $('#PlanoAlimentarForm_actividade').val();
+            var neds = calcNeds(peso,altura,sexo,idade,actividade);
             console.log("restricao: ", restricao, neds);
-            inputNeds.val(neds - restricao);
+            inputNeds.val((neds - restricao).toFixed(0));
         });
     });
 

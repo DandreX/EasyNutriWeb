@@ -11,7 +11,8 @@ Yii::app()->clientScript->registerScriptFile(
 
 
 $this->breadcrumbs = array(
-    'Passo 1', 'Passo 2', 'Passo 3', 'Passo 4',
+    $model->utenteNome=>(Yii::app()->createUrl('utentes/view',array('id'=>$model->utenteId))),
+    'Novo plano alimentar','Passo 1', 'Passo 2', 'Passo 3', 'Passo 4',
 );
 
 ?>
@@ -20,6 +21,11 @@ $this->breadcrumbs = array(
 
 <h4>Utente: <?php echo($model->utenteNome) ?></h4>
 <h3>Plano Alimentar</h3>
+
+<p><b>NEDs estipulados:</b> <?php echo($model->neds); ?> Kcal
+    <b>Peso acordado:</b> <?php echo($model->pesoAcordado); ?> Kg
+</p>
+
 <?php if (!empty($model->errors["plano"])): ?>
     <?php echo TbHtml::alert(TbHtml::ALERT_COLOR_ERROR, implode('<br>', $model->errors["plano"])); ?>
 <?php endif; ?>
@@ -55,6 +61,19 @@ $this->breadcrumbs = array(
            value="<?php echo($model->sexo); ?>">
     <input type="hidden" name="PlanoAlimentarForm[idade]" id="PlanoAlimentarForm_idade"
            value="<?php echo($model->idade); ?>" >
+    <?php foreach($model->doses as $key => $value):?>
+        <input type="hidden" name="PlanoAlimentarForm[doses][<?php echo $key ?>]"
+               value="<?php echo($value); ?>">
+    <?php endforeach;?>
+    <?php foreach ($model->dosesDistribuidas as $key => $refeicao): ?>
+        <?php foreach ($model->dosesDistribuidas[$key] as $keyMacro => $macroNutri): ?>
+            <input type="hidden"
+                   name="PlanoAlimentarForm[dosesDistribuidas][<?php echo $key ?>][<?php echo $keyMacro ?>]"
+                   id="PlanoAlimentarForm_<?php echo $key ?>_<?php echo $keyMacro ?>"
+                   value="<?php echo $macroNutri ?>"/>
+        <?php endforeach; ?>
+    <?php endforeach; ?>
+
     <?php foreach ($model->distMacro as $key => $value): ?>
         <input type="hidden" name="PlanoAlimentarForm[distMacro][<?php echo $key ?>]"
                value="<?php echo($value); ?>">
@@ -71,7 +90,8 @@ $this->breadcrumbs = array(
     <?php endforeach; ?>
 
     <!--END valores do form anterior-->
-
+    <?php echo TbHtml::alert(TbHtml::ALERT_COLOR_INFO, 'Utilize "+" para adicionar um alimento manual ou
+     "Pesquisar alimento" para pesquisar um alimento existente."'); ?>
 
     <div id="detalhesPlanoAlimentar">
         <hr>

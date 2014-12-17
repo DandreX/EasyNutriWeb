@@ -123,11 +123,13 @@ class PlanosAlimentaresController extends Controller
                     $skip = false;
                     foreach($model->doses as $dose){
                         if($dose!=0){
-                            $skip=true;
+                            ChromePhp::log("Dose".$dose);
+                            $skip=false;
+                            break;
                         }
                     }
                     ChromePhp::log("Saltar passo 3?".((!$skip)?'nao saltar':'saltar'). "Passo anterior:".$passoAnterior);
-                    if (!$skip && $passoAnterior ==4) {
+                    if (!$skip || $passoAnterior ==4) {
                             ChromePhp::log('a processar passo 3');
                             $tabelaQuantAlimentos = PlanoAlimentarForm::$tabelaQuantAlimentos;
                             $arrayProvider = new CArrayDataProvider($tabelaQuantAlimentos, array(

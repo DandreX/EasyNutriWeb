@@ -8,14 +8,20 @@ Yii::app()->clientScript->registerScriptFile(
 );
 
 $this->breadcrumbs = array(
-    'Passo 1', 'Passo 2', 'Passo 3',
+    $model->utenteNome=>(Yii::app()->createUrl('utentes/view',array('id'=>$model->utenteId))),
+    'Novo plano alimentar','Passo 1', 'Passo 2', 'Passo 3',
 );
+
 
 
 ?>
 
 <h4>Utente: <?php echo($model->utenteNome) ?></h4>
+
 <h3>Distribuição por refeições</h3>
+<p><b>NEDs estipulados:</b> <?php echo($model->neds); ?> Kcal
+    <b>Peso acordado:</b> <?php echo($model->pesoAcordado); ?> Kg
+</p>
 <div id="formPlanoStep3">
     <?php $form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
         'layout' => TbHtml::FORM_LAYOUT_HORIZONTAL,
@@ -52,9 +58,22 @@ $this->breadcrumbs = array(
         <input type="hidden" name="PlanoAlimentarForm[distMacro][<?php echo $key ?>]"
                value="<?php echo($value); ?>">
     <?php endforeach; ?>
+    <?php foreach($model->doses as $key => $value):?>
+        <input type="hidden" name="PlanoAlimentarForm[doses][<?php echo $key ?>]"
+               value="<?php echo($value); ?>">
+    <?php endforeach;?>
+
+    <?php foreach ($model->dosesDistribuidas as $key => $refeicao): ?>
+        <?php foreach ($model->dosesDistribuidas[$key] as $keyMacro => $macroNutri): ?>
+            <input type="hidden"
+                   name="PlanoAlimentarForm[dosesDistribuidas][<?php echo $key ?>][<?php echo $keyMacro ?>]"
+                   id="PlanoAlimentarForm_<?php echo $key ?>_<?php echo $keyMacro ?>"
+                   value="<?php echo $macroNutri ?>"/>
+        <?php endforeach; ?>
+    <?php endforeach; ?>
+
 
     <!--END valores do form anterior-->
-
     <?php if (!empty($model->errors["dosesDistribuidas"])): ?>
         <?php echo TbHtml::alert(TbHtml::ALERT_COLOR_ERROR, implode('<br>', $model->errors["dosesDistribuidas"])); ?>
     <?php endif; ?>
@@ -208,8 +227,8 @@ $this->breadcrumbs = array(
                     var child = indexLinha * 7 + indexColuna;
                     var hiddenFieldVal = $('#inputsTabela input:nth-child(' + child + ')').val();
                     $(this).find('a').text(hiddenFieldVal);
-                        console.log("Linha", indexLinha, "Coluna", indexColuna,"Child",child,
-                             "hiddenVal",hiddenFieldVal);
+//                        console.log("Linha", indexLinha, "Coluna", indexColuna,"Child",child,
+//                             "hiddenVal",hiddenFieldVal);
                 });
             });
             calcularTabelaDist();
