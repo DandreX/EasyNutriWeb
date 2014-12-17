@@ -50,6 +50,8 @@ $this->breadcrumbs = array(
        value="<?php echo($model->utenteNome); ?>" >
 <input type="hidden" name="PlanoAlimentarForm[sexo]" id="PlanoAlimentarForm_sexo"
        value="<?php echo($model->sexo); ?>" >
+<input type="hidden" name="PlanoAlimentarForm[idade]" id="PlanoAlimentarForm_idade"
+       value="<?php echo($model->idade); ?>" >
 
 <?php foreach ($model->dosesDistribuidas as $key => $refeicao): ?>
     <?php foreach ($model->dosesDistribuidas[$key] as $keyMacro => $macroNutri): ?>
@@ -82,21 +84,21 @@ $this->breadcrumbs = array(
     <?php echo TbHtml::controlsRow(array(
         TbHtml::uneditableField('Proteínas', array('span' => 2)),
         TbHtml::uneditableField('10%-35%', array('span' => 3)),
-        TbHtml::textField('text', '', array('span' => 2, 'id' => 'percProteinas')),
+        TbHtml::textField('PlanoAlimentarForm[distMacro][proteinas]', $model->distMacro['proteinas'], array('span' => 2, 'id' => 'percProteinas')),
         TbHtml::textField('text', '', array('span' => 2, 'id' => 'gramasKgProteinas')),
         TbHtml::uneditableField('', array('span' => 2, 'id' => 'gramasProteinas')),
     )); ?>
     <?php echo TbHtml::controlsRow(array(
         TbHtml::uneditableField('Lípidos', array('span' => 2)),
         TbHtml::uneditableField('20%-35%', array('span' => 3)),
-        TbHtml::textField('text', '', array('span' => 2, 'id' => 'percLipidos')),
+        TbHtml::textField('PlanoAlimentarForm[distMacro][lipidos]', $model->distMacro['lipidos'], array('span' => 2, 'id' => 'percLipidos')),
         TbHtml::uneditableField('-', array('span' => 2)),
         TbHtml::uneditableField('', array('span' => 2, 'id' => 'gramasLipidos')),
     )); ?>
     <?php echo TbHtml::controlsRow(array(
         TbHtml::uneditableField('Hidratos de Carbono', array('span' => 2)),
         TbHtml::uneditableField('45%-65%', array('span' => 3)),
-        TbHtml::textField('text', '', array('span' => 2, 'id' => 'percGlicidos')),
+        TbHtml::textField('PlanoAlimentarForm[distMacro][hc]', $model->distMacro['hc'], array('span' => 2, 'id' => 'percGlicidos')),
         TbHtml::uneditableField('-', array('span' => 2)),
         TbHtml::uneditableField('', array('span' => 2, 'id' => 'gramasGlicidos')),
     )); ?>

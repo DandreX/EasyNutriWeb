@@ -46,6 +46,12 @@ $this->breadcrumbs = array(
            value="<?php echo($model->utenteNome); ?>">
     <input type="hidden" name="PlanoAlimentarForm[sexo]" id="PlanoAlimentarForm_sexo"
            value="<?php echo($model->sexo); ?>">
+    <input type="hidden" name="PlanoAlimentarForm[idade]" id="PlanoAlimentarForm_idade"
+           value="<?php echo($model->idade); ?>" >
+    <?php foreach ($model->distMacro as $key => $value): ?>
+        <input type="hidden" name="PlanoAlimentarForm[distMacro][<?php echo $key ?>]"
+               value="<?php echo($value); ?>">
+    <?php endforeach; ?>
 
     <!--END valores do form anterior-->
 

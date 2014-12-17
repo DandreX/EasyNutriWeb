@@ -74,6 +74,16 @@ class PlanoAlimentarForm extends CFormModel
     );
 
     /**
+     *
+     * @var array
+     */
+    public $distMacro = array(
+        'proteinas'=>'',
+        'lipidos'=>'',
+        'hc'=>''
+    );
+
+    /**
      * Array dos totais de macronutrientes obtidos no passo 2 que vão ser distribuidos no passo 3
      * @var array
      */
@@ -171,7 +181,9 @@ class PlanoAlimentarForm extends CFormModel
             array('actividade, pesoAtual,altura, pesoAcordado, neds', 'required'),
             array('pesoAtual,altura, pesoAcordado, neds, restricaoNeds', 'numerical'),
             array('restricaoNeds, utenteId,utenteNome,
-             sexo,idade, doses, plano, prescricao,verEquivalencias, horasRefeicao, dosesDistribuidas', 'safe'),
+                   sexo, idade, doses, plano, prescricao,
+                   verEquivalencias, horasRefeicao,
+                   dosesDistribuidas, distMacro', 'safe'),
             array('plano', 'required', 'on' => 'step4'),
             array('plano', 'planoValido', 'on' => 'step4'),
             array('dosesDistribuidas', 'dosesValidas'),

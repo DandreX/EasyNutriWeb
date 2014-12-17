@@ -19735,3 +19735,26 @@ Stack trace:
 #13 {main}
 REQUEST_URI=/easynutriweb/index.php?r=planosalimentares/create
 ---
+2014/12/17 13:50:14 [error] [exception.CHttpException.400] exception 'CHttpException' with message 'Your request is invalid.' in C:\Users\Andre\EasyNutriWorkspace\EasyNutriWeb\framework\web\CController.php:336
+Stack trace:
+#0 C:\Users\Andre\EasyNutriWorkspace\EasyNutriWeb\framework\web\CController.php(309): CController->invalidActionParams(Object(CInlineAction))
+#1 C:\Users\Andre\EasyNutriWorkspace\EasyNutriWeb\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#2 C:\Users\Andre\EasyNutriWorkspace\EasyNutriWeb\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#3 C:\Users\Andre\EasyNutriWorkspace\EasyNutriWeb\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#4 C:\Users\Andre\EasyNutriWorkspace\EasyNutriWeb\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#5 C:\Users\Andre\EasyNutriWorkspace\EasyNutriWeb\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#6 C:\Users\Andre\EasyNutriWorkspace\EasyNutriWeb\framework\web\CController.php(291): CFilterChain->run()
+#7 C:\Users\Andre\EasyNutriWorkspace\EasyNutriWeb\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 C:\Users\Andre\EasyNutriWorkspace\EasyNutriWeb\framework\web\CWebApplication.php(282): CController->run('view')
+#9 C:\Users\Andre\EasyNutriWorkspace\EasyNutriWeb\framework\web\CWebApplication.php(141): CWebApplication->runController('utentes/view/')
+#10 C:\Users\Andre\EasyNutriWorkspace\EasyNutriWeb\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#11 C:\Users\Andre\EasyNutriWorkspace\EasyNutriWeb\EasyNutriWeb\index.php(13): CApplication->run()
+#12 {main}
+REQUEST_URI=/easynutriweb/index.php?r=utentes/view/
+---
+2014/12/17 15:00:46 [warning] [application] Failed to set unsafe attribute "0" of "PlanoAlimentarForm".
+in C:\Users\Andre\EasyNutriWorkspace\EasyNutriWeb\EasyNutriWeb\protected\controllers\PlanosAlimentaresController.php (80)
+in C:\Users\Andre\EasyNutriWorkspace\EasyNutriWeb\EasyNutriWeb\index.php (13)
+2014/12/17 15:22:13 [warning] [application] Failed to set unsafe attribute "0" of "PlanoAlimentarForm".
+in C:\Users\Andre\EasyNutriWorkspace\EasyNutriWeb\EasyNutriWeb\protected\controllers\PlanosAlimentaresController.php (80)
+in C:\Users\Andre\EasyNutriWorkspace\EasyNutriWeb\EasyNutriWeb\index.php (13)
