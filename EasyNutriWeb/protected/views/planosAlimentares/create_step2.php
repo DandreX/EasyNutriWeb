@@ -222,7 +222,7 @@ $this->breadcrumbs = array(
             ),
             array(
                 'name' => '',
-                'header' => 'Proteinas',
+                'header' => 'Proteínas',
                 'headerHtmlOptions' => array('style' => 'width: 110px'),
             ),
             array(

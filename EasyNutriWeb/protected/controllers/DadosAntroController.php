@@ -57,11 +57,16 @@ class DadosAntroController extends Controller
 
         // Uncomment the following line if AJAX validation is needed
         // $this->performAjaxValidation($model);
-
-        if (isset($_POST['DadosAntro'])) {
+        $validar = true;
+        if (isset($_POST['DadosAntro']['utente'])) {
+            $model->utente_id = $_POST['DadosAntro']['utente'];
+            $validar = false;
+        }
+        if (isset($_POST['DadosAntro']) && $validar) {
             $model->attributes = $_POST['DadosAntro'];
             if ($model->save())
-                $this->redirect(array('admin'));
+                $this->redirect(array('admin&DadosAntro[nomeUtenteSearch]=' . $model->utente->nome . '&DadosAntro[tipoMedicaoSearch]='
+                . $model->tipoMedicao->descricao . '&DadosAntro_sort=data_med.desc'));
         }
 
         $this->render('create', array(
@@ -138,7 +143,8 @@ class DadosAntroController extends Controller
         ));
     }
 
-    public function actionViewGraphs($idUtente,$escala){
+    public function actionViewGraphs($idUtente, $escala)
+    {
         $modelUtente = Utentes::model()->findByPk($idUtente);
 
         $pesos = array();
@@ -152,13 +158,13 @@ class DadosAntroController extends Controller
             ->queryAll();
 
 
-        foreach($queryPesos as $linha){
-            if ($linha['em_Casa']==0) {
+        foreach ($queryPesos as $linha) {
+            if ($linha['em_Casa'] == 0) {
                 array_push($pesos['valoresConsulta'], array(
-                    'js:Date.UTC('.gmdate("Y, m, d, H, i, s", strtotime('-1 month',strtotime($linha['datas']))).')', floatval($linha['pesos']) ));
-            }else {
+                    'js:Date.UTC(' . gmdate("Y, m, d, H, i, s", strtotime('-1 month', strtotime($linha['datas']))) . ')', floatval($linha['pesos'])));
+            } else {
                 array_push($pesos['valoresCasa'], array(
-                    'js:Date.UTC('.gmdate("Y, m, d, H, i, s", strtotime('-1 month',strtotime($linha['datas']))).')', floatval($linha['pesos']) ));
+                    'js:Date.UTC(' . gmdate("Y, m, d, H, i, s", strtotime('-1 month', strtotime($linha['datas']))) . ')', floatval($linha['pesos'])));
             }
 
         }
@@ -173,8 +179,8 @@ class DadosAntroController extends Controller
             ->queryAll();
         foreach ($queryMassa as $linha) {
             array_push($massa['valores'], array(
-                'js:Date.UTC('.gmdate("Y, m, d, H, i, s",strtotime('-1 month',strtotime($linha['datas']))
-                ).')', floatval($linha['massa']) ));
+                'js:Date.UTC(' . gmdate("Y, m, d, H, i, s", strtotime('-1 month', strtotime($linha['datas']))
+                ) . ')', floatval($linha['massa'])));
         }
         $graficos = array();
         $graficos['peso'] = $pesos;
@@ -182,8 +188,8 @@ class DadosAntroController extends Controller
 
         $this->renderPartial('_dados_antro_graphs', array(
             'graficos' => $graficos,
-            'modelUtente'=>$modelUtente,
-        ),false,true);
+            'modelUtente' => $modelUtente,
+        ), false, true);
     }
 
     /**

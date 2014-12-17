@@ -71,9 +71,9 @@ class Notificacoes extends CActiveRecord
     {
         return array(
             'id' => 'ID',
-            'medico_id' => 'Medico',
+            'medico_id' => 'Médico',
             'utente_id' => 'Utente',
-            'descricao' => 'Descricao',
+            'descricao' => 'Descrição',
             'data' => 'Data',
             'assunto' => 'Assunto',
         );

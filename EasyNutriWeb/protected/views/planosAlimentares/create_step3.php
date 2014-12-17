@@ -15,7 +15,7 @@ $this->breadcrumbs = array(
 ?>
 
 <h4>Utente: <?php echo($model->utenteNome) ?></h4>
-<h3>Distribuicao por refeições</h3>
+<h3>Distribuição por refeições</h3>
 <div id="formPlanoStep3">
     <?php $form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
         'layout' => TbHtml::FORM_LAYOUT_HORIZONTAL,
@@ -104,7 +104,7 @@ $this->breadcrumbs = array(
                 array(
                     'class' => 'editable.EditableColumn',
                     'name' => 'pao',
-                    'header' => 'Pao eq <br> (' . $model->doses['pao'] . ' doses)',
+                    'header' => 'Pão e eq. <br> (' . $model->doses['pao'] . ' doses)',
                     'headerHtmlOptions' => array('style' => 'width: 110px'),
                     'editable' => array(
                         'emptytext' => "0",
@@ -122,7 +122,7 @@ $this->breadcrumbs = array(
                 array(
                     'class' => 'editable.EditableColumn',
                     'name' => 'carne',
-                    'header' => 'Carne eq <br> (' . $model->doses['carne'] . ' doses)',
+                    'header' => 'Carne e eq. <br> (' . $model->doses['carne'] . ' doses)',
                     'headerHtmlOptions' => array('style' => 'width: 120px'),
                     'editable' => array(
                         'emptytext' => "0",

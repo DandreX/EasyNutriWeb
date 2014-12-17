@@ -15,7 +15,7 @@ $naoEditavel = $model->getScenario() == 'view';
     ));
 
     echo TbHtml::formActions(array(
-        TbHtml::submitButton('Editar Perfil', array('color' => TbHtml::BUTTON_COLOR_PRIMARY)),
+        TbHtml::submitButton('Editar Perfil')
     ));
 
     $this->endWidget();
@@ -128,7 +128,7 @@ $naoEditavel = $model->getScenario() == 'view';
 
     <?php if (!$naoEditavel): ?>
         <?php echo TbHtml::formActions(array(
-            TbHtml::submitButton($model->isNewRecord ? 'Create' : 'Save', array('color' => TbHtml::BUTTON_COLOR_PRIMARY)),
+            TbHtml::submitButton($model->isNewRecord ? 'Criar' : 'Guardar', array('color' => TbHtml::BUTTON_COLOR_PRIMARY)),
         )); ?>
     <?php endif; ?>
 

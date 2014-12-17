@@ -138,7 +138,7 @@ class UtentesController extends Controller
 
 
                 if ($model->save())
-                    $this->redirect(array('view', 'id' => $model->id));
+                    $this->redirect(array('view', 'id' => $model->id, '#'=> "tab_1"));
             } catch (CDbException $e) {
                 $model->addError('', $e->errorInfo[2]);
             }
@@ -169,7 +169,7 @@ class UtentesController extends Controller
 
                 $model->attributes = $_POST['Utentes'];
                 if ($model->save())
-                    $this->redirect(array('view', 'id' => $model->id));
+                    $this->redirect(array('view', 'id' => $model->id, '#'=> "tab_1"));
 
             } catch (CDbException $e) {
                 $model->addError('', $e->errorInfo[2]);

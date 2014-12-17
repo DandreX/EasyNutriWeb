@@ -13,6 +13,17 @@
 
 <?php $this->endWidget(); ?>
 
+<?php $form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
+    'layout' => TbHtml::FORM_LAYOUT_INLINE,
+    'action'=>Yii::app()->createUrl('dadosAntro/create'),
+)); ?>
+<input type="hidden" name="DadosAntro[utente]" value="<?php echo $model->id ?>">
+<?php echo TbHtml::formActions(array(
+    TbHtml::submitButton('Novo Dado Antropométrico', array('class'=>'btnAddDadosAntro','icon'=>'plus')),
+)); ?>
+
+<?php $this->endWidget(); ?>
+
 <h4>Últimos Dados Antropométricos</h4>
 
 <?php $this->widget('ext.groupgridview.BootGroupGridView', array(

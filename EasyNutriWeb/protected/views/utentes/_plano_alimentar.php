@@ -9,7 +9,7 @@
 <input type="hidden" name="utenteId" value="<?php echo($model->id)?>">
 
 <?php echo TbHtml::formActions(array(
-    TbHtml::submitButton('Novo plano alimentar', array('color' => TbHtml::BUTTON_COLOR_PRIMARY)),
+    TbHtml::submitButton('Novo plano alimentar', array('icon'=>'plus')),
 )); ?>
 
 <?php $this->endWidget(); ?>

@@ -125,13 +125,13 @@ $this->breadcrumbs = array(
     </div>
     <div>
 
-        <p>Prescrição Diatetica / Notas</p>
+        <p>Prescrição Dietética / Notas</p>
         <?php ?>
         <?php echo TbHtml::textArea('PlanoAlimentarForm[prescricao]',
             isset($model->prescricao)?$model->prescricao:''
             , array('rows' => 5)); ?>
         <?php echo TbHtml::checkBox('PlanoAlimentarForm[verEquivalencias]', true, array(
-            'label' => 'Permitir acesso à tabela de equivalencias')); ?>
+            'label' => 'Permitir acesso à tabela de equivalências')); ?>
 
     </div>
 

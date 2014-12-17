@@ -14,8 +14,8 @@
     ?>
     <?php
     echo TbHtml::formActions(array(
-        TbHtml::submitButton('Editar Ficha Clinica', array('color' => TbHtml::BUTTON_COLOR_PRIMARY)),
-    )); ?>
+        TbHtml::submitButton('Editar Ficha Clinica'
+        ))); ?>
     <?php $this->endWidget(); ?>
     <?php
     $this->renderPartial('_form_ficha_clinica', array('model' => $modelFichaClinica));
@@ -32,7 +32,7 @@
 
     <?php
     echo TbHtml::formActions(array(
-        TbHtml::submitButton('Nova Ficha Clinica', array('color' => TbHtml::BUTTON_COLOR_PRIMARY)),
+        TbHtml::submitButton('Nova Ficha Clinica', array('icon'=>'plus')),
     )); ?>
 
 

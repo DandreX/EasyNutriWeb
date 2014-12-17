@@ -97,16 +97,16 @@ class DadosAntro extends CActiveRecord
     {
         return array(
             'id' => 'ID',
-            'tipo_medicao_id' => 'Tipo Medicao',
+            'tipo_medicao_id' => 'Tipo Medição',
             'valor' => 'Valor',
             'data_med' => 'Data / Hora',
             'utente_id' => 'Utente',
             'nomeUtenteSearch' => 'Utente',
             'tipoMedicaoSearch' => 'Medição',
-            'em_Casa' => 'Local Medição',
+            'em_Casa' => 'Local de Medição',
             'local' => 'Local',
             'tipoMedicaoDesc' => 'Medição',
-            'observacoes' => 'Observacoes',
+            'observacoes' => 'Observações',
         );
     }
 

@@ -49,6 +49,11 @@ $this->menu = array(
             ),
 
             true)),
+    array('label' => 'Dados Antropométricos', 'content' => $this->renderPartial('_dados_antro', array(
+            'dpDadosAntro' => $dpDadosAntro,
+            'model' => $model,
+            //'graficos'=>$graficos,
+        ), true)),
     array('label' => 'Diário Alimentar', 'content' => $this->renderPartial('_diario_alimentar_utentes',
             array('model' => $model,
                 'dataProvider' => $dataProvider,
@@ -60,11 +65,7 @@ $this->menu = array(
             ), true)
     ),
 
-    array('label' => 'Dados Antro.', 'content' => $this->renderPartial('_dados_antro', array(
-            'dpDadosAntro' => $dpDadosAntro,
-            'model' => $model,
-            //'graficos'=>$graficos,
-        ), true)),
+
     array('label' => 'Notificações', 'content' => $this->renderPartial('_notificacoes',
             array('dpNotificacoes' => $dpNotificacoes,
             ),

@@ -382,3 +382,13 @@ div .linhaPlanoAlimento{
 
 /*END MODAL NOTIFICAÇÕES*/
 
+.btnAddDadosAntro{
+    height: 30px !important;
+    padding: 6px !important;
+    float: right;
+    text-align: center;
+    vertical-align: middle;
+    display:inline;
+    margin-left: 20px;
+    margin-bottom: 20px !important;
+}

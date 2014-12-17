@@ -94,7 +94,7 @@
         </div>
 
     <?php echo TbHtml::formActions(array(
-        TbHtml::submitButton($model->isNewRecord ? 'Create' : 'Save', array('color' => TbHtml::BUTTON_COLOR_PRIMARY)),
+        TbHtml::submitButton($model->isNewRecord ? 'Criar' : 'Guardar', array('color' => TbHtml::BUTTON_COLOR_PRIMARY)),
     )); ?>
 
 

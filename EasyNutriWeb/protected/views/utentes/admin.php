@@ -41,7 +41,7 @@ $('.search-form form').submit(function(){
 </div><!-- search-form -->
 
 <?php echo
-TbHtml::button('Novo Utente', array('id' => 'btnOpenFormUtentes', 'color' => TbHtml::BUTTON_COLOR_PRIMARY));
+TbHtml::button('Novo Utente', array('id' => 'btnOpenFormUtentes', 'icon'=>'plus'));
 ?>
 <br>
 <br>

@@ -25,19 +25,16 @@
         ), 'id', 'nome');
         echo $form->dropDownListControlGroup($model, 'utente_id', $utentes,
             array('empty' => 'Escolha o Utente', 'order' => 'nome'));?>
-        <?php echo $form->error($model, 'user_id'); ?>
     </div>
 
     <div class="row">
         <?php $medicoes = CHtml::listData(TipoMedicao::model()->findAll(), 'id', 'descricao');
         echo $form->dropDownListControlGroup($model, 'tipo_medicao_id', $medicoes,
-            array('empty' => 'Escolha o tipo de medicao', 'order' => 'descricao'));?>
-        <?php echo $form->error($model, 'tipo_medicao_id'); ?>
+            array('empty' => 'Escolha o tipo de medição', 'order' => 'descricao'));?>
     </div>
 
     <div class="row">
         <?php echo $form->textFieldControlGroup($model, 'valor'); ?>
-        <?php echo $form->error($model, 'valor'); ?>
     </div>
 
     <div class="row">
@@ -56,17 +53,15 @@
                 ),
             ));
             ?>
-            <?php echo $form->error($model, 'data_med'); ?>
         </div>
     </div>
 
     <div class="row">
         <?php echo $form->textAreaControlGroup($model, 'observacoes', array('rows' => 4, 'cols' => 60)); ?>
-        <?php echo $form->error($model, 'observacoes'); ?>
     </div>
 
     <?php echo TbHtml::formActions(array(
-        TbHtml::submitButton($model->isNewRecord ? 'Create' : 'Save', array('color' => TbHtml::BUTTON_COLOR_PRIMARY)),
+        TbHtml::submitButton($model->isNewRecord ? 'Criar' : 'Guardar', array('color' => TbHtml::BUTTON_COLOR_PRIMARY)),
     )); ?>
 
     <?php $this->endWidget(); ?>

@@ -117,7 +117,7 @@ class Utentes extends CActiveRecord
             'email' => 'Email',
             'telefone' => 'Telefone',
             'nif' => 'Nif',
-            'profissao' => 'Profissao',
+            'profissao' => 'Profissão',
             'estado_civil' => 'Estado Civil',
             'motivo_consulta' => 'Motivo Consulta',
             'medico_id' => 'Medico',

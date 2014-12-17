@@ -73,7 +73,7 @@ class FichaClinicaController extends Controller
             $model->idUtente=$idUtente;
 			$model->attributes=$_POST['FichaClinica'];
 			if($model->save())
-				$this->redirect(array('utentes/view','id'=>$model->idUtente));
+				$this->redirect(array('utentes/view','id'=>$model->idUtente, '#'=> "tab_2"));
 		}
 
 		$this->render('create',array(
@@ -97,7 +97,7 @@ class FichaClinicaController extends Controller
 		{
 			$model->attributes=$_POST['FichaClinica'];
 			if($model->save())
-				$this->redirect(array('utentes/view','id'=>$model->idUtente));
+				$this->redirect(array('utentes/view','id'=>$model->idUtente, '#'=> "tab_2"));
 		}
 
 		$this->render('update',array(
