@@ -14,6 +14,11 @@
  */
 class Users extends CActiveRecord
 {
+
+    public $novaPass;
+    public $passAntiga;
+    public $passConfirmacao;
+
     /**
      * @return string the associated database table name
      */
@@ -30,13 +35,14 @@ class Users extends CActiveRecord
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('nome, username, password', 'required'),
+            array('nome, username, password, novaPass, passAntiga, passConfirmacao', 'required'),
             array('nome', 'length', 'max' => 150),
             array('username', 'length', 'max' => 30),
             array('password', 'length', 'max' => 128),
             // The following rule is used by search().
             // @todo Please remove those attributes that should not be searched.
-            array('id, nome, username, password', 'safe', 'on' => 'search'),
+            array('id, nome, username, password, passNova, passAntiga, passConfirmacao', 'safe', 'on' => 'search'),
+            array('passNova, passAntiga, passConfirmacao', 'safe'),
         );
     }
 
@@ -62,6 +68,9 @@ class Users extends CActiveRecord
             'nome' => 'Nome',
             'username' => 'Username',
             'password' => 'Password',
+            'novaPass'=>'Nova Palavra-passe',
+            'passAntiga'=>'Palavra-passe Antiga',
+            'passConfirmacao'=>'Repetir Nova Palavra-passe'
         );
     }
 
@@ -102,5 +111,19 @@ class Users extends CActiveRecord
     public static function model($className = __CLASS__)
     {
         return parent::model($className);
+    }
+
+    public function alterarPass(){
+        $hashPassAntiga = hash("sha256", $this->passAntiga);
+        if($this->password != $hashPassAntiga){
+            $this->addError('passAntiga', "Palavra-passe actual incorrecta!");
+            return false;
+        }
+        if($this->novaPass != $this->passConfirmacao){
+            $this->addError('passConfirmacao', "Palavras-passe diferentes!");
+            return false;
+        }
+        $this->password = hash("sha256", $this->novaPass);
+        return $this->save();
     }
 }

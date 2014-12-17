@@ -41,11 +41,12 @@
             'items' => array(
                 array('class' => 'bootstrap.widgets.TbNav',
                     'items' => array(
-                        array('label' => 'Os Meus Utentes', 'url' => array('/utentes/admin')),
+                        array('label' => 'Os Meus Utentes', 'url' => array('/utentes/admin'), 'visible' => !Yii::app()->user->isGuest),
 //                        array('label' => 'Registos Antropométricos', 'url' => array('/dadosAntro/admin')),
 //                        array('label' => 'Notificações', 'url' => array('/notificacoes/admin')),
 //                        array('label' => 'Plano Alimentar', 'url' => array(
 //                            '/planosalimentares/create')),
+                        array('label' => 'Perfil', 'url' => array('/users/alterPass&id='.(!Yii::app()->user->isGuest?Yii::app()->user->userid:'')), 'visible' => !Yii::app()->user->isGuest),
                         array('label' => 'Login', 'url' => array('/site/login'), 'visible' => Yii::app()->user->isGuest),
                         array('label' => 'Logout (' . Yii::app()->user->name . ')', 'url' => array('/site/logout'), 'visible' => !Yii::app()->user->isGuest)
                     ),

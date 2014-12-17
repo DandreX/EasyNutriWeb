@@ -6,7 +6,7 @@ class UsersController extends Controller
      * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
      * using two-column layout. See 'protected/views/layouts/column2.php'.
      */
-    public $layout = '//layouts/column2';
+    public $layout = '//layouts/column1';
 
     /**
      * @return array action filters
@@ -28,7 +28,6 @@ class UsersController extends Controller
     {
         return array(
             array('allow', // allow admin user to perform 'admin' and 'delete' actions
-                'actions' => array('index','view','create','update','admin', 'delete'),
                 'users' => array('@'),
             ),
             array('deny', // deny all users
@@ -47,6 +46,7 @@ class UsersController extends Controller
             'model' => $this->loadModel($id),
         ));
     }
+
 
     /**
      * Creates a new model.
@@ -158,5 +158,22 @@ class UsersController extends Controller
             echo CActiveForm::validate($model);
             Yii::app()->end();
         }
+    }
+
+    public function actionAlterPass($id){
+        $alterada = false;
+        $model = $this->loadModel($id);
+        if(isset($_POST['Users'])){
+            $model->attributes =$_POST['Users'];
+            if($model->alterarPass()){
+                $alterada=true;
+                $model->novaPass ="";
+                $model->passConfirmacao ="";
+                $model->passAntiga ="";
+            }
+        }
+
+        $this->render('_alter_pass', array('model'=>$model, 'alterada'=> $alterada));
+
     }
 }

@@ -121,7 +121,7 @@ $this->widget('zii.widgets.jui.CJuiDatePicker', array(
 
 
     function btnRefreshDiarioAlim(){
-        window.location = '<?php Yii::app()->getRequest()->getURL(); ?>'+"#tab_3";
+        window.location = '<?php Yii::app()->getRequest()->getURL(); ?>'+"#tab_4";
         window.location.reload();
     }
 </script>

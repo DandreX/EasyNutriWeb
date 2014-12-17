@@ -8,7 +8,7 @@
     'action'=>Yii::app()->createUrl("dadosAntro/admin&DadosAntro[nomeUtenteSearch]=".$model->nome),
 )); ?>
 <?php echo TbHtml::formActions(array(
-    TbHtml::submitButton('Todos os dados antropométricos', array('color' => TbHtml::BUTTON_COLOR_PRIMARY)),
+    TbHtml::submitButton('Todos os dados antropométricos', array('id'=>'btnTodosDadosAntro', 'color' => TbHtml::BUTTON_COLOR_PRIMARY)),
 )); ?>
 
 <?php $this->endWidget(); ?>
@@ -24,7 +24,10 @@
 
 <?php $this->endWidget(); ?>
 
+
 <h4>Últimos Dados Antropométricos</h4>
+
+<?php echo TbHtml::button('', array('class'=>'btnRefresh', 'icon' => 'refresh', 'onclick'=>'btnRefreshDadosAntro();')); ?>
 
 <?php $this->widget('ext.groupgridview.BootGroupGridView', array(
     'id' => 'dados-antro-grid',
@@ -103,4 +106,11 @@
 <script type="text/javascript">
     $('.form-actions').addClass('btnFormsViewUtentes');
     $('.form-actions').removeClass('form-actions');
+
+
+    function btnRefreshDadosAntro(){
+        window.location = '<?php Yii::app()->getRequest()->getURL(); ?>'+"#tab_3";
+        window.location.reload();
+    }
+
 </script>
