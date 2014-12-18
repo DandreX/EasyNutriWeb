@@ -11,8 +11,8 @@ Yii::app()->clientScript->registerScriptFile(
 
 
 $this->breadcrumbs = array(
-    $model->utenteNome=>(Yii::app()->createUrl('utentes/view',array('id'=>$model->utenteId))),
-    'Novo plano alimentar','Passo 1', 'Passo 2', 'Passo 3', 'Passo 4',
+    $model->utenteNome => (Yii::app()->createUrl('utentes/view', array('id' => $model->utenteId))),
+    'Novo plano alimentar', 'Passo 1', 'Passo 2', 'Passo 3', 'Passo 4',
 );
 
 ?>
@@ -60,11 +60,11 @@ $this->breadcrumbs = array(
     <input type="hidden" name="PlanoAlimentarForm[sexo]" id="PlanoAlimentarForm_sexo"
            value="<?php echo($model->sexo); ?>">
     <input type="hidden" name="PlanoAlimentarForm[idade]" id="PlanoAlimentarForm_idade"
-           value="<?php echo($model->idade); ?>" >
-    <?php foreach($model->doses as $key => $value):?>
+           value="<?php echo($model->idade); ?>">
+    <?php foreach ($model->doses as $key => $value): ?>
         <input type="hidden" name="PlanoAlimentarForm[doses][<?php echo $key ?>]"
                value="<?php echo($value); ?>">
-    <?php endforeach;?>
+    <?php endforeach; ?>
     <?php foreach ($model->dosesDistribuidas as $key => $refeicao): ?>
         <?php foreach ($model->dosesDistribuidas[$key] as $keyMacro => $macroNutri): ?>
             <input type="hidden"
@@ -85,11 +85,12 @@ $this->breadcrumbs = array(
             <input type="hidden"
                    name="PlanoAlimentarForm[dosesDistribuidas][<?php echo $key ?>][<?php echo $keyMacro ?>]"
                    id="PlanoAlimentarForm_<?php echo $key ?>_<?php echo $keyMacro ?>"
-                   value="<?php echo $macroNutri?>"/>
+                   value="<?php echo $macroNutri ?>"/>
         <?php endforeach; ?>
     <?php endforeach; ?>
 
     <!--END valores do form anterior-->
+
     <?php echo TbHtml::alert(TbHtml::ALERT_COLOR_INFO, 'Utilize "+" para adicionar um alimento manual ou
      "Pesquisar alimento" para pesquisar um alimento existente."'); ?>
 
@@ -98,7 +99,9 @@ $this->breadcrumbs = array(
         <?php foreach ($refeicoes as $refeicao): ?>
             <div id="<?php echo('refeicao' . $refeicao->id); ?>">
                 <h4><?php echo($refeicao->descricao) ?></h4>
-                <p><?php echo $model->descDosesRefeicao($refeicao->id)?></p>
+
+                <p><?php echo $model->descDosesRefeicao($refeicao->id) ?></p>
+
                 <p>Hora:
                     <?php
                     $this->widget('editable.Editable', array(
@@ -116,14 +119,15 @@ $this->breadcrumbs = array(
 
                 <div class="linhasRefeicao">
                     <?php if (!empty($model->plano[$refeicao->id])): ?>
-                        <?php $idLinha = 1000;?>
+                        <?php $idLinha = 1000; ?>
                         <?php foreach ($model->plano[$refeicao->id] as $refeicaoPlano): ; ?>
-<!--                            --><?php //var_dump($refeicaoPlano)?>
-                            <?php $this->actionReloadLinhas($refeicaoPlano,$refeicao->id,$idLinha--); ?>
+                            <!--                            --><?php //var_dump($refeicaoPlano)?>
+                            <?php $this->actionReloadLinhas($refeicaoPlano, $refeicao->id, $idLinha--); ?>
                         <?php endforeach; ?>
                     <?php endif; ?>
                     <!--                linha de refeicao é injetada aqui com AJAX-->
                 </div>
+                <div id="spinner_step4_<?php echo $refeicao->id ?>"></div>
                 <?php echo TbHtml::button('+',
                     array(
                         'class' => 'btnAddLinha',
@@ -148,7 +152,7 @@ $this->breadcrumbs = array(
         <p>Prescrição Dietética / Notas</p>
         <?php ?>
         <?php echo TbHtml::textArea('PlanoAlimentarForm[prescricao]',
-            isset($model->prescricao)?$model->prescricao:''
+            isset($model->prescricao) ? $model->prescricao : ''
             , array('rows' => 5)); ?>
         <?php echo TbHtml::checkBox('PlanoAlimentarForm[verEquivalencias]', true, array(
             'label' => 'Permitir acesso à tabela de equivalências')); ?>
@@ -197,9 +201,14 @@ $this->breadcrumbs = array(
 
         });
     };
-
+    var pedidoPesquisa;
     var pesquisarAlimento = function (query) {
-        $.ajax({
+        if (pedidoPesquisa!==undefined) {
+            pedidoPesquisa.abort();
+            console.log("Pedido abortado");
+        }
+
+        pedidoPesquisa = $.ajax({
             type: 'GET',
             url: '<?php echo Yii::app()->createAbsoluteUrl("planosAlimentares/popularModal&query="); ?>' + query,
             success: function (data) {
@@ -212,10 +221,17 @@ $this->breadcrumbs = array(
                 });
             },
             error: function (data) { // if error occured
-                alert("Ocorreu um erro");
+                if (data.statusText !="abort") {
+                    alert("Ocorreu um erro");
+                }
+                console.log(data);
             },
             dataType: 'html'
         });
+        pedidoPesquisa.complete(function(){
+            pedidoPesquisa=undefined;
+            console.log("Pedido de pesquisa limpo",pedidoPesquisa);
+        })
     }
 
     var limparModal = function () {
@@ -250,10 +266,11 @@ $this->breadcrumbs = array(
             idRefeicao = parseInt(idRefeicao);
             var idLinha = linhas[idRefeicao]++;
             if (idAlimento != '') {
-                $.ajax({
+                mostrarSpinner("spinner_step4_" + idRefeicao);
+                var ajaxRequest = $.ajax({
                     type: 'GET',
                     url: '<?php echo Yii::app()->createAbsoluteUrl("planosAlimentares/addAlimento"); ?>'
-                        + '&idAlimento=' + idAlimento + "&idRefeicao=" + idRefeicao + "&idLinha=" + idLinha,
+                    + '&idAlimento=' + idAlimento + "&idRefeicao=" + idRefeicao + "&idLinha=" + idLinha,
                     success: function (data) {
                         div.append(data);
                     },
@@ -262,6 +279,11 @@ $this->breadcrumbs = array(
                     },
                     dataType: 'html'
                 });
+                ajaxRequest.complete(function () {
+                    esconderSpinner("spinner_step4_" + idRefeicao);
+
+                });
+
             } else {
                 console.log('Escola um alimento');
             }
@@ -281,10 +303,11 @@ $this->breadcrumbs = array(
             var idRefeicao = div.parent().attr('id').replace('refeicao', '');
             idRefeicao = parseInt(idRefeicao);
             var idLinha = linhas[idRefeicao]++;
-            $.ajax({
+            mostrarSpinner("spinner_step4_" + idRefeicao);
+            var ajaxRequest = $.ajax({
                 type: 'GET',
                 url: '<?php echo Yii::app()->createAbsoluteUrl("planosAlimentares/addLinhaVazia"); ?>'
-                    + "&idRefeicao=" + idRefeicao + "&idLinha=" + idLinha,
+                + "&idRefeicao=" + idRefeicao + "&idLinha=" + idLinha,
                 success: function (data) {
                     div.append(data);
                 },
@@ -292,6 +315,10 @@ $this->breadcrumbs = array(
                     alert("Ocorreu um erro");
                 },
                 dataType: 'html'
+            });
+            ajaxRequest.complete(function () {
+                esconderSpinner("spinner_step4_" + idRefeicao);
+
             });
         });
 

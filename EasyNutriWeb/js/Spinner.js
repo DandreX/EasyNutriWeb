@@ -15,5 +15,11 @@
 var spinner = "\x3Cdiv class=\"spinner\"\x3E\n \x3Cdiv class=\"rect1\"\x3E\x3C\x2Fdiv\x3E\n \x3Cdiv class=\"rect2\"\x3E\x3C\x2Fdiv\x3E\n \x3Cdiv class=\"rect3\"\x3E\x3C\x2Fdiv\x3E\n \x3Cdiv class=\"rect4\"\x3E\x3C\x2Fdiv\x3E\n \x3Cdiv class=\"rect5\"\x3E\x3C\x2Fdiv\x3E\n\x3C\x2Fdiv\x3E";
 
 var mostrarSpinner = function(divId){
-    $('#'.divId).html(spinner);
+    $('#'+divId).html(spinner);
+ console.log("mostrou spinner ");
+}
+
+var esconderSpinner= function(divId){
+ $('#'+divId).empty();
+ console.log("escondeu spinner ");
 }
