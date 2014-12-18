@@ -60,8 +60,10 @@ $this->breadcrumbs = array(
     <input type="hidden" name="PlanoAlimentarForm[sexo]" id="PlanoAlimentarForm_sexo"
            value="<?php echo($model->sexo); ?>">
     <input type="hidden" name="PlanoAlimentarForm[idade]" id="PlanoAlimentarForm_idade"
-           value="<?php echo($model->idade); ?>">
-    <?php foreach ($model->doses as $key => $value): ?>
+           value="<?php echo($model->idade); ?>" >
+    <input type="hidden" name="PlanoAlimentarForm[tipoLeite]" id="PlanoAlimentarForm_tipoLeite"
+           value="<?php echo($model->tipoLeite); ?>">
+    <?php foreach($model->doses as $key => $value):?>
         <input type="hidden" name="PlanoAlimentarForm[doses][<?php echo $key ?>]"
                value="<?php echo($value); ?>">
     <?php endforeach; ?>
@@ -85,12 +87,11 @@ $this->breadcrumbs = array(
             <input type="hidden"
                    name="PlanoAlimentarForm[dosesDistribuidas][<?php echo $key ?>][<?php echo $keyMacro ?>]"
                    id="PlanoAlimentarForm_<?php echo $key ?>_<?php echo $keyMacro ?>"
-                   value="<?php echo $macroNutri ?>"/>
+                   value="<?php echo $macroNutri?>"/>
         <?php endforeach; ?>
     <?php endforeach; ?>
 
     <!--END valores do form anterior-->
-
     <?php echo TbHtml::alert(TbHtml::ALERT_COLOR_INFO, 'Utilize "+" para adicionar um alimento manual ou
      "Pesquisar alimento" para pesquisar um alimento existente."'); ?>
 
@@ -99,9 +100,7 @@ $this->breadcrumbs = array(
         <?php foreach ($refeicoes as $refeicao): ?>
             <div id="<?php echo('refeicao' . $refeicao->id); ?>">
                 <h4><?php echo($refeicao->descricao) ?></h4>
-
-                <p><?php echo $model->descDosesRefeicao($refeicao->id) ?></p>
-
+                <p><?php echo $model->descDosesRefeicao($refeicao->id)?></p>
                 <p>Hora:
                     <?php
                     $this->widget('editable.Editable', array(
@@ -121,7 +120,7 @@ $this->breadcrumbs = array(
                     <?php if (!empty($model->plano[$refeicao->id])): ?>
                         <?php $idLinha = 1000; ?>
                         <?php foreach ($model->plano[$refeicao->id] as $refeicaoPlano): ; ?>
-                            <!--                            --><?php //var_dump($refeicaoPlano)?>
+                            
                             <?php $this->actionReloadLinhas($refeicaoPlano, $refeicao->id, $idLinha--); ?>
                         <?php endforeach; ?>
                     <?php endif; ?>
@@ -270,7 +269,7 @@ $this->breadcrumbs = array(
                 var ajaxRequest = $.ajax({
                     type: 'GET',
                     url: '<?php echo Yii::app()->createAbsoluteUrl("planosAlimentares/addAlimento"); ?>'
-                    + '&idAlimento=' + idAlimento + "&idRefeicao=" + idRefeicao + "&idLinha=" + idLinha,
+                        + '&idAlimento=' + idAlimento + "&idRefeicao=" + idRefeicao + "&idLinha=" + idLinha,
                     success: function (data) {
                         div.append(data);
                     },
@@ -307,7 +306,7 @@ $this->breadcrumbs = array(
             var ajaxRequest = $.ajax({
                 type: 'GET',
                 url: '<?php echo Yii::app()->createAbsoluteUrl("planosAlimentares/addLinhaVazia"); ?>'
-                + "&idRefeicao=" + idRefeicao + "&idLinha=" + idLinha,
+                    + "&idRefeicao=" + idRefeicao + "&idLinha=" + idLinha,
                 success: function (data) {
                     div.append(data);
                 },

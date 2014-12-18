@@ -40,6 +40,8 @@ $this->breadcrumbs = array(
            value="<?php echo($model->sexo); ?>">
     <input type="hidden" name="PlanoAlimentarForm[idade]" id="PlanoAlimentarForm_idade"
            value="<?php echo($model->idade); ?>">
+    <input type="hidden" name="PlanoAlimentarForm[tipoLeite]" id="PlanoAlimentarForm_tipoLeite"
+           value="<?php echo($model->tipoLeite); ?>">
     <?php foreach($model->doses as $key => $value):?>
         <input type="hidden" name="PlanoAlimentarForm[doses][<?php echo $key ?>]"
                value="<?php echo($value); ?>">
@@ -206,6 +208,8 @@ $this->breadcrumbs = array(
         }
 
     };
+
+
 
     $(document).ready(function () {
         var sexo = '<?php echo($model->sexo) ?>';

@@ -37,6 +37,8 @@ class LoginForm extends CFormModel
 	{
 		return array(
 			'rememberMe'=>'Lembrar as minhas credenciais',
+            'username'=>'Nome de Utilizador',
+            'password'=>'Palavra-passe',
 		);
 	}
 

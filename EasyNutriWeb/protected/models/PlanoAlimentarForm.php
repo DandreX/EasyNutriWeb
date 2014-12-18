@@ -162,6 +162,8 @@ class PlanoAlimentarForm extends CFormModel
 
     public $batatas = 'batata frita';
 
+    public $tipoLeite;
+
     /**
      * Dados das linhas por refeicao do plano alimentar obtidos no passo 4
      * @var array
@@ -183,7 +185,7 @@ class PlanoAlimentarForm extends CFormModel
             array('restricaoNeds, utenteId,utenteNome,
                    sexo, idade, doses, plano, prescricao,
                    verEquivalencias, horasRefeicao,
-                   dosesDistribuidas, distMacro', 'safe'),
+                   dosesDistribuidas, distMacro, tipoLeite', 'safe'),
             array('plano', 'required', 'on' => 'step4'),
             array('plano', 'planoValido', 'on' => 'step4'),
             array('dosesDistribuidas', 'dosesValidas'),
