@@ -467,4 +467,14 @@ div .linhaPlanoAlimento{
     margin-right: auto;
 }
 
+#login-form{
+    width: 500px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
 
+#login-form .form-actions{
+    background-color: #ffffff;
+    border: 0px;
+}
