@@ -9,6 +9,9 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta name="language" content="en"/>
 
+    <link rel="shortcut icon" href="<?php echo Yii::app()->request->baseUrl; ?>/assets/imagensEasynutri/iconeTransparente.gif" type="image/x-icon" />
+
+
     <!-- blueprint CSS framework -->
     <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/screen.css"
           media="screen, projection"/>
@@ -37,6 +40,7 @@
     <div id="mainmenu">
         <?php $this->widget('bootstrap.widgets.TbNavbar', array(
             'display' => null,
+            'brandLabel'=> CHtml::image(Yii::app()->getBaseUrl().'/assets/imagensEasynutri/iconeTransparente.gif')."EasyNutri",
             'color' => TbHtml::NAV_TYPE_TABS,
             'items' => array(
                 array('class' => 'bootstrap.widgets.TbNav',

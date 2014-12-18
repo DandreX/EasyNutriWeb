@@ -76,10 +76,12 @@
 //    )   ); ?>
 
 <div id="graficos"></div>
+<div id="spinner_graficos"></div>
 
 <script type="text/javascript">
 
     var getGraphs = function (escala) {
+        mostrarSpinner('spinner_graficos');
         $.ajax({
             type: 'GET',
             url: '<?php echo
@@ -87,11 +89,11 @@
                 '&escala=' + escala,
             success: function (data) {
                 $('#graficos').html(data);
-                // $('#spinner_place').empty();
+                 esconderSpinner('spinner_graficos');
             },
             error: function (data) { // if error occured
                 alert("Ocorreu um erro a obter os gráficos");
-                //$('#spinner_place').empty();
+                esconderSpinner('spinner_graficos');
             },
             dataType: 'html'
         });

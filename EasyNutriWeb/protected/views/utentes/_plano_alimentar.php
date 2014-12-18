@@ -19,6 +19,7 @@
     <?php echo TbHtml::alert(TbHtml::ALERT_COLOR_DEFAULT, 'Este utente ainda não tem nenhum plano alimentar.'); ?>
 <?php else: ?>
    <div id="planoAlimentar"></div>
+   <div id="spinner_planoAlimentar"></div>
 <?php endif ?>
 
 
@@ -28,16 +29,18 @@
 
     $(document).ready(function(){
         var temPlano = <?php echo count($model->planosAlimentares)?>;
-        console.log(temPlano);
+        mostrarSpinner('spinner_planoAlimentar');
         if(temPlano > 0){
             $.ajax({
                 type: 'GET',
                 url: '<?php echo Yii::app()->createAbsoluteUrl("planosAlimentares/ultimoPlano&idUtente=".$model->id)?>',
                 success: function (data) {
                     $('#planoAlimentar').html(data);
+                    esconderSpinner('spinner_planoAlimentar');
                 },
                 error: function (data) { // if error occured
                     alert("Ocorreu um erro a obter plano alimentar");
+                    esconderSpinner('spinner_planoAlimentar');
                 },
                 dataType: 'html'
             });
