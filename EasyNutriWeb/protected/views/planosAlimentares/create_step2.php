@@ -317,7 +317,7 @@ var reloadPage = function () {
 
 };
 
-var calcularTabelaDoses = function () {
+var calcularTabelaDoses = function (changedIndex) {
     for (i in equivalencias) {
         alimento = equivalencias[i];
         if (i != 6 || i != 9 || i != 11 || i != 13) {
@@ -331,11 +331,17 @@ var calcularTabelaDoses = function () {
         }
     }
     calculoSubTotal(3, 6, 1, 5);
-    calcDosesPao();
+    if(changedIndex!=7 && changedIndex!=10 && changedIndex!=12){
+        calcDosesPao();
+    }
     calculoSubTotal(3, 6, 6, 8);
-    calcDosesCarne();
+    if(changedIndex!=7 && changedIndex!=10 && changedIndex!=12){
+        calcDosesCarne();
+    }
     calculoSubTotal(3, 6, 9, 10);
-    calcDosesGordura();
+    if(changedIndex!=7 && changedIndex!=10 && changedIndex!=12){
+        calcDosesGordura();
+    }
     calculoSubTotal(3, 6, 11, 12);
 };
 
@@ -416,9 +422,7 @@ $(document).ready(function () {
     });
 
     $("#percProteinas, #percLipidos,#percGlicidos").change(function(){
-        console.log("FIREEEEE");
         if(verificaDistMacroNutri()){
-            console.log("a callucar a tabela ao mudar nutri");
             calcularTabelaDoses();
         }
     });
@@ -450,9 +454,10 @@ $(document).ready(function () {
             $(".editable-cancel").click();
             return;
         }
+        var indiceLinha = $(this).find('a').attr("data-pk");
         setTimeout(function(){
-            calcularTabelaDoses();
-        }, 100);
+            calcularTabelaDoses(indiceLinha);
+        }, 150);
 
     });
 
