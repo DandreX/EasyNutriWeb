@@ -225,14 +225,14 @@ var calcDosesPao = function () {
     var totalHC = $('#gramasGlicidos').text();
     //se o gramas de hc estiver definido calcula doses de pao
     if (subTotalHC != 0) {
-        dosesPao = (parseFloat(totalHC) - parseFloat(subTotalHC)) / 15;
+        var dosesPao = (parseFloat(totalHC) - parseFloat(subTotalHC)) / 15;
         //preencher doses de pao na tabela
-        $('#tabelaDistribuicao > table >tbody  tr:nth-child(7) >td:nth-child(2) > a').text(dosesPao.toFixed(0));
+        $('#tabelaDistribuicao > table >tbody  tr:nth-child(7) >td:nth-child(2) > a').text(dosesPao.toFixed(1));
         for (i in equivalencias) {
             alimento = equivalencias[7];
             for (j in alimento) {
                 var nutrival = alimento[j];
-                var calc = dosesPao * nutrival;
+                var calc = dosesPao.toFixed(1) * nutrival;
                 $('#tabelaDistribuicao > table >tbody  tr:nth-child(7) >td:nth-child(' + j + ') ').text(calc.toFixed(1));
             }
         }
@@ -247,12 +247,12 @@ var calcDosesCarne = function () {
     if (subTotalProteinas != 0) {
        var dosesProteinas = (parseFloat(totalProteinas) - parseFloat(subTotalProteinas)) / 7;
         console.log("valor carne", dosesProteinas);
-        $('#tabelaDistribuicao > table >tbody  tr:nth-child(10) >td:nth-child(2) a').text(dosesProteinas.toFixed(0));
+        $('#tabelaDistribuicao > table >tbody  tr:nth-child(10) >td:nth-child(2) a').text(dosesProteinas.toFixed(1));
         for (i in equivalencias) {
             alimento = equivalencias[10];
             for (j in alimento) {
                 var nutrival = alimento[j];
-                var calc = dosesProteinas * nutrival;
+                var calc = dosesProteinas.toFixed(1) * nutrival;
                 $('#tabelaDistribuicao > table >tbody  tr:nth-child(10) >td:nth-child(' + j + ')').text(calc.toFixed(1));
             }
         }
@@ -263,13 +263,13 @@ var calcDosesGordura = function () {
     var subTotalLipidos = $('#tabelaDistribuicao > table >tbody  tr:nth-child(11) >td:nth-child(4)').text();
     var totalLipidos = $('#gramasLipidos').text();
     if (subTotalLipidos != 0) {
-        dosesGordura = (parseFloat(totalLipidos) - parseFloat(subTotalLipidos)) / 5;
-        $('#tabelaDistribuicao > table >tbody  tr:nth-child(12) >td:nth-child(2) a').text(dosesGordura.toFixed(0));
+       var  dosesGordura = (parseFloat(totalLipidos) - parseFloat(subTotalLipidos)) / 5;
+        $('#tabelaDistribuicao > table >tbody  tr:nth-child(12) >td:nth-child(2) a').text(dosesGordura.toFixed(1));
         for (i in equivalencias) {
             alimento = equivalencias[12];
             for (j in alimento) {
                 var nutrival = alimento[j];
-                var calc = dosesGordura * nutrival;
+                var calc = dosesGordura.toFixed(1) * nutrival;
                 $('#tabelaDistribuicao > table >tbody  tr:nth-child(12) >td:nth-child(' + j + ')').text(calc.toFixed(1));
             }
         }
