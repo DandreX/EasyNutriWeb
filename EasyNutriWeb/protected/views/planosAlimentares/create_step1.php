@@ -232,7 +232,7 @@ $this->breadcrumbs = array(
             var inputNeds = $('#PlanoAlimentarForm_neds');
             var restricao = $(this).val();
 
-            var peso = replaceAndGetCommaInput('PlanoAlimentarForm_pesoAtual');
+            var peso = replaceAndGetCommaInput('PlanoAlimentarForm_pesoAcordado');
             peso = parseFloat(peso);
             var altura = replaceAndGetCommaInput('PlanoAlimentarForm_altura');
             var actividade = $('#PlanoAlimentarForm_actividade').val();

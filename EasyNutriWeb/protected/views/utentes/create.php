@@ -23,8 +23,13 @@ $this->menu = array(
         var nomeCompleto;
         var login;
         $('input#textNome').change(function(){
+
             nomeCompleto =$(this).val();
             login = nomeCompleto.split(" ")[0];
+            if (login) {
+                login = login.toLowerCase();
+            }
+
             $('#Utentes_username').val(login);
 
         });
