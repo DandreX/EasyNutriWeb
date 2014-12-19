@@ -296,7 +296,7 @@ var reloadPage = function () {
 
     $('div#tabelaDistribuicao tbody tr').each(function (iLinha) {
 //        console.log("Linha da tabela ", iLinha);
-        if (iLinha == 0 || iLinha == 5 || iLinha == 6 || iLinha == 10 || iLinha == 12) {
+        if (iLinha == 0 || iLinha == 5 || iLinha == 8 || iLinha == 10 || iLinha == 12) {
             return;
         }
         if (iLinha == 0 || iLinha == 1 || iLinha == 2) {
@@ -312,12 +312,12 @@ var reloadPage = function () {
         $(this).find('td:nth-child(2) a').text(doseGuardada);
     });
     if (verificaDistMacroNutri()) {
-        calcularTabelaDoses();
+        calcularTabelaDoses(undefined,true);
     }
 
 };
 
-var calcularTabelaDoses = function (changedIndex) {
+var calcularTabelaDoses = function (changedIndex, isReload) {
     for (i in equivalencias) {
         alimento = equivalencias[i];
         if (i != 6 || i != 9 || i != 11 || i != 13) {
@@ -331,15 +331,15 @@ var calcularTabelaDoses = function (changedIndex) {
         }
     }
     calculoSubTotal(3, 6, 1, 5);
-    if(changedIndex!=7 && changedIndex!=10 && changedIndex!=12){
+    if(changedIndex!=7 && changedIndex!=8 && changedIndex!=10 && changedIndex!=12 && !isReload){
         calcDosesPao();
     }
     calculoSubTotal(3, 6, 6, 8);
-    if(changedIndex!=7 && changedIndex!=10 && changedIndex!=12){
+    if(changedIndex!=7 && changedIndex!=8 && changedIndex!=10 && changedIndex!=12 && !isReload){
         calcDosesCarne();
     }
     calculoSubTotal(3, 6, 9, 10);
-    if(changedIndex!=7 && changedIndex!=10 && changedIndex!=12){
+    if(changedIndex!=7 && changedIndex!=8 && changedIndex!=10 && changedIndex!=12 && !isReload){
         calcDosesGordura();
     }
     calculoSubTotal(3, 6, 11, 12);
@@ -443,8 +443,7 @@ $(document).ready(function () {
         .filter(':nth-child(13)')
         .css('background-color', 'lightblue');
 
-    //Se voltou a atras recarrega as doses definidas
-    reloadPage();
+
 
 
     $('#tabelaDistribuicao > table >tbody tr>td:nth-child(2) ').change(function () {
@@ -498,7 +497,8 @@ $(document).ready(function () {
         });
     });
     //END --- Associar valor das doses ao POST
-
+    //Se voltou a atras recarrega as doses definidas
+    reloadPage();
 
 });
 
