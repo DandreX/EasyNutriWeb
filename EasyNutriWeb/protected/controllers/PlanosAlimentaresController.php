@@ -157,7 +157,7 @@ class PlanosAlimentaresController extends Controller
                 case 5:
                     $url = Yii::app()->createUrl('utentes/view', array(
                         'id'=>$model->utenteId,
-                        '#'=>"tab_5"));
+                        '#'=>"tab_6"));
 
                     $this->redirect($url);
                     return;

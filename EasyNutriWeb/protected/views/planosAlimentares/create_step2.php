@@ -189,9 +189,11 @@ var calculoTotalNED = function () {
     var percLipidos = $('#percLipidos').val();
     var percGlicidos = $('#percGlicidos').val();
     var percProteinas = $('#percProteinas').val();
+    percLipidos = isNaN(parseFloat(percLipidos))? 0 : parseFloat(percLipidos);
+    percGlicidos = isNaN(parseFloat(percGlicidos))? 0 : parseFloat(percGlicidos);
+    percProteinas = isNaN(parseFloat(percProteinas))? 0 : parseFloat(percProteinas);
 
-    if (percGlicidos != "" && percLipidos != "" && percProteinas != "") {
-        var Totalperc = parseFloat(percGlicidos) + parseFloat(percLipidos) + parseFloat(percProteinas);
+        var Totalperc = percGlicidos + percLipidos + percProteinas;
         console.log(Totalperc);
         $('#totalVet').text(Totalperc.toFixed(1) + '%');
         if (Totalperc > 100) {
@@ -201,7 +203,6 @@ var calculoTotalNED = function () {
         } else {
             $('#totalVet').css('color', 'black');
         }
-    }
 };
 
 var calculoSubTotal = function (cInicio, cFim, lInicio, lFim) {
