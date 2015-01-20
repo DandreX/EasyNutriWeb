@@ -5,6 +5,7 @@
 /* @var $dpDadosAntro CActiveDataProvider */
 /* @var $dpNotificacoes CActiveDataProvider */
 /* @var $tabIndex int */
+/* @var $modelHabitosAlimentares HabitosAlimentares */
 
 $this->menu = array(
     //array('label'=>'List Utentes', 'url'=>array('index')),
@@ -49,6 +50,11 @@ $this->menu = array(
             ),
 
             true)),
+    array('label' => 'Hábitos Alimentares', 'content' => $this->renderPartial('_habitos_alimentares',
+            array('model'=>$model,
+                'modelHabitosAlimentares' => $modelHabitosAlimentares,
+            ),
+            true)),
     array('label' => 'Dados Antropométricos', 'content' => $this->renderPartial('_dados_antro', array(
             'dpDadosAntro' => $dpDadosAntro,
             'model' => $model,
@@ -70,6 +76,7 @@ $this->menu = array(
             array('dpNotificacoes' => $dpNotificacoes,
             ),
             true)),
+
 
 ))?>
 
