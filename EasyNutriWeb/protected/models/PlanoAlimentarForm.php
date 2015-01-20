@@ -180,13 +180,15 @@ class PlanoAlimentarForm extends CFormModel
     {
         return array(
 
-            array('actividade, pesoAtual,altura, pesoAcordado, neds', 'required'),
+            array('actividade, pesoAtual,altura, pesoAcordado, neds', 'required',
+                  'message'=>'{attribute} tem de estar preenchido'),
             array('pesoAtual,altura, pesoAcordado, neds, restricaoNeds', 'numerical'),
             array('restricaoNeds, utenteId,utenteNome,
                    sexo, idade, doses, plano, prescricao,
                    verEquivalencias, horasRefeicao,
                    dosesDistribuidas, distMacro, tipoLeite', 'safe'),
-            array('plano', 'required', 'on' => 'step4'),
+            array('plano', 'required', 'on' => 'step4',
+                  'message'=>'{attribute} tem de estar preenchido'),
             array('plano', 'planoValido', 'on' => 'step4'),
             array('dosesDistribuidas', 'dosesValidas'),
 
@@ -205,22 +207,28 @@ class PlanoAlimentarForm extends CFormModel
                 foreach ($this->plano as $refeicaoPlano) {
                     foreach ($refeicaoPlano as $linhaRefeicao) {
 
+
                         if (isset($linhaRefeicao['quant'])
                             && isset($linhaRefeicao['unidade'])
                             && isset($linhaRefeicao['alimento'])
                         ) {
-                            if (!$linhaRefeicao["quant"] && !$linhaRefeicao["unidade"] && !$linhaRefeicao["alimento"]) {
+                            //remover whitespace antes da verificação
+                            $linhaRefeicao["quant"]=rtrim($linhaRefeicao["quant"]);
+                            $linhaRefeicao["unidade"]=rtrim($linhaRefeicao["unidade"]);
+                            $linhaRefeicao["alimento"]=rtrim($linhaRefeicao["alimento"]);
+
+                            if (empty($linhaRefeicao["quant"]) || empty($linhaRefeicao["unidade"]) || empty($linhaRefeicao["alimento"])) {
                                 $this->addError($attribute, "Existem campos por preencher");
                                 return;
-                            } elseif (!is_numeric($linhaRefeicao['quant'])
+                            }else if (!is_numeric($linhaRefeicao['quant'])
                                 || $linhaRefeicao['quant'] <= 0
                                 || $linhaRefeicao['quant'] == ''
                             ) {
-                                $this->addError($attribute, "Defina a quantidade" . print_r($linhaRefeicao, true));
+                                $this->addError($attribute, "Defina a quantidade");
                                 return;
                             }
                         } else {
-                            $this->addError($attribute, "Existem campos por definir" . print_r($linhaRefeicao, true));
+                            $this->addError($attribute, "Existem campos por definir" );
                             return;
                         }
                     }
@@ -285,12 +293,12 @@ class PlanoAlimentarForm extends CFormModel
                         $linhaPlano->quant = $linhaRefeicao['quant'];
                         $linhaPlano->descricao = $this->gerarDescricaoLinhaPlano($linhaRefeicao);
                         if (!$linhaPlano->save()) {
-                            throw new Exception("Error on save linha: " . print_r($linhaPlano->errors, true));
+                            throw new Exception("Ocorreu um erro ao guardar o plano alimentar, por favor verifique os dados");
                         }
                     }
                 }
             } else {
-                throw new Exception("Error on save plano");
+                throw new Exception("Ocorreu um erro ao guardar o plano alimentar, por favor verifique os dados");
             }
 
             $transaction->commit();

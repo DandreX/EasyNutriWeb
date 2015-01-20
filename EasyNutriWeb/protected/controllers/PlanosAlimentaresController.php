@@ -155,8 +155,9 @@ class PlanosAlimentaresController extends Controller
                     ));
                     return;
                 case 5:
-                    $url = Yii::app()->createUrl('utentes/view', array('id'=>$model->utenteId,
-                        '#'=>"tab_4"));
+                    $url = Yii::app()->createUrl('utentes/view', array(
+                        'id'=>$model->utenteId,
+                        '#'=>"tab_5"));
 
                     $this->redirect($url);
                     return;
@@ -314,23 +315,20 @@ class PlanosAlimentaresController extends Controller
 
     public function actionPopularModal($query)
     {
-        $firstLetter = substr($query,0,1);
-//        CVarDumper::dump($firstLetter,10,true);
+
+
         $query = isset($query)?$query:'';
-//        $model = Alimentos::model()->findAll(
-//            'nome LIKE :nome',
-//            array(':nome'=>"%$query%")
-//        );
+        $l = strlen($query);
         $model = new CActiveDataProvider('Alimentos', array(
             'criteria'=>array(
                 'condition'=>'nome LIKE :nome',
                 'params'=>array(
                     ':nome'=>"%$query%",
                 ),
-                'order'=>"
-                    CASE WHEN SUBSTRING(nome,1,1) = '".$firstLetter."'
+
+                'offset'=>0,                'order'=>"
+                    CASE WHEN SUBSTRING(nome,1,".$l.") = '".$query."'
                     THEN 0 ELSE 1 END ;",
-                'offset'=>0,
                 'limit'=>15,
             ),
             'pagination'=>false,
@@ -338,10 +336,7 @@ class PlanosAlimentaresController extends Controller
 
 
         ));
-//        $model = Alimentos::model()->findAll();
-//        $model = new CActiveDataProvider('Alimentos');
-//
-//        var_dump($model);
+
         $this->renderPartial('_pesquisar_alimento',
             array(
                 'query'=>$query,

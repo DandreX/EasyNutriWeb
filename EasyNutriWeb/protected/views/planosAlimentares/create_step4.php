@@ -148,7 +148,7 @@ $this->breadcrumbs = array(
     </div>
     <div>
 
-        <p>Prescrição Dietética / Notas</p>
+        <p>Recomendações</p>
         <?php ?>
         <?php echo TbHtml::textArea('PlanoAlimentarForm[prescricao]',
             isset($model->prescricao) ? $model->prescricao : ''
@@ -202,14 +202,16 @@ $this->breadcrumbs = array(
     };
     var pedidoPesquisa;
     var pesquisarAlimento = function (query) {
+
         if (pedidoPesquisa!==undefined) {
             pedidoPesquisa.abort();
+            esconderSpinner("modalPesquisaResultados");
             console.log("Pedido abortado");
         }
-
+        mostrarSpinner("modalPesquisaResultados");
         pedidoPesquisa = $.ajax({
             type: 'GET',
-            url: '<?php echo Yii::app()->createAbsoluteUrl("planosAlimentares/popularModal&query="); ?>' + query,
+            url: '<?php echo Yii::app()->createAbsoluteUrl("planosAlimentares/popularModal&query="); ?>' + encodeURIComponent(query),
             success: function (data) {
                 $('#modalPesquisa div.modal-body div#modalPesquisaResultados').html(data);
                 $('#modalPesquisa div.modal-body div#modalPesquisaResultados tr').live('click', function () {
@@ -221,13 +223,16 @@ $this->breadcrumbs = array(
             },
             error: function (data) { // if error occured
                 if (data.statusText !="abort") {
+                    console.log(data);
                     alert("Ocorreu um erro");
                 }
                 console.log(data);
+                esconderSpinner("modalPesquisaResultados");
             },
             dataType: 'html'
         });
         pedidoPesquisa.complete(function(){
+
             pedidoPesquisa=undefined;
             console.log("Pedido de pesquisa limpo",pedidoPesquisa);
         })
@@ -320,6 +325,13 @@ $this->breadcrumbs = array(
 
             });
         });
+
+        //Faz trim aos valores da quantidade
+        $('.linhaPlanoQuantidade').live("change",function(){
+            console.log("do trim");
+            $(this).val($(this).val().trim());
+        });
+
 
         //Adiciona as horas de refeicao ao form antes de submeter
         $('div#formPlanoStep3 form').submit(function () {

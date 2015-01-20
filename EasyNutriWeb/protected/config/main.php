@@ -74,6 +74,7 @@ return array(
             'connectionString' => 'sqlsrv:Server=192.168.246.64,1433\SQLEXPRESS;Database=EasyNutriDB',
             'username' => 'EasyNutri',
             'password' => 'dreamteam',
+           // 'encoding'  => PDO::SQLSRV_ENCODING_UTF8
         ),
 
         'errorHandler' => array(
