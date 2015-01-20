@@ -111,7 +111,7 @@
 
 
     function btnRefreshDadosAntro(){
-        window.location = '<?php Yii::app()->getRequest()->getURL(); ?>'+"#tab_3";
+        window.location = '<?php Yii::app()->getRequest()->getURL(); ?>'+"#tab_4";
         window.location.reload();
     }
 

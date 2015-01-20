@@ -4,7 +4,7 @@
 /* @var $form CActiveForm */
 ?>
 
-<div id="formFichaClinica">
+<div class="formFichaClinica">
 
     <?php $form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
         'layout' => TbHtml::FORM_LAYOUT_HORIZONTAL,

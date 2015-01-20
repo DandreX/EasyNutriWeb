@@ -193,13 +193,13 @@ div #formUtentes #formNomeUtente{
     border: 0px !important;
 }
 
-div #formFichaClinica label {
+div .formFichaClinica label {
     font-weight: bold;
     font-size: 0.9em;
     display: block;
 }
 
-div #formFichaClinica .row {
+div .formFichaClinica .row {
     float: left;
     width: 400px;
     margin: 0px;
@@ -208,7 +208,7 @@ div #formFichaClinica .row {
 }
 
 
-div #formFichaClinica .dadosFichaClinica{
+div .formFichaClinica .dadosFichaClinica{
     float: left;
     width: 400px;
     margin: 0px;
@@ -216,17 +216,17 @@ div #formFichaClinica .dadosFichaClinica{
     display: block;
 }
 
-div #formFichaClinica .dadosFichaClinica .control-label{
+div .formFichaClinica .dadosFichaClinica .control-label{
     display: block;
     width: 350px;
     text-align: center;
     margin-left: 40px;
 }
-div #formFichaClinica .dadosFichaClinica .controls{
+div .formFichaClinica .dadosFichaClinica .controls{
     margin-left: 0px !important;
 }
 
-div #formFichaClinica .dadosFichaClinica textarea{
+div .formFichaClinica .dadosFichaClinica textarea{
      margin-left: 40px;
      width: 350px !important;
  }
@@ -261,9 +261,9 @@ div #formDadosAntro .row {
     height: 30px !important;
     padding: 6px !important;
     float: right;
-    text-align: center;
-    vertical-align: middle;
-    display:inline;
+    text-align: center !important;
+    vertical-align: middle !important;
+    display:inline !important;
     margin-left: 20px;
     margin-bottom: 20px !important;
 }
@@ -352,7 +352,7 @@ div #formDadosAntro .row {
 
 /*PLANO ALIMENTAR*/
 
-div #formFichaClinica .form-actions{
+div .formFichaClinica .form-actions{
     clear: both;
 }
 
@@ -477,4 +477,31 @@ div .linhaPlanoAlimento{
 #login-form .form-actions{
     background-color: #ffffff;
     border: 0px;
+}
+
+div .formHabitosAlimentares .dadosHabitosAlimentares{
+    float: left;
+    width: 400px;
+    margin: 0px;
+    margin-left: 30px;
+    display: block;
+}
+
+div .formHabitosAlimentares .dadosHabitosAlimentares .control-label{
+    display: block;
+    width: 350px;
+    text-align: center;
+    margin-left: 40px;
+}
+div .formHabitosAlimentares .dadosHabitosAlimentares .controls{
+    margin-left: 0px !important;
+}
+
+div .formHabitosAlimentares .dadosHabitosAlimentares textarea{
+    margin-left: 40px;
+    width: 350px !important;
+}
+
+div .formHabitosAlimentares .form-actions{
+    clear: both;
 }

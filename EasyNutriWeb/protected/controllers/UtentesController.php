@@ -78,6 +78,7 @@ class UtentesController extends Controller
 
 
          $modelFichaClinica = FichaClinica::model()->findByAttributes(array('idUtente' => $id));
+         $modelHabitosAlimentares = HabitosAlimentares::model()->findByAttributes(array('idUtente' => $id));
 
 
 
@@ -113,6 +114,7 @@ class UtentesController extends Controller
             'dpDadosAntro' => $dpDadosAntro,
             'dataDiario' => $datasDiarioAlimentar,
             'modelFichaClinica' => $modelFichaClinica,
+            'modelHabitosAlimentares' => $modelHabitosAlimentares,
         ));
     }
 
