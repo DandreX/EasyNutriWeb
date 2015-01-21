@@ -154,15 +154,19 @@ $this->breadcrumbs = array(
     };
     var nedsTer = 0;
     var calcTerapeutica = function (pesoAcordado, altura, sexo, idade, actividade) {
+        isNedsDefault=true;
+
         var imc = calcIMC(pesoAcordado, altura);
         $('#imcTerVal').text(imc.toFixed(2));
         var catIMC = calcIMCCat(imc, idade);
         $('#imcCatTerVal').text(catIMC);
 
         var neds = calcNeds(pesoAcordado, altura, sexo, idade, actividade);
+        nedsChanged=neds.toFixed(0);
         var nedsTer = neds.toFixed(0);
         $('#nedsTerVal').text(nedsTer);
         $('#PlanoAlimentarForm_neds').val(nedsTer);
+        $('#PlanoAlimentarForm_restricaoNeds').val('');
     };
 
     var updateTerapeutica = function (sexo, idade) {
@@ -182,7 +186,8 @@ $this->breadcrumbs = array(
 
     };
 
-
+    var isNedsDefault = true;
+    var nedsChanged ;
     $(document).ready(function () {
         var sexo = '<?php echo($model->sexo) ?>';
         var idade = '<?php echo($model->idade) ?>';
@@ -201,17 +206,41 @@ $this->breadcrumbs = array(
             });
 
         $('#PlanoAlimentarForm_restricaoNeds').change(function () {
+            if (isNaN($(this).val())) {
+                return;
+            }
             var inputNeds = $('#PlanoAlimentarForm_neds');
             var restricao = $(this).val();
-
-            var peso = replaceAndGetCommaInput('PlanoAlimentarForm_pesoAcordado');
-            peso = parseFloat(peso);
-            var altura = replaceAndGetCommaInput('PlanoAlimentarForm_altura');
-            var actividade = $('#PlanoAlimentarForm_actividade').val();
-            var neds = calcNeds(peso, altura, sexo, idade, actividade);
+            var neds=nedsChanged;
+//            if (isNedsDefault) {
+//
+//                var peso = replaceAndGetCommaInput('PlanoAlimentarForm_pesoAcordado');
+//                peso = parseFloat(peso);
+//                var altura = replaceAndGetCommaInput('PlanoAlimentarForm_altura');
+//                var actividade = $('#PlanoAlimentarForm_actividade').val();
+//                neds = calcNeds(peso, altura, sexo, idade, actividade);
+//
+//            }else{
+//                neds = inputNeds.val();
+//            }
             console.log("restricao: ", restricao, neds);
             inputNeds.val((neds - restricao).toFixed(0));
+
         });
+
+        $('#PlanoAlimentarForm_neds').change(function(){
+            $('#PlanoAlimentarForm_restricaoNeds').val('');
+            isNedsDefault=false;
+            nedsChanged= $(this).val();
+        });
+
+        var loadRestricao = '<?php echo $model->restricaoNeds?>'
+        if(loadRestricao !=''){
+            $('#PlanoAlimentarForm_restricaoNeds').val(loadRestricao);
+            var input =$('#PlanoAlimentarForm_neds');
+            var neds =  input.val();
+            input.val(neds-loadRestricao);
+        }
     });
 
 
