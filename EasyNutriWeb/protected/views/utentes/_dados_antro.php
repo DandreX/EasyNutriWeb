@@ -44,15 +44,23 @@
 //            'value' => '$data->tipoMedicao ? $data->tipoMedicao->descricao: "-"'
 //        ),
         array(
+            'header' => 'Data/Hora',
+            'value'=>'date("Y-m-d H:i", strtotime($data->data))',
+            'htmlOptions' => array('style' => 'width: 150px;'),
+        ),
+        array(
             'name' => 'valor',
             'value' => 'number_format($data->valor, 2)',
         ),
+       array(
+           'name'=>'observacoes',
+           'value'=>'$data->observacoes==""?"Sem Observações":$data->observacoes',
+       ),
         array(
-            'header' => 'Data/Hora',
-            'value'=>'date("Y-m-d H:i", strtotime($data->data))',
-            'htmlOptions' => array('style' => 'width: 350px;'),
+            'name' => 'local',
+            'htmlOptions' => array('style' => 'width: 100px;'),
         ),
-        'local'
+
     ),
 
 )); ?>

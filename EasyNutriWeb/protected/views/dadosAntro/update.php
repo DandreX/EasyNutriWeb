@@ -16,6 +16,6 @@ $this->menu=array(
 );
 ?>
 
-<h1>Update DadosAntro <?php echo $model->id; ?></h1>
+<h1>Alterar Dados Antropométricos</h1>
 
-<?php $this->renderPartial('_form', array('model'=>$model)); ?>
+<?php $this->renderPartial('_form', array('model'=>$model, 'mensagem'=>$mensagem)); ?>

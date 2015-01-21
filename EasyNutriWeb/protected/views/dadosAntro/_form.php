@@ -65,7 +65,9 @@
     </div>
     <div class="form-actions">
         <?php echo TbHtml::button('Guardar', array('id'=>'btnGuardar', 'class'=>'btn btn-primary')); ?>
+        <?php if($model->scenario != 'update'): ?>
         <?php echo TbHtml::button('Guardar e Criar Novo', array('id'=>'btnCriarNovo', 'class'=>'btn btn-primary')); ?>
+        <?php endif ?>
     </div>
     <?php $this->endWidget(); ?>
 

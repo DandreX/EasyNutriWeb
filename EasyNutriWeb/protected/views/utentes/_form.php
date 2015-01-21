@@ -129,6 +129,11 @@ $naoEditavel = $model->getScenario() == 'view';
             <?php echo $form->textAreaControlGroup($model, 'tomouConhecimento', array('rows' => 4, 'cols' => 60, 'readonly' => $naoEditavel)); ?>
             <?php echo $form->error($model, 'tomouConhecimento'); ?>
         </div>
+
+        <div class="row">
+            <?php echo $form->checkBox($model, 'ativo', array(($model->ativo == 1)?true:false,'disabled' => true, 'label'=>'Utente já instalou a aplicação')); ?>
+            <?php echo $form->error($model, 'tomouConhecimento'); ?>
+        </div>
     </fieldset>
 
     <?php if (!$naoEditavel): ?>

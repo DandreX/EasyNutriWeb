@@ -110,7 +110,7 @@ class DadosAntroController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->loadModel($id);
-
+        $mensagem = "";
         // Uncomment the following line if AJAX validation is needed
         // $this->performAjaxValidation($model);
 
@@ -122,6 +122,7 @@ class DadosAntroController extends Controller
 
         $this->render('update', array(
             'model' => $model,
+            'mensagem'=>$mensagem,
         ));
     }
 
