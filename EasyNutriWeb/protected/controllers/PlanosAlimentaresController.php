@@ -79,6 +79,13 @@ class PlanosAlimentaresController extends Controller
             $model->setScenario("step" . $passoAtual);
             $model->attributes = $_POST['PlanoAlimentarForm'];
 
+            //guarda as linhas do plano na sessao
+            if (isset($model->plano)) {
+                Yii::app()->session['PlanoAlimentar_Plano']=$model->plano;
+            }elseif(isset(Yii::app()->session['PlanoAlimentar_Plano'])){
+                $model->plano=Yii::app()->session['PlanoAlimentar_Plano'];
+            }
+
             if ($model->validate() || $irPara < $passoAtual) {
                 ChromePhp::log($model->getScenario() . "é valido");
                 $passoAtual = $irPara;
@@ -101,6 +108,8 @@ class PlanosAlimentaresController extends Controller
                     $notificação->assunto="Plano alimentar";
                     $notificação->descricao = Notificacoes::$notifPlanoAlimentar;
                     $notificação->save();
+                    //limpar a sessao
+                    unset(Yii::app()->session['PlanoAlimentar_Plano']);
                 }
             }
 
@@ -148,7 +157,9 @@ class PlanosAlimentaresController extends Controller
                     ChromePhp::log('a processar passo 4');
                     //obter refeicoes menos o snack
                     $refeicoes = TiposRefeicao::model()->findAll('id!=7');
+                    if (isset(Yii::app()->session['PlanoAlimentar_Plano'])) {
 
+                    }
                     $this->render('create_step4', array(
                         'model' => $model,
                         'refeicoes' => $refeicoes,

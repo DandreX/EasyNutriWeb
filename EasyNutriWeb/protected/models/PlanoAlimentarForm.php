@@ -74,7 +74,7 @@ class PlanoAlimentarForm extends CFormModel
     );
 
     /**
-     *
+     *Percentagem de macronutrientes definidos no passo 2
      * @var array
      */
     public $distMacro = array(

@@ -28,54 +28,13 @@ $this->breadcrumbs = array(
         'id' => 'formPlanoAlimentar'
     )); ?>
 
-
-    <!--valores do form anterior-->
-    <input type="hidden" id="passoAtual" name="passoAtual" value="3">
-    <input type="hidden" id="irPara" name="irPara" value="4">
-
-
-    <input type="hidden" name="PlanoAlimentarForm[actividade]" id="PlanoAlimentarForm_actividade"
-           value="<?php echo($model->actividade); ?>">
-    <input type="hidden" name="PlanoAlimentarForm[pesoAtual]" id="PlanoAlimentarForm_pesoAtual"
-           value="<?php echo($model->pesoAtual); ?>">
-    <input name="PlanoAlimentarForm[altura]" id="PlanoAlimentarForm_altura" type="hidden"
-           value="<?php echo($model->altura); ?>">
-    <input name="PlanoAlimentarForm[pesoAcordado]" id="PlanoAlimentarForm_pesoAcordado" type="hidden"
-           value="<?php echo($model->pesoAcordado); ?>">
-    <input type="hidden" id="PlanoAlimentarForm_neds" name="PlanoAlimentarForm[neds]"
-           value="<?php echo($model->neds); ?>">
-    <input type="hidden" id="PlanoAlimentarForm_restricaoNeds" name="PlanoAlimentarForm[restricaoNeds]"
-           value="<?php echo($model->restricaoNeds); ?>">
-    <input type="hidden" name="PlanoAlimentarForm[utenteId]" id="PlanoAlimentarForm_utenteId"
-           value="<?php echo($model->utenteId); ?>">
-    <input type="hidden" name="PlanoAlimentarForm[utenteNome]" id="PlanoAlimentarForm_utenteNome"
-           value="<?php echo($model->utenteNome); ?>">
-    <input type="hidden" name="PlanoAlimentarForm[sexo]" id="PlanoAlimentarForm_sexo"
-           value="<?php echo($model->sexo); ?>">
-    <input type="hidden" name="PlanoAlimentarForm[idade]" id="PlanoAlimentarForm_idade"
-           value="<?php echo($model->idade); ?>" >
-    <input type="hidden" name="PlanoAlimentarForm[tipoLeite]" id="PlanoAlimentarForm_tipoLeite"
-           value="<?php echo($model->tipoLeite); ?>">
-    <?php foreach ($model->distMacro as $key => $value): ?>
-        <input type="hidden" name="PlanoAlimentarForm[distMacro][<?php echo $key ?>]"
-               value="<?php echo($value); ?>">
-    <?php endforeach; ?>
-    <?php foreach($model->doses as $key => $value):?>
-        <input type="hidden" name="PlanoAlimentarForm[doses][<?php echo $key ?>]"
-               value="<?php echo($value); ?>">
-    <?php endforeach;?>
-
-    <?php foreach ($model->dosesDistribuidas as $key => $refeicao): ?>
-        <?php foreach ($model->dosesDistribuidas[$key] as $keyMacro => $macroNutri): ?>
-            <input type="hidden"
-                   name="PlanoAlimentarForm[dosesDistribuidas][<?php echo $key ?>][<?php echo $keyMacro ?>]"
-                   id="PlanoAlimentarForm_<?php echo $key ?>_<?php echo $keyMacro ?>"
-                   value="<?php echo $macroNutri ?>"/>
-        <?php endforeach; ?>
-    <?php endforeach; ?>
-
-
+   <!--valores do form anterior-->
+    <?php $this->renderPartial('create_hidden_field', array(
+        'model' => $model,
+        'passo' => 3
+    ))?>
     <!--END valores do form anterior-->
+
     <?php if (!empty($model->errors["dosesDistribuidas"])): ?>
         <?php echo TbHtml::alert(TbHtml::ALERT_COLOR_ERROR, implode('<br>', $model->errors["dosesDistribuidas"])); ?>
     <?php endif; ?>

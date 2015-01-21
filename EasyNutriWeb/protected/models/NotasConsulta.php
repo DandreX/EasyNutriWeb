@@ -32,7 +32,7 @@ class NotasConsulta extends CActiveRecord
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('utente_id, medico_id', 'required'),
+            array('utente_id, medico_id, descricao, data', 'required'),
             array('utente_id, medico_id', 'numerical', 'integerOnly' => true),
             array('descricao, data', 'safe'),
             // The following rule is used by search().

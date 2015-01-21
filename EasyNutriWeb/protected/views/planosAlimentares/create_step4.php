@@ -36,62 +36,14 @@ $this->breadcrumbs = array(
     //    ));
     ?>
     <?php echo TbHtml::beginFormTb(); ?>
+
     <!--valores do form anterior-->
-    <input type="hidden" id="passoAtual" name="passoAtual" value="4">
-    <input type="hidden" id="irPara" name="irPara" value="5">
-
-
-    <input type="hidden" name="PlanoAlimentarForm[actividade]" id="PlanoAlimentarForm_actividade"
-           value="<?php echo($model->actividade); ?>">
-    <input type="hidden" name="PlanoAlimentarForm[pesoAtual]" id="PlanoAlimentarForm_pesoAtual"
-           value="<?php echo($model->pesoAtual); ?>">
-    <input name="PlanoAlimentarForm[altura]" id="PlanoAlimentarForm_altura" type="hidden"
-           value="<?php echo($model->altura); ?>">
-    <input name="PlanoAlimentarForm[pesoAcordado]" id="PlanoAlimentarForm_pesoAcordado" type="hidden"
-           value="<?php echo($model->pesoAcordado); ?>">
-    <input type="hidden" id="PlanoAlimentarForm_neds" name="PlanoAlimentarForm[neds]"
-           value="<?php echo($model->neds); ?>">
-    <input type="hidden" id="PlanoAlimentarForm_restricaoNeds" name="PlanoAlimentarForm[restricaoNeds]"
-           value="<?php echo($model->restricaoNeds); ?>">
-    <input type="hidden" name="PlanoAlimentarForm[utenteId]" id="PlanoAlimentarForm_utenteId"
-           value="<?php echo($model->utenteId); ?>">
-    <input type="hidden" name="PlanoAlimentarForm[utenteNome]" id="PlanoAlimentarForm_utenteNome"
-           value="<?php echo($model->utenteNome); ?>">
-    <input type="hidden" name="PlanoAlimentarForm[sexo]" id="PlanoAlimentarForm_sexo"
-           value="<?php echo($model->sexo); ?>">
-    <input type="hidden" name="PlanoAlimentarForm[idade]" id="PlanoAlimentarForm_idade"
-           value="<?php echo($model->idade); ?>" >
-    <input type="hidden" name="PlanoAlimentarForm[tipoLeite]" id="PlanoAlimentarForm_tipoLeite"
-           value="<?php echo($model->tipoLeite); ?>">
-    <?php foreach($model->doses as $key => $value):?>
-        <input type="hidden" name="PlanoAlimentarForm[doses][<?php echo $key ?>]"
-               value="<?php echo($value); ?>">
-    <?php endforeach; ?>
-    <?php foreach ($model->dosesDistribuidas as $key => $refeicao): ?>
-        <?php foreach ($model->dosesDistribuidas[$key] as $keyMacro => $macroNutri): ?>
-            <input type="hidden"
-                   name="PlanoAlimentarForm[dosesDistribuidas][<?php echo $key ?>][<?php echo $keyMacro ?>]"
-                   id="PlanoAlimentarForm_<?php echo $key ?>_<?php echo $keyMacro ?>"
-                   value="<?php echo $macroNutri ?>"/>
-        <?php endforeach; ?>
-    <?php endforeach; ?>
-
-    <?php foreach ($model->distMacro as $key => $value): ?>
-        <input type="hidden" name="PlanoAlimentarForm[distMacro][<?php echo $key ?>]"
-               value="<?php echo($value); ?>">
-    <?php endforeach; ?>
-
-
-    <?php foreach ($model->dosesDistribuidas as $key => $refeicao): ?>
-        <?php foreach ($model->dosesDistribuidas[$key] as $keyMacro => $macroNutri): ?>
-            <input type="hidden"
-                   name="PlanoAlimentarForm[dosesDistribuidas][<?php echo $key ?>][<?php echo $keyMacro ?>]"
-                   id="PlanoAlimentarForm_<?php echo $key ?>_<?php echo $keyMacro ?>"
-                   value="<?php echo $macroNutri?>"/>
-        <?php endforeach; ?>
-    <?php endforeach; ?>
-
+    <?php $this->renderPartial('create_hidden_field', array(
+        'model' => $model,
+        'passo' => 4
+    ))?>
     <!--END valores do form anterior-->
+
     <?php echo TbHtml::alert(TbHtml::ALERT_COLOR_INFO, 'Utilize "+" para adicionar um alimento manual ou
      "Pesquisar alimento" para pesquisar um alimento existente."'); ?>
 
@@ -100,7 +52,9 @@ $this->breadcrumbs = array(
         <?php foreach ($refeicoes as $refeicao): ?>
             <div id="<?php echo('refeicao' . $refeicao->id); ?>">
                 <h4><?php echo($refeicao->descricao) ?></h4>
-                <p><?php echo $model->descDosesRefeicao($refeicao->id)?></p>
+
+                <p><?php echo $model->descDosesRefeicao($refeicao->id) ?></p>
+
                 <p>Hora:
                     <?php
                     $this->widget('editable.Editable', array(
@@ -120,7 +74,7 @@ $this->breadcrumbs = array(
                     <?php if (!empty($model->plano[$refeicao->id])): ?>
                         <?php $idLinha = 1000; ?>
                         <?php foreach ($model->plano[$refeicao->id] as $refeicaoPlano): ; ?>
-                            
+
                             <?php $this->actionReloadLinhas($refeicaoPlano, $refeicao->id, $idLinha--); ?>
                         <?php endforeach; ?>
                     <?php endif; ?>
@@ -203,7 +157,7 @@ $this->breadcrumbs = array(
     var pedidoPesquisa;
     var pesquisarAlimento = function (query) {
 
-        if (pedidoPesquisa!==undefined) {
+        if (pedidoPesquisa !== undefined) {
             pedidoPesquisa.abort();
             esconderSpinner("modalPesquisaResultados");
             console.log("Pedido abortado");
@@ -222,7 +176,7 @@ $this->breadcrumbs = array(
                 });
             },
             error: function (data) { // if error occured
-                if (data.statusText !="abort") {
+                if (data.statusText != "abort") {
                     console.log(data);
                     alert("Ocorreu um erro");
                 }
@@ -231,10 +185,10 @@ $this->breadcrumbs = array(
             },
             dataType: 'html'
         });
-        pedidoPesquisa.complete(function(){
+        pedidoPesquisa.complete(function () {
 
-            pedidoPesquisa=undefined;
-            console.log("Pedido de pesquisa limpo",pedidoPesquisa);
+            pedidoPesquisa = undefined;
+            console.log("Pedido de pesquisa limpo", pedidoPesquisa);
         })
     }
 
@@ -327,7 +281,7 @@ $this->breadcrumbs = array(
         });
 
         //Faz trim aos valores da quantidade
-        $('.linhaPlanoQuantidade').live("change",function(){
+        $('.linhaPlanoQuantidade').live("change", function () {
             console.log("do trim");
             $(this).val($(this).val().trim());
         });
