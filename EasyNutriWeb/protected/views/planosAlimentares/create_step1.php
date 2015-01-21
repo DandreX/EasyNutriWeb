@@ -13,8 +13,8 @@ Yii::app()->clientScript->registerScriptFile(
 );
 
 $this->breadcrumbs = array(
-    $model->utenteNome=>(Yii::app()->createUrl('utentes/view',array('id'=>$model->utenteId))),
-    'Novo plano alimentar','Passo 1',
+    $model->utenteNome => (Yii::app()->createUrl('utentes/view', array('id' => $model->utenteId))),
+    'Novo plano alimentar', 'Passo 1',
 );
 
 
@@ -30,39 +30,12 @@ $this->breadcrumbs = array(
         'id' => 'formPlanoAlimentar'
     )); ?>
 
-    <input type="hidden" id="passoAtual" name="passoAtual" value="1">
-    <input type="hidden" id="irPara" name="irPara" value="2">
-    <input type="hidden" name="PlanoAlimentarForm[utenteId]" id="PlanoAlimentarForm_utenteId"
-           value="<?php echo($model->utenteId); ?>">
-    <input type="hidden" name="PlanoAlimentarForm[utenteNome]" id="PlanoAlimentarForm_utenteNome"
-           value="<?php echo($model->utenteNome); ?>">
-    <input type="hidden" name="PlanoAlimentarForm[sexo]" id="PlanoAlimentarForm_sexo"
-           value="<?php echo($model->sexo); ?>">
-    <input type="hidden" name="PlanoAlimentarForm[idade]" id="PlanoAlimentarForm_idade"
-           value="<?php echo($model->idade); ?>">
-    <input type="hidden" name="PlanoAlimentarForm[tipoLeite]" id="PlanoAlimentarForm_tipoLeite"
-           value="<?php echo($model->tipoLeite); ?>">
-    <?php foreach($model->doses as $key => $value):?>
-        <input type="hidden" name="PlanoAlimentarForm[doses][<?php echo $key ?>]"
-               value="<?php echo($value); ?>">
-    <?php endforeach;?>
-    <?php foreach ($model->distMacro as $key => $value): ?>
-        <input type="hidden" name="PlanoAlimentarForm[distMacro][<?php echo $key ?>]"
-               value="<?php echo($value); ?>">
-    <?php endforeach; ?>
-
-    <!--    HIDDEN FIELDS PARA GUARDAR OS PASSOS SEGUINTES-->
-
-    <?php foreach ($model->dosesDistribuidas as $key => $refeicao): ?>
-        <?php foreach ($model->dosesDistribuidas[$key] as $keyMacro => $macroNutri): ?>
-            <input type="hidden"
-                   name="PlanoAlimentarForm[dosesDistribuidas][<?php echo $key ?>][<?php echo $keyMacro ?>]"
-                   id="PlanoAlimentarForm_<?php echo $key ?>_<?php echo $keyMacro ?>"
-                   value="<?php echo $macroNutri ?>"/>
-        <?php endforeach; ?>
-    <?php endforeach; ?>
-
-    <!--    HIDDEN FIELDS FIM-->
+    <!-- valores dos forms anteriores    -->
+    <?php $this->renderPartial('create_hidden_field', array(
+        'model' => $model,
+        'passo' => 1
+    ))?>
+    <!--END valores dos forms anteriores    -->
 
     <fieldset>
         <legend>Situação Atual</legend>
@@ -179,7 +152,7 @@ $this->breadcrumbs = array(
 
 
     };
-    var nedsTer=0;
+    var nedsTer = 0;
     var calcTerapeutica = function (pesoAcordado, altura, sexo, idade, actividade) {
         var imc = calcIMC(pesoAcordado, altura);
         $('#imcTerVal').text(imc.toFixed(2));
@@ -210,7 +183,6 @@ $this->breadcrumbs = array(
     };
 
 
-
     $(document).ready(function () {
         var sexo = '<?php echo($model->sexo) ?>';
         var idade = '<?php echo($model->idade) ?>';
@@ -236,7 +208,7 @@ $this->breadcrumbs = array(
             peso = parseFloat(peso);
             var altura = replaceAndGetCommaInput('PlanoAlimentarForm_altura');
             var actividade = $('#PlanoAlimentarForm_actividade').val();
-            var neds = calcNeds(peso,altura,sexo,idade,actividade);
+            var neds = calcNeds(peso, altura, sexo, idade, actividade);
             console.log("restricao: ", restricao, neds);
             inputNeds.val((neds - restricao).toFixed(0));
         });

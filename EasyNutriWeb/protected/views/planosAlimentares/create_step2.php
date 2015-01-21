@@ -30,52 +30,11 @@ $this->breadcrumbs = array(
     )); ?>
 
     <!--valores do form anterior-->
-    <input type="hidden" id="passoAtual" name="passoAtual" value="2">
-    <input type="hidden" id="irPara" name="irPara" value="3">
-
-
-    <input type="hidden" name="PlanoAlimentarForm[actividade]" id="PlanoAlimentarForm_actividade"
-           value="<?php echo($model->actividade); ?>">
-    <input type="hidden" name="PlanoAlimentarForm[pesoAtual]" id="PlanoAlimentarForm_pesoAtual"
-           value="<?php echo($model->pesoAtual); ?>">
-    <input name="PlanoAlimentarForm[altura]" id="PlanoAlimentarForm_altura" type="hidden"
-           value="<?php echo($model->altura); ?>">
-    <input name="PlanoAlimentarForm[pesoAcordado]" id="PlanoAlimentarForm_pesoAcordado" type="hidden"
-           value="<?php echo($model->pesoAcordado); ?>">
-    <input type="hidden" id="PlanoAlimentarForm_neds" name="PlanoAlimentarForm[neds]"
-           value="<?php echo($model->neds); ?>">
-    <input type="hidden" id="PlanoAlimentarForm_restricaoNeds" name="PlanoAlimentarForm[restricaoNeds]"
-           value="<?php echo($model->restricaoNeds); ?>">
-    <input type="hidden" name="PlanoAlimentarForm[utenteId]" id="PlanoAlimentarForm_utenteId"
-           value="<?php echo($model->utenteId); ?>">
-    <input type="hidden" name="PlanoAlimentarForm[utenteNome]" id="PlanoAlimentarForm_utenteNome"
-           value="<?php echo($model->utenteNome); ?>">
-    <input type="hidden" name="PlanoAlimentarForm[sexo]" id="PlanoAlimentarForm_sexo"
-           value="<?php echo($model->sexo); ?>">
-    <input type="hidden" name="PlanoAlimentarForm[idade]" id="PlanoAlimentarForm_idade"
-           value="<?php echo($model->idade); ?>">
-    <input type="hidden" name="PlanoAlimentarForm[tipoLeite]" id="PlanoAlimentarForm_tipoLeite"
-           value="<?php echo($model->tipoLeite); ?>">
-
-    <?php foreach ($model->dosesDistribuidas as $key => $refeicao): ?>
-        <?php foreach ($model->dosesDistribuidas[$key] as $keyMacro => $macroNutri): ?>
-            <input type="hidden"
-                   name="PlanoAlimentarForm[dosesDistribuidas][<?php echo $key ?>][<?php echo $keyMacro ?>]"
-                   id="PlanoAlimentarForm_<?php echo $key ?>_<?php echo $keyMacro ?>"
-                   value="<?php echo $macroNutri ?>"/>
-        <?php endforeach; ?>
-    <?php endforeach; ?>
-
+    <?php $this->renderPartial('create_hidden_field', array(
+        'model' => $model,
+        'passo' => 2
+    ))?>
     <!--END valores do form anterior-->
-
-    <!--valores das doses a enviar no POST-->
-    <div id="dosesFields">
-        <?php foreach ($model->doses as $key => $value): ?>
-            <input type="hidden" name="PlanoAlimentarForm[doses][<?php echo($key) ?>]"
-                   id="PlanoAlimentarForm_dose_<?php echo($key) ?>" value="<?php echo $value ?>">
-        <?php endforeach; ?>
-    </div>
-    <!--END valores das doses a enviar no POST-->
 
 
     <div class="tabelaInput">
@@ -189,20 +148,20 @@ var calculoTotalNED = function () {
     var percLipidos = $('#percLipidos').val();
     var percGlicidos = $('#percGlicidos').val();
     var percProteinas = $('#percProteinas').val();
-    percLipidos = isNaN(parseFloat(percLipidos))? 0 : parseFloat(percLipidos);
-    percGlicidos = isNaN(parseFloat(percGlicidos))? 0 : parseFloat(percGlicidos);
-    percProteinas = isNaN(parseFloat(percProteinas))? 0 : parseFloat(percProteinas);
+    percLipidos = isNaN(parseFloat(percLipidos)) ? 0 : parseFloat(percLipidos);
+    percGlicidos = isNaN(parseFloat(percGlicidos)) ? 0 : parseFloat(percGlicidos);
+    percProteinas = isNaN(parseFloat(percProteinas)) ? 0 : parseFloat(percProteinas);
 
-        var Totalperc = percGlicidos + percLipidos + percProteinas;
-        console.log(Totalperc);
-        $('#totalVet').text(Totalperc.toFixed(1) + '%');
-        if (Totalperc > 100) {
-            $('#totalVet').css('color', '#FF0000');
-        } else if (Totalperc < 100) {
-            $('#totalVet').css('color', '#FF0000');
-        } else {
-            $('#totalVet').css('color', 'black');
-        }
+    var Totalperc = percGlicidos + percLipidos + percProteinas;
+    console.log(Totalperc);
+    $('#totalVet').text(Totalperc.toFixed(1) + '%');
+    if (Totalperc > 100) {
+        $('#totalVet').css('color', '#FF0000');
+    } else if (Totalperc < 100) {
+        $('#totalVet').css('color', '#FF0000');
+    } else {
+        $('#totalVet').css('color', 'black');
+    }
 };
 
 var calculoSubTotal = function (cInicio, cFim, lInicio, lFim) {
@@ -242,11 +201,11 @@ var calcDosesPao = function () {
 
 var calcDosesCarne = function () {
     var subTotalProteinas = $('#tabelaDistribuicao > table >tbody  tr:nth-child(9) >td:nth-child(3) ').text();
-    console.log('SubTotalProteinas ',subTotalProteinas);
+    console.log('SubTotalProteinas ', subTotalProteinas);
     var totalProteinas = $('#gramasProteinas').text();
     console.log("Total Proteinas ", totalProteinas);
     if (subTotalProteinas != 0) {
-       var dosesProteinas = (parseFloat(totalProteinas) - parseFloat(subTotalProteinas)) / 7;
+        var dosesProteinas = (parseFloat(totalProteinas) - parseFloat(subTotalProteinas)) / 7;
         console.log("valor carne", dosesProteinas);
         $('#tabelaDistribuicao > table >tbody  tr:nth-child(10) >td:nth-child(2) a').text(dosesProteinas.toFixed(1));
         for (i in equivalencias) {
@@ -264,7 +223,7 @@ var calcDosesGordura = function () {
     var subTotalLipidos = $('#tabelaDistribuicao > table >tbody  tr:nth-child(11) >td:nth-child(4)').text();
     var totalLipidos = $('#gramasLipidos').text();
     if (subTotalLipidos != 0) {
-       var  dosesGordura = (parseFloat(totalLipidos) - parseFloat(subTotalLipidos)) / 5;
+        var dosesGordura = (parseFloat(totalLipidos) - parseFloat(subTotalLipidos)) / 5;
         $('#tabelaDistribuicao > table >tbody  tr:nth-child(12) >td:nth-child(2) a').text(dosesGordura.toFixed(1));
         for (i in equivalencias) {
             alimento = equivalencias[12];
@@ -313,7 +272,7 @@ var reloadPage = function () {
         $(this).find('td:nth-child(2) a').text(doseGuardada);
     });
     if (verificaDistMacroNutri()) {
-        calcularTabelaDoses(undefined,true);
+        calcularTabelaDoses(undefined, true);
     }
 
 };
@@ -325,22 +284,22 @@ var calcularTabelaDoses = function (changedIndex, isReload) {
             var dose = $('#tabelaDistribuicao > table >tbody  tr:nth-child(' + i + ')>td:nth-child(2) a').text();
             for (j in alimento) {
                 var nutrival = alimento[j];
-                console.log("Dose:" ,dose,"Nutrival: ",nutrival);
+                console.log("Dose:", dose, "Nutrival: ", nutrival);
                 var calc = dose * nutrival;
                 $('#tabelaDistribuicao > table >tbody  tr:nth-child(' + i + ') >td:nth-child(' + j + ')').text(calc);
             }
         }
     }
     calculoSubTotal(3, 6, 1, 5);
-    if(changedIndex!=7 && changedIndex!=8 && changedIndex!=10 && changedIndex!=12 && !isReload){
+    if (changedIndex != 7 && changedIndex != 8 && changedIndex != 10 && changedIndex != 12 && !isReload) {
         calcDosesPao();
     }
     calculoSubTotal(3, 6, 6, 8);
-    if(changedIndex!=7 && changedIndex!=8 && changedIndex!=10 && changedIndex!=12 && !isReload){
+    if (changedIndex != 7 && changedIndex != 8 && changedIndex != 10 && changedIndex != 12 && !isReload) {
         calcDosesCarne();
     }
     calculoSubTotal(3, 6, 9, 10);
-    if(changedIndex!=7 && changedIndex!=8 && changedIndex!=10 && changedIndex!=12 && !isReload){
+    if (changedIndex != 7 && changedIndex != 8 && changedIndex != 10 && changedIndex != 12 && !isReload) {
         calcDosesGordura();
     }
     calculoSubTotal(3, 6, 11, 12);
@@ -353,7 +312,7 @@ $(document).ready(function () {
     var peso = 72.3;
 
 
-    $('#tabelaDistribuicao > table >tbody  tr:nth-child(9) >td:nth-child(3) ').change(function(){
+    $('#tabelaDistribuicao > table >tbody  tr:nth-child(9) >td:nth-child(3) ').change(function () {
         console.log("Valor do subtotal da proteina ", $(this).text());
     });
 
@@ -422,8 +381,8 @@ $(document).ready(function () {
         calculoTotalNED();
     });
 
-    $("#percProteinas, #percLipidos,#percGlicidos").change(function(){
-        if(verificaDistMacroNutri()){
+    $("#percProteinas, #percLipidos,#percGlicidos").change(function () {
+        if (verificaDistMacroNutri()) {
             calcularTabelaDoses();
         }
     });
@@ -445,8 +404,6 @@ $(document).ready(function () {
         .css('background-color', 'lightblue');
 
 
-
-
     $('#tabelaDistribuicao > table >tbody tr>td:nth-child(2) ').change(function () {
         console.log("ocorreu uma mudaça de dose");
         if (!verificaDistMacroNutri()) {
@@ -455,7 +412,7 @@ $(document).ready(function () {
             return;
         }
         var indiceLinha = $(this).find('a').attr("data-pk");
-        setTimeout(function(){
+        setTimeout(function () {
             calcularTabelaDoses(indiceLinha);
         }, 150);
 
