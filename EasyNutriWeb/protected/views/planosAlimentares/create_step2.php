@@ -412,9 +412,10 @@ $(document).ready(function () {
             return;
         }
         var indiceLinha = $(this).find('a').attr("data-pk");
+        //timeout devido a alteracao nao ser instantanea
         setTimeout(function () {
             calcularTabelaDoses(indiceLinha);
-        }, 150);
+        }, 500);
 
     });
 
