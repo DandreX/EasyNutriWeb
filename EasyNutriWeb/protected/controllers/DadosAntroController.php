@@ -58,6 +58,7 @@ class DadosAntroController extends Controller
         // Uncomment the following line if AJAX validation is needed
         // $this->performAjaxValidation($model);
         $validar = true;
+        $mensagem = "";
         if (isset($_POST['DadosAntro']['utente'])) {
             $model->utente_id = $_POST['DadosAntro']['utente'];
             $validar = false;
@@ -65,12 +66,39 @@ class DadosAntroController extends Controller
         if (isset($_POST['DadosAntro']) && $validar) {
             $model->attributes = $_POST['DadosAntro'];
             if ($model->save())
-                $this->redirect(array('admin&DadosAntro[nomeUtenteSearch]=' . $model->utente->nome . '&DadosAntro[tipoMedicaoSearch]='
-                . $model->tipoMedicao->descricao . '&DadosAntro_sort=data_med.desc'));
+                $this->redirect(array('utentes/view','id'=>$model->utente_id, '#'=> "tab_4"));
         }
 
         $this->render('create', array(
             'model' => $model,
+            'mensagem'=>$mensagem,
+        ));
+    }
+    public function actionCreateAndNew()
+    {
+        $model = new DadosAntro;
+
+        // Uncomment the following line if AJAX validation is needed
+        // $this->performAjaxValidation($model);
+        $validar = true;
+        $mensagem = "";
+        if (isset($_POST['DadosAntro']['utente'])) {
+            $model->utente_id = $_POST['DadosAntro']['utente'];
+            $validar = false;
+        }
+        if (isset($_POST['DadosAntro']) && $validar) {
+            $model->attributes = $_POST['DadosAntro'];
+            if ($model->save()){
+                $idUtente = $model->utente_id;
+                $model = new DadosAntro();
+                $model->utente_id = $idUtente;
+                $mensagem="Dado Antropométrico guardado com sucesso";
+            }
+        }
+
+        $this->render('create', array(
+            'model' => $model,
+            'mensagem'=>$mensagem,
         ));
     }
 

@@ -19,7 +19,11 @@ echo TbHtml::formActions(array(
     'type' => TbHtml::GRID_TYPE_HOVER,
     'dataProvider' => $dpNotasConsulta,
     'columns' => array(
-        'data',
+        array(
+            'header' => 'Data/Hora',
+            'value'=>'date("Y-m-d H:i", strtotime($data->data))',
+            'htmlOptions' => array('style' => 'width: 200px;'),
+        ),
         'descricao',
         array(
             'class' => 'TbButtonColumn', 'buttons' => array(

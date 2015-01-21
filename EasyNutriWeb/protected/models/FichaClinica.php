@@ -71,10 +71,10 @@ class FichaClinica extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'peso_nascenca' => 'Peso à Nascença',
-			'peso_minimo' => 'Peso Mínimo',
-			'peso_maximo' => 'Peso Máximo',
-			'peso_habitual' => 'Peso Habitual',
+			'peso_nascenca' => 'Peso à Nascença (kg)',
+			'peso_minimo' => 'Peso Mínimo (kg)',
+			'peso_maximo' => 'Peso Máximo (kg)',
+			'peso_habitual' => 'Peso Habitual (kg)',
 			'tent_perda_peso' => 'Tentativas de Perda de Peso',
 			'antec_familiares' => 'Antecedentes Familiares',
 			'antec_pessoais' => 'Antecedentes Pessoais',

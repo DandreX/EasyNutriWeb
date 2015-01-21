@@ -61,7 +61,7 @@ class NotasConsulta extends CActiveRecord
     {
         return array(
             'id' => 'ID',
-            'descricao' => 'Descricao',
+            'descricao' => 'Descrição',
             'data' => 'Data',
             'utente_id' => 'Utente',
             'medico_id' => 'Medico',

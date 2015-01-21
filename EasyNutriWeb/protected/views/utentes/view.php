@@ -41,50 +41,48 @@ $this->menu = array(
 
 <?php echo TbHtml::tabbableTabs(array(
     array('label' => 'Perfil', 'content' => $this->renderPartial('_form',
-        array('model' => $model
-        ),
-        true)),
+            array('model' => $model
+            ),
+            true)),
     array('label' => 'Ficha Clínica', 'content' => $this->renderPartial('_ficha_clinica',
-        array('model' => $model,
-            'modelFichaClinica' => $modelFichaClinica,
-        ),
+            array('model' => $model,
+                'modelFichaClinica' => $modelFichaClinica,
+            ),
 
-        true)),
+            true)),
     array('label' => 'Hábitos Alimentares', 'content' => $this->renderPartial('_habitos_alimentares',
-        array('model' => $model,
-            'modelHabitosAlimentares' => $modelHabitosAlimentares,
-        ),
-        true)),
+            array('model'=>$model,
+                'modelHabitosAlimentares' => $modelHabitosAlimentares,
+            ),
+            true)),
     array('label' => 'Dados Antropométricos', 'content' => $this->renderPartial('_dados_antro', array(
-        'dpDadosAntro' => $dpDadosAntro,
-        'model' => $model,
-        //'graficos'=>$graficos,
-    ), true)),
-    array('label' => 'Diário Alimentar', 'content' => $this->renderPartial('_diario_alimentar_utentes',
-        array('model' => $model,
-            'dataProvider' => $dataProvider,
-            'datasDiario' => $dataDiario,
-        ),
-        true)),
+            'dpDadosAntro' => $dpDadosAntro,
+            'model' => $model,
+            //'graficos'=>$graficos,
+        ), true)),
     array('label' => 'Plano Alimentar', 'content' => $this->renderPartial('_plano_alimentar',
-        array('model' => $model,
-        ), true)
+            array('model' => $model,
+            ), true)
     ),
-
-
     array('label' => 'Notificações', 'content' => $this->renderPartial('_notificacoes',
-        array('dpNotificacoes' => $dpNotificacoes,
-        ),
-        true)),
+            array('dpNotificacoes' => $dpNotificacoes,
+            ),
+            true)),
 
 
-    array('label' => 'Notas de Consulta', 'content' => $this->renderPartial('_notas_consulta',
-        array('model' => $model,
-            'dpNotasConsulta' => $dpNotasConsulta,
-        ),
-        true)),
-))
-?>
+        array('label' => 'Notas de Consulta', 'content' => $this->renderPartial('_notas_consulta',
+            array('model' => $model,
+                'dpNotasConsulta' => $dpNotasConsulta,
+            ),
+            true)),
+    array('label' => 'Diário Alimentar', 'content' => $this->renderPartial('_diario_alimentar_utentes',
+            array('model' => $model,
+                'dataProvider' => $dataProvider,
+                'datasDiario' => $dataDiario,
+            ),
+            true)),
+    ))
+    ?>
 
 <script type="text/javascript">
     $(document).ready(function () {
@@ -95,6 +93,6 @@ $this->menu = array(
         $('[role="menuitem"] a').click(function () {
             window.location.hash = $(this).attr("href");
         });
-        });
+    });
 
 </script>

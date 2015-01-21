@@ -26,7 +26,7 @@
             <?php echo TbHtml::uneditableField(date("Y-m-d", strtotime($planoAlimentarUtente->data_presc)), array('id'=>'textPrescData')); ?>
         </div>
         <div id="nedsPlanoAlimentar">
-            <?php echo TbHtml::label('Neds:', 'text', array('id'=>'labelNed')); ?>
+            <?php echo TbHtml::label('NEDs:', 'text', array('id'=>'labelNed')); ?>
             <?php echo TbHtml::uneditableField($planoAlimentarUtente->ned, array('id'=>'textNed')); ?>
         </div>
         <div id="apresentaTabela">

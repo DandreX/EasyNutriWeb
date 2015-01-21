@@ -43,6 +43,8 @@ $this->widget('zii.widgets.jui.CJuiDatePicker', array(
             url: '<?php echo Yii::app()->createAbsoluteUrl("notificacoes/AjaxCreate"); ?>',
             data: data,
             success: function (data) {
+                $('#Notificacoes_assunto').val('');
+                $('#Notificacoes_descricao').val('');
                 alert("Notificação enviada com sucesso");
             },
             error: function (data) { // if error occured

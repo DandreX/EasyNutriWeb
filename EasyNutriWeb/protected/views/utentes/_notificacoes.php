@@ -40,7 +40,7 @@
     $('.form-actions').removeClass('form-actions');
 
     function btnRefreshNotificacoes(){
-        window.location = '<?php Yii::app()->getRequest()->getURL(); ?>'+"#tab_7";
+        window.location = '<?php Yii::app()->getRequest()->getURL(); ?>'+"#tab_6";
         window.location.reload();
     }
 

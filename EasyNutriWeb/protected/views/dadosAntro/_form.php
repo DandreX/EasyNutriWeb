@@ -5,8 +5,12 @@
 ?>
 
 <div id="formDadosAntro">
-
-
+    <div id="mensagemDadosAntro">
+        <?php if ($mensagem != ""):
+            echo TbHtml::alert(TbHtml::ALERT_COLOR_SUCCESS, $mensagem);
+        endif
+        ?>
+    </div>
     <?php $form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
         'layout' => TbHtml::FORM_LAYOUT_HORIZONTAL,
         'id' => 'dadosAntro_form',
@@ -59,11 +63,29 @@
     <div class="row">
         <?php echo $form->textAreaControlGroup($model, 'observacoes', array('rows' => 4, 'cols' => 60)); ?>
     </div>
-
-    <?php echo TbHtml::formActions(array(
-        TbHtml::submitButton($model->isNewRecord ? 'Criar' : 'Guardar', array('color' => TbHtml::BUTTON_COLOR_PRIMARY)),
-    )); ?>
-
+    <div class="form-actions">
+        <?php echo TbHtml::button('Guardar', array('id'=>'btnGuardar', 'class'=>'btn btn-primary')); ?>
+        <?php echo TbHtml::button('Guardar e Criar Novo', array('id'=>'btnCriarNovo', 'class'=>'btn btn-primary')); ?>
+    </div>
     <?php $this->endWidget(); ?>
 
 </div><!-- form -->
+
+<script type="text/javascript">
+$('#btnGuardar').click(function(){
+    $('#dadosAntro_form').attr('action', '<?php echo Yii::app()->createUrl('dadosAntro/create') ?>');
+    $('#dadosAntro_form').submit();
+});
+$('#btnCriarNovo').click(function(){
+    $('#dadosAntro_form').attr('action', '<?php echo Yii::app()->createUrl('dadosAntro/createAndNew') ?>');
+    $('#dadosAntro_form').submit();
+});
+
+$(document).ready(function () {
+        setTimeout(function(){
+            $('#mensagemDadosAntro').hide();
+        },3500);
+
+    }
+);
+</script>

@@ -510,3 +510,7 @@ div .formHabitosAlimentares .dadosHabitosAlimentares textarea{
 div .formHabitosAlimentares .form-actions{
     clear: both;
 }
+
+.tabbable ul li a[href="#tab_8"]{
+   margin-left: 80px;
+}
