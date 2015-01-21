@@ -104,6 +104,20 @@ class UtentesController extends Controller
             ),
         ));
 
+        $dpNotasConsulta = new CActiveDataProvider('NotasConsulta', array(
+            'criteria' => array(
+                'condition' => 'utente_id=:id',
+                'params' => array(
+                    ':id' => $id,
+                ),
+
+            ),
+            'sort' => array(
+                'defaultOrder' => 'data desc',
+            ),
+        ));
+
+
         $model = Utentes::model()->findByPk($id);
         $model->setScenario('view');
 
@@ -114,6 +128,7 @@ class UtentesController extends Controller
             'dpDadosAntro' => $dpDadosAntro,
             'dataDiario' => $datasDiarioAlimentar,
             'modelFichaClinica' => $modelFichaClinica,
+            'dpNotasConsulta' => $dpNotasConsulta,
             'modelHabitosAlimentares' => $modelHabitosAlimentares,
         ));
     }

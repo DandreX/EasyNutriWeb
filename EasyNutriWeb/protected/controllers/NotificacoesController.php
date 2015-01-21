@@ -120,6 +120,7 @@ class NotificacoesController extends Controller
         // $this->performAjaxValidation($model);
 
         if (isset($_POST['Notificacoes'])) {
+
             $model->attributes = $_POST['Notificacoes'];
             if ($model->save())
                 $this->redirect(array('view', 'id' => $model->id));

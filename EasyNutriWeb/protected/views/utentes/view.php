@@ -6,7 +6,7 @@
 /* @var $dpNotificacoes CActiveDataProvider */
 /* @var $tabIndex int */
 /* @var $modelHabitosAlimentares HabitosAlimentares */
-
+/* @var $dpNotasConsulta CActiveDataProvider */
 $this->menu = array(
     //array('label'=>'List Utentes', 'url'=>array('index')),
     array('label' => 'Meus Utentes', 'url' => array('admin')),
@@ -78,7 +78,11 @@ $this->menu = array(
             true)),
 
 
-))?>
+        array('label' => 'Notas de Consulta', 'content' => $this->renderPartial('_notas_consulta',
+            array('model' => $model,
+                'dpNotasConsulta' => $dpNotasConsulta,
+            ),
+            true)),
 
 <script type="text/javascript">
     $(document).ready(function () {

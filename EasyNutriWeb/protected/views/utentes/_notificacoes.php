@@ -13,10 +13,6 @@
     'dataProvider' => $dpNotificacoes,
     'columns' => array(
         'data',
-        array(
-            'value' => '$data->NomeUtente',
-            'header' => 'Utente',
-        ),
         'assunto',
         'descricao',
         array(
