@@ -193,13 +193,13 @@ div #formUtentes #formNomeUtente{
     border: 0px !important;
 }
 
-div #formFichaClinica label, .formNotaConsulta label {
+div .formFichaClinica label, .formNotaConsulta label {
     font-weight: bold;
     font-size: 0.9em;
     display: block;
 }
 
-div #formFichaClinica .row, .formNotaConsulta .row {
+div .formFichaClinica .row, .formNotaConsulta .row {
     float: left;
     width: 400px;
     margin: 0px;
@@ -207,7 +207,7 @@ div #formFichaClinica .row, .formNotaConsulta .row {
     margin-left: 30px;
 }
 
-div #formFichaClinica .dadosFichaClinica {
+div .formFichaClinica .dadosFichaClinica {
     float: left;
     width: 400px;
     margin: 0px;
@@ -220,18 +220,18 @@ div #formFichaClinica .dadosFichaClinica {
     width: 250px !important;
 }
 
-div #formFichaClinica .dadosFichaClinica .control-label {
+div .formFichaClinica .dadosFichaClinica .control-label {
     display: block;
     width: 350px;
     text-align: center;
     margin-left: 40px;
 }
 
-div #formFichaClinica .dadosFichaClinica .controls {
+div .formFichaClinica .dadosFichaClinica .controls {
     margin-left: 0px !important;
 }
 
-div #formFichaClinica .dadosFichaClinica textarea {
+div .formFichaClinica .dadosFichaClinica textarea {
      margin-left: 40px;
      width: 350px !important;
  }
@@ -357,7 +357,7 @@ div #formDadosAntro .row {
 
 /*PLANO ALIMENTAR*/
 
-div #formFichaClinica .form-actions, .formNotaConsulta .form-actions {
+div .formFichaClinica .form-actions, .formNotaConsulta .form-actions {
     clear: both;
 }
 
@@ -511,6 +511,6 @@ div .formHabitosAlimentares .form-actions{
     clear: both;
 }
 
-.tabbable ul li a[href="#tab_8"]{
-   margin-left: 80px;
+.tabbable ul li:last-child{
+   float: right;
 }

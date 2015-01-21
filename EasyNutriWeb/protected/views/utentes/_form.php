@@ -124,6 +124,11 @@ $naoEditavel = $model->getScenario() == 'view';
             <?php echo $form->textAreaControlGroup($model, 'motivo_consulta', array('rows' => 4, 'cols' => 60, 'readonly' => $naoEditavel)); ?>
             <?php echo $form->error($model, 'motivo_consulta'); ?>
         </div>
+
+        <div class="row">
+            <?php echo $form->textAreaControlGroup($model, 'tomouConhecimento', array('rows' => 4, 'cols' => 60, 'readonly' => $naoEditavel)); ?>
+            <?php echo $form->error($model, 'tomouConhecimento'); ?>
+        </div>
     </fieldset>
 
     <?php if (!$naoEditavel): ?>

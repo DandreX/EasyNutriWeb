@@ -12,7 +12,8 @@
 
     <?php echo $form->errorSummary($model); ?>
 
-
+<fieldset>
+    <legend>Alimentares</legend>
     <div class="dadosHabitosAlimentares">
         <?php echo $form->textAreaControlGroup($model,'hora_local_comp_ref',array('rows' => 6, 'cols' => 100, 'readonly'=> true)); ?>
         <?php echo $form->error($model,'hora_local_comp_ref'); ?>
@@ -32,12 +33,14 @@
         <?php echo $form->textAreaControlGroup($model,'ing_hidrica_diaria',array('rows' => 6, 'cols' => 100, 'readonly'=> true)); ?>
         <?php echo $form->error($model,'ing_hidrica_diaria'); ?>
     </div>
-
+</fieldset>
+    <fieldset>
+        <legend>Actividade Física</legend>
     <div class="dadosHabitosAlimentares">
         <?php echo $form->textAreaControlGroup($model,'activ_fisica',array('rows' => 6, 'cols' => 100, 'readonly'=> true)); ?>
         <?php echo $form->error($model,'activ_fisica'); ?>
     </div>
-
+    </fieldset>
     <?php $this->endWidget(); ?>
 
 </div>

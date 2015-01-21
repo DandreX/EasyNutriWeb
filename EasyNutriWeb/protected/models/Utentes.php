@@ -18,15 +18,18 @@
  * @property string $estado_civil
  * @property string $motivo_consulta
  * @property integer $medico_id
+ * @property integer $ativo
+ * @property string $tomouConhecimento
  *
  * The followings are the available model relations:
  * @property DadosAntro[] $dadosAntros
  * @property DiarioAlimentar[] $diarioAlimentars
  * @property Notificacoes[] $notificacoes
  * @property Users $medico
- * * @property PlanosAlimentares[] $planosAlimentares
+ * @property PlanosAlimentares[] $planosAlimentares
  * @property FichaClinica[] $fichaClinicas
  * @property HabitosAlimentares[] $habitosAlimentares
+ * @property NotasConsulta[] $notasConsultas
  */
 class Utentes extends CActiveRecord
 {
@@ -74,11 +77,11 @@ class Utentes extends CActiveRecord
             array('telefone', 'length', 'max' => 30),
             array('data_nascimento', 'safe'),
             array('nif', 'length', 'max' => 19),
-            array('data_nascimento, profissao, estado_civil, motivo_consulta', 'safe'),
+            array('data_nascimento, profissao, estado_civil, motivo_consulta, tomouConhecimento', 'safe'),
 //            array('sexo','match','pattern','M|F'),
             // The following rule is used by search().
             // @todo Please remove those attributes that should not be searched.
-            array('id, morada, nome, username, password, data_nascimento, sexo, email, telefone, nif, profissao, estado_civil, motivo_consulta', 'safe', 'on' => 'search'),
+            array('id, morada, nome, username, password, data_nascimento, sexo, email, telefone, nif, profissao, estado_civil, motivo_consulta, tomouConhecimento', 'safe', 'on' => 'search'),
             array('data_nascimento', 'type', 'type' => 'date', 'message' => '{attribute}: não é uma data!', 'dateFormat' => 'yyyy-MM-dd'),
             array('email', 'email', 'message' => '{attribute}: não é um email válido'),
         );
@@ -98,6 +101,7 @@ class Utentes extends CActiveRecord
             'planosAlimentares' => array(self::HAS_MANY, 'PlanosAlimentares', 'id_utente'),
             'fichaClinicas' => array(self::HAS_MANY, 'FichaClinica', 'idUtente'),
             'habitosAlimentares' => array(self::HAS_MANY, 'HabitosAlimentares', 'idUtente'),
+            'notasConsultas' => array(self::HAS_MANY, 'NotasConsulta', 'utente_id'),
         );
     }
 
@@ -123,6 +127,8 @@ class Utentes extends CActiveRecord
             'medico_id' => 'Medico',
             'medicoNome' => 'Medico',
             'idade'=>'Idade',
+            'ativo' => 'Ativo',
+            'tomouConhecimento' => 'Como tomou conhecimento',
         );
     }
 
@@ -159,6 +165,8 @@ class Utentes extends CActiveRecord
         $criteria->compare('motivo_consulta', $this->motivo_consulta, true);
        // $criteria->compare('medico_id', $this->medico_id);
         $criteria->compare('medico_id', Yii::app()->user->userid);
+        $criteria->compare('ativo',$this->ativo);
+        $criteria->compare('tomouConhecimento',$this->tomouConhecimento,true);
 
         return new CActiveDataProvider($this, array(
             'criteria' => $criteria,

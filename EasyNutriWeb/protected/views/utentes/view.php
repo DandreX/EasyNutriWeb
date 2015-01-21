@@ -50,7 +50,7 @@ $this->menu = array(
             ),
 
             true)),
-    array('label' => 'Hábitos Alimentares', 'content' => $this->renderPartial('_habitos_alimentares',
+    array('label' => 'Hábitos', 'content' => $this->renderPartial('_habitos_alimentares',
             array('model'=>$model,
                 'modelHabitosAlimentares' => $modelHabitosAlimentares,
             ),
