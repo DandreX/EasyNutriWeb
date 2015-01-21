@@ -73,7 +73,7 @@ class NotasConsultaController extends Controller
 
             if ($model->save()) {
 
-                $url = yii::app()->createUrl("utentes/view", array('id' => $idUtente, '#' => 'tab_7'));
+                $url = yii::app()->createUrl("utentes/view", array('id' => $idUtente, '#' => 'tab_8'));
 
                 $this->redirect($url);
 
@@ -106,7 +106,7 @@ class NotasConsultaController extends Controller
 
 
             if ($model->save()) {
-                $url = yii::app()->createUrl("utentes/view", array('id' => $model->utente_id, '#' => 'tab_7'));
+                $url = yii::app()->createUrl("utentes/view", array('id' => $model->utente_id, '#' => 'tab_8'));
                 $this->redirect($url);
             }
         }
@@ -129,7 +129,7 @@ class NotasConsultaController extends Controller
 
         // if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
         if (!isset($_GET['ajax'])) {
-            $url = yii::app()->createUrl("utentes/view", array('id' => $model->utente_id, '#' => 'tab_7'));
+            $url = yii::app()->createUrl("utentes/view", array('id' => $model->utente_id, '#' => 'tab_8'));
 
             $this->redirect($url);
         }
