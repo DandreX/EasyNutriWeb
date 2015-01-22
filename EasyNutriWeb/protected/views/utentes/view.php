@@ -27,11 +27,11 @@ $this->menu = array(
     'content' => '',
     'footer' => array(
         TbHtml::button('Enviar Notificação',
-            array('id' => 'btnCreate',
+            array('id' => 'btnCreateNot',
                 'data-dismiss' => 'modal',
                 'color' => TbHtml::BUTTON_COLOR_PRIMARY)),
         TbHtml::button('Cancelar', array(
-            'id' => 'btnCancelar',
+            'id' => 'btnCancelarNot',
             'color' => TbHtml::BUTTON_COLOR_DANGER,
             'data-dismiss' => 'modal')),
     ),
@@ -84,6 +84,9 @@ $this->menu = array(
     ))
     ?>
 
+
+
+
 <script type="text/javascript">
     $(document).ready(function () {
         var tab = window.location.hash;
@@ -93,6 +96,43 @@ $this->menu = array(
         $('[role="menuitem"] a').click(function () {
             window.location.hash = $(this).attr("href");
         });
+
+        $.ajax({
+            type: 'GET',
+            url: '<?php echo Yii::app()->createAbsoluteUrl("notificacoes/AjaxCreate"); ?>',
+            success: function (data) {
+                $('.modal-body').html(data);
+            },
+            error: function (data) { // if error occured
+                alert("Ocorreu um erro");
+            },
+            dataType: 'html'
+        });
+
+        $('#btnCreateNot').click(function () {
+            var data = $("#notificacoes-form").serialize() + '&idUtente=' + '<?php echo($model->id) ?>';
+            console.log(data);
+            $.ajax({
+                type: 'POST',
+                url: '<?php echo Yii::app()->createAbsoluteUrl("notificacoes/AjaxCreate"); ?>',
+                data: data,
+                success: function (data) {
+                    $('#Notificacoes_assunto').val('');
+                    $('#Notificacoes_descricao').val('');
+                    alert("Notificação enviada com sucesso");
+                },
+                error: function (data) { // if error occured
+                    alert("Erro ao enviar notificacao");
+                },
+                dataType: 'html'
+            });
+        });
+        $('#btnCancelarNot').click(function () {
+            $('#Notificacoes_assunto').val('');
+            $('#Notificacoes_descricao').val('');
+        });
     });
+
+
 
 </script>
