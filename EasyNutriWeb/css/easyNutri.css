@@ -282,6 +282,8 @@ div #formDadosAntro .row {
     margin: 1px;
 }
 
+/*VIEW PLANO ALIMENTAR DO UTENTE*/
+
 #dataPrescricao{
     display: inline;
 }
@@ -349,6 +351,8 @@ div #formDadosAntro .row {
     background-color: #ffffff;
     border: hidden;
 }
+
+/*VIEW PLANO ALIMENTAR DO UTENTE*/
 
 /*.linhaPlano input:not([type="hidden"]):nth-child(3){*/
     /*width: 400px !important;*/
@@ -534,5 +538,8 @@ div .formHabitosAlimentares .form-actions{
     clear:both;
 }
 #ui-datepicker-div{
+    display: none;
+}
+.printOnly{
     display: none;
 }

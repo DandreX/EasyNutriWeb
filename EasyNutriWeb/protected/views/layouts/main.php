@@ -23,13 +23,16 @@
 
     <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/main.css"/>
     <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/form.css"/>
-    <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/easyNutri.css"/>
+    <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/easyNutri.css"
+          media="screen, projection"/>
     <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/Spinner.js"></script>
     <title><?php echo CHtml::encode($this->pageTitle); ?></title>
 </head>
 
 <body>
+<div id="print-div" class="printOnly">
 
+</div>
 <div class="container" id="page">
     <!--    <div id="header">-->
     <!--        <div id="logo">--><?php //echo CHtml::encode(Yii::app()->name); ?><!--</div>-->

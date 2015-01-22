@@ -92,7 +92,7 @@ class NotificacoesController extends Controller
             $model->attributes = $_POST['Notificacoes'];
             $model->utente_id = $_POST['idUtente'];
             $model->medico_id = Yii::app()->user->userid;
-            $model->data = date('Y-m-d H:m');
+            $model->data = date('Y-m-d H:i');
             if ($model->save()) {
                 print_r("guardou");
                 exit();

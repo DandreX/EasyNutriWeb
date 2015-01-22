@@ -14,7 +14,12 @@
     'columns' => array(
         'data',
         'assunto',
-        'descricao',
+        array(
+            'header'=>'Descrição',
+            'name'=>'descricao',
+            'type'=>'raw',
+            'value'=>'nl2br($data->descricao)',
+        ),
         array(
             'class' => 'TbButtonColumn',
             'buttons' => array(
@@ -22,13 +27,11 @@
                     'url' => 'Yii::app()->createUrl("/notificacoes/view", array("id"=>$data->id))',
                     'options' => array('target' => '_new'),
                 ),
-                'delete' => array(
-                    'url' => 'Yii::app()->createUrl("/notificacoes/delete", array("id"=>$data->id))',
-                    'options' => array('target' => '_new'),
-                ),
                 'update' => array(
-                    'url' => 'Yii::app()->createUrl("/notificacoes/update", array("id"=>$data->id))',
-                    'options' => array('target' => '_new'),
+                    'visible' => 'false',
+                ),
+                'delete' => array(
+                    'visible' => 'false',
                 ),
             ),
         ),

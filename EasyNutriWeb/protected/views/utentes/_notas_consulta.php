@@ -24,7 +24,13 @@ echo TbHtml::formActions(array(
             'value'=>'date("Y-m-d H:i", strtotime($data->data))',
             'htmlOptions' => array('style' => 'width: 200px;'),
         ),
-        'descricao',
+        array(
+            'header'=>'Descrição',
+            'name'=>'descricao',
+            'type'=>'raw',
+            'value'=>'nl2br($data->descricao)',
+        ),
+      //  'descricao',
         array(
             'class' => 'TbButtonColumn', 'buttons' => array(
                 'view' => array(
