@@ -3,17 +3,17 @@
 $this->pageTitle=Yii::app()->name;
 ?>
 
-    <img src="<?php echo Yii::app()->getBaseUrl().'/assets/imagensEasynutri/icone.png'?>"  id="imgEasyNutri">
+    <img src="<?php echo Yii::app()->getBaseUrl().'/assets/imagensEasynutri/iconeTransparency.png'?>"  id="imgEasyNutri">
 
 
 <div id="mobileApps">
 <a href="https://play.google.com/store/apps/details?id=com.ionicframework.easynutrimobile576589">
     <img alt="Android app on Google Play"
-         src="https://developer.android.com/images/brand/en_app_rgb_wo_45.png" />
+         src="<?php echo Yii::app()->getBaseUrl().'/assets/imagensEasynutri/android-app-on-google-play-logo-vector-2.png'?>" />
 </a>
-    <img alt="Available on app store"
-         src="<?php echo Yii::app()->getBaseUrl().'/assets/imagensEasynutri/app_store_badge.png'?> " />
-    <p><b>(Brevemente)</b></p>
+    <a href="http://dei.estg.ipleiria.pt/projetos/easynutri/mobile/www/#/login">
+        <img alt="Available on Web"
+             src="<?php echo Yii::app()->getBaseUrl().'/assets/imagensEasynutri/RedeAppWebAppIcon-Browsers.png'?> " />
 </div>
 
 

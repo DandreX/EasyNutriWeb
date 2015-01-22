@@ -37,8 +37,7 @@
         </div>
     </div>
     <div id="descricaoNotaConsulta" class="row">
-
-        <?php echo $form->textAreaControlGroup($model, 'descricao', array('size' => 6, 'maxlength' => 60)); ?>
+        <?php echo $form->textAreaControlGroup($model, 'descricao', array('rows' => 6, 'cols' => 100)); ?>
         <?php echo $form->error($model, 'descricao'); ?>
     </div>
 

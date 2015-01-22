@@ -27,10 +27,9 @@ echo TbHtml::formActions(array(
         'descricao',
         array(
             'class' => 'TbButtonColumn', 'buttons' => array(
-//                'view' => array(
-//                    'url' => 'Yii::app()->createUrl("/notasConsulta/view", array("id"=>$data->id))',
-//                    'options' => array('target' => '_new'),
-//                ),
+                'view' => array(
+                    'visible' => 'false',
+                ),
             'delete' => array(
                 'url' => 'Yii::app()->createUrl("/notasConsulta/delete", array("id"=>$data->id))',
                 'options' => array('target' => '_new'),

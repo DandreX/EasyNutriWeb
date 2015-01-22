@@ -14,7 +14,7 @@
     ?>
     <?php
     echo TbHtml::formActions(array(
-        TbHtml::submitButton('Editar Hábitos Alimentares'
+        TbHtml::submitButton('Editar Hábitos'
         ))); ?>
     <?php $this->endWidget(); ?>
     <?php
@@ -32,7 +32,7 @@
 
     <?php
     echo TbHtml::formActions(array(
-        TbHtml::submitButton('Novos Hábitos Alimentares', array('icon'=>'plus')),
+        TbHtml::submitButton('Novos Hábitos', array('icon'=>'plus')),
     )); ?>
 
 
