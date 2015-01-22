@@ -34,45 +34,45 @@ $this->widget('zii.widgets.jui.CJuiDatePicker', array(
 
 
 
-<script type="text/javascript" id="modalButtons">
-    $('#btnCreate').click(function () {
-        var data = $("#notificacoes-form").serialize() + '&idUtente=' + '<?php echo($model->id) ?>';
-        console.log(data);
-        $.ajax({
-            type: 'POST',
-            url: '<?php echo Yii::app()->createAbsoluteUrl("notificacoes/AjaxCreate"); ?>',
-            data: data,
-            success: function (data) {
-                $('#Notificacoes_assunto').val('');
-                $('#Notificacoes_descricao').val('');
-                alert("Notificação enviada com sucesso");
-            },
-            error: function (data) { // if error occured
-                alert("Erro ao enviar notificacao");
-            },
-            dataType: 'html'
-        });
-    });
-    $('#btnCancelar').click(function () {
-        $('#Notificacoes_assunto').val('');
-        $('#Notificacoes_descricao').val('');
-    });
-</script>
-
-<script type="text/javascript" id="loadNotificacaoLayout">
-    $.ajax({
-        type: 'GET',
-        url: '<?php echo Yii::app()->createAbsoluteUrl("notificacoes/AjaxCreate"); ?>',
-        success: function (data) {
-            $('.modal-body').html(data);
-        },
-        error: function (data) { // if error occured
-            alert("Ocorreu um erro");
-        },
-        dataType: 'html'
-    });
-
-</script>
+<!--<script type="text/javascript" id="modalButtons">-->
+<!--    $('#btnCreate').click(function () {-->
+<!--        var data = $("#notificacoes-form").serialize() + '&idUtente=' + '--><?php //echo($model->id) ?><!--';-->
+<!--        console.log(data);-->
+<!--        $.ajax({-->
+<!--            type: 'POST',-->
+<!--            url: '--><?php //echo Yii::app()->createAbsoluteUrl("notificacoes/AjaxCreate"); ?><!--',-->
+<!--            data: data,-->
+<!--            success: function (data) {-->
+<!--                $('#Notificacoes_assunto').val('');-->
+<!--                $('#Notificacoes_descricao').val('');-->
+<!--                alert("Notificação enviada com sucesso");-->
+<!--            },-->
+<!--            error: function (data) { // if error occured-->
+<!--                alert("Erro ao enviar notificacao");-->
+<!--            },-->
+<!--            dataType: 'html'-->
+<!--        });-->
+<!--    });-->
+<!--    $('#btnCancelar').click(function () {-->
+<!--        $('#Notificacoes_assunto').val('');-->
+<!--        $('#Notificacoes_descricao').val('');-->
+<!--    });-->
+<!--</script>-->
+<!---->
+<!--<script type="text/javascript" id="loadNotificacaoLayout">-->
+<!--    $.ajax({-->
+<!--        type: 'GET',-->
+<!--        url: '--><?php //echo Yii::app()->createAbsoluteUrl("notificacoes/AjaxCreate"); ?><!--',-->
+<!--        success: function (data) {-->
+<!--            $('.modal-body').html(data);-->
+<!--        },-->
+<!--        error: function (data) { // if error occured-->
+<!--            alert("Ocorreu um erro");-->
+<!--        },-->
+<!--        dataType: 'html'-->
+<!--    });-->
+<!---->
+<!--</script>-->
 
 <script type="text/javascript" id="ajaxRefeicoes">
 
