@@ -534,5 +534,5 @@ div .formHabitosAlimentares .form-actions{
     clear:both;
 }
 #ui-datepicker-div{
-    border:0px !important;
+    display: none;
 }

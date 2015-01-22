@@ -7,7 +7,7 @@
 <div id="formDadosAntro">
     <div id="mensagemDadosAntro">
         <?php if ($mensagem != ""):
-            echo TbHtml::alert(TbHtml::ALERT_COLOR_SUCCESS, $mensagem);
+            echo TbHtml::alert(TbHtml::ALERT_COLOR_SUCCESS, $mensagem, array('id'=>'dadosAntroMensagem'));
         endif
         ?>
     </div>
@@ -83,11 +83,11 @@ $('#btnCriarNovo').click(function(){
     $('#dadosAntro_form').submit();
 });
 
-$(document).ready(function () {
-        setTimeout(function(){
-            $('#mensagemDadosAntro').hide();
-        },3500);
-
-    }
-);
+//$(document).ready(function () {
+//        setTimeout(function(){
+//            $('#mensagemDadosAntro').hide();
+//        },3500);
+//
+//    }
+//);
 </script>
