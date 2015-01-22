@@ -12,6 +12,24 @@ $( document ).ready(
             $('#btnSubmeter').click();
         });
 
+        //Prevenir nagevagacao nao autorizada
+        var canChangePage = false;
+
+        window.onbeforeunload = function(event){
+            if (!canChangePage) {
+                return 'Ao sair desta pagina o plano alimentar pode ser perdido. Para navegar entre passos por' +
+                    ' favor utilize os botões "Anterior" e "Próximo"';
+            }else{
+                event.preventDefault();
+            }
+
+        };
+
+        $('#btnAnterior, #btnSubmeter').click(function(){
+            canChangePage=true;
+        });
+        //END Prevenir nagevagacao nao autorizada
+
         //desativar form submit ao presionar a tecla enter
         $('#formPlanoAlimentar').not($('form.form-inline')).on("keyup keypress", function(e) {
             var code = e.keyCode || e.which;

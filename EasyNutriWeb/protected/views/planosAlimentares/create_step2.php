@@ -305,7 +305,10 @@ var calcularTabelaDoses = function (changedIndex, isReload) {
     calculoSubTotal(3, 6, 11, 12);
 };
 
+
+
 $(document).ready(function () {
+
 
     //DISTRIBUICAO DE NUTRIENTES
     var neds = $("#PlanoAlimentarForm_neds").val();

@@ -82,7 +82,9 @@ $this->breadcrumbs = array(
     </fieldset>
 
     <?php echo TbHtml::formActions(array(
-        TbHtml::submitButton('Proximo', array('color' => TbHtml::BUTTON_COLOR_PRIMARY)),
+        TbHtml::submitButton('Proximo', array(
+            'color' => TbHtml::BUTTON_COLOR_PRIMARY,
+            'id' => 'btnSubmeter')),
     )); ?>
 
     <?php $this->endWidget(); ?>
