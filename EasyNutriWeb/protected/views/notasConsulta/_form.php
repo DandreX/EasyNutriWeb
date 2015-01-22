@@ -22,6 +22,7 @@
                 <?php
                 $model->data = date('Y-m-d H:i');
                 $form->widget('application.extensions.timepicker.timepicker', array(
+                    'id'=>'NotasConsulta_data',
                     'model' => $model,
                     'name' => 'data',
                     'options' => array(
@@ -53,3 +54,4 @@
     <?php $this->endWidget(); ?>
 
 </div><!-- form -->
+

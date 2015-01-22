@@ -34,6 +34,7 @@ class NotasConsulta extends CActiveRecord
         return array(
             array('utente_id, medico_id, descricao, data', 'required'),
             array('utente_id, medico_id', 'numerical', 'integerOnly' => true),
+            array('data', 'type', 'type'=>'date'),
             array('descricao, data', 'safe'),
             // The following rule is used by search().
             // @todo Please remove those attributes that should not be searched.

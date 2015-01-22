@@ -5,7 +5,7 @@
 
 <?php $form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
     'layout' => TbHtml::FORM_LAYOUT_INLINE,
-    'action'=>Yii::app()->createUrl("dadosAntro/admin&DadosAntro[nomeUtenteSearch]=".$model->nome),
+    'action'=>Yii::app()->createUrl("dadosAntro/admin&DadosAntro[nomeUtenteSearch]=".urlencode($model->nome)),
 )); ?>
 <?php echo TbHtml::formActions(array(
     TbHtml::submitButton('Todos os dados antropométricos', array('id'=>'btnTodosDadosAntro', 'color' => TbHtml::BUTTON_COLOR_PRIMARY)),

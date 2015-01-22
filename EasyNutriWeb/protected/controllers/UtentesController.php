@@ -49,7 +49,12 @@ class UtentesController extends Controller
         $dataProviderRefeicoes = new CActiveDataProvider('Refeicoes', array(
             'criteria' => array(
                 'with' => array('diario'),
-                'condition' => 'diario.user_id=' . $id),
+                'condition' => 'diario.user_id= :id',
+                'params' => array(
+                    ':id'=>$id
+                ),
+            ),
+
             'sort' => array(
                 'defaultOrder' => 'data_refeicao Desc'
             ),
@@ -64,22 +69,19 @@ class UtentesController extends Controller
             ->queryAll();
 
 
-
         $datasDiarioAlimentar = "[";
         foreach ($queryDatasDiarioAlimentar as $i) {
-            $datasDiarioAlimentar = $datasDiarioAlimentar."\"".$i['']."\"".",";
+            $datasDiarioAlimentar = $datasDiarioAlimentar . "\"" . $i[''] . "\"" . ",";
         }
-        if(strlen($datasDiarioAlimentar)>1){
-            $datasDiarioAlimentar[strlen($datasDiarioAlimentar)-1]="]";
+        if (strlen($datasDiarioAlimentar) > 1) {
+            $datasDiarioAlimentar[strlen($datasDiarioAlimentar) - 1] = "]";
         } else {
-            $datasDiarioAlimentar = $datasDiarioAlimentar."]";
+            $datasDiarioAlimentar = $datasDiarioAlimentar . "]";
         }
 
 
-
-         $modelFichaClinica = FichaClinica::model()->findByAttributes(array('idUtente' => $id));
-         $modelHabitosAlimentares = HabitosAlimentares::model()->findByAttributes(array('idUtente' => $id));
-
+        $modelFichaClinica = FichaClinica::model()->findByAttributes(array('idUtente' => $id));
+        $modelHabitosAlimentares = HabitosAlimentares::model()->findByAttributes(array('idUtente' => $id));
 
 
         $dpDadosAntro = new CActiveDataProvider('VResumosAntro', array(
@@ -149,13 +151,13 @@ class UtentesController extends Controller
                 $model->attributes = $_POST['Utentes'];
                 $model->medico_id = Yii::app()->user->userid;
                 $defaultPw = "easynutri";
-                $hash=hash("sha256", $defaultPw);
+                $hash = hash("sha256", $defaultPw);
 
                 $model->password = $hash;
 
 
                 if ($model->save())
-                    $this->redirect(array('view', 'id' => $model->id, '#'=> "tab_1"));
+                    $this->redirect(array('view', 'id' => $model->id, '#' => "tab_1"));
             } catch (CDbException $e) {
                 $model->addError('', $e->errorInfo[2]);
             }
@@ -186,7 +188,7 @@ class UtentesController extends Controller
 
                 $model->attributes = $_POST['Utentes'];
                 if ($model->save())
-                    $this->redirect(array('view', 'id' => $model->id, '#'=> "tab_1"));
+                    $this->redirect(array('view', 'id' => $model->id, '#' => "tab_1"));
 
             } catch (CDbException $e) {
                 $model->addError('', $e->errorInfo[2]);
@@ -237,8 +239,7 @@ class UtentesController extends Controller
         //  $model = Utentes::model()->findAllByAttributes(array(),'medico_id=:userid', array(':userid'=>Yii::app()->user->userid));
         $model->unsetAttributes(); // clear any default values
         if (isset($_GET['Utentes'])) {
-            ChromePhp::log($_GET['Utentes']);
-            $model->attributes = $_GET['Utentes'];
+              $model->attributes = $_GET['Utentes'];
         }
         $this->render('admin', array(
             'model' => $model,

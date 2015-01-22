@@ -7,7 +7,7 @@
 <div id="formDadosAntro">
     <div id="mensagemDadosAntro">
         <?php if ($mensagem != ""):
-            echo TbHtml::alert(TbHtml::ALERT_COLOR_SUCCESS, $mensagem, array('id'=>'dadosAntroMensagem'));
+            echo TbHtml::alert(TbHtml::ALERT_COLOR_SUCCESS, $mensagem, array('id' => 'dadosAntroMensagem'));
         endif
         ?>
     </div>
@@ -24,7 +24,7 @@
             array(),
             $condition = 'medico_id=:userid',
             $params = array(
-                ':userid'=>Yii::app()->user->userid,
+                ':userid' => Yii::app()->user->userid,
             )
         ), 'id', 'nome');
         echo $form->dropDownListControlGroup($model, 'utente_id', $utentes,
@@ -43,8 +43,12 @@
 
     <div class="row">
         <?php echo $form->labelEx($model, 'data_med', array('class' => 'control-label required')); ?>
-        <?php
-        $model->data_med = date('Y-m-d H:i');?>
+        <?php if($model->scenario!='update'){
+            $model->data_med = date('Y-m-d H:i');
+        }else{
+            $model->data_med =date('Y-m-d H:i',strtotime($model->data_med));
+        }
+        ?>
         <div class="controls">
             <?php $form->widget('application.extensions.timepicker.timepicker', array(
                 'model' => $model,
@@ -64,9 +68,9 @@
         <?php echo $form->textAreaControlGroup($model, 'observacoes', array('rows' => 4, 'cols' => 60)); ?>
     </div>
     <div class="form-actions">
-        <?php echo TbHtml::button('Guardar', array('id'=>'btnGuardar', 'class'=>'btn btn-primary')); ?>
-        <?php if($model->scenario != 'update'): ?>
-        <?php echo TbHtml::button('Guardar e Criar Novo', array('id'=>'btnCriarNovo', 'class'=>'btn btn-primary')); ?>
+        <?php echo TbHtml::button('Guardar', array('id' => 'btnGuardar', 'class' => 'btn btn-primary')); ?>
+        <?php if ($model->scenario != 'update'): ?>
+            <?php echo TbHtml::button('Guardar e Criar Novo', array('id' => 'btnCriarNovo', 'class' => 'btn btn-primary')); ?>
         <?php endif ?>
     </div>
     <?php $this->endWidget(); ?>
@@ -74,20 +78,31 @@
 </div><!-- form -->
 
 <script type="text/javascript">
-$('#btnGuardar').click(function(){
-    $('#dadosAntro_form').attr('action', '<?php echo Yii::app()->createUrl('dadosAntro/create') ?>');
-    $('#dadosAntro_form').submit();
-});
-$('#btnCriarNovo').click(function(){
-    $('#dadosAntro_form').attr('action', '<?php echo Yii::app()->createUrl('dadosAntro/createAndNew') ?>');
-    $('#dadosAntro_form').submit();
-});
 
-//$(document).ready(function () {
-//        setTimeout(function(){
-//            $('#mensagemDadosAntro').hide();
-//        },3500);
-//
-//    }
-//);
+
+    $('#btnGuardar').click(function () {
+        var state = '<?php echo $model->scenario?>';
+        var url;
+        if(state == 'update'){
+            var id = '<?php echo $model->id?>';
+            url = '<?php echo Yii::app()->createUrl('dadosAntro/update') ?>'+'&id='+id;
+
+        }else{
+            url = '<?php echo Yii::app()->createUrl('dadosAntro/create') ?>';
+        }
+        $('#dadosAntro_form').attr('action', url);
+        $('#dadosAntro_form').submit();
+    });
+    $('#btnCriarNovo').click(function () {
+        $('#dadosAntro_form').attr('action', '<?php echo Yii::app()->createUrl('dadosAntro/createAndNew') ?>');
+        $('#dadosAntro_form').submit();
+    });
+
+    //$(document).ready(function () {
+    //        setTimeout(function(){
+    //            $('#mensagemDadosAntro').hide();
+    //        },3500);
+    //
+    //    }
+    //);
 </script>

@@ -66,14 +66,15 @@ class DadosAntroController extends Controller
         if (isset($_POST['DadosAntro']) && $validar) {
             $model->attributes = $_POST['DadosAntro'];
             if ($model->save())
-                $this->redirect(array('utentes/view','id'=>$model->utente_id, '#'=> "tab_4"));
+                $this->redirect(array('utentes/view', 'id' => $model->utente_id, '#' => "tab_4"));
         }
 
         $this->render('create', array(
             'model' => $model,
-            'mensagem'=>$mensagem,
+            'mensagem' => $mensagem,
         ));
     }
+
     public function actionCreateAndNew()
     {
         $model = new DadosAntro;
@@ -88,17 +89,17 @@ class DadosAntroController extends Controller
         }
         if (isset($_POST['DadosAntro']) && $validar) {
             $model->attributes = $_POST['DadosAntro'];
-            if ($model->save()){
+            if ($model->save()) {
                 $idUtente = $model->utente_id;
                 $model = new DadosAntro();
                 $model->utente_id = $idUtente;
-                $mensagem="Dado Antropométrico guardado com sucesso";
+                $mensagem = "Dado Antropométrico guardado com sucesso";
             }
         }
 
         $this->render('create', array(
             'model' => $model,
-            'mensagem'=>$mensagem,
+            'mensagem' => $mensagem,
         ));
     }
 
@@ -115,14 +116,51 @@ class DadosAntroController extends Controller
         // $this->performAjaxValidation($model);
 
         if (isset($_POST['DadosAntro'])) {
+
             $model->attributes = $_POST['DadosAntro'];
-            if ($model->save())
-                $this->redirect(array('admin'));
+
+            //se for um peso ou uma altura recalcular IMC
+            if ($model->tipo_medicao_id == 1 || $model->tipo_medicao_id == 2) {
+                $transaction = Yii::app()->db->beginTransaction();
+                try {
+                    $newModel = new DadosAntro();
+                    unset($_POST['DadosAntro']['id']);
+                    $newModel->attributes = $_POST['DadosAntro'];
+                    $oldModel = $this->loadModel($id);
+                    $criteria = new CDbCriteria();
+                    $criteria->addCondition('tipo_medicao_id = 4 AND data_med = :data AND utente_id= :utente_id');
+                    $criteria->params = array(
+                        ':data' => $oldModel->data_med,
+                        ':utente_id' => $oldModel->utente_id
+                    );
+                    $invalid_IMCs = DadosAntro::model()->findAll($criteria);
+                    foreach ($invalid_IMCs as $imc) {
+                        $imc->delete();
+                    }
+                    $oldModel->delete();
+                    if ($newModel->save()) {
+                        $transaction->commit();
+                        $this->redirect(array('utentes/view', 'id' => $model->utente_id, '#' => "tab_4"));
+                    } else {
+                        $model->addErrors($newModel->errors);
+                        throw new Exception('Erro na transação');
+                    }
+
+                } catch (Exception $e) {
+                    ChromePhp::log('batatas');
+                    ChromePhp::log('Erro: '.$e->getMessage());
+                    ChromePhp::log('rollback');
+                    $transaction->rollback();
+
+                }
+
+            } else if ($model->save())
+                $this->redirect(array('utentes/view', 'id' => $model->utente_id, '#' => "tab_4"));
         }
 
         $this->render('update', array(
             'model' => $model,
-            'mensagem'=>$mensagem,
+            'mensagem' => $mensagem,
         ));
     }
 
