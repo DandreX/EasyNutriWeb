@@ -52,7 +52,7 @@ TbHtml::button('Novo Utente', array('id' => 'btnOpenFormUtentes', 'icon'=>'plus'
     'dataProvider' => $model->search(),
     'filter' => $model,
     'selectableRows'=>1,
-    'selectionChanged'=>'function(id){ location.href = "'.$this->createUrl('view').'/id/"+$.fn.yiiGridView.getSelection(id);}',
+    'selectionChanged'=>'function(id){ location.href = "'.$this->createUrl('view').'/id/"+$.fn.;yiiGridView.getSelection(id)}',
     'enableSorting' => false,
     'columns' => array(
         'nome',

@@ -31,7 +31,7 @@
     </div>
     <div id="nedsPlanoAlimentar" class="hide">
         <?php echo TbHtml::label('NEDs:', 'text', array('id' => 'labelNed')); ?>
-        <?php echo TbHtml::uneditableField($planoAlimentarUtente->ned, array('id' => 'textNed')); ?>
+        <?php echo TbHtml::uneditableField($planoAlimentarUtente->ned.' kcal', array('id' => 'textNed')); ?>
     </div>
     <div id="apresentaTabela" class="hide">
         <?php echo TbHtml::checkBox('apresentaTabela', ($planoAlimentarUtente->apresentaTabela == 1) ? true : false, array('label' => 'Pode ver tabela de equivalências', 'disabled' => true)); ?>
