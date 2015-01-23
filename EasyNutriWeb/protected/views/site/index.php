@@ -14,6 +14,7 @@ $this->pageTitle=Yii::app()->name;
     <a href="http://dei.estg.ipleiria.pt/projetos/easynutri/mobile/www/#/login">
         <img alt="Available on Web"
              src="<?php echo Yii::app()->getBaseUrl().'/assets/imagensEasynutri/RedeAppWebAppIcon-Browsers.png'?> " />
+        </a>
 </div>
 
 
