@@ -16,12 +16,14 @@ $( document ).ready(
         var canChangePage = false;
 
         window.onbeforeunload = function(event){
-            if (!canChangePage) {
-                return 'Ao sair desta pagina o plano alimentar pode ser perdido. Para navegar entre passos por' +
-                    ' favor utilize os botões "Anterior" e "Próximo"';
-            }else{
-                event.preventDefault();
-            }
+//            console.log('beforeUnload');
+//            if (!canChangePage) {
+//                return 'Ao sair desta pagina o plano alimentar pode ser perdido. Para navegar entre passos por' +
+//                    ' favor utilize os botões "Anterior" e "Próximo"';
+//            }else{
+//                console.log('Prevent default');
+//                event.preventDefault();
+//            }
 
         };
 

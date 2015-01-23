@@ -62,18 +62,33 @@ class FichaClinicaController extends Controller
 	 */
 	public function actionCreate($idUtente)
 	{
-
+        $idUtente = intval($idUtente);
 		$model=new FichaClinica;
+        ChromePhp::log("Inicio pedido id utente: ".$idUtente);
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
 		if(isset($_POST['FichaClinica']))
 		{
-            $model->idUtente=$idUtente;
-			$model->attributes=$_POST['FichaClinica'];
-			if($model->save())
+            ChromePhp::log("TEM POST id utente: ".$idUtente);
+           // $model->idUtente=$idUtente;
+            $_POST['FichaClinica']['idUtente']=$idUtente;
+
+            //YII framework nao consegue converter campos vazios para decimal
+            $pesosValidar= array('peso_nascenca','peso_minimo','peso_maximo','peso_habitual');
+            foreach($pesosValidar as $peso){
+                if($_POST['FichaClinica'][$peso]==""){
+                    unset($_POST['FichaClinica'][$peso]);
+                }
+            }
+            $model->attributes=$_POST['FichaClinica'];
+
+           // CVarDumper::dump($model,10,true);
+
+				if($model->save()){
 				$this->redirect(array('utentes/view','id'=>$model->idUtente, '#'=> "tab_2"));
+                }
 		}
 
 		$this->render('create',array(
@@ -96,8 +111,12 @@ class FichaClinicaController extends Controller
 		if(isset($_POST['FichaClinica']))
 		{
 			$model->attributes=$_POST['FichaClinica'];
-			if($model->save())
-				$this->redirect(array('utentes/view','id'=>$model->idUtente, '#'=> "tab_2"));
+//            CVarDumper::dump($_POST['FichaClinica'],10,true);
+//            CVarDumper::dump($model,10,true);
+			if($model->save()){
+                $this->redirect(array('utentes/view','id'=>$model->idUtente, '#'=> "tab_2"));
+            }
+
 		}
 
 		$this->render('update',array(
