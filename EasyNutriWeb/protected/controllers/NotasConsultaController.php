@@ -79,7 +79,7 @@ class NotasConsultaController extends Controller
 
 
             } else {
-                throw new Exception('Erro a guardar Nota de Consulta');
+//                throw new Exception('Erro a guardar Nota de Consulta');
             }
         }
 
