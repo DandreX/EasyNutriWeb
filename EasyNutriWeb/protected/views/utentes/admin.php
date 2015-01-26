@@ -52,7 +52,8 @@ TbHtml::button('Novo Utente', array('id' => 'btnOpenFormUtentes', 'icon'=>'plus'
     'dataProvider' => $model->search(),
     'filter' => $model,
     'selectableRows'=>1,
-    'selectionChanged'=>'function(id){ location.href = "'.$this->createUrl('view').'/id/"+$.fn.yiiGridView.getSelection(id)}',
+//    'selectionChanged'=>'function(id){ location.href = "'.$this->createUrl('view').'/id/"+$.fn.yiiGridView.getSelection(id)}',
+    'selectionChanged'=>'function(id){viewUtente(id);}',
     'enableSorting' => false,
     'columns' => array(
         'nome',
@@ -84,4 +85,12 @@ TbHtml::button('Novo Utente', array('id' => 'btnOpenFormUtentes', 'icon'=>'plus'
       var url = '<?php echo Yii::app()->createUrl("utentes/create"); ?>';
         location.href = url;
     });
+
+    function viewUtente(id){
+        var utenteId =$.fn.yiiGridView.getSelection(id);
+        if(utenteId!=''){
+            location.href = '<?php echo $this->createUrl('view')?>'+/id/+$.fn.yiiGridView.getSelection(id);
+        }
+    }
+
 </script>
