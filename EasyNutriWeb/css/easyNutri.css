@@ -450,6 +450,10 @@ div .linhaPlanoAlimento{
     /*margin-left: auto;*/
     /*margin-right: auto;*/
 /*}*/
+#mobileApps{
+    text-align: center
+;
+}
 
 #mobileApps img{
     width: 250px;
