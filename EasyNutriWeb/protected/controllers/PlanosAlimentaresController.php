@@ -65,11 +65,9 @@ class PlanosAlimentaresController extends Controller
 
         $model = new PlanoAlimentarForm();
 
-        // Uncomment the following line if AJAX validation is needed
-        // $this->performAjaxValidation($model);
+
         if (isset($_POST['PlanoAlimentarForm'])) {
-//            var_dump($_POST['PlanoAlimentarForm']);
-//            exit();
+
             $passoAnterior = $_POST['passoAtual'];
 
             $passoAtual = $_POST['passoAtual'];
@@ -83,6 +81,7 @@ class PlanosAlimentaresController extends Controller
             if (isset($model->plano)) {
                 Yii::app()->session['PlanoAlimentar_Plano']=$model->plano;
             }elseif(isset(Yii::app()->session['PlanoAlimentar_Plano'])){
+
                 $model->plano=Yii::app()->session['PlanoAlimentar_Plano'];
             }
 
@@ -174,12 +173,12 @@ class PlanosAlimentaresController extends Controller
                     return;
             }
 
+        }else {
+            //limpar a sessao se o anterior tivesse sido cancelado
+            unset(Yii::app()->session['PlanoAlimentar_Plano']);
         }
-        //todo inicializar valores
+
         if (isset($_POST['utenteId'])) {
-
-
-
 
             $utenteId = $_POST['utenteId'];
             $utente = Utentes::model()->findByPk($utenteId);
