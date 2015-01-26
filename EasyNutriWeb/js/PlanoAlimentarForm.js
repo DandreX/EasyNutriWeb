@@ -33,16 +33,23 @@ $( document ).ready(
         //END Prevenir nagevagacao nao autorizada
 
         //desativar form submit ao presionar a tecla enter
-        $('#formPlanoAlimentar').not($('form.form-inline')).on("keyup keypress", function(e) {
+//        $('#formPlanoAlimentar').not($('form.form-inline')).on("keyup keypress", function(e) {
+//            var code = e.keyCode || e.which;
+//
+//            if (code  == 13 ) {
+//                console.log(e)
+//                e.preventDefault();
+//                console.log("prevente submit");
+//                return false;
+//            }
+//        });
+        $(document).on("keyup keypress", '#formPlanoAlimentar',function(e) {
             var code = e.keyCode || e.which;
 
             if (code  == 13 ) {
-                console.log(e)
                 e.preventDefault();
-                console.log("prevente submit");
                 return false;
             }
         });
-
     }
 );

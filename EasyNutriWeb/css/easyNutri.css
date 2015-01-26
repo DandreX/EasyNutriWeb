@@ -360,6 +360,9 @@ div #formDadosAntro .row {
 
 
 /*PLANO ALIMENTAR*/
+.linhaPlano{
+    margin-bottom: 5px;
+}
 
 div .formFichaClinica .form-actions, .formNotaConsulta .form-actions {
     clear: both;

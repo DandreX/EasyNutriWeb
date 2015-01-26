@@ -30,12 +30,11 @@ $this->breadcrumbs = array(
     <?php echo TbHtml::alert(TbHtml::ALERT_COLOR_ERROR, implode('<br>', $model->errors["plano"])); ?>
 <?php endif; ?>
 <div id="formPlanoStep3">
-    <!--    --><?php //$form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
-    //        'layout' => TbHtml::FORM_LAYOUT_HORIZONTAL,
-    //        'id' => 'formPlanoAlimentar'
-    //    ));
-    ?>
-    <?php echo TbHtml::beginFormTb(); ?>
+
+    <?php $form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
+        'layout' => TbHtml::FORM_LAYOUT_HORIZONTAL,
+        'id' => 'formPlanoAlimentar'
+    )); ?>
 
     <!--valores do form anterior-->
     <?php $this->renderPartial('create_hidden_field', array(
@@ -119,8 +118,7 @@ $this->breadcrumbs = array(
         'id' => 'btnSubmeter')); ?>
 
 
-    <?php echo TbHtml::endForm(); ?>
-
+    <?php $this->endWidget(); ?>
     <?php $this->widget('bootstrap.widgets.TbModal', array(
         'id' => 'modalPesquisa',
         'backdrop' => true,
