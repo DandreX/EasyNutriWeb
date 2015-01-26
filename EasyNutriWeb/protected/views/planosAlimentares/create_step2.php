@@ -418,7 +418,7 @@ $(document).ready(function () {
         //timeout devido a alteracao nao ser instantanea
         setTimeout(function () {
             calcularTabelaDoses(indiceLinha);
-        }, 500);
+        }, 1000);
 
     });
 
