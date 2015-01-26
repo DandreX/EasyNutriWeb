@@ -12,7 +12,8 @@ $this->menu = array(
 );
 
 $this->breadcrumbs = array(
-    'Dados Antros' => array('index'),
+
+    'Dados Antropométricos' => array('index'),
     'Todos os registos',
 );
 

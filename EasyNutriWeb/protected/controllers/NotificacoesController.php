@@ -97,7 +97,7 @@ class NotificacoesController extends Controller
                 print_r("guardou");
                 exit();
             } else {
-                throw new Exception('Erro a guardar notificacao');
+                throw new Exception('Erro a guardar notificacao. Verifique se todos os campos estão preenchidos');
             }
 
         }

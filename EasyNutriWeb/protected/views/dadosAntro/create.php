@@ -2,10 +2,15 @@
 /* @var $this DadosAntroController */
 /* @var $model DadosAntro */
 
-//$this->breadcrumbs=array(
-//	'Dados Antros'=>array('index'),
-//	'Create',
-//);
+$this->breadcrumbs=array(
+    'Utentes'=>array('utentes/admin'),
+	'Dados Antropométricos'=>array('index'),
+
+);
+if(isset($model->utente_id)){
+    $this->breadcrumbs[$model->utente->nome]=array('utentes/view&id='.$model->utente_id);
+}
+array_push($this->breadcrumbs,'Novo registo');
 
 $this->menu = array(
 //	array('label'=>'List DadosAntro', 'url'=>array('index')),

@@ -88,6 +88,26 @@ $this->menu = array(
 
 
 <script type="text/javascript">
+
+    var submeterNotificacao = function(){
+        var data = $("#notificacoes-form").serialize() + '&idUtente=' + '<?php echo($model->id) ?>';
+        console.log(data);
+        $.ajax({
+            type: 'POST',
+            url: '<?php echo Yii::app()->createAbsoluteUrl("notificacoes/AjaxCreate"); ?>',
+            data: data,
+            success: function (data) {
+                $('#Notificacoes_assunto').val('');
+                $('#Notificacoes_descricao').val('');
+                alert("Notificação enviada com sucesso");
+            },
+            error: function (data) { // if error occured
+                alert("Erro ao enviar notificação.\nVerifique se todos os campos estão preenchidos.");
+            },
+            dataType: 'html'
+        });
+    }
+
     $(document).ready(function () {
         var tab = window.location.hash;
         tab = tab == "" ? '#tab_1' : tab;
@@ -109,24 +129,17 @@ $this->menu = array(
             dataType: 'html'
         });
 
+        //Submeter notificacao
         $('#btnCreateNot').click(function () {
-            var data = $("#notificacoes-form").serialize() + '&idUtente=' + '<?php echo($model->id) ?>';
-            console.log(data);
-            $.ajax({
-                type: 'POST',
-                url: '<?php echo Yii::app()->createAbsoluteUrl("notificacoes/AjaxCreate"); ?>',
-                data: data,
-                success: function (data) {
-                    $('#Notificacoes_assunto').val('');
-                    $('#Notificacoes_descricao').val('');
-                    alert("Notificação enviada com sucesso");
-                },
-                error: function (data) { // if error occured
-                    alert("Erro ao enviar notificacao");
-                },
-                dataType: 'html'
-            });
+           submeterNotificacao();
         });
+        $('#notificacoes-form').live('submit',function(event){
+            console.log('notificacao enter');
+            submeterNotificacao();
+            event.preventDefault();
+        });
+
+
         $('#btnCancelarNot').click(function () {
             $('#Notificacoes_assunto').val('');
             $('#Notificacoes_descricao').val('');
